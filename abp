@@ -1,0 +1,4 @@
+#EXTM3U
+
+#EXTINF:-1,tvg-id="ABPNews.in" tvg-name="ABP News" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/ABP_News_Logo.svg/640px-ABP_News_Logo.svg.png" group-title="News",ABP News
+https://abplivetv.akamaized.net/hls/live/2043010/hindi/master.m3u8
