@@ -1,5 +1,6 @@
 #EXTM3U
-
+#EXTINF:-1 tvg-id="IndiaNews.in" tvg-name="India News" tvg-country="IN" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/India_News.png" group-title="News",India News
+http://89.34.226.181:21190/ajuno/inddnews/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9MTA
 #EXTINF:-1 tvg-id="abpasmita" tvg-name="ABP Asmita HD" tvg-country="IN" tvg-language="Gujarati" tvg-logo="https://upload.wikimedia.org/wikipedia/en/3/3c/ABP_Asmita_logo.png" group-title="News",ABP Asmita HD
 https://cdn-singapore-5160-prod.tsv2.amagi.tv/linear/amg01448-samsungin-abpasmita-samsungin/playlist.m3u8
 
