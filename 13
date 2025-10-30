@@ -1,4 +1,11 @@
 #EXTM3U
+#EXTINF:-1 tvg-id="545" tvg-name="Nick Hindi" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Nick_Hindi.png" group-title="Kids",Nick Hindi
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=2fc128a8dcc751829ec7ed9c678ecb6f:95f49d83ad11868e15e64baf5dec62ac
+#EXTVLCOPT:http-user-agent=plaYtv/7.1.3 (Linux;Android 13) ygx/69.1 ExoPlayerLib/824.0
+#EXTHTTP:{"cookie":"__hdnea__=st=1761785091~exp=1761871491~acl=/*~hmac=dab94a397cc6b1d9e4a9628796fc18c620214b67f151bcf8f143f12069072f91"}
+https://jiotvpllive.cdn.jio.com/bpk-tv/Nick_Hindi_BTS/output/index.mpd
+
 #EXTINF:-1 tvg-id="IndiaNews.in" tvg-name="India News" tvg-country="IN" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/India_News.png" group-title="News",India News
 http://89.34.226.181:21190/ajuno/inddnews/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9MTA
 #EXTINF:-1 tvg-id="abpasmita" tvg-name="ABP Asmita HD" tvg-country="IN" tvg-language="Gujarati" tvg-logo="https://upload.wikimedia.org/wikipedia/en/3/3c/ABP_Asmita_logo.png" group-title="News",ABP Asmita HD
