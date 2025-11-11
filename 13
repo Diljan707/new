@@ -1,4 +1,7 @@
 #EXTM3U
+#EXTINF:-1 tvg-id="DisneyChannel.in" tvg-name="Disney Channel HD" tvg-logo="https://i.postimg.cc/854KwmH1/disneychannel.png" group-title="Kids" tvg-chno="211",Disney Channel HD (1080p)
+https://api.allorigins.win/raw?url=http://66.102.120.18:8000/play/a013/index.m3u8
+
 #EXTINF:-1 tvg-id="545" tvg-name="Nick Hindi" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Nick_Hindi.png" group-title="Kids",Nick Hindi
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=2fc128a8dcc751829ec7ed9c678ecb6f:95f49d83ad11868e15e64baf5dec62ac
