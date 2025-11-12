@@ -1,5 +1,7 @@
 #EXTM3U
 #EXT-X-START:TIME-OFFSET=0
+#EXTINF:-1 tvg-id="DisneyChannel.in" tvg-name="Disney Channel HD" tvg-logo="https://i.postimg.cc/854KwmH1/disneychannel.png" group-title="Kids",Disney Channel HD (1080p)
+http://127.0.0.1:8010/proxy/play/a013/index.m3u8
 #EXTINF:-1 tvg-id="DisneyChannel.in" tvg-name="Disney Channel HD" tvg-logo="https://i.postimg.cc/854KwmH1/disneychannel.png" group-title="Kids" tvg-chno="211",Disney Channel HD (1080p)
 https://corsproxy.io/?http://66.102.120.18:8000/play/a013/index.m3u8
 
