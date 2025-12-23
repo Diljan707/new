@@ -1,0 +1,3 @@
+#EXTM3U
+#EXTINF:-1 tvg-id="SONIC" tvg-name="Sonic Live" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/8/8b/Sonic_TV_logo.png/512px-Sonic_TV_logo.png" group-title="Kids",Sonic Live
+https://genres-relative-labels-conferences.trycloudflare.com/stream.m3u8
