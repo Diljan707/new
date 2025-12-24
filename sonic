@@ -1,0 +1,3 @@
+#EXTM3U
+#EXTINF:-1 tvg-name="Sonic Live" group-title="Live",Sonic Live IPv6
+http://[2402:8100:2b17:d75e::f658:13aa]:1212/stream.m3u8
