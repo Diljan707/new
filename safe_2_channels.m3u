@@ -1,0 +1,11 @@
+#EXTM3U
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"base64": {"keys": [{"kty": "oct", "k": "7eu-Vi8AtrbzXikGhntx4g", "kid": "APQs-grtMBnQ1eF1d8TenQ"}, {"kty": "oct", "k": "snl85eQD7iLY42xtXytmMA", "kid": "6xkRPBHOXPuAyJaWdloBhw"}, {"kty": "oct", "k": "KMCxmn3ii4k3gTZOtSf2dA", "kid": "tzy5MyyHYXYLjsVmY9nnVQ"}, {"kty": "oct", "k": "VX0aC4ZOV4W2vGo8a0MTkw", "kid": "41p3BN7Bt5m0LFs-u3lxXg"}, {"kty": "oct", "k": "dPR-5eKYTqXVk6ULAdzH7w", "kid": "SUFIb7IBk8TxSW2r7ss4tw"}], "type": "temporary"}, "expire": 1788712824}
+#EXTINF:-1 tvg-id="143" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/CNBCTV18Prime.png" catchup-type="append" catchup-days="8" catchup-source="&begin={utc}&end={utcend}" group-title="English",CNBC TV18 Prime
+#EXTVLCOPT:http-user-agent=Denver1769
+https://jiotvmblive.cdn.jio.com/bpk-tv/CNBCTV18Prime_MOB/WDVLive/index.mpd?__hdnea__=st=1788706812~exp=1788728412~acl=/*~hmac=dfa547b2a98b9d919862387cc72700b37df4b3b3d8848315ad8f5c20719b3728
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"base64": {"keys": [{"kty": "oct", "k": "RXqJvJ1HsbydmcL6LVGUcQ", "kid": "7in-NX-733YD-DN3gp6KSg"}, {"kty": "oct", "k": "9Lfefa88AzMt3yfiHd9TBg", "kid": "fAfpuoISauRwkbUywne2MQ"}, {"kty": "oct", "k": "53Ro_WJwcb4y0c5c0ANPig", "kid": "-ETpr-r6a5U5xJggRjo3kw"}, {"kty": "oct", "k": "qQ2iIPLGyUjiCrloirDQFQ", "kid": "3XCWZ7uFwBlbhIhgkzQHSg"}, {"kty": "oct", "k": "fo9QDO9RWV89Q6yvqxqPtA", "kid": "U2DhLUuyUZqRSNEImlWQjQ"}], "type": "temporary"}, "expire": 1788712826}
+#EXTINF:-1 tvg-id="144" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/ColorsHD.png" catchup-type="append" catchup-days="8" catchup-source="&begin={utc}&end={utcend}" group-title="Entertainment",Colors HD
+#EXTVLCOPT:http-user-agent=Denver1769
+https://jiotvmblive.cdn.jio.com/bpk-tv/ColorsHD_MOB/WDVLive/index.mpd?__hdnea__=st=1788706812~exp=1788728412~acl=/*~hmac=dfa547b2a98b9d919862387cc72700b37df4b3b3d8848315ad8f5c20719b3728
