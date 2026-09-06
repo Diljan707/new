@@ -20,10 +20,9 @@ def get_cached_key(key_url):
             return key_cache[key_url]
 
     embedded_key_data = None
-    # 3 ਵਾਰ ਟਰਾਈ ਕਰੇਗਾ ਤਾਂ ਜੋ ਕੋਈ ਕੀਅ ਮਿਸ ਨਾ ਹੋਵੇ
     for _ in range(3):
         try:
-            key_res = requests.get(key_url, headers=HEADERS, timeout=6)
+            key_res = requests.get(key_url, headers=HEADERS, timeout=10)
             if key_res.status_code == 200:
                 data = key_res.json()
                 if "keys" in data:
@@ -44,7 +43,7 @@ def process_channel(channel_info):
     final_mpd = mpd_line
     if mpd_line:
         try:
-            r = requests.get(mpd_line, headers=HEADERS, allow_redirects=False, timeout=5)
+            r = requests.get(mpd_line, headers=HEADERS, allow_redirects=False, timeout=8)
             if r.status_code in [301, 302, 303, 307, 308]:
                 final_mpd = r.headers.get('Location', mpd_line)
         except:
@@ -55,13 +54,11 @@ def process_channel(channel_info):
             final_mpd = final_mpd[:-1]
 
     lines_to_add = []
-    lines_to_add.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
     
-    # ਸਿਰਫ਼ JSON ਕੀਅ ਹੀ ਇੰਬੈੱਡ ਕਰੇਗਾ, ਜੇ ਕੀਅ ਨਹੀਂ ਮਿਲੀ ਤਾਂ ਖਾਲੀ ਛੱਡ ਦੇਵੇਗਾ ਪਰ ਲਿੰਕ ਨਹੀਂ ਪਾਵੇਗਾ
+    # ਸਿਰਫ਼ JSON ਕੀਅ ਹੀ ਲੱਗੇਗੀ, ਕੋਈ ਲਿੰਕ ਨਹੀਂ
     if embedded_key_data:
+        lines_to_add.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
         lines_to_add.append(f"#KODIPROP:inputstream.adaptive.license_key={embedded_key_data}")
-    elif key_url:
-        lines_to_add.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
 
     lines_to_add.append(extinf_line)
     lines_to_add.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
@@ -71,7 +68,7 @@ def process_channel(channel_info):
     return lines_to_add
 
 def main():
-    print("[*] Downloading base playlist for all channels...")
+    print("[*] Downloading base playlist...")
     try:
         res = requests.get(PLAYLIST_URL, headers=HEADERS, timeout=60)
         if res.status_code != 200:
@@ -107,12 +104,15 @@ def main():
             channels_to_process.append((extinf_line, key_url, user_agent, mpd_line))
         i += 1
 
+    # ਸਿਰਫ਼ ਪਹਿਲੇ 10 ਚੈਨਲ ਹੀ ਲਵਾਂਗੇ
+    channels_to_process = channels_to_process[:10]
     total_channels = len(channels_to_process)
-    print(f"[*] Found {total_channels} channels. Processing all with 250 Workers...")
+    
+    print(f"[*] Processing exactly {total_channels} channels...")
     
     new_lines = ["#EXTM3U"]
     
-    with ThreadPoolExecutor(max_workers=250) as executor:
+    with ThreadPoolExecutor(max_workers=10) as executor:
         futures = {executor.submit(process_channel, ch): ch for ch in channels_to_process}
         
         for future in as_completed(futures):
@@ -123,8 +123,8 @@ def main():
     with open("playlist.m3u", "w", encoding="utf-8") as f:
         f.write("\n".join(new_lines))
 
-    print(f"[+] Success! All {total_channels} channels processed and saved to playlist.m3u")
+    print(f"[+] Success! First {total_channels} channels processed.")
 
 if __name__ == "__main__":
     main()
-            
+        
