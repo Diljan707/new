@@ -1,0 +1,11 @@
+#EXTM3U
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=15b89f6c56fed147ca983b3e6311042a:bca5ae7f7fe09d1afca52ce1d70ca8b4
+#EXTINF:-1 tvg-id="143" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/CNBCTV18Prime.png" catchup-type="append" catchup-days="8" catchup-source="&begin={utc}&end={utcend}" group-title="English",CNBC TV18 Prime
+#EXTVLCOPT:http-user-agent=Denver1769
+https://jiotvmblive.cdn.jio.com/bpk-tv/CNBCTV18Prime_MOB/WDVLive/index.mpd?__hdnea__=st=1788706812~exp=1788728412~acl=/*~hmac=dfa547b2a98b9d919862387cc72700b37df4b3b3d8848315ad8f5c20719b3728
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=04cd096d768a9bc3bc60492ed9d23d78:b1ddbf42bbb10dde06e8017aaa4a4abf
+#EXTINF:-1 tvg-id="144" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/ColorsHD.png" catchup-type="append" catchup-days="8" catchup-source="&begin={utc}&end={utcend}" group-title="Entertainment",Colors HD
+#EXTVLCOPT:http-user-agent=Denver1769
+https://jiotvmblive.cdn.jio.com/bpk-tv/ColorsHD_MOB/WDVLive/index.mpd?__hdnea__=st=1788706812~exp=1788728412~acl=/*~hmac=dfa547b2a98b9d919862387cc72700b37df4b3b3d8848315ad8f5c20719b3728
