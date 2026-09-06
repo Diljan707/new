@@ -1,9 +1,13 @@
 name: Update IPTV Playlist
 
 on:
-  workflow_dispatch: # ਤੁਸੀਂ ਜਦੋਂ ਮਰਜ਼ੀ GitHub ਉੱਤੇ ਜਾ ਕੇ ਇੱਕ ਕਲਿੱਕ ਨਾਲ ਚਲਾ ਸਕਦੇ ਹੋ
+  workflow_dispatch:
   schedule:
-    - cron: '0 */6 * * *' # ਹਰ 6 ਘੰਟੇ ਬਾਅਦ ਆਟੋਮੈਟਿਕ ਅੱਪਡੇਟ ਹੋ ਜਾਵੇਗਾ
+    - cron: '0 */6 * * *'
+
+# ਇਹ ਲਾਈਨ ਬੋਟ ਨੂੰ ਰੈਪੋਜ਼ਟਰੀ ਵਿੱਚ ਫ਼ਾਈਲ ਸੇਵ ਕਰਨ ਦੀ ਪਰਮਿਸ਼ਨ ਦੇਵੇਗੀ
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -30,3 +34,4 @@ jobs:
           git add playlist.m3u
           git commit -m "Auto-update playlist [skip ci]" || exit 0
           git push
+          
