@@ -1,6 +1,5 @@
 import requests
 import json
-import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from threading import Lock
 
@@ -21,14 +20,12 @@ def get_cached_key(key_url):
             return key_cache[key_url]
 
     embedded_key_data = None
-    for _ in range(2):
-        try:
-            key_res = requests.get(key_url, headers=HEADERS, timeout=6)
-            if key_res.status_code == 200:
-                embedded_key_data = json.dumps(key_res.json())
-                break
-        except:
-            pass
+    try:
+        key_res = requests.get(key_url, headers=HEADERS, timeout=5)
+        if key_res.status_code == 200:
+            embedded_key_data = json.dumps(key_res.json())
+    except:
+        pass
             
     with cache_lock:
         key_cache[key_url] = embedded_key_data
@@ -42,7 +39,7 @@ def process_channel(channel_info):
     final_mpd = mpd_line
     if mpd_line:
         try:
-            r = requests.get(mpd_line, headers=HEADERS, allow_redirects=False, timeout=5)
+            r = requests.get(mpd_line, headers=HEADERS, allow_redirects=False, timeout=4)
             if r.status_code in [301, 302, 303, 307, 308]:
                 final_mpd = r.headers.get('Location', mpd_line)
         except:
@@ -67,10 +64,16 @@ def process_channel(channel_info):
     return lines_to_add
 
 def main():
-    print("[*] Downloading base playlist...")
-    res = requests.get(PLAYLIST_URL, headers=HEADERS, timeout=30)
-    if res.status_code != 200:
-        print("[-] Failed to fetch base playlist.")
+    print("[*] Downloading base playlist at max speed...")
+    
+    # ਬਿਨਾਂ ਕਿਸੇ ਵਾਧੂ ਰੀਟ੍ਰਾਈ ਜਾਂ ਸਲੀਪ ਦੇ ਸਿੱਧੀ ਰੁਕਵਟ
+    try:
+        res = requests.get(PLAYLIST_URL, headers=HEADERS, timeout=60)
+        if res.status_code != 200:
+            print(f"[-] Failed with status code: {res.status_code}")
+            return
+    except Exception as e:
+        print(f"[-] Error downloading playlist: {e}")
         return
 
     lines = res.text.splitlines()
@@ -100,16 +103,15 @@ def main():
         i += 1
 
     total_channels = len(channels_to_process)
-    print(f"[*] Processing {total_channels} channels with 150 Workers...")
+    print(f"[*] Processing {total_channels} channels with 250 Workers (Zero Delay)...")
     
     new_lines = ["#EXTM3U"]
-    completed = 0
     
-    with ThreadPoolExecutor(max_workers=150) as executor:
+    # 250 ਵਰਕਰਜ਼ ਦੀ ਫੁੱਲ ਪਾਵਰ ਬਿਨਾਂ ਕਿਸੇ ਰੁਕਾਵਟ ਦੇ
+    with ThreadPoolExecutor(max_workers=250) as executor:
         futures = {executor.submit(process_channel, ch): ch for ch in channels_to_process}
         
         for future in as_completed(futures):
-            completed += 1
             result = future.result()
             if result:
                 new_lines.extend(result)
@@ -117,7 +119,7 @@ def main():
     with open("playlist.m3u", "w", encoding="utf-8") as f:
         f.write("\n".join(new_lines))
 
-    print("[+] Playlist generated successfully!")
+    print("[+] Playlist generated instantly with zero delay!")
 
 if __name__ == "__main__":
     main()
