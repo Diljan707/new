@@ -104,11 +104,11 @@ def main():
             channels_to_process.append((extinf_line, key_url, user_agent, mpd_line))
         i += 1
 
-    # ਸਿਰਫ਼ ਪਹਿਲੇ 10 ਚੈਨਲ ਹੀ ਲਵਾਂਗੇ
+    # ਫਿਲਹਾਲ ਟੈਸਟਿੰਗ ਲਈ ਪਹਿਲੇ 10 ਚੈਨਲ ਰੱਖੇ ਹਨ (ਜਦੋਂ ਪੂਰੇ ਚਾੁਣੇ ਹੋਣ ਤਾਂ ਇਸ ਲਾਈਨ ਨੂੰ ਹਟਾ ਸਕਦੇ ਹੋ)
     channels_to_process = channels_to_process[:10]
     total_channels = len(channels_to_process)
     
-    print(f"[*] Processing exactly {total_channels} channels...")
+    print(f"[*] Processing {total_channels} channels for GitHub...")
     
     new_lines = ["#EXTM3U"]
     
@@ -120,10 +120,11 @@ def main():
             if result:
                 new_lines.extend(result)
 
+    # GitHub ਲਈ ਫ਼ਾਈਲ ਦਾ ਨਾਮ playlist.m3u ਰੱਖਿਆ ਹੈ
     with open("playlist.m3u", "w", encoding="utf-8") as f:
         f.write("\n".join(new_lines))
 
-    print(f"[+] Success! First {total_channels} channels processed.")
+    print(f"[+] Success! Generated playlist.m3u with {total_channels} channels.")
 
 if __name__ == "__main__":
     main()
