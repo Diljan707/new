@@ -45,12 +45,11 @@ def main():
                         if key_res.status_code == 200:
                             key_json = key_res.json()
                             embedded_key_data = json.dumps(key_json)
-                    except:
+                    except Exception:
                         pass
 
                 new_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
                 
-                # ਜੇ JSON ਕੀਅ ਮਿਲ ਗਈ ਤਾਂ ਉਹ ਪੈ ਜਾਵੇਗੀ, ਨਹੀਂ ਤਾਂ ਪੁਰਾਣਾ ਲਿੰਕ ਬੈਕਅੱਪ ਵਜੋਂ ਲੱਗ ਜਾਵੇਗਾ (ਜਿਵੇਂ ਟਰਮਕਸ ਵਿੱਚ ਸੀ)
                 if embedded_key_data:
                     new_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={embedded_key_data}")
                 elif key_url:
@@ -67,7 +66,7 @@ def main():
                         if clean_url.endswith("~"):
                             clean_url = clean_url[:-1]
                         new_lines.append(clean_url)
-                    except:
+                    except Exception:
                         clean_url = mpd_line.strip().split()[0]
                         if clean_url.endswith("~"):
                             clean_url = clean_url[:-1]
@@ -78,8 +77,11 @@ def main():
         with open("playlist.m3u", "w", encoding="utf-8") as f:
             f.write("\n".join(new_lines))
 
-        print("[+] Success! Playlist generated successfully with safe fallback.")
+        print("[+] Success! Playlist generated successfully.")
+
+    except Exception as e:
+        print(f"[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     main()
-                
+                        
