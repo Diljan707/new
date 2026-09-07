@@ -1,1 +1,99 @@
 #EXTM3U
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"base64": {"keys": [{"kty": "oct", "k": "SlAbjUKELACwlRdqsWa1Fg", "kid": "33YvLj3PsUAf1SVhLLv8DA"}, {"kty": "oct", "k": "snl85eQD7iLY42xtXytmMA", "kid": "6xkRPBHOXPuAyJaWdloBhw"}, {"kty": "oct", "k": "TEibkdTmEK3byhwvQP35IQ", "kid": "QZ2JtMKfSmsHYcSsCb1Waw"}, {"kty": "oct", "k": "Zec1HE6EwVDTSPVo0JY0LA", "kid": "4u0HxLcGGS7YIm_j3h3SSg"}, {"kty": "oct", "k": "th14BIJeWmPrYlvWghFDWQ", "kid": "jtQCq-h2JQYA0LcMR2raQg"}], "type": "temporary"}, "expire": 1788744039}
+#EXTINF:-1 tvg-id="143" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/CNBCTV18Prime.png" catchup-type="append" catchup-days="8" catchup-source="&begin={utc}&end={utcend}" group-title="English",CNBC TV18 Prime
+#EXTVLCOPT:http-user-agent=Denver1769
+https://jiotvmblive.cdn.jio.com/bpk-tv/CNBCTV18Prime_MOB/WDVLive/index.mpd?__hdnea__=st=1788730205~exp=1788751805~acl=/*~hmac=4eceaafd4025512147571e448079deccaa81144d5d6e4b9e580ffb68c44ef3f8
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"base64": {"keys": [{"kty": "oct", "k": "fo9QDO9RWV89Q6yvqxqPtA", "kid": "U2DhLUuyUZqRSNEImlWQjQ"}, {"kty": "oct", "k": "f1H2ktXS7Ytc0YWl4oXiOA", "kid": "tpdOlnD7AdNk-KKxSbc4lw"}, {"kty": "oct", "k": "E1gVJylOdWRbWBmOK2_J7Q", "kid": "xO4AjKm0Dj3ZxjkRczfInQ"}, {"kty": "oct", "k": "wd8lIp7Y0YB3JDg47VsAFg", "kid": "3OO9SeckdBbVSStFnwuc6Q"}, {"kty": "oct", "k": "_uqcDc4vev4JZo4vckau3A", "kid": "uPp41dVnYt4uaufaiB5-Qg"}], "type": "temporary"}, "expire": 1788744039}
+#EXTINF:-1 tvg-id="144" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/ColorsHD.png" catchup-type="append" catchup-days="8" catchup-source="&begin={utc}&end={utcend}" group-title="Entertainment",Colors HD
+#EXTVLCOPT:http-user-agent=Denver1769
+https://jiotvmblive.cdn.jio.com/bpk-tv/ColorsHD_MOB/WDVLive/index.mpd?__hdnea__=st=1788730205~exp=1788751805~acl=/*~hmac=4eceaafd4025512147571e448079deccaa81144d5d6e4b9e580ffb68c44ef3f8
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"base64": {"keys": [{"kty": "oct", "k": "QCO9mL4BtNVEjKIBvTdXPw", "kid": "rUj9sVdhSuxwpcsf6AnkGQ"}, {"kty": "oct", "k": "wIXy_D5cmNBXc_LiKnArkw", "kid": "VpywVLdlEhNWTsPScKy2AQ"}, {"kty": "oct", "k": "obbU8Iy-5sf2AChaIOPtsA", "kid": "4z0wguGaf5gcroCgQSw4Dw"}, {"kty": "oct", "k": "zU8UyVoY6dNmtLnWEJhgqA", "kid": "bszmYcNjgXGXJmULPQPEXA"}, {"kty": "oct", "k": "5Kt4NmF3Z6Km56quF_rStg", "kid": "AXK4zRPtWTSaBarcWK4R4A"}], "type": "temporary"}, "expire": 1788744038}
+#EXTINF:-1 tvg-id="146" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/History_HD.png" catchup-type="append" catchup-days="8" catchup-source="&begin={utc}&end={utcend}" group-title="English",History TV18 HD
+#EXTVLCOPT:http-user-agent=Denver1769
+https://jiotvpllive.cdn.jio.com/bpk-tv/History_HD_BTS/WDVLive/index.mpd?__hdnea__=st=1788743124~exp=1788746724~acl=/bpk-tv/History_HD_BTS/WDVLive/*~hmac=2e5f42ff4ec75ac6efa16b6fbd026a6b42da914fe7ba226b028824c9dbbf3ee5
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"base64": {"keys": [{"kty": "oct", "k": "jGVQov0wSV9Vt3Qr79T1BA", "kid": "aUjsDKeymS5iwg1y7fb7hA"}, {"kty": "oct", "k": "KKhGEfB1OA-pCi4JO95PzA", "kid": "6eLvovQ3F-FwjFm4rFaWIQ"}, {"kty": "oct", "k": "BY3shFvTQBeKOI7dEEoBXg", "kid": "QPAZuGJB0j7wdWM_1_HpJw"}, {"kty": "oct", "k": "IoJGfkf-bW6Pfpm0Ywg_0Q", "kid": "DOkUJpEfNINaVjH0J2i-rA"}, {"kty": "oct", "k": "bzieV8uviNyRPIAOVua_Dg", "kid": "qRdw2IyGEtZpJBtKErhPYw"}], "type": "temporary"}, "expire": 1788744038}
+#EXTINF:-1 tvg-id="151" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Movies_Now_HD.png" CATCH-UP-FAILED="null" group-title="English",Movies Now HD
+#EXTVLCOPT:http-user-agent=Denver1769
+https://times-ott-live.akamaized.net/moviesnow_wv_drm/index.mpd?mblive?__hdnea__=st=1788730205~exp=1788751805~acl=/*~hmac=4eceaafd4025512147571e448079deccaa81144d5d6e4b9e580ffb68c44ef3f8
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"base64": {"keys": [{"kty": "oct", "k": "Pq69X-7w2vXXQO8cL6NDIw", "kid": "MNxZUYk66COtKuZDEIb5MA"}, {"kty": "oct", "k": "sjXx_MPmitbv2B9Y03ItSg", "kid": "H3hpVhFYUr8oj2pbvEvQhw"}, {"kty": "oct", "k": "ldE-IlNrtx10ydsjjzZftQ", "kid": "sTreVh1qLcvX5KiAer_qkg"}, {"kty": "oct", "k": "DDVOs-p300T2yHbj2ddoqA", "kid": "zjClC8m7pYFNTPXmQKs-xg"}, {"kty": "oct", "k": "U23x414rsFW-ARe1HbgTnA", "kid": "UJIWhg-OWUqvfpISlvU4UQ"}], "type": "temporary"}, "expire": 1788744039}
+#EXTINF:-1 tvg-id="153" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/ZeeTalkies.png" CATCH-UP-FAILED="null" group-title="Marathi",Zee Talkies
+#EXTVLCOPT:http-user-agent=Denver1769
+https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeTalkies_BTS/WDVLive/index.mpd?__hdnea__=st=1788743573~exp=1788747173~acl=/bpk-tv/ZeeTalkies_BTS/WDVLive/*~hmac=918667374466296c35f20f515a0920ebdf5f3de3a21629db169c9cc16854e30a
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"base64": {"keys": [{"kty": "oct", "k": "XHHsc3cOcCxIT4b7YmiDmg", "kid": "RD3wzfO5o5eHAbyd6l-ttQ"}, {"kty": "oct", "k": "MefL89KJ0xFjhkV-2LrDog", "kid": "uk2bOFF1Ut6WVNNlLSeTOw"}, {"kty": "oct", "k": "_wVN_FBNV1Oty3lThMfuHA", "kid": "3zzf7YJj4TgwnLFJCAmWTw"}, {"kty": "oct", "k": "B78L6T7PFe9PuK6LKTmSkQ", "kid": "M4RTQrFAnnVFLWiOKOCxiw"}, {"kty": "oct", "k": "welwX877xqpLmhs8YK3ang", "kid": "MdspdZt1kRE3DXlCVrgTmQ"}], "type": "temporary"}, "expire": 1788744038}
+#EXTINF:-1 tvg-id="154" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Sony_SAB.png" catchup-type="append" catchup-days="8" catchup-source="&begin={utc}&end={utcend}" group-title="Entertainment",Sony SAB
+#EXTVLCOPT:http-user-agent=Denver1769
+https://jiotvmblive.cdn.jio.com/bpk-tv/Sony_SAB_MOB/WDVLive/index.mpd?__hdnea__=st=1788730205~exp=1788751805~acl=/*~hmac=4eceaafd4025512147571e448079deccaa81144d5d6e4b9e580ffb68c44ef3f8
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"base64": {"keys": [{"kty": "oct", "k": "Rnz210C3IS_PxkhkT7eZQw", "kid": "jLe0DO_gU-qRiV4xlLuZEg"}, {"kty": "oct", "k": "74AT0PNFUOWcQO6X4xWvNA", "kid": "CiPek1JWUh1eCmwQu-robg"}, {"kty": "oct", "k": "C_zP5YEKKiSSIZj00HRihA", "kid": "78mrnBht2iGCelSWCJCIxA"}, {"kty": "oct", "k": "CESoex4p3WC5KClnCWwWfQ", "kid": "mlZvc6GZu3enWX4Si6GNkQ"}, {"kty": "oct", "k": "z4u0IVMcu6xX5uU5zfkUhg", "kid": "qYJyxX6DYwVso7PjfhT8-w"}], "type": "temporary"}, "expire": 1788744037}
+#EXTINF:-1 tvg-id="155" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Six_HD.png" CATCH-UP-FAILED="null" group-title="Sports",Sony Ten 5 HD
+#EXTVLCOPT:http-user-agent=Denver1769
+https://jiotvmblive.cdn.jio.com/bpk-tv/Six_HD_MOB/WDVLive/index.mpd?__hdnea__=st=1788730205~exp=1788751805~acl=/*~hmac=4eceaafd4025512147571e448079deccaa81144d5d6e4b9e580ffb68c44ef3f8
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"base64": {"keys": [{"kty": "oct", "k": "Oqp-_GT5uBuRUS0a8sVuPA", "kid": "ObXHVsGDVdmXj-bGMRtIkQ"}, {"kty": "oct", "k": "BePitX7_GMFt3rwucqVp1g", "kid": "pKiqAVDplQSmEyCuCu2peg"}, {"kty": "oct", "k": "bpTULR1pAXhCAyqERzn8Uw", "kid": "FCWLh-oyH_95TXMg2am5eA"}, {"kty": "oct", "k": "b7hU75f4X1v0yHXk_vAO9g", "kid": "dyU5o0K3fj7JgJup0OEmCA"}, {"kty": "oct", "k": "nJAeRq_h8F3T_xyiLleaNw", "kid": "S2FWbLMV7ycG3H8Y2mu77A"}], "type": "temporary"}, "expire": 1788744039}
+#EXTINF:-1 tvg-id="156" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Star_Gold_HD.png" CATCH-UP-FAILED="null" group-title="Movies",Star Gold HD
+#EXTVLCOPT:http-user-agent=Denver1769
+https://jiotvmblive.cdn.jio.com/bpk-tv/Star_Gold_HD_MOB/WDVLive/index.mpd?__hdnea__=st=1788730205~exp=1788751805~acl=/*~hmac=4eceaafd4025512147571e448079deccaa81144d5d6e4b9e580ffb68c44ef3f8
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"base64": {"keys": [{"kty": "oct", "k": "lRMUP3QzYq59PI8nsHc52w", "kid": "TwhAESNuoDxXYPuJ25kmHw"}, {"kty": "oct", "k": "-PJbR9soJsw1CRen78V1Bg", "kid": "pXeduZDUZZxK1VKYd4HSAQ"}, {"kty": "oct", "k": "tn5awR-hxodTppendaJpDA", "kid": "H4CzZ9bk59N6Jes6twud3w"}, {"kty": "oct", "k": "hUi1ZvxmCKfTvWAe5fPYiQ", "kid": "NSXJJOVBVLOVM9hrHHpCig"}, {"kty": "oct", "k": "lJkaEjxIkD6j--1WVHtZHQ", "kid": "kCZrQBjRfZWgSm7E7QyzjA"}], "type": "temporary"}, "expire": 1788744039}
+#EXTINF:-1 tvg-id="162" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Ten_HD.png" CATCH-UP-FAILED="null" group-title="Sports",Sony Ten 1 HD
+#EXTVLCOPT:http-user-agent=Denver1769
+https://jiotvmblive.cdn.jio.com/bpk-tv/Ten_HD_MOB/WDVLive/index.mpd?__hdnea__=st=1788730205~exp=1788751805~acl=/*~hmac=4eceaafd4025512147571e448079deccaa81144d5d6e4b9e580ffb68c44ef3f8
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"base64": {"keys": [{"kty": "oct", "k": "OsgZYrx7OdylUBqK2DcYiQ", "kid": "FOL0Sdml4ZdJ5PU-ayxfKw"}, {"kty": "oct", "k": "MSjy-KJ4rvRNSuahLUCpKw", "kid": "F1Mjpahj4RiQi2C0YnuqgA"}, {"kty": "oct", "k": "iZxboXWAGGLKaWNXcEtrIA", "kid": "MfFrhBcHHKw8wYjgPaNMdA"}, {"kty": "oct", "k": "e1bJz6Xmk26CdCGIFcks4w", "kid": "ThBaLDwRuMQnrPl49eIw8w"}, {"kty": "oct", "k": "A17HRtbuDTnLfLFZY9qEJA", "kid": "AhvUY16GU7ymgwrayhg7FA"}], "type": "temporary"}, "expire": 1788744039}
+#EXTINF:-1 tvg-id="164" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Travel_XP_HD.png" catchup-type="append" catchup-days="8" catchup-source="&begin={utc}&end={utcend}" group-title="English",Travelxp HD
+#EXTVLCOPT:http-user-agent=Denver1769
+https://jiotvpllive.cdn.jio.com/bpk-tv/Travel_XP_HD_BTS/WDVLive/index.mpd?__hdnea__=st=1788743126~exp=1788746726~acl=/bpk-tv/Travel_XP_HD_BTS/WDVLive/*~hmac=3fda8527fd9c721de2826a4d9d398b5388bbefc3c8588564be0b0fe30dc53a61
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"base64": {"keys": [{"kty": "oct", "k": "bhgGsRJccmAGOdicPSW6lw", "kid": "89Y1byzzQY2f-R0Nei94nQ"}, {"kty": "oct", "k": "cWFGEp4x9DFN7MiLynpghQ", "kid": "08SAff_Tx5sZ3OAM-M0bGA"}, {"kty": "oct", "k": "jbJMRzW9L6pdnoiKfjgN0w", "kid": "HN6aKoftN93V8PCxGaiGlQ"}, {"kty": "oct", "k": "2ooh0GKFozd_IB2A_7fv6g", "kid": "GnswO4Po1qBXQLrKNQiH6A"}, {"kty": "oct", "k": "gFf_KCI38IMdzcT4qbKUbw", "kid": "0ASaswf9WhO5bjBrlT0G3Q"}], "type": "temporary"}, "expire": 1788744039}
+#EXTINF:-1 tvg-id="165" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/ZeeCinemaHD.png" CATCH-UP-FAILED="null" group-title="Movies",Zee Cinema HD
+#EXTVLCOPT:http-user-agent=Denver1769
+https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeCinemaHD_BTS/WDVLive/index.mpd?__hdnea__=st=1788743574~exp=1788747174~acl=/bpk-tv/ZeeCinemaHD_BTS/WDVLive/*~hmac=80c4efb2ab5cabb0708ecb71937d98bf388399f039bd2d0acf8158f7b45f7b86
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"base64": {"keys": [{"kty": "oct", "k": "jXWwnnt8zOrRXLCWxFLS6A", "kid": "R7MQ_GHSTkmyg0r0sMGAeA"}, {"kty": "oct", "k": "TZv9vUMH5Gvo9aOwptbsLg", "kid": "1OiJDWw1N0MpS6trFky56w"}, {"kty": "oct", "k": "-UTn7pJgqeYjkXDbTW-nEw", "kid": "Pl7GPibBUgOAI2lBw4SPaA"}, {"kty": "oct", "k": "BDZva91CUewPWjD6g7JDiQ", "kid": "Zrx03oFy5R_VVh0tnYrC0Q"}, {"kty": "oct", "k": "u0lZfDDf7TABivgOP1zoJg", "kid": "97bt7dc9QnaEEtSNCXP-EA"}], "type": "temporary"}, "expire": 1788744039}
+#EXTINF:-1 tvg-id="166" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/CNTelugu.png" catchup-type="append" catchup-days="8" catchup-source="&begin={utc}&end={utcend}" group-title="Telugu",Cartoon Network Telugu
+#EXTVLCOPT:http-user-agent=Denver1769
+https://jiotvmblive.cdn.jio.com/bpk-tv/CNTelugu_MOB/WDVLive/index.mpd?__hdnea__=st=1788730205~exp=1788751805~acl=/*~hmac=4eceaafd4025512147571e448079deccaa81144d5d6e4b9e580ffb68c44ef3f8
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"base64": {"keys": [{"kty": "oct", "k": "leMatGtBjYsmDDj5Srf5uQ", "kid": "jgVXo5DqB54uj4mq3FvZiA"}, {"kty": "oct", "k": "h9eCWkNK6PruiVdTKnWwTA", "kid": "AGRGC_2hThvn4-0ZdNRjfg"}, {"kty": "oct", "k": "bslOximSIMLk5LgZlYSJ3A", "kid": "lZ5R8iu0EicLmrVTvLTkdQ"}, {"kty": "oct", "k": "QGTFIyi_6eYAh3a0ikMeSw", "kid": "ojtgmzPiVKSOT8b6evD9jQ"}, {"kty": "oct", "k": "kHimbxc3WpBLJZYJDbxEgw", "kid": "4sCCAYmR6gnBAQc0Ogmb7A"}], "type": "temporary"}, "expire": 1788744037}
+#EXTINF:-1 tvg-id="167" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/ZeeTVHD.png" CATCH-UP-FAILED="null" group-title="Entertainment",Zee TV HD
+#EXTVLCOPT:http-user-agent=Denver1769
+https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeTVHD_BTS/WDVLive/index.mpd?__hdnea__=st=1788742977~exp=1788746577~acl=/bpk-tv/ZeeTVHD_BTS/WDVLive/*~hmac=0845036d434eed46959909a2d45b2ac1e55553315088eebd21a5940b269df252
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"base64": {"keys": [{"kty": "oct", "k": "PaPMr3rsIf-L7njjCP3Y4w", "kid": "1CFz9E_BwE14YII5aung2w"}, {"kty": "oct", "k": "gaV3c5QukNMg1A7u-j8DtQ", "kid": "kJ25OwuDgqd2LLIe7tJ31Q"}, {"kty": "oct", "k": "Ecz-PkSqv1668LUe6W_-RQ", "kid": "rDxsJUT9jI2z4gJQ8YuQzw"}, {"kty": "oct", "k": "gZQVgoA8q-IaiwgBiQiQBA", "kid": "Vpo0blB1Womv2kt-X0eDLg"}, {"kty": "oct", "k": "zdyG55iyw4YP2MCQ8CDAsA", "kid": "zJBshVNL3iZ7bxO5rMWV8g"}], "type": "temporary"}, "expire": 1788744038}
+#EXTINF:-1 tvg-id="173" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Aaj_Tak.png" catchup-type="append" catchup-days="8" catchup-source="&begin={utc}&end={utcend}" group-title="News",Aaj Tak
+#EXTVLCOPT:http-user-agent=Denver1769
+https://jiotvmblive.cdn.jio.com/bpk-tv/Aaj_Tak_MOB/WDVLive/index.mpd?__hdnea__=st=1788730205~exp=1788751805~acl=/*~hmac=4eceaafd4025512147571e448079deccaa81144d5d6e4b9e580ffb68c44ef3f8
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"base64": {"keys": [{"kty": "oct", "k": "N8NP2bXPgSQkwhhy-7KuFw", "kid": "9mtlHFFf4bIBWP7s4mGcVw"}, {"kty": "oct", "k": "D8Jnkh2e1ubf-FBHuxZ0OA", "kid": "9CCYhEhxSG6yR_G21m5_yw"}, {"kty": "oct", "k": "QPUtE-s6QRPpqnwMXqhdgg", "kid": "UyWJWU0gaUVKzr2hMLf1Eg"}, {"kty": "oct", "k": "_9pShYYOuBkT2KAGeCaecg", "kid": "A_IXreWtfKZDe2KtzfCurw"}, {"kty": "oct", "k": "gvLElMDiCkttINxTDht3MQ", "kid": "tkuYc47HUwqLamWEDeH7lg"}], "type": "temporary"}, "expire": 1788744039}
+#EXTINF:-1 tvg-id="175" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Aastha.png" catchup-type="append" catchup-days="8" catchup-source="&begin={utc}&end={utcend}" group-title="Devotional",Aastha
+#EXTVLCOPT:http-user-agent=Denver1769
+https://jiotvmblive.cdn.jio.com/bpk-tv/Aastha_MOB/WDVLive/index.mpd?__hdnea__=st=1788730205~exp=1788751805~acl=/*~hmac=4eceaafd4025512147571e448079deccaa81144d5d6e4b9e580ffb68c44ef3f8
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"base64": {"keys": [{"kty": "oct", "k": "eQX_eSqWFM5JEciRvJk0Ww", "kid": "TgpHqx3Jo4FB3jMCkFCC0g"}, {"kty": "oct", "k": "TnhS9ju220IT-wPQL5Nbrw", "kid": "Vxe3g3c6EPqVD5vIOISw0Q"}, {"kty": "oct", "k": "Ek0XnIT6rzVYI1UFoYM8_g", "kid": "oQldGHtiKUZaXUVq2gRy5Q"}, {"kty": "oct", "k": "VUPYDIkAmQK-Fo_N6LVhsg", "kid": "i4Uy5lmhXU6_25Z1JnFA3Q"}, {"kty": "oct", "k": "xgF0dEDwniTXcy9TAkMi9Q", "kid": "cyDsBbHQrYNIf-VeAkFtAw"}], "type": "temporary"}, "expire": 1788744037}
+#EXTINF:-1 tvg-id="177" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/ABP_News_India.png" catchup-type="append" catchup-days="8" catchup-source="&begin={utc}&end={utcend}" group-title="News",ABP News India
+#EXTVLCOPT:http-user-agent=Denver1769
+https://jiotvmblive.cdn.jio.com/bpk-tv/ABP_News_India_MOB/WDVLive/index.mpd?__hdnea__=st=1788730205~exp=1788751805~acl=/*~hmac=4eceaafd4025512147571e448079deccaa81144d5d6e4b9e580ffb68c44ef3f8
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"base64": {"keys": [{"kty": "oct", "k": "D4ryrA9mNTp4XVrU5xBzlg", "kid": "rI-6fSsZY6TPIpBqGBLPbw"}, {"kty": "oct", "k": "bI4rR40Ajadugp9jG44lng", "kid": "j-Q1AW6pUbG0bYy0K7XR-w"}, {"kty": "oct", "k": "mvVS3cblEPS0aS9sli2xsQ", "kid": "KJGG3LttwN8yf5m7bsTWKg"}, {"kty": "oct", "k": "tXx9QrkRL6Zxetq0FpA0fQ", "kid": "WEMx9NKRoR246saVFboO0w"}, {"kty": "oct", "k": "ng_UX5cOIVS0Nr0iHOYd-Q", "kid": "yZDMsdNZ2OS5rtrxgBVwng"}], "type": "temporary"}, "expire": 1788744039}
+#EXTINF:-1 tvg-id="180" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Asianet_News.png" catchup-type="append" catchup-days="8" catchup-source="&begin={utc}&end={utcend}" group-title="Malayalam",Asianet News
+#EXTVLCOPT:http-user-agent=Denver1769
+https://jiotvmblive.cdn.jio.com/bpk-tv/Asianet_News_MOB/WDVLive/index.mpd?__hdnea__=st=1788730205~exp=1788751805~acl=/*~hmac=4eceaafd4025512147571e448079deccaa81144d5d6e4b9e580ffb68c44ef3f8
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"base64": {"keys": [{"kty": "oct", "k": "AAAAAAAAAAAAAAAAAAAAAA", "kid": "AAAAAAAAAAAAAAAAAAAAAA"}, {"kty": "oct", "k": "eBEvJSO_UZgLroSH9pCLQQ", "kid": "hiQRsJ9oCMKfa0xqgo06ew"}, {"kty": "oct", "k": "gxwJs_5kyvWRcidvdXY89g", "kid": "IXPP955bW_8uZcsIWvCMjA"}, {"kty": "oct", "k": "dJAgn47U2h-rhJh_Ej8thA", "kid": "jMcxNgWd7NDqdOuXdnZGfw"}, {"kty": "oct", "k": "Atf2MVJPgEqvPgBhzugUrQ", "kid": "JSfkfV-vMIchrzap6BDpug"}], "type": "temporary"}, "expire": 1788744039}
+#EXTINF:-1 tvg-id="182" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/b4u_movies.png" CATCH-UP-FAILED="null" group-title="Movies",B4U Movies
+#EXTVLCOPT:http-user-agent=Denver1769
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"base64": {"keys": [{"kty": "oct", "k": "ClHRY9C5WixSbuyokbnz8Q", "kid": "Vl7ij3AsljdamLOXIJXiQg"}, {"kty": "oct", "k": "2nD5Ldt4Aj3fb5cWK7Auew", "kid": "axqv-DkhtYpvYOnXudqjUw"}, {"kty": "oct", "k": "4tUySCXVhJ1MPqOM_0E1iQ", "kid": "YG50g2y-Me1jApPKMzmCqA"}, {"kty": "oct", "k": "AAAAAAAAAAAAAAAAAAAAAA", "kid": "AAAAAAAAAAAAAAAAAAAAAA"}, {"kty": "oct", "k": "bakq8I02i7pl9kaCfZCAwQ", "kid": "USGpKCbyV68p2Qa650kGfQ"}], "type": "temporary"}, "expire": 1788744039}
+#EXTINF:-1 tvg-id="183" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/B4U_Music.png" CATCH-UP-FAILED="null" group-title="Music",B4U Music
+#EXTVLCOPT:http-user-agent=Denver1769
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key={"base64": {"keys": [{"kty": "oct", "k": "WKSVniY7aCfT379oRTlWxA", "kid": "EQoHm29gBLoY7X6XCdeMDQ"}, {"kty": "oct", "k": "QJ6FWVD7m9fAkZ3zNEUemw", "kid": "CmM3D2ZQsH2rB-J0DHzDeg"}, {"kty": "oct", "k": "Trcb5NudNI4humj0DOzEeA", "kid": "bFiayLFxX2mNX6xB_MGEDA"}, {"kty": "oct", "k": "hfZEYg-kwTk3z3w4MHGyRA", "kid": "cbeEhRNyL5s2_eP3ngEVyQ"}, {"kty": "oct", "k": "2k05HXuzoZTlnEik49i0Vg", "kid": "SRKgWNC-81urqLKOuRY5sg"}], "type": "temporary"}, "expire": 1788744039}
+#EXTINF:-1 tvg-id="185" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/AndPicturesHD.png" CATCH-UP-FAILED="null" group-title="Movies",And Pictures HD
+#EXTVLCOPT:http-user-agent=Denver1769
+https://jiotvpllive.cdn.jio.com/bpk-tv/AndPicturesHD_BTS/WDVLive/index.mpd?__hdnea__=st=1788743218~exp=1788746818~acl=/bpk-tv/AndPicturesHD_BTS/WDVLive/*~hmac=65efeaff82ed984edf8fb7ef576f2ff62622dc856b0aa3f57e7d74a09623e850
