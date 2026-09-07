@@ -4,7 +4,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 
-# ਪੂਰੇ ਹੈਡਰਜ਼ ਜੋ 403 ਜਾਂ 404 ਐਰਰ ਨਹੀਂ ਆਉਣ ਦੇਣਗੇ
+# ਬ੍ਰਾਊਜ਼ਰ ਵਾਲੇ ਸਹੀ ਹੈਡਰਜ਼ ਜੋ 403/404 ਐਰਰ ਤੋਂ ਬਚਾਉਣਗੇ
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
     "Referer": "https://game.playindia.fun/",
@@ -55,23 +55,24 @@ def process_single_channel(channel_info):
 
     if mpd_line:
         clean_url = mpd_line.strip().split()[0]
+        final_url = clean_url
         
-        # ਹਰ ਇੱਕ ਚੈਨਲ ਦੇ ਲਿੰਕ ਨੂੰ ਸਹੀ ਹੈਡਰਜ਼ ਨਾਲ ਰੀਡਾਇਰੈਕਟ ਕਰਵਾ ਕੇ ਅਸਲੀ ਲਿੰਕ ਕੱਢਣਾ
+        # ਹਰ ਲਿੰਕ ਨੂੰ ਰੀਡਾਇਰੈਕਟ ਕਰਵਾ ਕੇ ਅਸਲੀ (Final) URL ਪ੍ਰਾਪਤ ਕਰਨਾ
         try:
             response = requests.get(clean_url, headers=HEADERS, allow_redirects=True, timeout=8)
             if response.url:
-                clean_url = response.url.strip().split()[0]
+                final_url = response.url.strip().split()[0]
         except:
             pass
         
-        if clean_url.endswith("~"):
-            clean_url = clean_url[:-1]
-        channel_lines.append(clean_url)
+        if final_url.endswith("~"):
+            final_url = final_url[:-1]
+        channel_lines.append(final_url)
 
     return i, channel_lines
 
 def main():
-    print("[*] Downloading playlist and resolving all channels...")
+    print("[*] Downloading playlist and fully resolving all links to actual URLs...")
     try:
         res = requests.get(PLAYLIST_URL, headers=HEADERS, timeout=20)
         if res.status_code != 200:
@@ -88,29 +89,26 @@ def main():
             i += 1
 
         total_channels = len(channel_indices)
-        print(f"[*] Found {total_channels} channels. Processing all with full redirects...")
+        print(f"[*] Found {total_channels} channels. Resolving all redirects...")
 
         results = {}
-        with ThreadPoolExecutor(max_workers=20) as executor:
+        with ThreadPoolExecutor(max_workers=30) as executor:
             futures = {executor.submit(process_single_channel, ch): ch for ch in channel_indices}
             for future in as_completed(futures):
-                idx, res_lines = future.result()
-                if res_lines:
+                res_tuple = future.result()
+                if res_tuple:
+                    idx, res_lines = res_tuple
                     results[idx] = res_lines
-
-        if not results:
-            print("[-] No channels found.")
-            return
 
         new_lines = ["#EXTM3U"]
         for idx in sorted(results.keys()):
             new_lines.extend(results[idx])
 
-        output_file = "all_channels_resolved.m3u"
+        output_file = "all_channels_fully_resolved.m3u"
         with open(output_file, "w", encoding="utf-8") as f:
             f.write("\n".join(new_lines))
 
-        print(f"[+] Success! All {total_channels} channels resolved and saved to {output_file}")
+        print(f"[+] Success! All channels fully resolved and saved to {output_file}")
 
     except Exception as e:
         print(f"[-] Critical Error: {e}")
