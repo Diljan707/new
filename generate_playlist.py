@@ -7,9 +7,9 @@ HEADERS = {"User-Agent": "Denver1769"}
 
 def process_single_channel(channel_info):
     i, lines = channel_info
+    
     extinf_line = lines[i]
 
-    # ਹਰ ਚੈਨਲ ਲਈ ਆਪਣੀ ਵੱਖਰੀ License Key / URL ਲੱਭੋ
     key_url = None
     for b in range(max(0, i - 3), i):
         sub_b = lines[b].strip()
@@ -25,7 +25,6 @@ def process_single_channel(channel_info):
         if sub_f.startswith("http") and ".mpd" in sub_f:
             mpd_line = sub_f
 
-    # ਹਰ ਚੈਨਲ ਦੀ ਆਪਣੀ JSON ਕੀਅ ਡਾਊਨਲੋਡ ਕਰਕੇ ਅੰਦਰ ਐਡ ਕਰੋ
     embedded_key_data = None
     if key_url:
         try:
@@ -66,7 +65,7 @@ def process_single_channel(channel_info):
     return i, channel_lines
 
 def main():
-    print("[*] Downloading target playlist for 20 channels (with unique JSON per channel)...")
+    print("[*] Downloading target playlist for 20 channels...")
     try:
         res = requests.get(PLAYLIST_URL, headers=HEADERS, timeout=15)
         if res.status_code != 200:
@@ -80,12 +79,12 @@ def main():
         while i < len(lines):
             if lines[i].strip().startswith("#EXTINF"):
                 channel_indices.append((i, lines))
-                if len(channel_indices) >= 20: # 20 ਚੈਨਲ
+                if len(channel_indices) >= 20:
                     break
             i += 1
 
         total_channels = len(channel_indices)
-        print(f"[*] Found {total_channels} channels. Processing each with its unique key/JSON...")
+        print(f"[*] Found {total_channels} channels. Processing with threads...")
 
         results = {}
         with ThreadPoolExecutor(max_workers=20) as executor:
@@ -102,11 +101,11 @@ def main():
         with open(output_file, "w", encoding="utf-8") as f:
             f.write("\n".join(new_lines))
 
-        print(f"[+] Success! Exactly {total_channels} channels with unique JSON saved to {output_file}")
+        print(f"[+] Success! Exactly {total_channels} channels saved to {output_file}")
 
     except Exception as e:
         print(f"[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     main()
-    
+        
