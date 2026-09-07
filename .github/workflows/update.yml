@@ -28,7 +28,7 @@ jobs:
         pip install requests
 
     - name: Run playlist script
-      run: python make_safe_playlist_1700.py
+      run: python generate_playlist.py
       # Note: Je tusi script da naam hor rakheya hai (e.g. generate_playlist.py), ta ethe ohi naalo pawo.
 
     - name: Commit and push generated playlist
