@@ -1,4 +1,3 @@
-cat << 'EOF' > generate_playlist.py
 import requests
 import json
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -110,6 +109,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-EOF
-python generate_playlist.py
                 
