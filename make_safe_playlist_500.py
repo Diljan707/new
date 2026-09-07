@@ -6,8 +6,8 @@ from urllib3.util.retry import Retry
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 HEADERS = {"User-Agent": "Denver1769"}
-MAX_CHANNELS = 500
-MAX_WORKERS = 30  # Workers thode kam rakhe hain taaki server par ek sath jyada load na pade
+MAX_CHANNELS = 1700  # Ab yeh 1700 channels process karega
+MAX_WORKERS = 30  # Workers utne hi rakhe hain taaki server par load balance rahe
 
 # Session with automatic retry strategy setup kiya hai
 def get_robust_session():
@@ -46,7 +46,6 @@ def process_channel_block(channel_data):
         try:
             if '"' in key_url:
                 key_url = key_url.replace('"', "")
-            # Timeout hata diya gaya hai
             key_res = session.get(key_url, headers=HEADERS)
             if key_res.status_code == 200:
                 key_json = key_res.json()
@@ -66,7 +65,6 @@ def process_channel_block(channel_data):
 
     if mpd_line:
         try:
-            # Timeout hata diya gaya hai
             r = session.get(mpd_line, headers=HEADERS, allow_redirects=False)
             real_url = r.headers.get('Location') if r.status_code in [301, 302, 303, 307, 308] else mpd_line
             clean_url = real_url.strip().split()[0]
@@ -84,7 +82,6 @@ def process_channel_block(channel_data):
 def generate_safe_playlist_500():
     print(f"[*] Downloading target playlist and extracting keys for all {MAX_CHANNELS} channels...")
     try:
-        # Timeout hata diya gaya hai
         res = session.get(PLAYLIST_URL, headers=HEADERS)
         if res.status_code != 200:
             print("[-] Failed to fetch playlist.")
@@ -131,3 +128,4 @@ def generate_safe_playlist_500():
 
 if __name__ == "__main__":
     generate_safe_playlist_500()
+        
