@@ -1,14 +1,26 @@
 import requests
 import json
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 HEADERS = {"User-Agent": "Denver1769"}
 MAX_CHANNELS = 500
-MAX_WORKERS = 50  # 500 channels process honge, lekin ek baar mein 50 parallel threads chalenge!
+MAX_WORKERS = 30  # Workers thode kam rakhe hain taaki server par ek sath jyada load na pade
+
+# Session with automatic retry strategy setup kiya hai
+def get_robust_session():
+    session = requests.Session()
+    retries = Retry(total=5, backoff_factor=1, status_forcelist=[500, 502, 503, 504])
+    session.mount('https://', HTTPAdapter(max_retries=retries))
+    session.mount('http://', HTTPAdapter(max_retries=retries))
+    return session
+
+session = get_robust_session()
 
 def process_channel_block(channel_data):
-    """Processes a single channel block concurrently."""
+    """Processes a single channel block concurrently without timeouts."""
     i, lines = channel_data
     line = lines[i].strip()
     
@@ -34,7 +46,8 @@ def process_channel_block(channel_data):
         try:
             if '"' in key_url:
                 key_url = key_url.replace('"', "")
-            key_res = requests.get(key_url, headers=HEADERS, timeout=10)
+            # Timeout hata diya gaya hai
+            key_res = session.get(key_url, headers=HEADERS)
             if key_res.status_code == 200:
                 key_json = key_res.json()
                 embedded_key_data = json.dumps(key_json)
@@ -53,7 +66,8 @@ def process_channel_block(channel_data):
 
     if mpd_line:
         try:
-            r = requests.get(mpd_line, headers=HEADERS, allow_redirects=False, timeout=10)
+            # Timeout hata diya gaya hai
+            r = session.get(mpd_line, headers=HEADERS, allow_redirects=False)
             real_url = r.headers.get('Location') if r.status_code in [301, 302, 303, 307, 308] else mpd_line
             clean_url = real_url.strip().split()[0]
             if clean_url.endswith("~"):
@@ -70,7 +84,8 @@ def process_channel_block(channel_data):
 def generate_safe_playlist_500():
     print(f"[*] Downloading target playlist and extracting keys for all {MAX_CHANNELS} channels...")
     try:
-        res = requests.get(PLAYLIST_URL, headers=HEADERS, timeout=15)
+        # Timeout hata diya gaya hai
+        res = session.get(PLAYLIST_URL, headers=HEADERS)
         if res.status_code != 200:
             print("[-] Failed to fetch playlist.")
             return
@@ -116,4 +131,3 @@ def generate_safe_playlist_500():
 
 if __name__ == "__main__":
     generate_safe_playlist_500()
-    
