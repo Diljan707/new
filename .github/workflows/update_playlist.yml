@@ -1,15 +1,14 @@
 name: Generate Safe Playlist
 
 on:
-  workflow_dispatch: # Isse aap GitHub dashboard se manually jab chahein run kar sakte hain
+  workflow_dispatch:
   schedule:
-    - cron: '0 */6 * * *' # Yeh har 6 ghante baad automatic run hoga
+    - cron: '0 */6 * * *'
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
-    # Permissions zaroori hain taaki workflow repository mein changes commit kar sake
     permissions:
       contents: write
 
@@ -36,6 +35,8 @@ jobs:
         git config --global user.name "GitHub Actions Bot"
         git config --global user.email "actions@github.com"
         git add safe_500_channels.m3u
-        # Agar file mein koi change hoga tabhi commit hoga, warna skip ho jayega
         git commit -m "Auto-update safe_500_channels.m3u [skip ci]" || exit 0
+        # Push karne se pehle remote changes pull/rebase karenge
+        git pull --rebase origin main || git pull --rebase origin master || true
         git push
+        
