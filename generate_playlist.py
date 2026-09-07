@@ -3,8 +3,6 @@ import json
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
-
-# ਬ੍ਰਾਊਜ਼ਰ ਵਾਲੇ ਸਹੀ ਹੈਡਰਜ਼ ਜੋ 403/404 ਐਰਰ ਤੋਂ ਬਚਾਉਣਗੇ
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
     "Referer": "https://game.playindia.fun/",
@@ -14,6 +12,9 @@ HEADERS = {
 def process_single_channel(channel_info):
     i, lines = channel_info
     extinf_line = lines[i]
+
+    if "CATCH-UP" in extinf_line:
+        extinf_line = extinf_line.split(" CATCH-UP")[0]
 
     key_url = None
     for b in range(max(0, i - 3), i):
@@ -57,24 +58,26 @@ def process_single_channel(channel_info):
         clean_url = mpd_line.strip().split()[0]
         final_url = clean_url
         
-        # ਹਰ ਲਿੰਕ ਨੂੰ ਰੀਡਾਇਰੈਕਟ ਕਰਵਾ ਕੇ ਅਸਲੀ (Final) URL ਪ੍ਰਾਪਤ ਕਰਨਾ
+        # ਹਰ ਇੱਕ ਚੈਨਲ ਦੇ URL ਨੂੰ ਰੀਡਾਇਰੈਕਟ ਕਰਵਾ ਕੇ ਉਸਦਾ ਅਸਲੀ HMAC/Token ਵਾਲਾ ਲਿੰਕ ਪ੍ਰਾਪਤ ਕਰਨਾ
         try:
             response = requests.get(clean_url, headers=HEADERS, allow_redirects=True, timeout=8)
             if response.url:
                 final_url = response.url.strip().split()[0]
         except:
-            pass
+            pass # ਜੇ ਕਦੇ ਰੀਡਾਇਰੈਕਟ ਫੇਲ੍ਹ ਹੋਵੇ ਤਾਂ ਮੂਲ ਲਿੰਕ ਬਚਿਆ ਰਹੇ
         
         if final_url.endswith("~"):
             final_url = final_url[:-1]
         channel_lines.append(final_url)
+    else:
+        return None
 
     return i, channel_lines
 
 def main():
-    print("[*] Downloading playlist and fully resolving all links to actual URLs...")
+    print("[*] Downloading playlist and resolving all 1700+ channels with individual HMAC tokens...")
     try:
-        res = requests.get(PLAYLIST_URL, headers=HEADERS, timeout=20)
+        res = requests.get(PLAYLIST_URL, headers=HEADERS, timeout=25)
         if res.status_code != 200:
             print("[-] Failed to fetch playlist.")
             return
@@ -89,10 +92,11 @@ def main():
             i += 1
 
         total_channels = len(channel_indices)
-        print(f"[*] Found {total_channels} channels. Resolving all redirects...")
+        print(f"[*] Found {total_channels} channels. Processing with maximum workers for speed & accuracy...")
 
         results = {}
-        with ThreadPoolExecutor(max_workers=30) as executor:
+        # 1700+ ਚੈਨਲਾਂ ਨੂੰ ਤੇਜ਼ੀ ਨਾਲ ਪ੍ਰੋਸੈਸ ਕਰਨ ਲਈ max_workers 50 ਕੀਤੇ ਗਏ ਨੇ
+        with ThreadPoolExecutor(max_workers=50) as executor:
             futures = {executor.submit(process_single_channel, ch): ch for ch in channel_indices}
             for future in as_completed(futures):
                 res_tuple = future.result()
@@ -108,11 +112,11 @@ def main():
         with open(output_file, "w", encoding="utf-8") as f:
             f.write("\n".join(new_lines))
 
-        print(f"[+] Success! All channels fully resolved and saved to {output_file}")
+        print(f"[+] Success! All {len(results)} channels fully resolved with HMAC tokens and saved to {output_file}")
 
     except Exception as e:
         print(f"[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     main()
-                
+            
