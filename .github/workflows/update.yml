@@ -1,38 +1,47 @@
-name: Auto Update Resolved Playlist
+name: Generate and Push 1700 Playlist
 
 on:
-  workflow_dispatch: # ਇਸ ਨਾਲ ਤੂੰ ਬਟਨ ਦਬਾ ਕੇ ਮੈਨੂਅਲ ਵੀ ਰਨ ਕਰ ਸਕਦਾ ਹੈਂ
   schedule:
-    - cron: '0 */6 * * *' # ਹਰ 6 ਘੰਟੇ ਬਾਅਦ ਆਟੋਮੈਟਿਕ ਚੱਲੇਗਾ
+    - cron: '0 */6 * * *'  # Har 6 ghante baad auto-run hovega
+  workflow_dispatch:        # Manual 'Run workflow' button vi chalega
 
+# Repository vich changes push karn layi permissions dena zaroori hai
 permissions:
-  contents: write # ਇਹ ਪਰਮਿਸ਼ਨ ਗਿੱਹਬ ਨੂੰ ਫ਼ਾਈਲ ਸੇਵ/ਪੁਸ਼ ਕਰਨ ਦੀ ਇਜਾਜ਼ਤ ਦਿੰਦੀ ਹੈ
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    - name: Check out repository
+      uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install requests
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests
 
-      - name: Run script
-        run: python generate_playlist.py  # ਇੱਥੇ ਆਪਣੀ ਪਾਈਥਨ ਫ਼ਾਈਲ ਦਾ ਨਾਂ ਪੱਕა ਲਿਖ ਦੇਵੀਂ
+    - name: Run playlist script
+      run: python make_safe_playlist_1700.py
+      # Note: Je tusi script da naam hor rakheya hai (e.g. generate_playlist.py), ta ethe ohi naalo pawo.
 
-      - name: Commit and push if changed
-        run: |
-          git config --global user.name "GitHub Action"
-          git config --global user.email "action@github.com"
-          git add all_channels_fully_resolved.m3u
-          git commit -m "Auto-update all resolved channels playlist" || exit 0
-          git push
-          
+    - name: Commit and push generated playlist
+      run: |
+        git config --global user.name "GitHub Actions Bot"
+        git config --global user.email "bot@example.com"
+        
+        # Untracked file nu stage/add karna
+        git add safe_1700_channels.m3u
+        
+        # Commit changes (je koi change na hove ta error na deve)
+        git commit -m "Auto-update: Generated 1700 channels playlist" || echo "No changes to commit"
+        
+        # GitHub repo vich push karna
+        git push
+        
