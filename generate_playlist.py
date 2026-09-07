@@ -1,55 +1,50 @@
 import requests
+import shutil
 import json
+import os
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
-    "Referer": "https://game.playindia.fun/",
-    "Accept": "*/*"
-}
+HEADERS = {"User-Agent": "Denver1769"}
+MAX_CHANNELS = 1700  # Total 1700 channels
+MAX_WORKERS = 1700   # Saare 1700 channels ikko vaari parallel run honge!
 
-def process_single_channel(channel_info):
-    i, lines = channel_info
-    extinf_line = lines[i]
-
-    # ਕੈਚ-ਅੱਪ ਟੈਗ ਸਾਫ਼ ਕਰੋ ਤਾਂ ਜੋ ਨਾਂ ਖਰਾਬ ਨਾ ਹੋਵੇ
-    if "CATCH-UP" in extinf_line:
-        extinf_line = extinf_line.split(" CATCH-UP")[0]
-
+def process_channel_block(channel_data):
+    """Processes a single channel block concurrently."""
+    i, lines = channel_data
+    line = lines[i].strip()
+    
+    extinf_line = line
+    
     key_url = None
-    for b in range(max(0, i - 4), i):
+    for b in range(max(0, i - 3), i):
         sub_b = lines[b].strip()
         if "inputstream.adaptive.license_key=" in sub_b:
             key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
-            if '"' in key_url:
-                key_url = key_url.replace('"', "")
 
     user_agent = "Denver1769"
     mpd_line = None
-    for f in range(i + 1, min(len(lines), i + 5)):
+    for f in range(i + 1, min(len(lines), i + 4)):
         sub_f = lines[f].strip()
         if sub_f.startswith("#EXTVLCOPT:http-user-agent="):
             user_agent = sub_f.split("=")[1].strip()
-        if sub_f.startswith("http") or ".mpd" in sub_f:
+        if sub_f.startswith("http") and ".mpd" in sub_f:
             mpd_line = sub_f
-            break
 
     embedded_key_data = None
     if key_url:
         try:
-            key_res = requests.get(key_url, headers=HEADERS, timeout=6)
+            if '"' in key_url:
+                key_url = key_url.replace('"', "")
+            key_res = requests.get(key_url, headers=HEADERS, timeout=10)
             if key_res.status_code == 200:
                 key_json = key_res.json()
-                # ਯਕੀਨੀ ਬਣਾਓ ਕਿ ClearKey JSON ਸਹੀ ਫਾਰਮੈਟ ਵਿੱਚ ਹੋਵੇ
-                if "keys" in key_json:
-                    embedded_key_data = json.dumps(key_json)
-        except:
+                embedded_key_data = json.dumps(key_json)
+        except Exception as e:
             pass
 
     channel_lines = []
     channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
-    
     if embedded_key_data:
         channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={embedded_key_data}")
     elif key_url:
@@ -59,32 +54,23 @@ def process_single_channel(channel_info):
     channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
 
     if mpd_line:
-        # ਸਿਰਫ਼ ਅਸਲੀ URL ਕੱਢਣਾ ਬਿਨਾਂ ਵਾਧੂ ਕੁਕੀਜ਼ ਰਲਾਈਆਂ
-        clean_url = mpd_line.strip().split()[0]
-        if "|" in clean_url:
-            clean_url = clean_url.split("|")[0]
-        
-        final_url = clean_url
         try:
-            response = requests.get(clean_url, headers=HEADERS, allow_redirects=True, timeout=6)
-            if response.url:
-                final_url = response.url.strip().split()[0]
-                if "|" in final_url:
-                    final_url = final_url.split("|")[0]
+            r = requests.get(mpd_line, headers=HEADERS, allow_redirects=False, timeout=10)
+            real_url = r.headers.get('Location') if r.status_code in [301, 302, 303, 307, 308] else mpd_line
+            clean_url = real_url.strip().split()[0]
+            if clean_url.endswith("~"):
+                clean_url = clean_url[:-1]
+            channel_lines.append(clean_url)
         except:
-            pass
-        
-        if final_url.endswith("~"):
-            final_url = final_url[:-1]
-            
-        channel_lines.append(final_url)
-    else:
-        return None
+            clean_url = mpd_line.strip().split()[0]
+            if clean_url.endswith("~"):
+                clean_url = clean_url[:-1]
+            channel_lines.append(clean_url)
 
     return i, channel_lines
 
-def main():
-    print("[*] Downloading playlist and processing ALL channels with clean formatting...")
+def generate_safe_playlist_1700():
+    print(f"[*] Downloading playlist and processing all {MAX_CHANNELS} channels with {MAX_WORKERS} workers simultaneously...")
     try:
         res = requests.get(PLAYLIST_URL, headers=HEADERS, timeout=20)
         if res.status_code != 200:
@@ -92,39 +78,52 @@ def main():
             return
 
         lines = res.text.splitlines()
-        channel_indices = []
+        
+        target_indices = []
+        for i, line in enumerate(lines):
+            if line.strip().startswith("#EXTINF"):
+                target_indices.append(i)
+                if len(target_indices) >= MAX_CHANNELS:
+                    break
 
-        i = 0
-        while i < len(lines):
-            if lines[i].strip().startswith("#EXTINF"):
-                channel_indices.append((i, lines))
-            i += 1
+        if not target_indices:
+            print("[-] No channels found in playlist.")
+            return
 
-        total_channels = len(channel_indices)
-        print(f"[*] Found {total_channels} channels. Processing everything...")
+        print(f"[*] Found {len(target_indices)} channels. Launching 1700 parallel threads...")
 
-        results = {}
-        with ThreadPoolExecutor(max_workers=50) as executor:
-            futures = {executor.submit(process_single_channel, ch): ch for ch in channel_indices}
+        channel_results = {}
+        with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+            futures = {executor.submit(process_channel_block, (idx, lines)): idx for idx in target_indices}
             for future in as_completed(futures):
-                res_tuple = future.result()
-                if res_tuple:
-                    idx, res_lines = res_tuple
-                    results[idx] = res_lines
+                try:
+                    idx, channel_lines = future.result()
+                    channel_results[idx] = channel_lines
+                except Exception as e:
+                    print(f"[-] Error processing a channel: {e}")
 
         new_lines = ["#EXTM3U"]
-        for idx in sorted(results.keys()):
-            new_lines.extend(results[idx])
+        for idx in target_indices:
+            if idx in channel_results:
+                new_lines.extend(channel_results[idx])
 
-        output_file = "/storage/emulated/0/Download/all_channels_perfect.m3u"
+        output_file = "safe_1700_channels.m3u"
         with open(output_file, "w", encoding="utf-8") as f:
             f.write("\n".join(new_lines))
 
-        print(f"[+] Success! Generated {len(results)}/{total_channels} channels cleanly. Saved to Download folder.")
+        print(f"\n[+] Success! Exactly {len(channel_results)} channels saved as '{output_file}'.")
+        
+        # Safe copy block for GitHub vs Termux/Android
+        download_dir = "/storage/emulated/0/Download"
+        if os.path.exists(download_dir):
+            shutil.copy(output_file, f"{download_dir}/{output_file}")
+            print("[+] Copied safely to Android Download folder!")
+        else:
+            print("[+] Running on GitHub Actions cloud. File saved locally in workspace repository.")
 
     except Exception as e:
         print(f"[-] Critical Error: {e}")
 
 if __name__ == "__main__":
-    main()
-        
+    generate_safe_playlist_1700()
+                                          
