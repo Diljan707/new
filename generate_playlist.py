@@ -7,7 +7,6 @@ HEADERS = {"User-Agent": "Denver1769"}
 
 def process_single_channel(channel_info):
     i, lines = channel_info
-    
     extinf_line = lines[i]
 
     key_url = None
@@ -15,6 +14,8 @@ def process_single_channel(channel_info):
         sub_b = lines[b].strip()
         if "inputstream.adaptive.license_key=" in sub_b:
             key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
+            if '"' in key_url:
+                key_url = key_url.replace('"', "")
 
     user_agent = "Denver1769"
     mpd_line = None
@@ -25,23 +26,9 @@ def process_single_channel(channel_info):
         if sub_f.startswith("http") and ".mpd" in sub_f:
             mpd_line = sub_f
 
-    embedded_key_data = None
-    if key_url:
-        try:
-            if '"' in key_url:
-                key_url = key_url.replace('"', "")
-            key_res = requests.get(key_url, headers=HEADERS, timeout=8)
-            if key_res.status_code == 200:
-                key_json = key_res.json()
-                embedded_key_data = json.dumps(key_json)
-        except:
-            pass
-
     channel_lines = []
     channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
-    if embedded_key_data:
-        channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={embedded_key_data}")
-    elif key_url:
+    if key_url:
         channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
 
     channel_lines.append(extinf_line)
@@ -65,9 +52,9 @@ def process_single_channel(channel_info):
     return i, channel_lines
 
 def main():
-    print("[*] Downloading target playlist for 20 channels...")
+    print("[*] Downloading target playlist for ALL channels...")
     try:
-        res = requests.get(PLAYLIST_URL, headers=HEADERS, timeout=15)
+        res = requests.get(PLAYLIST_URL, headers=HEADERS, timeout=20)
         if res.status_code != 200:
             print("[-] Failed to fetch playlist.")
             return
@@ -75,19 +62,19 @@ def main():
         lines = res.text.splitlines()
         channel_indices = []
 
+        # ਸਾਰੇ ਚੈਨਲ ਕੈਪਚਰ ਕਰਨ ਲਈ ਲੂਪ (ਕੋਈ ਲਿਮিট ਨਹੀਂ)
         i = 0
         while i < len(lines):
             if lines[i].strip().startswith("#EXTINF"):
                 channel_indices.append((i, lines))
-                if len(channel_indices) >= 20:
-                    break
             i += 1
 
         total_channels = len(channel_indices)
-        print(f"[*] Found {total_channels} channels. Processing with threads...")
+        print(f"[*] Found {total_channels} channels. Processing all in parallel (ThreadPool)...")
 
         results = {}
-        with ThreadPoolExecutor(max_workers=20) as executor:
+        # ਵੱਧ ਤੋਂ ਵੱਧ ਵਰਕਰ ਲਗਾ ਦਿੱਤੇ ਹਨ ਤਾਂ ਜੋ ਸਾਰੇ ਇੱਕੋ ਵਾਰ ਤੇਜ਼ੀ ਨਾਲ ਚੱਲਣ
+        with ThreadPoolExecutor(max_workers=50) as executor:
             futures = {executor.submit(process_single_channel, ch): ch for ch in channel_indices}
             for future in as_completed(futures):
                 idx, res_lines = future.result()
@@ -97,7 +84,7 @@ def main():
         for idx in sorted(results.keys()):
             new_lines.extend(results[idx])
 
-        output_file = "safe_20_channels_ultra.m3u"
+        output_file = "all_channels_ultra.m3u"
         with open(output_file, "w", encoding="utf-8") as f:
             f.write("\n".join(new_lines))
 
@@ -108,4 +95,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-        
+    
