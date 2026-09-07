@@ -62,7 +62,6 @@ def main():
         lines = res.text.splitlines()
         channel_indices = []
 
-        # ਸਾਰੇ ਚੈਨਲ ਕੈਪਚਰ ਕਰਨ ਲਈ ਲੂਪ (ਕੋਈ ਲਿਮিট ਨਹੀਂ)
         i = 0
         while i < len(lines):
             if lines[i].strip().startswith("#EXTINF"):
@@ -70,10 +69,9 @@ def main():
             i += 1
 
         total_channels = len(channel_indices)
-        print(f"[*] Found {total_channels} channels. Processing all in parallel (ThreadPool)...")
+        print(f"[*] Found {total_channels} channels. Processing all in parallel...")
 
         results = {}
-        # ਵੱਧ ਤੋਂ ਵੱਧ ਵਰਕਰ ਲਗਾ ਦਿੱਤੇ ਹਨ ਤਾਂ ਜੋ ਸਾਰੇ ਇੱਕੋ ਵਾਰ ਤੇਜ਼ੀ ਨਾਲ ਚੱਲਣ
         with ThreadPoolExecutor(max_workers=50) as executor:
             futures = {executor.submit(process_single_channel, ch): ch for ch in channel_indices}
             for future in as_completed(futures):
@@ -84,7 +82,8 @@ def main():
         for idx in sorted(results.keys()):
             new_lines.extend(results[idx])
 
-        output_file = "all_channels_ultra.m3u"
+        # ਨਾਂ ਉਹੀ ਰੱਖਿਆ ਹੈ ਜੋ ਗਿਥੱਬ ਐਕਸ਼ਨ ਵਿੱਚ ਕਮਿਟ ਹੁੰਦਾ ਹੈ
+        output_file = "safe_20_channels_ultra.m3u"
         with open(output_file, "w", encoding="utf-8") as f:
             f.write("\n".join(new_lines))
 
@@ -95,4 +94,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
+                             
