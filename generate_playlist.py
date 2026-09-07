@@ -5,23 +5,48 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 HEADERS = {"User-Agent": "Denver1769"}
 
-def process_single_channel(channel_info, global_key_line, global_user_agent):
+def process_single_channel(channel_info):
     i, lines = channel_info
     extinf_line = lines[i]
 
-    # MPD ਲਿੰਕ ਲੱਭੋ
+    # ਹਰ ਚੈਨਲ ਲਈ ਆਪਣੀ ਵੱਖਰੀ License Key / URL ਲੱਭੋ
+    key_url = None
+    for b in range(max(0, i - 3), i):
+        sub_b = lines[b].strip()
+        if "inputstream.adaptive.license_key=" in sub_b:
+            key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
+
+    user_agent = "Denver1769"
     mpd_line = None
     for f in range(i + 1, min(len(lines), i + 4)):
         sub_f = lines[f].strip()
+        if sub_f.startswith("#EXTVLCOPT:http-user-agent="):
+            user_agent = sub_f.split("=")[1].strip()
         if sub_f.startswith("http") and ".mpd" in sub_f:
             mpd_line = sub_f
 
+    # ਹਰ ਚੈਨਲ ਦੀ ਆਪਣੀ JSON ਕੀਅ ਡਾਊਨਲੋਡ ਕਰਕੇ ਅੰਦਰ ਐਡ ਕਰੋ
+    embedded_key_data = None
+    if key_url:
+        try:
+            if '"' in key_url:
+                key_url = key_url.replace('"', "")
+            key_res = requests.get(key_url, headers=HEADERS, timeout=8)
+            if key_res.status_code == 200:
+                key_json = key_res.json()
+                embedded_key_data = json.dumps(key_json)
+        except:
+            pass
+
     channel_lines = []
     channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
-    channel_lines.append(global_key_line) # ਸਾਰਿਆਂ ਲਈ ਸਾਂਝੀ ਕੀਅ/ਟੋਕਨ
+    if embedded_key_data:
+        channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={embedded_key_data}")
+    elif key_url:
+        channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
 
     channel_lines.append(extinf_line)
-    channel_lines.append(f"#EXTVLCOPT:http-user-agent={global_user_agent}")
+    channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
 
     if mpd_line:
         clean_url = mpd_line.strip().split()[0]
@@ -41,7 +66,7 @@ def process_single_channel(channel_info, global_key_line, global_user_agent):
     return i, channel_lines
 
 def main():
-    print("[*] Downloading target playlist...")
+    print("[*] Downloading target playlist for 20 channels (with unique JSON per channel)...")
     try:
         res = requests.get(PLAYLIST_URL, headers=HEADERS, timeout=15)
         if res.status_code != 200:
@@ -49,56 +74,22 @@ def main():
             return
 
         lines = res.text.splitlines()
-        
-        # 1. ਪਹਿਲਾਂ ਪਹਿਲੇ ਚੈਨਲ ਤੋਂ ਸਾਂਝਾ Key URL ਅਤੇ User-Agent ਲੱਭੋ
-        global_key_line = None
-        global_user_agent = "Denver1769"
-        
-        for idx, line in enumerate(lines):
-            if line.strip().startswith("#EXTINF"):
-                # License Key ਲੱਭੋ
-                for b in range(max(0, idx - 3), idx):
-                    sub_b = lines[b].strip()
-                    if "inputstream.adaptive.license_key=" in sub_b:
-                        k_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
-                        if '"' in k_url:
-                            k_url = k_url.replace('"', "")
-                        # JSON ਡਾਊਨਲੋਡ ਕਰੋ
-                        try:
-                            k_res = requests.get(k_url, headers=HEADERS, timeout=8)
-                            if k_res.status_code == 200:
-                                global_key_line = f"#KODIPROP:inputstream.adaptive.license_key={json.dumps(k_res.json())}"
-                        except:
-                            global_key_line = f"#KODIPROP:inputstream.adaptive.license_key={k_url}"
-                        break
-                
-                # User-Agent ਲੱਭੋ
-                for f in range(idx + 1, min(len(lines), idx + 4)):
-                    sub_f = lines[f].strip()
-                    if sub_f.startswith("#EXTVLCOPT:http-user-agent="):
-                        global_user_agent = sub_f.split("=")[1].strip()
-                break
-
-        if not global_key_line:
-            print("[-] Warning: Could not extract master key, using fallback.")
-            global_key_line = "#KODIPROP:inputstream.adaptive.license_key="
-
-        # 2. ਹੁਣ 20 ਚੈਨਲਾਂ ਦੀ ਸੂਚੀ ਤਿਆਰ ਕਰੋ
         channel_indices = []
+
         i = 0
         while i < len(lines):
             if lines[i].strip().startswith("#EXTINF"):
                 channel_indices.append((i, lines))
-                if len(channel_indices) >= 20:
+                if len(channel_indices) >= 20: # 20 ਚੈਨਲ
                     break
             i += 1
 
         total_channels = len(channel_indices)
-        print(f"[*] Found {total_channels} channels. Processing with shared key/HMAC...")
+        print(f"[*] Found {total_channels} channels. Processing each with its unique key/JSON...")
 
         results = {}
         with ThreadPoolExecutor(max_workers=20) as executor:
-            futures = {executor.submit(process_single_channel, ch, global_key_line, global_user_agent): ch for ch in channel_indices}
+            futures = {executor.submit(process_single_channel, ch): ch for ch in channel_indices}
             for future in as_completed(futures):
                 idx, res_lines = future.result()
                 results[idx] = res_lines
@@ -111,11 +102,11 @@ def main():
         with open(output_file, "w", encoding="utf-8") as f:
             f.write("\n".join(new_lines))
 
-        print(f"[+] Success! Exactly {total_channels} channels saved to {output_file}")
+        print(f"[+] Success! Exactly {total_channels} channels with unique JSON saved to {output_file}")
 
     except Exception as e:
         print(f"[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     main()
-            
+    
