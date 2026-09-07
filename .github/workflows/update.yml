@@ -26,7 +26,7 @@ jobs:
           pip install requests
 
       - name: Run script
-        run: python your_script_name.py  # ਇੱਥੇ ਆਪਣੀ ਪਾਈਥਨ ਫ਼ਾਈਲ ਦਾ ਨਾਂ ਪੱਕა ਲਿਖ ਦੇਵੀਂ
+        run: python generate_playlist.py  # ਇੱਥੇ ਆਪਣੀ ਪਾਈਥਨ ਫ਼ਾਈਲ ਦਾ ਨਾਂ ਪੱਕა ਲਿਖ ਦੇਵੀਂ
 
       - name: Commit and push if changed
         run: |
