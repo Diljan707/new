@@ -1,0 +1,41 @@
+name: Generate Safe Playlist
+
+on:
+  workflow_dispatch: # Isse aap GitHub dashboard se manually jab chahein run kar sakte hain
+  schedule:
+    - cron: '0 */6 * * *' # Yeh har 6 ghante baad automatic run hoga
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    # Permissions zaroori hain taaki workflow repository mein changes commit kar sake
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests
+
+    - name: Run script
+      run: |
+        python3 make_safe_playlist_500.py
+
+    - name: Commit and push if playlist changed
+      run: |
+        git config --global user.name "GitHub Actions Bot"
+        git config --global user.email "actions@github.com"
+        git add safe_500_channels.m3u
+        # Agar file mein koi change hoga tabhi commit hoga, warna skip ho jayega
+        git commit -m "Auto-update safe_500_channels.m3u [skip ci]" || exit 0
+        git push
