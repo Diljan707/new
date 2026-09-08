@@ -8,12 +8,7 @@ on:
   schedule:
     - cron: '0 */6 * * *'
 
-  # Source 3: Jab bhi repository mein koi naya code push ho
-  push:
-    branches:
-      - main
-
-  # Source 4: External API / Webhook (jaise Render ya cron-job.org) se run karne ke liye
+  # Source 3: External API / Webhook (Render ya cron-job.org) se run karne ke liye
   repository_dispatch:
     types: [run-playlist]
 
