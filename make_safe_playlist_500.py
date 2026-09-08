@@ -1,7 +1,7 @@
 import json
 from requests.adapters import HTTPAdapter
 import requests
-from urllib3.util.retry Retry  # type: ignore
+from urllib3.util.retry import Retry
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 HEADERS = {"User-Agent": "Denver1769"}
