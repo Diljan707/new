@@ -6,8 +6,8 @@ from urllib3.util.retry import Retry
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 HEADERS = {"User-Agent": "Denver1769"}
-MAX_CHANNELS = 500
-MAX_WORKERS = 30  # Workers thode kam rakhe hain taaki server par ek sath jyada load na pade
+MAX_CHANNELS = 5  # Sirf 5 channels ke liye set kiya gaya hai
+MAX_WORKERS = 5   
 
 # Session with automatic retry strategy setup kiya hai
 def get_robust_session():
@@ -20,7 +20,7 @@ def get_robust_session():
 session = get_robust_session()
 
 def process_channel_block(channel_data):
-    """Processes a single channel block concurrently without timeouts."""
+    """Processes a single channel block concurrently with safe timeouts and redirect handling."""
     i, lines = channel_data
     line = lines[i].strip()
     
@@ -46,8 +46,8 @@ def process_channel_block(channel_data):
         try:
             if '"' in key_url:
                 key_url = key_url.replace('"', "")
-            # Timeout hata diya gaya hai
-            key_res = session.get(key_url, headers=HEADERS)
+            # Timeout add kiya gaya hai taaki script hang na ho
+            key_res = session.get(key_url, headers=HEADERS, timeout=10)
             if key_res.status_code == 200:
                 key_json = key_res.json()
                 embedded_key_data = json.dumps(key_json)
@@ -66,9 +66,9 @@ def process_channel_block(channel_data):
 
     if mpd_line:
         try:
-            # Timeout hata diya gaya hai
-            r = session.get(mpd_line, headers=HEADERS, allow_redirects=False)
-            real_url = r.headers.get('Location') if r.status_code in [301, 302, 303, 307, 308] else mpd_line
+            # allow_redirects=True aur r.url se original Jio ka final link milega
+            r = session.get(mpd_line, headers=HEADERS, allow_redirects=True, timeout=10)
+            real_url = r.url
             clean_url = real_url.strip().split()[0]
             if clean_url.endswith("~"):
                 clean_url = clean_url[:-1]
@@ -81,11 +81,10 @@ def process_channel_block(channel_data):
 
     return i, channel_lines
 
-def generate_safe_playlist_500():
-    print(f"[*] Downloading target playlist and extracting keys for all {MAX_CHANNELS} channels...")
+def generate_safe_playlist_5():
+    print(f"[*] Downloading target playlist and extracting keys for top {MAX_CHANNELS} channels...")
     try:
-        # Timeout hata diya gaya hai
-        res = session.get(PLAYLIST_URL, headers=HEADERS)
+        res = session.get(PLAYLIST_URL, headers=HEADERS, timeout=15)
         if res.status_code != 200:
             print("[-] Failed to fetch playlist.")
             return
@@ -103,7 +102,7 @@ def generate_safe_playlist_500():
             print("[-] No channels found in playlist.")
             return
 
-        print(f"[*] Found {len(target_indices)} channels. Launching with {MAX_WORKERS} max workers...")
+        print(f"[*] Found {len(target_indices)} channels. Processing...")
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -120,7 +119,7 @@ def generate_safe_playlist_500():
             if idx in channel_results:
                 new_lines.extend(channel_results[idx])
 
-        output_file = "safe_500_channels.m3u"
+        output_file = "safe_5_channels.m3u"
         with open(output_file, "w", encoding="utf-8") as f:
             f.write("\n".join(new_lines))
 
@@ -130,4 +129,5 @@ def generate_safe_playlist_500():
         print(f"[-] Critical Error: {e}")
 
 if __name__ == "__main__":
-    generate_safe_playlist_500()
+    generate_safe_playlist_5()
+    
