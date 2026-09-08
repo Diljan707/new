@@ -119,7 +119,7 @@ def generate_safe_playlist_5():
             if idx in channel_results:
                 new_lines.extend(channel_results[idx])
 
-        output_file = "safe_5_channels.m3u"
+        output_file = "safe_500_channels.m3u"
         with open(output_file, "w", encoding="utf-8") as f:
             f.write("\n".join(new_lines))
 
