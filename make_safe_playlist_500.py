@@ -1,3 +1,4 @@
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
 from requests.adapters import HTTPAdapter
 import requests
@@ -6,6 +7,7 @@ from urllib3.util.retry import Retry
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 HEADERS = {"User-Agent": "Denver1769"}
 MAX_CHANNELS = 1300  # 1300 channels ke liye set kiya gaya hai
+MAX_WORKERS = 20  # Fast processing ke liye 20 workers set kiye hain
 
 
 # Session with automatic retry strategy setup kiya hai
@@ -26,7 +28,7 @@ session = get_robust_session()
 
 
 def process_channel_block(channel_data):
-  """Processes a single channel block sequentially without workers."""
+  """Processes a single channel block concurrently using ThreadPoolExecutor."""
   i, lines = channel_data
   line = lines[i].strip()
   extinf_line = line
@@ -92,13 +94,13 @@ def process_channel_block(channel_data):
         clean_url = clean_url[:-1]
       channel_lines.append(clean_url)
 
-  return channel_lines
+  return i, channel_lines
 
 
-def generate_safe_playlist_sequential():
+def generate_safe_playlist_concurrent():
   print(
       f"[*] Downloading target playlist and extracting keys for top"
-      f" {MAX_CHANNELS} channels (Sequential Mode)..."
+      f" {MAX_CHANNELS} channels using {MAX_WORKERS} workers..."
   )
   try:
     res = session.get(PLAYLIST_URL, headers=HEADERS, timeout=15)
@@ -120,26 +122,42 @@ def generate_safe_playlist_sequential():
       return
 
     print(
-        f"[*] Found {len(target_indices)} channels. Processing one by one..."
+        f"[*] Found {len(target_indices)} channels. Processing with"
+        f" ThreadPoolExecutor..."
     )
 
-    new_lines = ["#EXTM3U"]
+    channel_results = {}
+    completed_count = 0
     total = len(target_indices)
 
-    for count, idx in enumerate(target_indices, 1):
-      try:
-        channel_lines = process_channel_block((idx, lines))
-        new_lines.extend(channel_lines)
-        print(f"[{count}/{total}] Channel processed successfully.")
-      except Exception as e:
-        print(f"[-] Error at channel {count}: {e}")
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+      futures = {
+          executor.submit(process_channel_block, (idx, lines)): idx
+          for idx in target_indices
+      }
+      for future in as_completed(futures):
+        try:
+          idx, channel_lines = future.result()
+          channel_results[idx] = channel_lines
+          completed_count += 1
+          print(
+              f"[{completed_count}/{total}] Channel processed successfully."
+          )
+        except Exception as e:
+          print(f"[-] Error processing a channel: {e}")
+
+    new_lines = ["#EXTM3U"]
+    for idx in target_indices:
+      if idx in channel_results:
+        new_lines.extend(channel_results[idx])
 
     output_file = "safe_1300_channels.m3u"
     with open(output_file, "w", encoding="utf-8") as f:
       f.write("\n".join(new_lines))
 
     print(
-        f"\n[+] Success! Channels processed and saved as '{output_file}'."
+        f"\n[+] Success! Exactly {len(channel_results)} channels saved as"
+        f" '{output_file}'."
     )
 
   except Exception as e:
@@ -147,5 +165,4 @@ def generate_safe_playlist_sequential():
 
 
 if __name__ == "__main__":
-  generate_safe_playlist_sequential()
-        
+  generate_safe_playlist_concurrent()
