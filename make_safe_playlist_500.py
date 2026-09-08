@@ -6,7 +6,7 @@ from urllib3.util.retry import Retry
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 HEADERS = {"User-Agent": "Denver1769"}
-MAX_CHANNELS = 30  # Ab yeh 30 channels process karega
+MAX_CHANNELS = 500  # Ab yeh 30 channels process karega
 MAX_WORKERS = 30  # Workers utne hi rakhe hain taaki server par load balance rahe
 
 # Session with automatic retry strategy setup kiya hai
