@@ -151,7 +151,7 @@ def generate_safe_playlist_concurrent():
       if idx in channel_results:
         new_lines.extend(channel_results[idx])
 
-    output_file = "safe_1300_channels.m3u"
+    output_file = "safe_500_channels.m3u"
     with open(output_file, "w", encoding="utf-8") as f:
       f.write("\n".join(new_lines))
 
