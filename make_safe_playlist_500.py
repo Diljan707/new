@@ -6,7 +6,7 @@ from urllib3.util.retry import Retry
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 HEADERS = {"User-Agent": "Denver1769"}
-MAX_CHANNELS = 10
+MAX_CHANNELS = 1099
 MAX_WORKERS = 5
 
 
@@ -75,9 +75,17 @@ def process_channel_block(channel_data):
 
   if mpd_line:
     try:
+      # Sahi User-Agent ke sath request bhejo taaki 302 redirect follow ho sake
+      channel_headers = {"User-Agent": user_agent}
       r = session.get(
-          mpd_line, headers=HEADERS, allow_redirects=True, timeout=10, stream=True
+          mpd_line,
+          headers=channel_headers,
+          allow_redirects=True,
+          timeout=10,
+          stream=True,
       )
+
+      # Agar redirect history hai toh final url lo, warna r.url
       if r.history:
         real_url = r.history[-1].url
       else:
