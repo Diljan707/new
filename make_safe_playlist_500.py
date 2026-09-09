@@ -6,11 +6,10 @@ from urllib3.util.retry import Retry
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 HEADERS = {"User-Agent": "Denver1769"}
-MAX_CHANNELS = 1099  # 1300 channels ke liye set kiya gaya hai
-MAX_WORKERS = 5  # Fast processing ke liye 20 workers set kiye hain
+MAX_CHANNELS = 1099
+MAX_WORKERS = 5
 
 
-# Session with automatic retry strategy setup kiya hai
 def get_robust_session():
   session = requests.Session()
   retries = Retry(
@@ -79,16 +78,16 @@ def process_channel_block(channel_data):
       r = session.get(
           mpd_line, headers=HEADERS, allow_redirects=True, timeout=10
       )
-      if r.status_code == 403:
-        clean_url = mpd_line.strip().split()[0]
-      else:
+      if r.status_code == 200:
         real_url = r.url
-        clean_url = real_url.strip().split()[0]
+      else:
+        real_url = mpd_line
 
+      clean_url = real_url.strip().split()[0]
       if clean_url.endswith("~"):
         clean_url = clean_url[:-1]
       channel_lines.append(clean_url)
-    except:
+    except Exception:
       clean_url = mpd_line.strip().split()[0]
       if clean_url.endswith("~"):
         clean_url = clean_url[:-1]
@@ -166,3 +165,4 @@ def generate_safe_playlist_concurrent():
 
 if __name__ == "__main__":
   generate_safe_playlist_concurrent()
+  
