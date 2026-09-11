@@ -1,18 +1,23 @@
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
+import time  # <--- Eh import zaroor add karo
 from requests.adapters import HTTPAdapter
 import requests
 from urllib3.util.retry import Retry
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
-HEADERS = {"User-Agent": "Denver1769"}
+HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}  # <--- User agent thoda standard rakho
 MAX_CHANNELS = 3000
-MAX_WORKERS = 1
+MAX_WORKERS = 1  # 1 worker hi rakho taan ik ik karke request jave
 
 
 def get_robust_session():
   session = requests.Session()
-  retries = Retry(total=5, backoff_factor=1, status_forcelist=[500, 502, 503, 504])
+  retries = Retry(
+      total=5,
+      backoff_factor=2,
+      status_forcelist=[403, 429, 500, 502, 503, 504],
+  )  # <--- 403 nu retry vich vi rakh sakde ho
   session.mount("https://", HTTPAdapter(max_retries=retries))
   session.mount("http://", HTTPAdapter(max_retries=retries))
   return session
@@ -22,7 +27,6 @@ session = get_robust_session()
 
 
 def process_channel_block(channel_data):
-  """Processes a single channel block concurrently without timeouts."""
   i, lines = channel_data
   line = lines[i].strip()
   extinf_line = line
@@ -47,8 +51,7 @@ def process_channel_block(channel_data):
     try:
       if '"' in key_url:
         key_url = key_url.replace('"', "")
-      # Timeout hata diya gaya hai
-      key_res = session.get(key_url, headers=HEADERS)
+      key_res = session.get(key_url, headers=HEADERS, timeout=10)
       if key_res.status_code == 200:
         key_json = key_res.json()
         embedded_key_data = json.dumps(key_json)
@@ -62,9 +65,7 @@ def process_channel_block(channel_data):
         f"#KODIPROP:inputstream.adaptive.license_key={embedded_key_data}"
     )
   elif key_url:
-    channel_lines.append(
-        f"#KODIPROP:inputstream.adaptive.license_key={key_url}"
-    )
+    channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
 
   channel_lines.append(extinf_line)
   channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
@@ -72,9 +73,8 @@ def process_channel_block(channel_data):
   if mpd_line:
     try:
       channel_headers = {"User-Agent": user_agent}
-      # Timeout hata diya gaya hai
       r = session.get(
-          mpd_line, headers=channel_headers, allow_redirects=False
+          mpd_line, headers=channel_headers, allow_redirects=False, timeout=10
       )
 
       real_url = (
@@ -92,70 +92,8 @@ def process_channel_block(channel_data):
         clean_url = clean_url[:-1]
       channel_lines.append(clean_url)
 
+  # **IMPORTANT:** Har request ton baad 0.5 to 1 second da gap paao taan 403 na aave
+  time.sleep(0.4)
+
   return i, channel_lines
-
-
-def generate_safe_playlist_500():
-  print(
-      f"[*] Downloading target playlist and extracting keys for all"
-      f" {MAX_CHANNELS} channels..."
-  )
-  try:
-    # Timeout hata diya gaya hai
-    res = session.get(PLAYLIST_URL, headers=HEADERS)
-    if res.status_code != 200:
-      print("[-] Failed to fetch playlist.")
-      return
-
-    lines = res.text.splitlines()
-
-    target_indices = []
-    for i, line in enumerate(lines):
-      if line.strip().startswith("#EXTINF"):
-        target_indices.append(i)
-        if len(target_indices) >= MAX_CHANNELS:
-          break
-
-    if not target_indices:
-      print("[-] No channels found in playlist.")
-      return
-
-    print(
-        f"[*] Found {len(target_indices)} channels. Launching with"
-        f" {MAX_WORKERS} max workers..."
-    )
-
-    channel_results = {}
-    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-      futures = {
-          executor.submit(process_channel_block, (idx, lines)): idx
-          for idx in target_indices
-      }
-      for future in as_completed(futures):
-        try:
-          idx, channel_lines = future.result()
-          channel_results[idx] = channel_lines
-        except Exception as e:
-          print(f"[-] Error processing a channel: {e}")
-
-    new_lines = ["#EXTM3U"]
-    for idx in target_indices:
-      if idx in channel_results:
-        new_lines.extend(channel_results[idx])
-
-    output_file = "safe_500_channels.m3u"
-    with open(output_file, "w", encoding="utf-8") as f:
-      f.write("\n".join(new_lines))
-
-    print(
-        f"\n[+] Success! Exactly {len(channel_results)} channels saved as"
-        f" '{output_file}'."
-    )
-
-  except Exception as e:
-    print(f"[-] Critical Error: {e}")
-
-
-if __name__ == "__main__":
-  generate_safe_playlist_500()
     
