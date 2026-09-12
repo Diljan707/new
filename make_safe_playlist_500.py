@@ -7,7 +7,7 @@ from urllib3.util.retry import Retry
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 HEADERS = {"User-Agent": "Denver1769"}
 MAX_CHANNELS = 1200
-MAX_WORKERS = 1
+MAX_WORKERS = 1000
 
 def get_robust_session():
     session = requests.Session()
