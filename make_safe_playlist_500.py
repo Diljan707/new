@@ -6,12 +6,14 @@ from urllib3.util.retry import Retry
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 HEADERS = {"User-Agent": "Denver1769"}
+
+# Optimized for speed and lower latency in OTT Navigator
 MAX_CHANNELS = 1000
-MAX_WORKERS = 10
+MAX_WORKERS = 100
 
 def get_robust_session():
     session = requests.Session()
-    retries = Retry(total=5, backoff_factor=1, status_forcelist=[500, 502, 503, 504])
+    retries = Retry(total=3, backoff_factor=0.5, status_forcelist=[500, 502, 503, 504])
     session.mount("https://", HTTPAdapter(max_retries=retries))
     session.mount("http://", HTTPAdapter(max_retries=retries))
     return session
@@ -19,7 +21,7 @@ def get_robust_session():
 session = get_robust_session()
 
 def process_channel_block(channel_data):
-    """Processes a single channel block concurrently without timeouts."""
+    """Fast processes a single channel block with minimal delay."""
     i, lines = channel_data
     line = lines[i].strip()
     extinf_line = line
@@ -44,10 +46,11 @@ def process_channel_block(channel_data):
         try:
             if '"' in key_url:
                 key_url = key_url.replace('"', "")
-            key_res = session.get(key_url, headers=HEADERS)
+            # Quick fetch for keys
+            key_res = session.get(key_url, headers=HEADERS, timeout=3)
             if key_res.status_code == 200:
                 key_json = key_res.json()
-                embedded_key_data = json.dumps(key_json)
+                embedded_key_data = json.dumps(key_json, separators=(',', ':'))
         except Exception:
             pass
 
@@ -66,36 +69,19 @@ def process_channel_block(channel_data):
     channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
 
     if mpd_line:
-        try:
-            channel_headers = {"User-Agent": user_agent}
-            r = session.get(
-                mpd_line, headers=channel_headers, allow_redirects=False
-            )
-
-            real_url = (  
-                r.headers.get("Location")  
-                if r.status_code in [301, 302, 303, 307, 308]  
-                else mpd_line  
-            )  
-            clean_url = real_url.strip().split()[0]  
-            if clean_url.endswith("~"):  
-                clean_url = clean_url[:-1]  
-            channel_lines.append(clean_url)  
-        except Exception:  
-            clean_url = mpd_line.strip().split()[0]  
-            if clean_url.endswith("~"):  
-                clean_url = clean_url[:-1]  
-            channel_lines.append(clean_url)
+        clean_url = mpd_line.strip().split()[0]
+        if clean_url.endswith("~"):
+            clean_url = clean_url[:-1]
+        channel_lines.append(clean_url)
 
     return i, channel_lines
 
 def generate_safe_playlist_500():
     print(
-        f"[*] Downloading target playlist and extracting keys for all"
-        f" {MAX_CHANNELS} channels..."
+        f"[*] Downloading target playlist for fast processing ({MAX_CHANNELS} channels)..."
     )
     try:
-        res = session.get(PLAYLIST_URL, headers=HEADERS)
+        res = session.get(PLAYLIST_URL, headers=HEADERS, timeout=10)
         if res.status_code != 200:
             print("[-] Failed to fetch playlist.")
             return
@@ -113,10 +99,7 @@ def generate_safe_playlist_500():
             print("[-] No channels found in playlist.")  
             return  
 
-        print(  
-            f"[*] Found {len(target_indices)} channels. Launching with"  
-            f" {MAX_WORKERS} max workers..."  
-        )  
+        print(f"[*] Processing with {MAX_WORKERS} workers for zero latency...")  
 
         channel_results = {}  
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:  
@@ -140,14 +123,11 @@ def generate_safe_playlist_500():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(  
-            f"\n[+] Success! Exactly {len(channel_results)} channels saved as"  
-            f" '{output_file}'."  
-        )
+        print(f"\n[+] Success! Optimized playlist saved as '{output_file}'.")
 
     except Exception as e:
         print(f"[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_500()
-                   
+    
