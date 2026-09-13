@@ -6,14 +6,12 @@ from urllib3.util.retry import Retry
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 HEADERS = {"User-Agent": "Denver1769"}
-
-# Advanced settings for maximum speed and zero latency
-MAX_CHANNELS = 600
+MAX_CHANNELS = 1000
 MAX_WORKERS = 100
 
 def get_robust_session():
     session = requests.Session()
-    retries = Retry(total=3, backoff_factor=0.5, status_forcelist=[500, 502, 503, 504])
+    retries = Retry(total=5, backoff_factor=1, status_forcelist=[500, 502, 503, 504])
     session.mount("https://", HTTPAdapter(max_retries=retries))
     session.mount("http://", HTTPAdapter(max_retries=retries))
     return session
@@ -21,7 +19,7 @@ def get_robust_session():
 session = get_robust_session()
 
 def process_channel_block(channel_data):
-    """Advanced processing: Robust kid:key extraction + MPD redirection + High speed."""
+    """Processes a single channel block concurrently without timeouts."""
     i, lines = channel_data
     line = lines[i].strip()
     extinf_line = line
@@ -41,43 +39,28 @@ def process_channel_block(channel_data):
         if sub_f.startswith("http") and ".mpd" in sub_f:
             mpd_line = sub_f
 
-    clearkey_string = None
+    embedded_key_data = None
     if key_url:
         try:
             if '"' in key_url:
                 key_url = key_url.replace('"', "")
-            key_res = session.get(key_url, headers=HEADERS, timeout=3)
+            key_res = session.get(key_url, headers=HEADERS)
             if key_res.status_code == 200:
                 key_json = key_res.json()
-                
-                # Robust extraction for various JSON structures
-                keys_list = []
-                if isinstance(key_json, dict):
-                    keys_list = key_json.get("keys", [])
-                elif isinstance(key_json, list):
-                    keys_list = key_json
-                
-                pairs = []
-                for k in keys_list:
-                    if isinstance(k, dict):
-                        kid = k.get('kid')
-                        key = k.get('key')
-                        if kid and key:
-                            pairs.append(f"{kid}:{key}")
-                
-                if pairs:
-                    clearkey_string = ",".join(pairs)
+                embedded_key_data = json.dumps(key_json)
         except Exception:
             pass
 
     channel_lines = []
     channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
-    
-    if clearkey_string:
-        # Direct kid:key format pass hoga (No JSON parsing delay in player)
-        channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={clearkey_string}")
+    if embedded_key_data:
+        channel_lines.append(
+            f"#KODIPROP:inputstream.adaptive.license_key={embedded_key_data}"
+        )
     elif key_url:
-        channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
+        channel_lines.append(
+            f"#KODIPROP:inputstream.adaptive.license_key={key_url}"
+        )
 
     channel_lines.append(extinf_line)
     channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
@@ -85,7 +68,10 @@ def process_channel_block(channel_data):
     if mpd_line:
         try:
             channel_headers = {"User-Agent": user_agent}
-            r = session.get(mpd_line, headers=channel_headers, allow_redirects=False, timeout=3)
+            r = session.get(
+                mpd_line, headers=channel_headers, allow_redirects=False
+            )
+
             real_url = (  
                 r.headers.get("Location")  
                 if r.status_code in [301, 302, 303, 307, 308]  
@@ -104,9 +90,12 @@ def process_channel_block(channel_data):
     return i, channel_lines
 
 def generate_safe_playlist_500():
-    print(f"[*] Downloading playlist for advanced processing ({MAX_CHANNELS} channels)...")
+    print(
+        f"[*] Downloading target playlist and extracting keys for all"
+        f" {MAX_CHANNELS} channels..."
+    )
     try:
-        res = session.get(PLAYLIST_URL, headers=HEADERS, timeout=10)
+        res = session.get(PLAYLIST_URL, headers=HEADERS)
         if res.status_code != 200:
             print("[-] Failed to fetch playlist.")
             return
@@ -124,7 +113,10 @@ def generate_safe_playlist_500():
             print("[-] No channels found in playlist.")  
             return  
 
-        print(f"[*] Processing with {MAX_WORKERS} workers (Advanced Kid:Key + Redirect mode)...")  
+        print(  
+            f"[*] Found {len(target_indices)} channels. Launching with"  
+            f" {MAX_WORKERS} max workers..."  
+        )  
 
         channel_results = {}  
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:  
@@ -148,11 +140,13 @@ def generate_safe_playlist_500():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n[+] Success! Advanced optimized playlist saved as '{output_file}'.")
+        print(  
+            f"\n[+] Success! Exactly {len(channel_results)} channels saved as"  
+            f" '{output_file}'."  
+        )
 
     except Exception as e:
         print(f"[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_500()
-            
