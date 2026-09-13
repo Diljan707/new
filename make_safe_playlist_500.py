@@ -154,5 +154,4 @@ def generate_safe_playlist_500():
     except Exception as e:
         print(f"[-] Critical Error: {e}")
 
-if __name__ == "__main__":
-    make_safe_playlist_500()
+if __name__ == "__main__":generate_safe_playlist_500()
