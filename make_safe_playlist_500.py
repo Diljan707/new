@@ -7,8 +7,8 @@ from urllib3.util.retry import Retry
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 HEADERS = {"User-Agent": "Denver1769"}
 
-# Optimized for speed and lower latency in OTT Navigator
-MAX_CHANNELS = 1000
+# Optimized for speed and lower latency with MPD redirects enabled
+MAX_CHANNELS = 600
 MAX_WORKERS = 100
 
 def get_robust_session():
@@ -21,7 +21,7 @@ def get_robust_session():
 session = get_robust_session()
 
 def process_channel_block(channel_data):
-    """Fast processes a single channel block with minimal delay."""
+    """Processes a single channel block with MPD redirection and minimal delay."""
     i, lines = channel_data
     line = lines[i].strip()
     extinf_line = line
@@ -46,7 +46,6 @@ def process_channel_block(channel_data):
         try:
             if '"' in key_url:
                 key_url = key_url.replace('"', "")
-            # Quick fetch for keys
             key_res = session.get(key_url, headers=HEADERS, timeout=3)
             if key_res.status_code == 200:
                 key_json = key_res.json()
@@ -69,16 +68,32 @@ def process_channel_block(channel_data):
     channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
 
     if mpd_line:
-        clean_url = mpd_line.strip().split()[0]
-        if clean_url.endswith("~"):
-            clean_url = clean_url[:-1]
-        channel_lines.append(clean_url)
+        try:
+            channel_headers = {"User-Agent": user_agent}
+            r = session.get(
+                mpd_line, headers=channel_headers, allow_redirects=False, timeout=3
+            )
+
+            real_url = (  
+                r.headers.get("Location")  
+                if r.status_code in [301, 302, 303, 307, 308]  
+                else mpd_line  
+            )  
+            clean_url = real_url.strip().split()[0]  
+            if clean_url.endswith("~"):  
+                clean_url = clean_url[:-1]  
+            channel_lines.append(clean_url)  
+        except Exception:  
+            clean_url = mpd_line.strip().split()[0]  
+            if clean_url.endswith("~"):  
+                clean_url = clean_url[:-1]  
+            channel_lines.append(clean_url)
 
     return i, channel_lines
 
 def generate_safe_playlist_500():
     print(
-        f"[*] Downloading target playlist for fast processing ({MAX_CHANNELS} channels)..."
+        f"[*] Downloading target playlist with MPD redirect support ({MAX_CHANNELS} channels)..."
     )
     try:
         res = session.get(PLAYLIST_URL, headers=HEADERS, timeout=10)
@@ -99,7 +114,7 @@ def generate_safe_playlist_500():
             print("[-] No channels found in playlist.")  
             return  
 
-        print(f"[*] Processing with {MAX_WORKERS} workers for zero latency...")  
+        print(f"[*] Processing with {MAX_WORKERS} workers...")  
 
         channel_results = {}  
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:  
@@ -123,11 +138,11 @@ def generate_safe_playlist_500():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n[+] Success! Optimized playlist saved as '{output_file}'.")
+        print(f"\n[+] Success! Redirect-enabled playlist saved as '{output_file}'.")
 
     except Exception as e:
         print(f"[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_500()
-    
+        
