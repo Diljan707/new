@@ -155,4 +155,4 @@ def generate_safe_playlist_500():
         print(f"[-] Critical Error: {e}")
 
 if __name__ == "__main__":
-    generate_safe_playlist_500()
+    make_safe_playlist_500()
