@@ -7,7 +7,6 @@ from urllib3.util.retry import Retry
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 HEADERS = {"User-Agent": "Denver1769"}
 
-# Optimized for speed and lower latency with MPD redirects enabled
 MAX_CHANNELS = 600
 MAX_WORKERS = 100
 
@@ -21,7 +20,7 @@ def get_robust_session():
 session = get_robust_session()
 
 def process_channel_block(channel_data):
-    """Processes a single channel block with MPD redirection and minimal delay."""
+    """Processes channel blocks, converts JSON keys to ClearKey format, and handles MPD redirect."""
     i, lines = channel_data
     line = lines[i].strip()
     extinf_line = line
@@ -41,7 +40,7 @@ def process_channel_block(channel_data):
         if sub_f.startswith("http") and ".mpd" in sub_f:
             mpd_line = sub_f
 
-    embedded_key_data = None
+    clearkey_string = None
     if key_url:
         try:
             if '"' in key_url:
@@ -49,20 +48,23 @@ def process_channel_block(channel_data):
             key_res = session.get(key_url, headers=HEADERS, timeout=3)
             if key_res.status_code == 200:
                 key_json = key_res.json()
-                embedded_key_data = json.dumps(key_json, separators=(',', ':'))
+                # Convert JSON keys to direct ClearKey format (kid:key)
+                if "keys" in key_json:
+                    pairs = []
+                    for k in key_json["keys"]:
+                        pairs.append(f"{k['kid']}:{k['key']}")
+                    clearkey_string = ",".join(pairs)
         except Exception:
             pass
 
     channel_lines = []
     channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
-    if embedded_key_data:
-        channel_lines.append(
-            f"#KODIPROP:inputstream.adaptive.license_key={embedded_key_data}"
-        )
+    
+    if clearkey_string:
+        # Direct clear key format pass hovega (No JSON latency)
+        channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={clearkey_string}")
     elif key_url:
-        channel_lines.append(
-            f"#KODIPROP:inputstream.adaptive.license_key={key_url}"
-        )
+        channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
 
     channel_lines.append(extinf_line)
     channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
@@ -70,10 +72,7 @@ def process_channel_block(channel_data):
     if mpd_line:
         try:
             channel_headers = {"User-Agent": user_agent}
-            r = session.get(
-                mpd_line, headers=channel_headers, allow_redirects=False, timeout=3
-            )
-
+            r = session.get(mpd_line, headers=channel_headers, allow_redirects=False, timeout=3)
             real_url = (  
                 r.headers.get("Location")  
                 if r.status_code in [301, 302, 303, 307, 308]  
@@ -92,9 +91,7 @@ def process_channel_block(channel_data):
     return i, channel_lines
 
 def generate_safe_playlist_500():
-    print(
-        f"[*] Downloading target playlist with MPD redirect support ({MAX_CHANNELS} channels)..."
-    )
+    print(f"[*] Downloading playlist for ClearKey conversion ({MAX_CHANNELS} channels)...")
     try:
         res = session.get(PLAYLIST_URL, headers=HEADERS, timeout=10)
         if res.status_code != 200:
@@ -138,11 +135,11 @@ def generate_safe_playlist_500():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n[+] Success! Redirect-enabled playlist saved as '{output_file}'.")
+        print(f"\n[+] Success! ClearKey optimized playlist saved as '{output_file}'.")
 
     except Exception as e:
         print(f"[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_500()
-        
+            
