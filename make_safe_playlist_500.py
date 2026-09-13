@@ -5,12 +5,7 @@ import requests
 from urllib3.util.retry import Retry
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
-
-# Updated User-Agent to mimic a modern browser / LG webTV setup
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (WebOS; Linux; LG TV) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
-}
-
+HEADERS = {"User-Agent": "Denver1769"}
 MAX_CHANNELS = 1300
 MAX_WORKERS = 100
 
@@ -35,8 +30,7 @@ def process_channel_block(channel_data):
         if "inputstream.adaptive.license_key=" in sub_b:
             key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
 
-    # Default to the updated browser/LG user agent string
-    user_agent = HEADERS["User-Agent"]
+    user_agent = "Denver1769"
     mpd_line = None
     for f in range(i + 1, min(len(lines), i + 4)):
         sub_f = lines[f].strip()
@@ -103,7 +97,7 @@ def generate_safe_playlist_500():
     try:
         res = session.get(PLAYLIST_URL, headers=HEADERS)
         if res.status_code != 200:
-            print(f"[-] Failed to fetch playlist. Status code: {res.status_code}")
+            print("[-] Failed to fetch playlist.")
             return
 
         lines = res.text.splitlines()  
@@ -154,4 +148,6 @@ def generate_safe_playlist_500():
     except Exception as e:
         print(f"[-] Critical Error: {e}")
 
-if __name__ == "__main__":generate_safe_playlist_500()
+if __name__ == "__main__":
+    generate_safe_playlist_500()
+                   
