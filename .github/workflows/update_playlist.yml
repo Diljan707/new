@@ -1,14 +1,9 @@
 name: Generate Safe Playlist
 
 on:
-  # GitHub dashboard se manually run karne ke liye
   workflow_dispatch:
-
-  # Schedule time set (har 6 ghante baad)
   schedule:
     - cron: '0 */6 * * *'
-
-  # External API / Webhook se run karne ke liye
   repository_dispatch:
     types: [run-playlist]
 
@@ -41,8 +36,8 @@ jobs:
       run: |
         git config --global user.name "GitHub Actions Bot"
         git config --global user.email "actions@github.com"
-        git add all_channels_master.m3u channels_batch_*.m3u
-        git commit -m "Auto-update master and batch playlists [skip ci]" || exit 0
+        git add safe_500_channels.m3u
+        git commit -m "Auto-update safe_500_channels.m3u [skip ci]" || exit 0
         git pull --rebase origin main || git pull --rebase origin master || true
         git push
         
