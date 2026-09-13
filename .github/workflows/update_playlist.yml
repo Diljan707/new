@@ -1,14 +1,14 @@
 name: Generate Safe Playlist
 
 on:
-  # Source 1: GitHub dashboard se manually run karne ke liye
+  # GitHub dashboard se manually run karne ke liye
   workflow_dispatch:
 
-  # Source 2: Jo aapka schedule time set hai
+  # Schedule time set (har 6 ghante baad)
   schedule:
     - cron: '0 */6 * * *'
 
-  # Source 3: External API / Webhook (Render ya cron-job.org) se run karne ke liye
+  # External API / Webhook se run karne ke liye
   repository_dispatch:
     types: [run-playlist]
 
