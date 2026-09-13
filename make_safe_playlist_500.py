@@ -11,7 +11,7 @@ HEADERS = {
     "User-Agent": "Mozilla/5.0 (WebOS; Linux; LG TV) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
 }
 
-MAX_CHANNELS = 1300
+MAX_CHANNELS = 1000
 MAX_WORKERS = 100
 
 def get_robust_session():
