@@ -6,14 +6,13 @@ from urllib3.util.retry import Retry
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 
-# Browser/LG webTV user-agent setup
+# Updated User-Agent to mimic a modern browser / LG webTV setup
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (WebOS; Linux; LG TV) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
 }
 
+MAX_CHANNELS = 1300
 MAX_WORKERS = 100
-BATCH_SIZE = 500  # Number of channels to process per batch
-TOTAL_CHANNELS_TO_PROCESS = 1500  # Total channels you want to cover across batches
 
 def get_robust_session():
     session = requests.Session()
@@ -36,6 +35,7 @@ def process_channel_block(channel_data):
         if "inputstream.adaptive.license_key=" in sub_b:
             key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
 
+    # Default to the updated browser/LG user agent string
     user_agent = HEADERS["User-Agent"]
     mpd_line = None
     for f in range(i + 1, min(len(lines), i + 4)):
@@ -95,8 +95,11 @@ def process_channel_block(channel_data):
 
     return i, channel_lines
 
-def generate_batched_playlists():
-    print("[*] Downloading target playlist...")
+def generate_safe_playlist_500():
+    print(
+        f"[*] Downloading target playlist and extracting keys for all"
+        f" {MAX_CHANNELS} channels..."
+    )
     try:
         res = session.get(PLAYLIST_URL, headers=HEADERS)
         if res.status_code != 200:
@@ -105,82 +108,51 @@ def generate_batched_playlists():
 
         lines = res.text.splitlines()  
 
-        # Find all #EXTINF indices in the entire playlist
-        all_target_indices = []  
+        target_indices = []  
         for i, line in enumerate(lines):  
             if line.strip().startswith("#EXTINF"):  
-                all_target_indices.append(i)  
+                target_indices.append(i)  
+                if len(target_indices) >= MAX_CHANNELS:  
+                    break  
 
-        if not all_target_indices:  
+        if not target_indices:  
             print("[-] No channels found in playlist.")  
             return  
 
-        print(f"[*] Total channels available in playlist: {len(all_target_indices)}")
+        print(  
+            f"[*] Found {len(target_indices)} channels. Launching with"  
+            f" {MAX_WORKERS} max workers..."  
+        )  
 
-        created_batch_files = []
-        
-        # Process in chunks (Batches of BATCH_SIZE)
-        start_idx = 0
-        while start_idx < len(all_target_indices) and start_idx < TOTAL_CHANNELS_TO_PROCESS:
-            end_idx = min(start_idx + BATCH_SIZE, len(all_target_indices), TOTAL_CHANNELS_TO_PROCESS)
-            batch_indices = all_target_indices[start_idx:end_idx]
-            
-            batch_num_start = start_idx + 1
-            batch_num_end = end_idx
-            
-            print(f"\n--- Processing Batch: Channels {batch_num_start} to {batch_num_end} ---")
-            
-            channel_results = {}  
-            with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:  
-                futures = {  
-                    executor.submit(process_channel_block, (idx, lines)): idx  
-                    for idx in batch_indices  
-                }  
-                for future in as_completed(futures):  
-                    try:  
-                        idx, channel_lines = future.result()  
-                        channel_results[idx] = channel_lines  
-                    except Exception as e:  
-                        print(f"[-] Error processing a channel in batch: {e}")  
+        channel_results = {}  
+        with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:  
+            futures = {  
+                executor.submit(process_channel_block, (idx, lines)): idx  
+                for idx in target_indices  
+            }  
+            for future in as_completed(futures):  
+                try:  
+                    idx, channel_lines = future.result()  
+                    channel_results[idx] = channel_lines  
+                except Exception as e:  
+                    print(f"[-] Error processing a channel: {e}")  
 
-            new_lines = ["#EXTM3U"]  
-            for idx in batch_indices:  
-                if idx in channel_results:  
-                    new_lines.extend(channel_results[idx])  
+        new_lines = ["#EXTM3U"]  
+        for idx in target_indices:  
+            if idx in channel_results:  
+                new_lines.extend(channel_results[idx])  
 
-            output_file = f"channels_batch_{batch_num_start}_{batch_num_end}.m3u"  
-            with open(output_file, "w", encoding="utf-8") as f:  
-                f.write("\n".join(new_lines))  
+        output_file = "safe_500_channels.m3u"  
+        with open(output_file, "w", encoding="utf-8") as f:  
+            f.write("\n".join(new_lines))  
 
-            print(f"[+] Batch saved successfully as '{output_file}' ({len(channel_results)} channels processed).")
-            
-            created_batch_files.append(output_file)
-            start_idx = end_idx
-
-        # Merge all created batch files into a single master playlist
-        if created_batch_files:
-            print("\n[*] Merging all batch files into a single master playlist...")
-            master_output_file = "all_channels_master.m3u"
-            master_lines = ["#EXTM3U"]
-            
-            for file_name in created_batch_files:
-                with open(file_name, "r", encoding="utf-8") as bf:
-                    content = bf.read().splitlines()
-                    for line in content:
-                        # Skip extra #EXTM3U headers from individual batch files
-                        if line.strip() != "#EXTM3U":
-                            master_lines.append(line)
-                            
-            with open(master_output_file, "w", encoding="utf-8") as mf:
-                mf.write("\n".join(master_lines))
-                
-            print(f"[+] Success! All batches merged into '{master_output_file}'.")
-
-        print("\n[+] All requested batches processed and merged successfully!")
+        print(  
+            f"\n[+] Success! Exactly {len(channel_results)} channels saved as"  
+            f" '{output_file}'."  
+        )
 
     except Exception as e:
         print(f"[-] Critical Error: {e}")
 
 if __name__ == "__main__":
-    generate_batched_playlists()
-    
+    generate_safe_playlist_500()
