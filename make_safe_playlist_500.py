@@ -7,6 +7,7 @@ from urllib3.util.retry import Retry
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 HEADERS = {"User-Agent": "Denver1769"}
 
+# Advanced settings for maximum speed and zero latency
 MAX_CHANNELS = 600
 MAX_WORKERS = 100
 
@@ -20,7 +21,7 @@ def get_robust_session():
 session = get_robust_session()
 
 def process_channel_block(channel_data):
-    """Processes channel blocks, converts JSON keys to ClearKey format, and handles MPD redirect."""
+    """Advanced processing: Robust kid:key extraction + MPD redirection + High speed."""
     i, lines = channel_data
     line = lines[i].strip()
     extinf_line = line
@@ -48,11 +49,23 @@ def process_channel_block(channel_data):
             key_res = session.get(key_url, headers=HEADERS, timeout=3)
             if key_res.status_code == 200:
                 key_json = key_res.json()
-                # Convert JSON keys to direct ClearKey format (kid:key)
-                if "keys" in key_json:
-                    pairs = []
-                    for k in key_json["keys"]:
-                        pairs.append(f"{k['kid']}:{k['key']}")
+                
+                # Robust extraction for various JSON structures
+                keys_list = []
+                if isinstance(key_json, dict):
+                    keys_list = key_json.get("keys", [])
+                elif isinstance(key_json, list):
+                    keys_list = key_json
+                
+                pairs = []
+                for k in keys_list:
+                    if isinstance(k, dict):
+                        kid = k.get('kid')
+                        key = k.get('key')
+                        if kid and key:
+                            pairs.append(f"{kid}:{key}")
+                
+                if pairs:
                     clearkey_string = ",".join(pairs)
         except Exception:
             pass
@@ -61,7 +74,7 @@ def process_channel_block(channel_data):
     channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
     
     if clearkey_string:
-        # Direct clear key format pass hovega (No JSON latency)
+        # Direct kid:key format pass hoga (No JSON parsing delay in player)
         channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={clearkey_string}")
     elif key_url:
         channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
@@ -91,7 +104,7 @@ def process_channel_block(channel_data):
     return i, channel_lines
 
 def generate_safe_playlist_500():
-    print(f"[*] Downloading playlist for ClearKey conversion ({MAX_CHANNELS} channels)...")
+    print(f"[*] Downloading playlist for advanced processing ({MAX_CHANNELS} channels)...")
     try:
         res = session.get(PLAYLIST_URL, headers=HEADERS, timeout=10)
         if res.status_code != 200:
@@ -111,7 +124,7 @@ def generate_safe_playlist_500():
             print("[-] No channels found in playlist.")  
             return  
 
-        print(f"[*] Processing with {MAX_WORKERS} workers...")  
+        print(f"[*] Processing with {MAX_WORKERS} workers (Advanced Kid:Key + Redirect mode)...")  
 
         channel_results = {}  
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:  
@@ -135,7 +148,7 @@ def generate_safe_playlist_500():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n[+] Success! ClearKey optimized playlist saved as '{output_file}'.")
+        print(f"\n[+] Success! Advanced optimized playlist saved as '{output_file}'.")
 
     except Exception as e:
         print(f"[-] Critical Error: {e}")
