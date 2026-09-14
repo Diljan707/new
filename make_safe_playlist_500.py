@@ -7,8 +7,8 @@ import threading
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 HEADERS = {"User-Agent": "plattv/7.1.5"}
-MAX_CHANNELS = 900   # Exact 500 channels limit
-MAX_WORKERS = 60     # Fast processing workers with safety balance
+MAX_CHANNELS = 900   # Exact 900 channels limit
+MAX_WORKERS = 60     # Safe workers balance for speed & reliability
 
 counter_lock = threading.Lock()
 processed_count = 0
@@ -139,7 +139,7 @@ def process_single_channel(i, lines, session):
 
     return channel_lines
 
-def generate_safe_playlist_500():
+def generate_safe_playlist_900():
     global processed_count
     processed_count = 0
     print(f"[*] Downloading playlist and processing exactly {MAX_CHANNELS} channels using {MAX_WORKERS} workers...")
@@ -177,7 +177,6 @@ def generate_safe_playlist_500():
                     channel_lines = future.result()
                     channel_results[idx] = channel_lines
                 except Exception:
-                    # Fallback agar koi thread poori tarah crash vi ho jave
                     fallback_lines = [lines[idx].strip()]
                     raw_url = ""
                     for f in range(idx + 1, min(len(lines), idx + 5)):
@@ -214,5 +213,5 @@ def generate_safe_playlist_500():
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
-    generate_safe_playlist_500()
-                
+    generate_safe_playlist_900()
+            
