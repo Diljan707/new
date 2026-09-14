@@ -1,12 +1,14 @@
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
+import time
 import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 HEADERS = {"User-Agent": "Denver1769"}
-MAX_CHANNELS = 1000
+TOTAL_CHANNELS = 1500
+BATCH_SIZE = 500
 MAX_WORKERS = 100
 
 def get_robust_session():
@@ -46,7 +48,6 @@ def process_channel_block(channel_data):
     if key_url:
         if key_url.startswith("http"):
             try:
-                # Timeout removed here
                 key_res = thread_session.get(key_url, headers=HEADERS)
                 if key_res.status_code == 200:
                     key_data = key_res.json()
@@ -72,7 +73,6 @@ def process_channel_block(channel_data):
         clean_url = mpd_line.strip().split()[0].rstrip("~")
         try:
             channel_headers = {"User-Agent": user_agent}
-            # Timeout removed here
             r = thread_session.head(
                 mpd_line, headers=channel_headers, allow_redirects=False
             )
@@ -91,7 +91,6 @@ def generate_safe_playlist():
     main_session = get_robust_session()
     
     try:
-        # Timeout removed here
         res = main_session.get(PLAYLIST_URL, headers=HEADERS)
         if res.status_code != 200:
             print(f"[-] Failed to fetch playlist. HTTP Status: {res.status_code}")
@@ -99,40 +98,56 @@ def generate_safe_playlist():
 
         lines = res.text.splitlines()
 
-        target_indices = [
+        all_target_indices = [
             i for i, line in enumerate(lines) 
             if line.strip().startswith("#EXTINF")
-        ][:MAX_CHANNELS]
+        ][:TOTAL_CHANNELS]
 
-        if not target_indices:
+        if not all_target_indices:
             print("[-] No channels found in playlist.")
             return
 
-        print(f"[*] Found {len(target_indices)} channels. Processing with {MAX_WORKERS} max workers...")
+        # Split indices into chunks of 500
+        batches = [
+            all_target_indices[i:i + BATCH_SIZE] 
+            for i in range(0, len(all_target_indices), BATCH_SIZE)
+        ]
+
+        print(f"[*] Found {len(all_target_indices)} total channels. Divided into {len(batches)} batches of {BATCH_SIZE}.")
 
         channel_results = {}
-        with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-            futures = {
-                executor.submit(process_channel_block, (idx, lines)): idx 
-                for idx in target_indices
-            }
-            for future in as_completed(futures):
-                try:
-                    idx, channel_lines = future.result()
-                    channel_results[idx] = channel_lines
-                except Exception as e:
-                    print(f"[-] Error processing channel block: {e}")
+        
+        for batch_idx, batch_indices in enumerate(batches, 1):
+            print(f"\n[*] Processing Batch {batch_idx} ({len(batch_indices)} channels) with {MAX_WORKERS} workers...")
+            
+            with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+                futures = {
+                    executor.submit(process_channel_block, (idx, lines)): idx 
+                    for idx in batch_indices
+                }
+                for future in as_completed(futures):
+                    try:
+                        idx, channel_lines = future.result()
+                        channel_results[idx] = channel_lines
+                    except Exception as e:
+                        print(f"[-] Error processing channel block: {e}")
+            
+            # Wait 1 minute between batches (except after the last batch)
+            if batch_idx < len(batches):
+                print(f"[*] Batch {batch_idx} completed. Waiting for 1 minute before starting the next batch...")
+                time.sleep(60)
 
+        # Build final M3U structure in order
         new_lines = ["#EXTM3U"]
-        for idx in target_indices:
+        for idx in all_target_indices:
             if idx in channel_results:
                 new_lines.extend(channel_results[idx])
 
-        output_file = "safe_500_channels.m3u"
+        output_file = "merged.m3u"
         with open(output_file, "w", encoding="utf-8") as f:
             f.write("\n".join(new_lines))
 
-        print(f"\n[+] Success! Exactly {len(channel_results)} channels saved as '{output_file}'.")
+        print(f"\n[+] Success! Total {len(channel_results)} channels merged and saved as '{output_file}'.")
 
     except Exception as e:
         print(f"[-] Critical Error: {e}")
@@ -141,4 +156,3 @@ def generate_safe_playlist():
 
 if __name__ == "__main__":
     generate_safe_playlist()
-    
