@@ -1,12 +1,17 @@
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
-import time
 from requests.adapters import HTTPAdapter
 import requests
 from urllib3.util.retry import Retry
+import threading
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 HEADERS = {"User-Agent": "plattv/7.1.5"}
-MAX_CHANNELS = 2000
+MAX_CHANNELS = 900   # Channels limit set to 900
+MAX_WORKERS = 200    # Workers set to 200 for fast processing
+
+counter_lock = threading.Lock()
+processed_count = 0
 
 def get_robust_session():
     session = requests.Session()
@@ -17,8 +22,9 @@ def get_robust_session():
 
 session = get_robust_session()
 
-def process_channel_block(i, lines):
-    """Processes channel block sequentially with 403 error handling."""
+def process_channel_block(channel_data):
+    global processed_count
+    i, lines = channel_data
     line = lines[i].strip()
     extinf_line = line
 
@@ -72,7 +78,7 @@ def process_channel_block(i, lines):
                 mpd_line, headers=channel_headers, allow_redirects=False, timeout=5
             )
 
-            # Je 403 aave taan original mpd_line use karo bina block hoye
+            # Je 403 aave taan bina ruke original mpd_line use kar lavo
             if r.status_code == 403:
                 clean_url = mpd_line.strip().split()[0]
                 if clean_url.endswith("~"):
@@ -118,12 +124,16 @@ def process_channel_block(i, lines):
                 clean_url = clean_url[:-1]  
             channel_lines.append(clean_url)
 
-    return channel_lines
+    with counter_lock:
+        processed_count += 1
+        print(f"[*] Progress: {processed_count}/{MAX_CHANNELS} channels processed...", end="\r")
 
-def generate_safe_playlist():
+    return i, channel_lines
+
+def generate_safe_playlist_900():
     print(
         f"[*] Downloading target playlist and extracting keys for up to"
-        f" {MAX_CHANNELS} channels (Anti-403 Safe Mode)..."
+        f" {MAX_CHANNELS} channels using {MAX_WORKERS} workers..."
     )
     try:
         res = session.get(PLAYLIST_URL, headers={"User-Agent": "plattv/7.1.5"})
@@ -144,28 +154,32 @@ def generate_safe_playlist():
             print("[-] No channels found in playlist.")  
             return  
 
-        print(f"[*] Found {len(target_indices)} channels. Processing with server-friendly delay...\n")  
+        print(f"[*] Found {len(target_indices)} channels. Launching multithreading...\n")  
+
+        channel_results = {}  
+        with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:  
+            futures = {  
+                executor.submit(process_channel_block, (idx, lines)): idx  
+                for idx in target_indices  
+            }  
+            for future in as_completed(futures):  
+                try:  
+                    idx, channel_lines = future.result()  
+                    channel_results[idx] = channel_lines  
+                except Exception as e:  
+                    pass
 
         new_lines = ["#EXTM3U"]  
-        
-        for idx, i in enumerate(target_indices, 1):
-            try:
-                channel_lines = process_channel_block(i, lines)
-                new_lines.extend(channel_lines)
-                print(f"[*] Progress: {idx}/{len(target_indices)} channels processed safely...", end="\r")
-                
-                # Server te load na pave, is layi har channel ton baad chhota jeha gap (0.2 seconds)
-                time.sleep(0.2)
-                
-            except Exception as e:
-                print(f"\n[-] Error at channel index {i}: {e}")
+        for idx in target_indices:  
+            if idx in channel_results:  
+                new_lines.extend(channel_results[idx])  
 
         output_file = "safe_500_channels.m3u"  
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
         print(  
-            f"\n\n[+] Success! Exactly {len(target_indices)} channels saved as"  
+            f"\n\n[+] Success! Exactly {len(channel_results)} channels saved as"  
             f" '{output_file}'."  
         )
 
@@ -173,5 +187,5 @@ def generate_safe_playlist():
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
-    generate_safe_playlist()
-    
+    generate_safe_playlist_900()
+        
