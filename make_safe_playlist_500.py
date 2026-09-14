@@ -5,8 +5,7 @@ import requests
 from urllib3.util.retry import Retry
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
-HEADERS = {"User-Agent": "Denver1769"}
-MAX_CHANNELS = 1000
+HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"}
 MAX_WORKERS = 100
 
 def get_robust_session():
@@ -30,7 +29,7 @@ def process_channel_block(channel_data):
         if "inputstream.adaptive.license_key=" in sub_b:
             key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
 
-    user_agent = "Denver1769"
+    user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
     mpd_line = None
     for f in range(i + 1, min(len(lines), i + 4)):
         sub_f = lines[f].strip()
@@ -89,11 +88,8 @@ def process_channel_block(channel_data):
 
     return i, channel_lines
 
-def generate_safe_playlist_500():
-    print(
-        f"[*] Downloading target playlist and extracting keys for all"
-        f" {MAX_CHANNELS} channels..."
-    )
+def generate_safe_playlist_all():
+    print("[*] Downloading target playlist and extracting keys for all channels...")
     try:
         res = session.get(PLAYLIST_URL, headers=HEADERS)
         if res.status_code != 200:
@@ -106,8 +102,6 @@ def generate_safe_playlist_500():
         for i, line in enumerate(lines):  
             if line.strip().startswith("#EXTINF"):  
                 target_indices.append(i)  
-                if len(target_indices) >= MAX_CHANNELS:  
-                    break  
 
         if not target_indices:  
             print("[-] No channels found in playlist.")  
@@ -136,12 +130,12 @@ def generate_safe_playlist_500():
             if idx in channel_results:  
                 new_lines.extend(channel_results[idx])  
 
-        output_file = "safe_500_channels.m3u"  
+        output_file = "all_channels.m3u"  
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
         print(  
-            f"\n[+] Success! Exactly {len(channel_results)} channels saved as"  
+            f"\n[+] Success! All {len(channel_results)} channels saved as"  
             f" '{output_file}'."  
         )
 
@@ -149,4 +143,4 @@ def generate_safe_playlist_500():
         print(f"[-] Critical Error: {e}")
 
 if __name__ == "__main__":
-    generate_safe_playlist_500()
+    generate_safe_playlist_all()
