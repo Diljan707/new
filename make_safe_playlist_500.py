@@ -6,15 +6,14 @@ from urllib3.util.retry import Retry
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 
-# Hor strong headers taan jo server 403 na deve
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     "Referer": "https://game.playindia.fun/",
     "Origin": "https://game.playindia.fun"
 }
 
-MAX_CHANNELS = 1300  
-MAX_WORKERS = 100    # Workers nu 200 ton ghatake 100 kita hai taan jo server 403 block na mare
+MAX_CHANNELS = 500  # Hun sirf 500 channels fetch honge
+MAX_WORKERS = 100    
 
 def get_robust_session():
     session = requests.Session()
@@ -33,7 +32,7 @@ def get_robust_session():
 session = get_robust_session()
 
 def process_channel_block(channel_data):
-    """Processes a single channel block concurrently without timeouts but with correct headers."""
+    """Processes a single channel block, capturing both .mpd and other stream links without dropping."""
     i, lines = channel_data
     line = lines[i].strip()
     extinf_line = line
@@ -45,13 +44,14 @@ def process_channel_block(channel_data):
             key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
 
     user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-    mpd_line = None
+    stream_line = None
+    
     for f in range(i + 1, min(len(lines), i + 4)):
         sub_f = lines[f].strip()
         if sub_f.startswith("#EXTVLCOPT:http-user-agent="):
             user_agent = sub_f.split("=")[1].strip()
-        if sub_f.startswith("http") and ".mpd" in sub_f:
-            mpd_line = sub_f
+        if sub_f.startswith("http") and not sub_f.startswith("#"):
+            stream_line = sub_f
 
     embedded_key_data = None
     if key_url:
@@ -79,7 +79,7 @@ def process_channel_block(channel_data):
     channel_lines.append(extinf_line)
     channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
 
-    if mpd_line:
+    if stream_line:
         try:
             channel_headers = {
                 "User-Agent": user_agent,
@@ -87,20 +87,20 @@ def process_channel_block(channel_data):
                 "Origin": "https://game.playindia.fun"
             }
             r = session.get(
-                mpd_line, headers=channel_headers, allow_redirects=False
+                stream_line, headers=channel_headers, allow_redirects=False
             )
 
             real_url = (  
                 r.headers.get("Location")  
                 if r.status_code in [301, 302, 303, 307, 308]  
-                else mpd_line  
+                else stream_line  
             )  
             clean_url = real_url.strip().split()[0]  
             if clean_url.endswith("~"):  
                 clean_url = clean_url[:-1]  
             channel_lines.append(clean_url)  
         except Exception:  
-            clean_url = mpd_line.strip().split()[0]  
+            clean_url = stream_line.strip().split()[0]  
             if clean_url.endswith("~"):  
                 clean_url = clean_url[:-1]  
             channel_lines.append(clean_url)
@@ -168,4 +168,4 @@ def generate_safe_playlist_500():
 
 if __name__ == "__main__":
     generate_safe_playlist_500()
-                          
+            
