@@ -7,7 +7,7 @@ import threading
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 HEADERS = {"User-Agent": "plattv/7.1.5"}
-MAX_CHANNELS = 500   # Exact 500 channels limit
+MAX_CHANNELS = 900   # Exact 500 channels limit
 MAX_WORKERS = 60     # Fast processing workers with safety balance
 
 counter_lock = threading.Lock()
