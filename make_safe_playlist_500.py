@@ -12,7 +12,7 @@ HEADERS = {
     "Origin": "https://game.playindia.fun"
 }
 
-MAX_CHANNELS = 500  # Hun sirf 500 channels fetch honge
+MAX_CHANNELS = 500  
 MAX_WORKERS = 100    
 
 def get_robust_session():
@@ -32,7 +32,6 @@ def get_robust_session():
 session = get_robust_session()
 
 def process_channel_block(channel_data):
-    """Processes a single channel block, capturing both .mpd and other stream links without dropping."""
     i, lines = channel_data
     line = lines[i].strip()
     extinf_line = line
@@ -98,11 +97,17 @@ def process_channel_block(channel_data):
             clean_url = real_url.strip().split()[0]  
             if clean_url.endswith("~"):  
                 clean_url = clean_url[:-1]  
+            
+            # EH SAB TON IMPORTANT FIX HAI: %7C nu | vich convert karna
+            clean_url = clean_url.replace("%7C", "|")
+            
             channel_lines.append(clean_url)  
         except Exception:  
             clean_url = stream_line.strip().split()[0]  
             if clean_url.endswith("~"):  
                 clean_url = clean_url[:-1]  
+            
+            clean_url = clean_url.replace("%7C", "|")
             channel_lines.append(clean_url)
 
     return i, channel_lines
