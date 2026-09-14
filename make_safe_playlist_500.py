@@ -7,6 +7,7 @@ import threading
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 HEADERS = {"User-Agent": "plattv/7.1.5"}
+MAX_CHANNELS = 1100  # Exact 1100 channels limit
 MAX_WORKERS = 60     # Safe workers balance for speed & reliability
 
 counter_lock = threading.Lock()
@@ -34,14 +35,12 @@ def process_single_channel(i, lines, session):
     channel_lines = [extinf_line]
 
     try:
-        # 1. License Key URL labho
         key_url = None
         for b in range(max(0, i - 3), i):
             sub_b = lines[b].strip()
             if "inputstream.adaptive.license_key=" in sub_b:
                 key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
 
-        # 2. User-Agent te MPD line labho
         user_agent = "plattv/7.1.5"
         mpd_line = None
         for f in range(i + 1, min(len(lines), i + 4)):
@@ -51,7 +50,6 @@ def process_single_channel(i, lines, session):
             if sub_f.startswith("http") and ".mpd" in sub_f:
                 mpd_line = sub_f
 
-        # 3. License Key nu proper JSON format vich convert karna (Jaise original vich hunda hai)
         embedded_key_data = None
         if key_url:
             try:
@@ -59,13 +57,8 @@ def process_single_channel(i, lines, session):
                     key_url = key_url.replace('"', "")
                 key_res = session.get(key_url, headers={"User-Agent": user_agent}, timeout=3)
                 if key_res.status_code == 200:
-                    try:
-                        key_json = key_res.json()
-                        embedded_key_data = json.dumps(key_json)
-                    except Exception:
-                        # Agar text format vich hove taan usnu proper JSON dict banao
-                        raw_text = key_res.text.strip()
-                        embedded_key_data = json.dumps({"keys": [{"kty": "oct", "k": raw_text}], "type": "temporary"})
+                    key_json = key_res.json()
+                    embedded_key_data = json.dumps(key_json)
             except Exception:
                 pass
 
@@ -82,35 +75,61 @@ def process_single_channel(i, lines, session):
 
         channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
 
-        # 4. Redirects proper follow karke asli CDN link kaddna
-        resolved_link = ""
         url_added = False
-        target_mpd = mpd_line if mpd_line else raw_stream_line
-
-        if target_mpd:
+        if mpd_line:
             try:
                 channel_headers = {"User-Agent": user_agent}
-                # allow_redirects=True naale history check karke final destination url chakna
                 r = session.get(
-                    target_mpd, headers=channel_headers, allow_redirects=True, timeout=5
+                    mpd_line, headers=channel_headers, allow_redirects=False, timeout=3
                 )
 
-                final_url = r.url if r.url else target_mpd
-                clean_url = final_url.strip().split()[0]
-                if clean_url.endswith("~"):
-                    clean_url = clean_url[:-1]
-                
-                resolved_link = clean_url
-                url_added = True
+                if r.status_code == 403 and raw_stream_line:
+                    channel_lines.append(raw_stream_line)
+                    url_added = True
+                else:
+                    real_url = (  
+                        r.headers.get("Location")  
+                        if r.status_code in [301, 302, 303, 307, 308]  
+                        else mpd_line  
+                    )  
+                    clean_url = real_url.strip().split()[0]  
+                    if clean_url.endswith("~"):  
+                        clean_url = clean_url[:-1]  
+                    
+                    if "__hdnea__=" in clean_url:
+                        try:
+                            parts = clean_url.split("__hdnea__=")
+                            if len(parts) > 1:
+                                hdnea_val = parts[1].split("&")[0]
+                                channel_lines.append(f'#EXTHTTP:{{"cookie":"__hdnea__={hdnea_val}"}}')
+                        except Exception:
+                            pass
+                        channel_lines.append(clean_url)
+                        url_added = True
+                    elif "%7Ccookie=" in clean_url:
+                        parts = clean_url.split("%7Ccookie=")
+                        base_url = parts[0]
+                        cookie_val = parts[1].split("&")[0] if "&" in parts[1] else parts[1]
+                        channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}"}}')
+                        channel_lines.append(base_url)
+                        url_added = True
+                    elif "|cookie=" in clean_url:
+                        parts = clean_url.split("|cookie=")
+                        base_url = parts[0]
+                        cookie_val = parts[1].split("&")[0] if "&" in parts[1] else parts[1]
+                        channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}"}}')
+                        channel_lines.append(base_url)
+                        url_added = True
+                    else:
+                        channel_lines.append(clean_url)
+                        url_added = True
             except Exception:
                 pass
 
         if not url_added and raw_stream_line:
-            resolved_link = raw_stream_line
+            channel_lines.append(raw_stream_line)
         elif not url_added and not raw_stream_line:
-            resolved_link = "http://dummy-link-to-prevent-break"
-
-        channel_lines.append(resolved_link)
+            channel_lines.append("http://dummy-link-to-prevent-break")
 
     except Exception:
         if raw_stream_line:
@@ -120,10 +139,10 @@ def process_single_channel(i, lines, session):
 
     return channel_lines
 
-def generate_safe_playlist_from_1000():
+def generate_safe_playlist_1100():
     global processed_count
     processed_count = 0
-    print(f"[*] Downloading playlist and processing channels from index 1000 onwards with full redirect resolution...")
+    print(f"[*] Downloading playlist and processing up to {MAX_CHANNELS} channels using {MAX_WORKERS} workers...")
     session = get_robust_session()
     try:
         res = session.get(PLAYLIST_URL, headers={"User-Agent": "plattv/7.1.5"})
@@ -133,20 +152,18 @@ def generate_safe_playlist_from_1000():
 
         lines = res.text.splitlines()  
 
-        all_target_indices = []  
+        target_indices = []  
         for i, line in enumerate(lines):  
             if line.strip().startswith("#EXTINF"):  
-                all_target_indices.append(i)  
+                target_indices.append(i)  
+                if len(target_indices) >= MAX_CHANNELS:  
+                    break  
 
-        # Start from channel 1000 onwards
-        target_indices = all_target_indices[1000:]
-
-        total_channels = len(target_indices)
-        if total_channels == 0:  
-            print("[-] No channels found starting from 1000 in playlist.")  
+        if not target_indices:  
+            print("[-] No channels found in playlist.")  
             return  
 
-        print(f"[*] Found {total_channels} channels (starting from 1000). Resolving redirects & tokens...\n")  
+        print(f"[*] Found {len(target_indices)} channels. Launching multithreading with 100% count guarantee...\n")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -176,7 +193,7 @@ def generate_safe_playlist_from_1000():
 
                 with counter_lock:
                     processed_count += 1
-                    print(f"[*] Progress: {processed_count}/{total_channels} channels processed...", end="\r")
+                    print(f"[*] Progress: {processed_count}/{len(target_indices)} channels processed...", end="\r")
 
         new_lines = ["#EXTM3U"]
         for idx in target_indices:
@@ -190,11 +207,11 @@ def generate_safe_playlist_from_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! {total_channels} channels (from 1000 onwards) saved with proper JSON keys and redirects as '{output_file}'.")
+        print(f"\n\n[+] Success! Exactly {len(target_indices)} channels saved as '{output_file}'.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
-    generate_safe_playlist_from_1000()
-        
+    generate_safe_playlist_1100()
+                
