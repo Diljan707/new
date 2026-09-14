@@ -42,7 +42,7 @@ def process_channel_block(channel_data):
         if "inputstream.adaptive.license_key=" in sub_b:
             key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
 
-    user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    user_agent = "plattv/7.1.5"
     stream_line = None
     
     for f in range(i + 1, min(len(lines), i + 4)):
@@ -65,7 +65,11 @@ def process_channel_block(channel_data):
             pass
 
     channel_lines = []
+    
+    # Working format order: #EXTINF pehlan aavega
+    channel_lines.append(extinf_line)
     channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
+    
     if embedded_key_data:
         channel_lines.append(
             f"#KODIPROP:inputstream.adaptive.license_key={embedded_key_data}"
@@ -75,7 +79,6 @@ def process_channel_block(channel_data):
             f"#KODIPROP:inputstream.adaptive.license_key={key_url}"
         )
 
-    channel_lines.append(extinf_line)
     channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
 
     if stream_line:
@@ -98,16 +101,26 @@ def process_channel_block(channel_data):
             if clean_url.endswith("~"):  
                 clean_url = clean_url[:-1]  
             
-            # EH SAB TON IMPORTANT FIX HAI: %7C nu | vich convert karna
-            clean_url = clean_url.replace("%7C", "|")
-            
-            channel_lines.append(clean_url)  
+            # Working format vangu cookie nu #EXTHTTP format vich convert karna
+            if "%7Ccookie=" in clean_url:
+                parts = clean_url.split("%7Ccookie=")
+                base_url = parts[0]
+                cookie_val = parts[1].split("&")[0] if "&" in parts[1] else parts[1]
+                channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}"}}')
+                channel_lines.append(base_url)
+            elif "|cookie=" in clean_url:
+                parts = clean_url.split("|cookie=")
+                base_url = parts[0]
+                cookie_val = parts[1].split("&")[0] if "&" in parts[1] else parts[1]
+                channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}"}}')
+                channel_lines.append(base_url)
+            else:
+                channel_lines.append(clean_url)
+                
         except Exception:  
             clean_url = stream_line.strip().split()[0]  
             if clean_url.endswith("~"):  
                 clean_url = clean_url[:-1]  
-            
-            clean_url = clean_url.replace("%7C", "|")
             channel_lines.append(clean_url)
 
     return i, channel_lines
