@@ -1,11 +1,12 @@
 import json
+import time
 from requests.adapters import HTTPAdapter
 import requests
 from urllib3.util.retry import Retry
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 HEADERS = {"User-Agent": "plattv/7.1.5"}
-MAX_CHANNELS = 1100  # 1100 channels fixed
+MAX_CHANNELS = 1100
 
 def get_robust_session():
     session = requests.Session()
@@ -17,7 +18,7 @@ def get_robust_session():
 session = get_robust_session()
 
 def process_channel_block(i, lines):
-    """Processes channel block sequentially one by one without workers."""
+    """Processes channel block sequentially with 403 error handling."""
     line = lines[i].strip()
     extinf_line = line
 
@@ -41,7 +42,7 @@ def process_channel_block(i, lines):
         try:
             if '"' in key_url:
                 key_url = key_url.replace('"', "")
-            key_res = session.get(key_url, headers={"User-Agent": user_agent})
+            key_res = session.get(key_url, headers={"User-Agent": user_agent}, timeout=5)
             if key_res.status_code == 200:
                 key_json = key_res.json()
                 embedded_key_data = json.dumps(key_json)
@@ -50,7 +51,6 @@ def process_channel_block(i, lines):
 
     channel_lines = []
     
-    # Exact sequence format
     channel_lines.append(extinf_line)
     channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
     
@@ -69,42 +69,48 @@ def process_channel_block(i, lines):
         try:
             channel_headers = {"User-Agent": user_agent}
             r = session.get(
-                mpd_line, headers=channel_headers, allow_redirects=False
+                mpd_line, headers=channel_headers, allow_redirects=False, timeout=5
             )
 
-            real_url = (  
-                r.headers.get("Location")  
-                if r.status_code in [301, 302, 303, 307, 308]  
-                else mpd_line  
-            )  
-            clean_url = real_url.strip().split()[0]  
-            if clean_url.endswith("~"):  
-                clean_url = clean_url[:-1]  
-            
-            # Extract __hdnea__ from URL and create #EXTHTTP line
-            if "__hdnea__=" in clean_url:
-                try:
-                    parts = clean_url.split("__hdnea__=")
-                    if len(parts) > 1:
-                        hdnea_val = parts[1].split("&")[0]
-                        channel_lines.append(f'#EXTHTTP:{{"cookie":"__hdnea__={hdnea_val}"}}')
-                except Exception:
-                    pass
+            # Je 403 aave taan original mpd_line use karo bina block hoye
+            if r.status_code == 403:
+                clean_url = mpd_line.strip().split()[0]
+                if clean_url.endswith("~"):
+                    clean_url = clean_url[:-1]
                 channel_lines.append(clean_url)
-            elif "%7Ccookie=" in clean_url:
-                parts = clean_url.split("%7Ccookie=")
-                base_url = parts[0]
-                cookie_val = parts[1].split("&")[0] if "&" in parts[1] else parts[1]
-                channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}"}}')
-                channel_lines.append(base_url)
-            elif "|cookie=" in clean_url:
-                parts = clean_url.split("|cookie=")
-                base_url = parts[0]
-                cookie_val = parts[1].split("&")[0] if "&" in parts[1] else parts[1]
-                channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}"}}')
-                channel_lines.append(base_url)
             else:
-                channel_lines.append(clean_url)
+                real_url = (  
+                    r.headers.get("Location")  
+                    if r.status_code in [301, 302, 303, 307, 308]  
+                    else mpd_line  
+                )  
+                clean_url = real_url.strip().split()[0]  
+                if clean_url.endswith("~"):  
+                    clean_url = clean_url[:-1]  
+                
+                if "__hdnea__=" in clean_url:
+                    try:
+                        parts = clean_url.split("__hdnea__=")
+                        if len(parts) > 1:
+                            hdnea_val = parts[1].split("&")[0]
+                            channel_lines.append(f'#EXTHTTP:{{"cookie":"__hdnea__={hdnea_val}"}}')
+                    except Exception:
+                        pass
+                    channel_lines.append(clean_url)
+                elif "%7Ccookie=" in clean_url:
+                    parts = clean_url.split("%7Ccookie=")
+                    base_url = parts[0]
+                    cookie_val = parts[1].split("&")[0] if "&" in parts[1] else parts[1]
+                    channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}"}}')
+                    channel_lines.append(base_url)
+                elif "|cookie=" in clean_url:
+                    parts = clean_url.split("|cookie=")
+                    base_url = parts[0]
+                    cookie_val = parts[1].split("&")[0] if "&" in parts[1] else parts[1]
+                    channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}"}}')
+                    channel_lines.append(base_url)
+                else:
+                    channel_lines.append(clean_url)
                 
         except Exception:  
             clean_url = mpd_line.strip().split()[0]  
@@ -117,7 +123,7 @@ def process_channel_block(i, lines):
 def generate_safe_playlist():
     print(
         f"[*] Downloading target playlist and extracting keys for up to"
-        f" {MAX_CHANNELS} channels (Sequential Safe Mode)..."
+        f" {MAX_CHANNELS} channels (Anti-403 Safe Mode)..."
     )
     try:
         res = session.get(PLAYLIST_URL, headers={"User-Agent": "plattv/7.1.5"})
@@ -138,16 +144,19 @@ def generate_safe_playlist():
             print("[-] No channels found in playlist.")  
             return  
 
-        print(f"[*] Found {len(target_indices)} channels. Processing sequentially...\n")  
+        print(f"[*] Found {len(target_indices)} channels. Processing with server-friendly delay...\n")  
 
         new_lines = ["#EXTM3U"]  
         
-        # Sequential processing loop without workers
         for idx, i in enumerate(target_indices, 1):
             try:
                 channel_lines = process_channel_block(i, lines)
                 new_lines.extend(channel_lines)
                 print(f"[*] Progress: {idx}/{len(target_indices)} channels processed safely...", end="\r")
+                
+                # Server te load na pave, is layi har channel ton baad chhota jeha gap (0.2 seconds)
+                time.sleep(0.2)
+                
             except Exception as e:
                 print(f"\n[-] Error at channel index {i}: {e}")
 
@@ -165,4 +174,4 @@ def generate_safe_playlist():
 
 if __name__ == "__main__":
     generate_safe_playlist()
-            
+    
