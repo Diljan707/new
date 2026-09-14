@@ -5,33 +5,21 @@ import requests
 from urllib3.util.retry import Retry
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
-
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-    "Referer": "https://game.playindia.fun/",
-    "Origin": "https://game.playindia.fun"
-}
-
-MAX_CHANNELS = 500  
-MAX_WORKERS = 100    
+HEADERS = {"User-Agent": "Denver1769"}
+MAX_CHANNELS = 1300
+MAX_WORKERS = 100
 
 def get_robust_session():
     session = requests.Session()
     retries = Retry(total=5, backoff_factor=1, status_forcelist=[500, 502, 503, 504])
-    
-    adapter = HTTPAdapter(
-        pool_maxsize=MAX_WORKERS, 
-        pool_block=False, 
-        max_retries=retries
-    )
-    
-    session.mount("https://", adapter)
-    session.mount("http://", adapter)
+    session.mount("https://", HTTPAdapter(max_retries=retries))
+    session.mount("http://", HTTPAdapter(max_retries=retries))
     return session
 
 session = get_robust_session()
 
 def process_channel_block(channel_data):
+    """Processes channel block to match the exact working #EXTHTTP cookie format."""
     i, lines = channel_data
     line = lines[i].strip()
     extinf_line = line
@@ -42,15 +30,14 @@ def process_channel_block(channel_data):
         if "inputstream.adaptive.license_key=" in sub_b:
             key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
 
-    user_agent = "plattv/7.1.5"
-    stream_line = None
-    
+    user_agent = "Denver1769"
+    mpd_line = None
     for f in range(i + 1, min(len(lines), i + 4)):
         sub_f = lines[f].strip()
         if sub_f.startswith("#EXTVLCOPT:http-user-agent="):
             user_agent = sub_f.split("=")[1].strip()
-        if sub_f.startswith("http") and not sub_f.startswith("#"):
-            stream_line = sub_f
+        if sub_f.startswith("http") and ".mpd" in sub_f:
+            mpd_line = sub_f
 
     embedded_key_data = None
     if key_url:
@@ -66,6 +53,7 @@ def process_channel_block(channel_data):
 
     channel_lines = []
     
+    # Working format order
     channel_lines.append(extinf_line)
     channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
     
@@ -79,30 +67,24 @@ def process_channel_block(channel_data):
         )
 
     channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
-    
-    # Har channel li stream headers property add kiti taan jo 403 na aave
-    channel_lines.append(f"#KODIPROP:inputstream.adaptive.stream_headers=User-Agent={user_agent}&Referer=https://game.playindia.fun/&Origin=https://game.playindia.fun/")
 
-    if stream_line:
+    if mpd_line:
         try:
-            channel_headers = {
-                "User-Agent": user_agent,
-                "Referer": "https://game.playindia.fun/",
-                "Origin": "https://game.playindia.fun"
-            }
+            channel_headers = {"User-Agent": user_agent}
             r = session.get(
-                stream_line, headers=channel_headers, allow_redirects=False
+                mpd_line, headers=channel_headers, allow_redirects=False
             )
 
             real_url = (  
                 r.headers.get("Location")  
                 if r.status_code in [301, 302, 303, 307, 308]  
-                else stream_line  
+                else mpd_line  
             )  
             clean_url = real_url.strip().split()[0]  
             if clean_url.endswith("~"):  
                 clean_url = clean_url[:-1]  
             
+            # Extract cookie and format as #EXTHTTP exactly like working image
             if "%7Ccookie=" in clean_url:
                 parts = clean_url.split("%7Ccookie=")
                 base_url = parts[0]
@@ -119,7 +101,7 @@ def process_channel_block(channel_data):
                 channel_lines.append(clean_url)
                 
         except Exception:  
-            clean_url = stream_line.strip().split()[0]  
+            clean_url = mpd_line.strip().split()[0]  
             if clean_url.endswith("~"):  
                 clean_url = clean_url[:-1]  
             channel_lines.append(clean_url)
@@ -128,7 +110,7 @@ def process_channel_block(channel_data):
 
 def generate_safe_playlist_500():
     print(
-        f"[*] Downloading target playlist and extracting keys for up to"
+        f"[*] Downloading target playlist and extracting keys for all"
         f" {MAX_CHANNELS} channels..."
     )
     try:
