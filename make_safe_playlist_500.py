@@ -5,7 +5,7 @@ import requests
 from urllib3.util.retry import Retry
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
-HEADERS = {"User-Agent": "Denver1769"}
+HEADERS = {"User-Agent": "plattv/7.1.5"}
 MAX_CHANNELS = 1300
 MAX_WORKERS = 100
 
@@ -19,7 +19,7 @@ def get_robust_session():
 session = get_robust_session()
 
 def process_channel_block(channel_data):
-    """Processes channel block to match the exact working #EXTHTTP cookie format."""
+    """Processes channel block to match the exact image format."""
     i, lines = channel_data
     line = lines[i].strip()
     extinf_line = line
@@ -30,7 +30,7 @@ def process_channel_block(channel_data):
         if "inputstream.adaptive.license_key=" in sub_b:
             key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
 
-    user_agent = "Denver1769"
+    user_agent = "plattv/7.1.5"
     mpd_line = None
     for f in range(i + 1, min(len(lines), i + 4)):
         sub_f = lines[f].strip()
@@ -44,7 +44,7 @@ def process_channel_block(channel_data):
         try:
             if '"' in key_url:
                 key_url = key_url.replace('"', "")
-            key_res = session.get(key_url, headers=HEADERS)
+            key_res = session.get(key_url, headers={"User-Agent": user_agent})
             if key_res.status_code == 200:
                 key_json = key_res.json()
                 embedded_key_data = json.dumps(key_json)
@@ -53,7 +53,7 @@ def process_channel_block(channel_data):
 
     channel_lines = []
     
-    # Working format order
+    # Exact sequence from your image
     channel_lines.append(extinf_line)
     channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
     
@@ -84,7 +84,7 @@ def process_channel_block(channel_data):
             if clean_url.endswith("~"):  
                 clean_url = clean_url[:-1]  
             
-            # Extract cookie and format as #EXTHTTP exactly like working image
+            # Extract cookie for #EXTHTTP format
             if "%7Ccookie=" in clean_url:
                 parts = clean_url.split("%7Ccookie=")
                 base_url = parts[0]
@@ -114,7 +114,7 @@ def generate_safe_playlist_500():
         f" {MAX_CHANNELS} channels..."
     )
     try:
-        res = session.get(PLAYLIST_URL, headers=HEADERS)
+        res = session.get(PLAYLIST_URL, headers={"User-Agent": "plattv/7.1.5"})
         if res.status_code != 200:
             print("[-] Failed to fetch playlist.")
             return
@@ -169,3 +169,4 @@ def generate_safe_playlist_500():
 
 if __name__ == "__main__":
     generate_safe_playlist_500()
+    
