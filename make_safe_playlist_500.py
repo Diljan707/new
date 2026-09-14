@@ -74,61 +74,35 @@ def process_single_channel(i, lines, session):
 
         channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
 
+        # Redirect resolution to fetch the final active link
+        resolved_link = ""
         url_added = False
         if mpd_line:
             try:
                 channel_headers = {"User-Agent": user_agent}
                 r = session.get(
-                    mpd_line, headers=channel_headers, allow_redirects=False, timeout=3
+                    mpd_line, headers=channel_headers, allow_redirects=True, timeout=4
                 )
 
                 if r.status_code == 403 and raw_stream_line:
-                    channel_lines.append(raw_stream_line)
+                    resolved_link = raw_stream_line
                     url_added = True
                 else:
-                    real_url = (  
-                        r.headers.get("Location")  
-                        if r.status_code in [301, 302, 303, 307, 308]  
-                        else mpd_line  
-                    )  
-                    clean_url = real_url.strip().split()[0]  
-                    if clean_url.endswith("~"):  
-                        clean_url = clean_url[:-1]  
-                    
-                    if "__hdnea__=" in clean_url:
-                        try:
-                            parts = clean_url.split("__hdnea__=")
-                            if len(parts) > 1:
-                                hdnea_val = parts[1].split("&")[0]
-                                channel_lines.append(f'#EXTHTTP:{{"cookie":"__hdnea__={hdnea_val}"}}')
-                        except Exception:
-                            pass
-                        channel_lines.append(clean_url)
-                        url_added = True
-                    elif "%7Ccookie=" in clean_url:
-                        parts = clean_url.split("%7Ccookie=")
-                        base_url = parts[0]
-                        cookie_val = parts[1].split("&")[0] if "&" in parts[1] else parts[1]
-                        channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}"}}')
-                        channel_lines.append(base_url)
-                        url_added = True
-                    elif "|cookie=" in clean_url:
-                        parts = clean_url.split("|cookie=")
-                        base_url = parts[0]
-                        cookie_val = parts[1].split("&")[0] if "&" in parts[1] else parts[1]
-                        channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}"}}')
-                        channel_lines.append(base_url)
-                        url_added = True
-                    else:
-                        channel_lines.append(clean_url)
-                        url_added = True
+                    final_url = r.url if r.url else mpd_line
+                    clean_url = final_url.strip().split()[0]
+                    if clean_url.endswith("~"):
+                        clean_url = clean_url[:-1]
+                    resolved_link = clean_url
+                    url_added = True
             except Exception:
                 pass
 
         if not url_added and raw_stream_line:
-            channel_lines.append(raw_stream_line)
+            resolved_link = raw_stream_line
         elif not url_added and not raw_stream_line:
-            channel_lines.append("http://dummy-link-to-prevent-break")
+            resolved_link = "http://dummy-link-to-prevent-break"
+
+        channel_lines.append(resolved_link)
 
     except Exception:
         if raw_stream_line:
@@ -141,7 +115,7 @@ def process_single_channel(i, lines, session):
 def generate_safe_playlist_from_1000():
     global processed_count
     processed_count = 0
-    print(f"[*] Downloading playlist and processing channels from index 1000 onwards using {MAX_WORKERS} workers...")
+    print(f"[*] Downloading playlist and processing channels from index 1000 onwards with redirects into original format...")
     session = get_robust_session()
     try:
         res = session.get(PLAYLIST_URL, headers={"User-Agent": "plattv/7.1.5"})
@@ -164,7 +138,7 @@ def generate_safe_playlist_from_1000():
             print("[-] No channels found starting from 1000 in playlist.")  
             return  
 
-        print(f"[*] Found {total_channels} channels (starting from 1000). Launching multithreading...\n")  
+        print(f"[*] Found {total_channels} channels (starting from 1000). Resolving redirects...\n")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -208,11 +182,11 @@ def generate_safe_playlist_from_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! {total_channels} channels (from 1000 onwards) saved as '{output_file}'.")
+        print(f"\n\n[+] Success! {total_channels} channels (from 1000 onwards) saved in original format as '{output_file}'.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_from_1000()
-            
+    
