@@ -1,4 +1,3 @@
-from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
 from requests.adapters import HTTPAdapter
 import requests
@@ -6,8 +5,7 @@ from urllib3.util.retry import Retry
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 HEADERS = {"User-Agent": "plattv/7.1.5"}
-MAX_CHANNELS = 1100  # Channels limit set to 500
-MAX_WORKERS = 100
+MAX_CHANNELS = 1100  # 1100 channels fixed
 
 def get_robust_session():
     session = requests.Session()
@@ -18,9 +16,8 @@ def get_robust_session():
 
 session = get_robust_session()
 
-def process_channel_block(channel_data):
-    """Processes channel block to add #EXTHTTP cookie line from __hdnea__ parameter."""
-    i, lines = channel_data
+def process_channel_block(i, lines):
+    """Processes channel block sequentially one by one without workers."""
     line = lines[i].strip()
     extinf_line = line
 
@@ -53,7 +50,7 @@ def process_channel_block(channel_data):
 
     channel_lines = []
     
-    # Exact sequence
+    # Exact sequence format
     channel_lines.append(extinf_line)
     channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
     
@@ -84,7 +81,7 @@ def process_channel_block(channel_data):
             if clean_url.endswith("~"):  
                 clean_url = clean_url[:-1]  
             
-            # Extract __hdnea__ from URL and create #EXTHTTP line, keeping URL intact
+            # Extract __hdnea__ from URL and create #EXTHTTP line
             if "__hdnea__=" in clean_url:
                 try:
                     parts = clean_url.split("__hdnea__=")
@@ -115,12 +112,12 @@ def process_channel_block(channel_data):
                 clean_url = clean_url[:-1]  
             channel_lines.append(clean_url)
 
-    return i, channel_lines
+    return channel_lines
 
-def generate_safe_playlist_500():
+def generate_safe_playlist():
     print(
         f"[*] Downloading target playlist and extracting keys for up to"
-        f" {MAX_CHANNELS} channels..."
+        f" {MAX_CHANNELS} channels (Sequential Safe Mode)..."
     )
     try:
         res = session.get(PLAYLIST_URL, headers={"User-Agent": "plattv/7.1.5"})
@@ -141,41 +138,31 @@ def generate_safe_playlist_500():
             print("[-] No channels found in playlist.")  
             return  
 
-        print(  
-            f"[*] Found {len(target_indices)} channels. Launching with"  
-            f" {MAX_WORKERS} max workers..."  
-        )  
-
-        channel_results = {}  
-        with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:  
-            futures = {  
-                executor.submit(process_channel_block, (idx, lines)): idx  
-                for idx in target_indices  
-            }  
-            for future in as_completed(futures):  
-                try:  
-                    idx, channel_lines = future.result()  
-                    channel_results[idx] = channel_lines  
-                except Exception as e:  
-                    print(f"[-] Error processing a channel: {e}")  
+        print(f"[*] Found {len(target_indices)} channels. Processing sequentially...\n")  
 
         new_lines = ["#EXTM3U"]  
-        for idx in target_indices:  
-            if idx in channel_results:  
-                new_lines.extend(channel_results[idx])  
+        
+        # Sequential processing loop without workers
+        for idx, i in enumerate(target_indices, 1):
+            try:
+                channel_lines = process_channel_block(i, lines)
+                new_lines.extend(channel_lines)
+                print(f"[*] Progress: {idx}/{len(target_indices)} channels processed safely...", end="\r")
+            except Exception as e:
+                print(f"\n[-] Error at channel index {i}: {e}")
 
-        output_file = "safe_500_channels.m3u"  
+        output_file = "safe_1100_channels.m3u"  
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
         print(  
-            f"\n[+] Success! Exactly {len(channel_results)} channels saved as"  
+            f"\n\n[+] Success! Exactly {len(target_indices)} channels saved as"  
             f" '{output_file}'."  
         )
 
     except Exception as e:
-        print(f"[-] Critical Error: {e}")
+        print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
-    generate_safe_playlist_500()
+    generate_safe_playlist()
     
