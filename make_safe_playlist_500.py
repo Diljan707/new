@@ -6,7 +6,7 @@ from urllib3.util.retry import Retry
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 HEADERS = {"User-Agent": "plattv/7.1.5"}
-MAX_CHANNELS = 500  # Channels limit set to 500
+MAX_CHANNELS = 1100  # Channels limit set to 500
 MAX_WORKERS = 100
 
 def get_robust_session():
