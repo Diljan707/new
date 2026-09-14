@@ -7,7 +7,6 @@ import threading
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 HEADERS = {"User-Agent": "plattv/7.1.5"}
-MAX_CHANNELS = 1000  # Exact 1000 channels limit
 MAX_WORKERS = 60     # Safe workers balance for speed & reliability
 
 counter_lock = threading.Lock()
@@ -139,10 +138,10 @@ def process_single_channel(i, lines, session):
 
     return channel_lines
 
-def generate_safe_playlist_1000():
+def generate_safe_playlist_all():
     global processed_count
     processed_count = 0
-    print(f"[*] Downloading playlist and processing up to {MAX_CHANNELS} channels using {MAX_WORKERS} workers...")
+    print(f"[*] Downloading playlist and processing ALL channels using {MAX_WORKERS} workers...")
     session = get_robust_session()
     try:
         res = session.get(PLAYLIST_URL, headers={"User-Agent": "plattv/7.1.5"})
@@ -156,14 +155,13 @@ def generate_safe_playlist_1000():
         for i, line in enumerate(lines):  
             if line.strip().startswith("#EXTINF"):  
                 target_indices.append(i)  
-                if len(target_indices) >= MAX_CHANNELS:  
-                    break  
 
-        if not target_indices:  
+        total_channels = len(target_indices)
+        if total_channels == 0:  
             print("[-] No channels found in playlist.")  
             return  
 
-        print(f"[*] Found {len(target_indices)} channels. Launching multithreading with 100% count guarantee...\n")  
+        print(f"[*] Found {total_channels} channels. Launching multithreading with 100% count guarantee...\n")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -193,7 +191,7 @@ def generate_safe_playlist_1000():
 
                 with counter_lock:
                     processed_count += 1
-                    print(f"[*] Progress: {processed_count}/{len(target_indices)} channels processed...", end="\r")
+                    print(f"[*] Progress: {processed_count}/{total_channels} channels processed...", end="\r")
 
         new_lines = ["#EXTM3U"]
         for idx in target_indices:
@@ -207,11 +205,11 @@ def generate_safe_playlist_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! Exactly {len(target_indices)} channels saved as '{output_file}'.")
+        print(f"\n\n[+] Success! All {total_channels} channels saved as '{output_file}'.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
-    generate_safe_playlist_1000()
-                
+    generate_safe_playlist_all()
+    
