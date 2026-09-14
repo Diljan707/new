@@ -7,8 +7,8 @@ import threading
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 HEADERS = {"User-Agent": "plattv/7.1.5"}
-MAX_CHANNELS = 900   # Channels limit set to 900
-MAX_WORKERS = 200    # Workers set to 200 for fast processing
+MAX_CHANNELS = 500   # Exact 500 channels limit
+MAX_WORKERS = 50     # Balanced workers to prevent timeouts
 
 counter_lock = threading.Lock()
 processed_count = 0
@@ -29,26 +29,32 @@ def process_channel_block(channel_data):
     extinf_line = line
 
     key_url = None
-    for b in range(max(0, i - 3), i):
-        sub_b = lines[b].strip()
-        if "inputstream.adaptive.license_key=" in sub_b:
-            key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
+    try:
+        for b in range(max(0, i - 3), i):
+            sub_b = lines[b].strip()
+            if "inputstream.adaptive.license_key=" in sub_b:
+                key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
+    except Exception:
+        pass
 
     user_agent = "plattv/7.1.5"
     mpd_line = None
-    for f in range(i + 1, min(len(lines), i + 4)):
-        sub_f = lines[f].strip()
-        if sub_f.startswith("#EXTVLCOPT:http-user-agent="):
-            user_agent = sub_f.split("=")[1].strip()
-        if sub_f.startswith("http") and ".mpd" in sub_f:
-            mpd_line = sub_f
+    try:
+        for f in range(i + 1, min(len(lines), i + 4)):
+            sub_f = lines[f].strip()
+            if sub_f.startswith("#EXTVLCOPT:http-user-agent="):
+                user_agent = sub_f.split("=")[1].strip()
+            if sub_f.startswith("http") and ".mpd" in sub_f:
+                mpd_line = sub_f
+    except Exception:
+        pass
 
     embedded_key_data = None
     if key_url:
         try:
             if '"' in key_url:
                 key_url = key_url.replace('"', "")
-            key_res = session.get(key_url, headers={"User-Agent": user_agent}, timeout=5)
+            key_res = session.get(key_url, headers={"User-Agent": user_agent}, timeout=4)
             if key_res.status_code == 200:
                 key_json = key_res.json()
                 embedded_key_data = json.dumps(key_json)
@@ -56,7 +62,6 @@ def process_channel_block(channel_data):
             pass
 
     channel_lines = []
-    
     channel_lines.append(extinf_line)
     channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
     
@@ -71,19 +76,22 @@ def process_channel_block(channel_data):
 
     channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
 
+    # Fallback link setup
+    fallback_clean_url = mpd_line.strip().split()[0] if mpd_line else ""
+    if fallback_clean_url.endswith("~"):
+        fallback_clean_url = fallback_clean_url[:-1]
+
+    url_added = False
     if mpd_line:
         try:
             channel_headers = {"User-Agent": user_agent}
             r = session.get(
-                mpd_line, headers=channel_headers, allow_redirects=False, timeout=5
+                mpd_line, headers=channel_headers, allow_redirects=False, timeout=4
             )
 
-            # Je 403 aave taan bina ruke original mpd_line use kar lavo
-            if r.status_code == 403:
-                clean_url = mpd_line.strip().split()[0]
-                if clean_url.endswith("~"):
-                    clean_url = clean_url[:-1]
-                channel_lines.append(clean_url)
+            if r.status_code == 403 and fallback_clean_url:
+                channel_lines.append(fallback_clean_url)
+                url_added = True
             else:
                 real_url = (  
                     r.headers.get("Location")  
@@ -103,26 +111,31 @@ def process_channel_block(channel_data):
                     except Exception:
                         pass
                     channel_lines.append(clean_url)
+                    url_added = True
                 elif "%7Ccookie=" in clean_url:
                     parts = clean_url.split("%7Ccookie=")
                     base_url = parts[0]
                     cookie_val = parts[1].split("&")[0] if "&" in parts[1] else parts[1]
                     channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}"}}')
                     channel_lines.append(base_url)
+                    url_added = True
                 elif "|cookie=" in clean_url:
                     parts = clean_url.split("|cookie=")
                     base_url = parts[0]
                     cookie_val = parts[1].split("&")[0] if "&" in parts[1] else parts[1]
                     channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}"}}')
                     channel_lines.append(base_url)
+                    url_added = True
                 else:
                     channel_lines.append(clean_url)
+                    url_added = True
                 
         except Exception:  
-            clean_url = mpd_line.strip().split()[0]  
-            if clean_url.endswith("~"):  
-                clean_url = clean_url[:-1]  
-            channel_lines.append(clean_url)
+            pass
+
+    # Je kisi karan link add na hoya hove, taan fallback link zaroor pao taan jo channel miss na hove
+    if not url_added and fallback_clean_url:
+        channel_lines.append(fallback_clean_url)
 
     with counter_lock:
         processed_count += 1
@@ -130,10 +143,10 @@ def process_channel_block(channel_data):
 
     return i, channel_lines
 
-def generate_safe_playlist_900():
+def generate_safe_playlist_500():
     print(
-        f"[*] Downloading target playlist and extracting keys for up to"
-        f" {MAX_CHANNELS} channels using {MAX_WORKERS} workers..."
+        f"[*] Downloading target playlist and extracting keys for exactly"
+        f" {MAX_CHANNELS} channels..."
     )
     try:
         res = session.get(PLAYLIST_URL, headers={"User-Agent": "plattv/7.1.5"})
@@ -154,7 +167,7 @@ def generate_safe_playlist_900():
             print("[-] No channels found in playlist.")  
             return  
 
-        print(f"[*] Found {len(target_indices)} channels. Launching multithreading...\n")  
+        print(f"[*] Found {len(target_indices)} channels. Processing...\n")  
 
         channel_results = {}  
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:  
@@ -179,7 +192,7 @@ def generate_safe_playlist_900():
             f.write("\n".join(new_lines))  
 
         print(  
-            f"\n\n[+] Success! Exactly {len(channel_results)} channels saved as"  
+            f"\n\n[+] Success! Exactly {len(target_indices)} channels saved as"  
             f" '{output_file}'."  
         )
 
@@ -187,5 +200,5 @@ def generate_safe_playlist_900():
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
-    generate_safe_playlist_900()
+    generate_safe_playlist_500()
         
