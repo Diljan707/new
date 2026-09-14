@@ -5,15 +5,21 @@ import requests
 from urllib3.util.retry import Retry
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
-HEADERS = {"User-Agent": "Denver1769"}
-MAX_CHANNELS = 1300  # Hun 1000+ channels aaram naal chalange
-MAX_WORKERS = 200    # Workers
+
+# Hor strong headers taan jo server 403 na deve
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Referer": "https://game.playindia.fun/",
+    "Origin": "https://game.playindia.fun"
+}
+
+MAX_CHANNELS = 1300  
+MAX_WORKERS = 100    # Workers nu 200 ton ghatake 100 kita hai taan jo server 403 block na mare
 
 def get_robust_session():
     session = requests.Session()
     retries = Retry(total=5, backoff_factor=1, status_forcelist=[500, 502, 503, 504])
     
-    # Eh sab ton important line hai: pool_maxsize nu workers de barabar kita hai taan jo connection di kami na aave
     adapter = HTTPAdapter(
         pool_maxsize=MAX_WORKERS, 
         pool_block=False, 
@@ -27,7 +33,7 @@ def get_robust_session():
 session = get_robust_session()
 
 def process_channel_block(channel_data):
-    """Processes a single channel block concurrently without timeouts."""
+    """Processes a single channel block concurrently without timeouts but with correct headers."""
     i, lines = channel_data
     line = lines[i].strip()
     extinf_line = line
@@ -38,7 +44,7 @@ def process_channel_block(channel_data):
         if "inputstream.adaptive.license_key=" in sub_b:
             key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
 
-    user_agent = "Denver1769"
+    user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
     mpd_line = None
     for f in range(i + 1, min(len(lines), i + 4)):
         sub_f = lines[f].strip()
@@ -52,7 +58,6 @@ def process_channel_block(channel_data):
         try:
             if '"' in key_url:
                 key_url = key_url.replace('"', "")
-            # Koi timeout nahi rakheya
             key_res = session.get(key_url, headers=HEADERS)
             if key_res.status_code == 200:
                 key_json = key_res.json()
@@ -76,8 +81,11 @@ def process_channel_block(channel_data):
 
     if mpd_line:
         try:
-            channel_headers = {"User-Agent": user_agent}
-            # Koi timeout nahi rakheya
+            channel_headers = {
+                "User-Agent": user_agent,
+                "Referer": "https://game.playindia.fun/",
+                "Origin": "https://game.playindia.fun"
+            }
             r = session.get(
                 mpd_line, headers=channel_headers, allow_redirects=False
             )
@@ -160,4 +168,4 @@ def generate_safe_playlist_500():
 
 if __name__ == "__main__":
     generate_safe_playlist_500()
-        
+                          
