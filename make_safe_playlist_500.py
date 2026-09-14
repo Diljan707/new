@@ -72,87 +72,76 @@ def process_single_channel(i, lines, session):
                 f"#KODIPROP:inputstream.adaptive.license_key={key_url}"
             )
 
-        # Redirect Resolution & Cookie Extraction Logic
-        final_url = ""
-        cookie_str = ""
-        url_added = False
+        channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
 
+        url_added = False
         if mpd_line:
             try:
                 channel_headers = {"User-Agent": user_agent}
-                # Redirect follow karke final working URL chakange
                 r = session.get(
-                    mpd_line, headers=channel_headers, allow_redirects=True, timeout=4
+                    mpd_line, headers=channel_headers, allow_redirects=False, timeout=3
                 )
 
                 if r.status_code == 403 and raw_stream_line:
-                    final_url = raw_stream_line
+                    channel_lines.append(raw_stream_line)
                     url_added = True
                 else:
-                    resolved_url = r.url if r.url else mpd_line
-                    clean_url = resolved_url.strip().split()[0]
-                    if clean_url.endswith("~"):
-                        clean_url = clean_url[:-1]
-
+                    real_url = (  
+                        r.headers.get("Location")  
+                        if r.status_code in [301, 302, 303, 307, 308]  
+                        else mpd_line  
+                    )  
+                    clean_url = real_url.strip().split()[0]  
+                    if clean_url.endswith("~"):  
+                        clean_url = clean_url[:-1]  
+                    
                     if "__hdnea__=" in clean_url:
-                        parts = clean_url.split("__hdnea__=")
-                        if len(parts) > 1:
-                            hdnea_val = parts[1].split("&")[0]
-                            cookie_str = f"cookie=__hdnea__={hdnea_val}"
-                        final_url = clean_url
+                        try:
+                            parts = clean_url.split("__hdnea__=")
+                            if len(parts) > 1:
+                                hdnea_val = parts[1].split("&")[0]
+                                channel_lines.append(f'#EXTHTTP:{{"cookie":"__hdnea__={hdnea_val}"}}')
+                        except Exception:
+                            pass
+                        channel_lines.append(clean_url)
                         url_added = True
                     elif "%7Ccookie=" in clean_url:
                         parts = clean_url.split("%7Ccookie=")
                         base_url = parts[0]
                         cookie_val = parts[1].split("&")[0] if "&" in parts[1] else parts[1]
-                        cookie_str = f"cookie={cookie_val}"
-                        final_url = base_url
+                        channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}"}}')
+                        channel_lines.append(base_url)
                         url_added = True
                     elif "|cookie=" in clean_url:
                         parts = clean_url.split("|cookie=")
                         base_url = parts[0]
                         cookie_val = parts[1].split("&")[0] if "&" in parts[1] else parts[1]
-                        cookie_str = f"cookie={cookie_val}"
-                        final_url = base_url
+                        channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}"}}')
+                        channel_lines.append(base_url)
                         url_added = True
                     else:
-                        final_url = clean_url
+                        channel_lines.append(clean_url)
                         url_added = True
             except Exception:
                 pass
 
         if not url_added and raw_stream_line:
-            final_url = raw_stream_line
+            channel_lines.append(raw_stream_line)
         elif not url_added and not raw_stream_line:
-            final_url = "http://dummy-link-to-prevent-break"
-
-        # OTT Navigator Pipe Format Constructor: URL|cookie=...&user-agent=...
-        pipe_params = []
-        if cookie_str:
-            pipe_params.append(cookie_str)
-        if user_agent:
-            pipe_params.append(f"user-agent={user_agent}")
-
-        if pipe_params:
-            final_url += "|" + "&".join(pipe_params)
-
-        channel_lines.append(final_url)
+            channel_lines.append("http://dummy-link-to-prevent-break")
 
     except Exception:
         if raw_stream_line:
-            fallback_url = raw_stream_line
-            if user_agent:
-                fallback_url += f"|user-agent={user_agent}"
-            channel_lines.append(fallback_url)
+            channel_lines.append(raw_stream_line)
         else:
             channel_lines.append("http://dummy-link-to-prevent-break")
 
     return channel_lines
 
-def generate_safe_playlist_all():
+def generate_safe_playlist_from_1000():
     global processed_count
     processed_count = 0
-    print(f"[*] Downloading playlist and processing ALL channels with Redirect Resolution using {MAX_WORKERS} workers...")
+    print(f"[*] Downloading playlist and processing channels from index 1000 onwards using {MAX_WORKERS} workers...")
     session = get_robust_session()
     try:
         res = session.get(PLAYLIST_URL, headers={"User-Agent": "plattv/7.1.5"})
@@ -162,17 +151,20 @@ def generate_safe_playlist_all():
 
         lines = res.text.splitlines()  
 
-        target_indices = []  
+        all_target_indices = []  
         for i, line in enumerate(lines):  
             if line.strip().startswith("#EXTINF"):  
-                target_indices.append(i)  
+                all_target_indices.append(i)  
+
+        # Start from channel 1000 onwards
+        target_indices = all_target_indices[1000:]
 
         total_channels = len(target_indices)
         if total_channels == 0:  
-            print("[-] No channels found in playlist.")  
+            print("[-] No channels found starting from 1000 in playlist.")  
             return  
 
-        print(f"[*] Found {total_channels} channels. Launching multithreading redirect resolution...\n")  
+        print(f"[*] Found {total_channels} channels (starting from 1000). Launching multithreading...\n")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -195,7 +187,7 @@ def generate_safe_playlist_all():
                                 raw_url = raw_url[:-1]
                             break
                     if raw_url:
-                        fallback_lines.append(f"{raw_url}|user-agent=plattv/7.1.5")
+                        fallback_lines.append(raw_url)
                     else:
                         fallback_lines.append("http://dummy-link-to-prevent-break")
                     channel_results[idx] = fallback_lines
@@ -216,11 +208,11 @@ def generate_safe_playlist_all():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! All {total_channels} channels processed with redirects and saved as '{output_file}'.")
+        print(f"\n\n[+] Success! {total_channels} channels (from 1000 onwards) saved as '{output_file}'.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
-    generate_safe_playlist_all()
-                
+    generate_safe_playlist_from_1000()
+            
