@@ -6,7 +6,7 @@ from urllib3.util.retry import Retry
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 HEADERS = {"User-Agent": "plattv/7.1.5"}
-MAX_CHANNELS = 1300
+MAX_CHANNELS = 500  # Channels limit set to 500
 MAX_WORKERS = 100
 
 def get_robust_session():
@@ -19,7 +19,7 @@ def get_robust_session():
 session = get_robust_session()
 
 def process_channel_block(channel_data):
-    """Processes channel block to match the exact image format."""
+    """Processes channel block to add #EXTHTTP cookie line from __hdnea__ parameter."""
     i, lines = channel_data
     line = lines[i].strip()
     extinf_line = line
@@ -53,7 +53,7 @@ def process_channel_block(channel_data):
 
     channel_lines = []
     
-    # Exact sequence from your image
+    # Exact sequence
     channel_lines.append(extinf_line)
     channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
     
@@ -84,8 +84,17 @@ def process_channel_block(channel_data):
             if clean_url.endswith("~"):  
                 clean_url = clean_url[:-1]  
             
-            # Extract cookie for #EXTHTTP format
-            if "%7Ccookie=" in clean_url:
+            # Extract __hdnea__ from URL and create #EXTHTTP line, keeping URL intact
+            if "__hdnea__=" in clean_url:
+                try:
+                    parts = clean_url.split("__hdnea__=")
+                    if len(parts) > 1:
+                        hdnea_val = parts[1].split("&")[0]
+                        channel_lines.append(f'#EXTHTTP:{{"cookie":"__hdnea__={hdnea_val}"}}')
+                except Exception:
+                    pass
+                channel_lines.append(clean_url)
+            elif "%7Ccookie=" in clean_url:
                 parts = clean_url.split("%7Ccookie=")
                 base_url = parts[0]
                 cookie_val = parts[1].split("&")[0] if "&" in parts[1] else parts[1]
@@ -110,7 +119,7 @@ def process_channel_block(channel_data):
 
 def generate_safe_playlist_500():
     print(
-        f"[*] Downloading target playlist and extracting keys for all"
+        f"[*] Downloading target playlist and extracting keys for up to"
         f" {MAX_CHANNELS} channels..."
     )
     try:
