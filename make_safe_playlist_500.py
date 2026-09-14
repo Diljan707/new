@@ -34,12 +34,14 @@ def process_single_channel(i, lines, session):
     channel_lines = [extinf_line]
 
     try:
+        # 1. License Key URL labho
         key_url = None
         for b in range(max(0, i - 3), i):
             sub_b = lines[b].strip()
             if "inputstream.adaptive.license_key=" in sub_b:
                 key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
 
+        # 2. User-Agent te MPD line labho
         user_agent = "plattv/7.1.5"
         mpd_line = None
         for f in range(i + 1, min(len(lines), i + 4)):
@@ -49,6 +51,7 @@ def process_single_channel(i, lines, session):
             if sub_f.startswith("http") and ".mpd" in sub_f:
                 mpd_line = sub_f
 
+        # 3. License Key nu proper JSON format vich convert karna (Jaise original vich hunda hai)
         embedded_key_data = None
         if key_url:
             try:
@@ -56,8 +59,13 @@ def process_single_channel(i, lines, session):
                     key_url = key_url.replace('"', "")
                 key_res = session.get(key_url, headers={"User-Agent": user_agent}, timeout=3)
                 if key_res.status_code == 200:
-                    key_json = key_res.json()
-                    embedded_key_data = json.dumps(key_json)
+                    try:
+                        key_json = key_res.json()
+                        embedded_key_data = json.dumps(key_json)
+                    except Exception:
+                        # Agar text format vich hove taan usnu proper JSON dict banao
+                        raw_text = key_res.text.strip()
+                        embedded_key_data = json.dumps({"keys": [{"kty": "oct", "k": raw_text}], "type": "temporary"})
             except Exception:
                 pass
 
@@ -74,26 +82,26 @@ def process_single_channel(i, lines, session):
 
         channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
 
-        # Redirect resolution to fetch the final active link
+        # 4. Redirects proper follow karke asli CDN link kaddna
         resolved_link = ""
         url_added = False
-        if mpd_line:
+        target_mpd = mpd_line if mpd_line else raw_stream_line
+
+        if target_mpd:
             try:
                 channel_headers = {"User-Agent": user_agent}
+                # allow_redirects=True naale history check karke final destination url chakna
                 r = session.get(
-                    mpd_line, headers=channel_headers, allow_redirects=True, timeout=4
+                    target_mpd, headers=channel_headers, allow_redirects=True, timeout=5
                 )
 
-                if r.status_code == 403 and raw_stream_line:
-                    resolved_link = raw_stream_line
-                    url_added = True
-                else:
-                    final_url = r.url if r.url else mpd_line
-                    clean_url = final_url.strip().split()[0]
-                    if clean_url.endswith("~"):
-                        clean_url = clean_url[:-1]
-                    resolved_link = clean_url
-                    url_added = True
+                final_url = r.url if r.url else target_mpd
+                clean_url = final_url.strip().split()[0]
+                if clean_url.endswith("~"):
+                    clean_url = clean_url[:-1]
+                
+                resolved_link = clean_url
+                url_added = True
             except Exception:
                 pass
 
@@ -115,7 +123,7 @@ def process_single_channel(i, lines, session):
 def generate_safe_playlist_from_1000():
     global processed_count
     processed_count = 0
-    print(f"[*] Downloading playlist and processing channels from index 1000 onwards with redirects into original format...")
+    print(f"[*] Downloading playlist and processing channels from index 1000 onwards with full redirect resolution...")
     session = get_robust_session()
     try:
         res = session.get(PLAYLIST_URL, headers={"User-Agent": "plattv/7.1.5"})
@@ -138,7 +146,7 @@ def generate_safe_playlist_from_1000():
             print("[-] No channels found starting from 1000 in playlist.")  
             return  
 
-        print(f"[*] Found {total_channels} channels (starting from 1000). Resolving redirects...\n")  
+        print(f"[*] Found {total_channels} channels (starting from 1000). Resolving redirects & tokens...\n")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -182,11 +190,11 @@ def generate_safe_playlist_from_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! {total_channels} channels (from 1000 onwards) saved in original format as '{output_file}'.")
+        print(f"\n\n[+] Success! {total_channels} channels (from 1000 onwards) saved with proper JSON keys and redirects as '{output_file}'.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_from_1000()
-    
+        
