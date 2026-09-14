@@ -151,7 +151,7 @@ def generate_safe_playlist():
             except Exception as e:
                 print(f"\n[-] Error at channel index {i}: {e}")
 
-        output_file = "safe_1100_channels.m3u"  
+        output_file = "safe_500_channels.m3u"  
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
@@ -165,4 +165,4 @@ def generate_safe_playlist():
 
 if __name__ == "__main__":
     generate_safe_playlist()
-    
+            
