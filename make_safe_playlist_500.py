@@ -66,7 +66,6 @@ def process_channel_block(channel_data):
 
     channel_lines = []
     
-    # Working format order: #EXTINF pehlan aavega
     channel_lines.append(extinf_line)
     channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
     
@@ -80,6 +79,9 @@ def process_channel_block(channel_data):
         )
 
     channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
+    
+    # Har channel li stream headers property add kiti taan jo 403 na aave
+    channel_lines.append(f"#KODIPROP:inputstream.adaptive.stream_headers=User-Agent={user_agent}&Referer=https://game.playindia.fun/&Origin=https://game.playindia.fun/")
 
     if stream_line:
         try:
@@ -101,7 +103,6 @@ def process_channel_block(channel_data):
             if clean_url.endswith("~"):  
                 clean_url = clean_url[:-1]  
             
-            # Working format vangu cookie nu #EXTHTTP format vich convert karna
             if "%7Ccookie=" in clean_url:
                 parts = clean_url.split("%7Ccookie=")
                 base_url = parts[0]
@@ -186,4 +187,3 @@ def generate_safe_playlist_500():
 
 if __name__ == "__main__":
     generate_safe_playlist_500()
-            
