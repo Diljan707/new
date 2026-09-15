@@ -152,8 +152,8 @@ def generate_safe_playlist_1000():
 
         lines = res.text.splitlines()  
 
-        # Keywords to search anywhere inside channel names
-        priority_keywords = ("nick", "star", "disney", "ptc", "zee")
+        # Keywords to search anywhere inside channel names (Added 'sony' here)
+        priority_keywords = ("nick", "star", "disney", "ptc", "zee", "sony")
 
         priority_indices = []
         regular_indices = []
@@ -225,11 +225,10 @@ def generate_safe_playlist_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with all matching Star, Zee, Nick, Disney, and PTC channels placed at the top.")
+        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with all matching Sony, Star, Zee, Nick, Disney, and PTC channels placed at the top.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-            
