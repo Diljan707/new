@@ -260,8 +260,8 @@ https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeCinemaHD_BTS/WDVLive/index.mpd?__hdnea
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=https://game.playindia.fun/Jtv/key.php?id=167&token=RiYlIZ
 #EXTVLCOPT:http-user-agent=Denver1769
-#EXTHTTP:{"cookie":"__hdnea__=st=1789484785~exp=1789488385~acl=/bpk-tv/ZeeTVHD_BTS/WDVLive/*~hmac=314f23b2da5ab33ddaa1d05c4112df87e49768bcc9de6b3309086c6ad299205b"}
-https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeTVHD_BTS/WDVLive/index.mpd?__hdnea__=st=1789484785~exp=1789488385~acl=/bpk-tv/ZeeTVHD_BTS/WDVLive/*~hmac=314f23b2da5ab33ddaa1d05c4112df87e49768bcc9de6b3309086c6ad299205b
+#EXTHTTP:{"cookie":"__hdnea__=st=1789488314~exp=1789491914~acl=/bpk-tv/ZeeTVHD_BTS/WDVLive/*~hmac=820e3c755c274abdfe12f106365b46ab3b136c3d2e09cca6ea1c9f44be245772"}
+https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeTVHD_BTS/WDVLive/index.mpd?__hdnea__=st=1789488314~exp=1789491914~acl=/bpk-tv/ZeeTVHD_BTS/WDVLive/*~hmac=820e3c755c274abdfe12f106365b46ab3b136c3d2e09cca6ea1c9f44be245772
 #EXTINF:-1 tvg-id="289" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Sony_Max_SD.png" catchup-type="append" catchup-days="8" catchup-source="&begin={utc}&end={utcend}" group-title="Movies",Sony Max
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=https://game.playindia.fun/Jtv/key.php?id=289&token=RiYlIZ
@@ -344,14 +344,14 @@ https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeCinema_BTS/WDVLive/index.mpd?__hdnea__
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=https://game.playindia.fun/Jtv/key.php?id=487&token=RiYlIZ
 #EXTVLCOPT:http-user-agent=Denver1769
-#EXTHTTP:{"cookie":"__hdnea__=st=1789484904~exp=1789488504~acl=/bpk-tv/ZeeBollywood_BTS/WDVLive/*~hmac=cd6cfe231e6cafe868e9396ad37fb785475d584eb15c80ccefc0a51a43a02c51"}
-https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeBollywood_BTS/WDVLive/index.mpd?__hdnea__=st=1789484904~exp=1789488504~acl=/bpk-tv/ZeeBollywood_BTS/WDVLive/*~hmac=cd6cfe231e6cafe868e9396ad37fb785475d584eb15c80ccefc0a51a43a02c51
+#EXTHTTP:{"cookie":"__hdnea__=st=1789488416~exp=1789492016~acl=/bpk-tv/ZeeBollywood_BTS/WDVLive/*~hmac=fe910714ceb6145ed53c2497f2fbcbf7380da94ad81bad62643d22912ed262d2"}
+https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeBollywood_BTS/WDVLive/index.mpd?__hdnea__=st=1789488416~exp=1789492016~acl=/bpk-tv/ZeeBollywood_BTS/WDVLive/*~hmac=fe910714ceb6145ed53c2497f2fbcbf7380da94ad81bad62643d22912ed262d2
 #EXTINF:-1 tvg-id="488" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/ZeeAction.png" CATCH-UP-FAILED="null" group-title="Movies",Zee Action
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=https://game.playindia.fun/Jtv/key.php?id=488&token=RiYlIZ
 #EXTVLCOPT:http-user-agent=Denver1769
-#EXTHTTP:{"cookie":"__hdnea__=st=1789484904~exp=1789488504~acl=/bpk-tv/ZeeAction_BTS/WDVLive/*~hmac=dee7eeaa552b4ded39cadaa5708aed4b5653bc7e19c3bb5a4df28bbbd496e83c"}
-https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeAction_BTS/WDVLive/index.mpd?__hdnea__=st=1789484904~exp=1789488504~acl=/bpk-tv/ZeeAction_BTS/WDVLive/*~hmac=dee7eeaa552b4ded39cadaa5708aed4b5653bc7e19c3bb5a4df28bbbd496e83c
+#EXTHTTP:{"cookie":"__hdnea__=st=1789488413~exp=1789492013~acl=/bpk-tv/ZeeAction_BTS/WDVLive/*~hmac=0a5b4f56670b1b8c464eda8976a6451a056f706e6c5460bae1019f1611416a3b"}
+https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeAction_BTS/WDVLive/index.mpd?__hdnea__=st=1789488413~exp=1789492013~acl=/bpk-tv/ZeeAction_BTS/WDVLive/*~hmac=0a5b4f56670b1b8c464eda8976a6451a056f706e6c5460bae1019f1611416a3b
 #EXTINF:-1 tvg-id="494" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/AL_Jazeera.png" CATCH-UP-FAILED="null" group-title="English",AL Jazeera
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=https://game.playindia.fun/Jtv/key.php?id=494&token=RiYlIZ
@@ -404,8 +404,8 @@ https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeBangla_BTS/WDVLive/index.mpd?__hdnea__
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=https://game.playindia.fun/Jtv/key.php?id=628&token=RiYlIZ
 #EXTVLCOPT:http-user-agent=Denver1769
-#EXTHTTP:{"cookie":"__hdnea__=st=1789484904~exp=1789488504~acl=/bpk-tv/ZeeTamil_BTS/WDVLive/*~hmac=2f158ef3783ad80ee4de3e2d0ae05cc6c51f5b53ac8ab04c8d5ab3f605fe4e4e"}
-https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeTamil_BTS/WDVLive/index.mpd?__hdnea__=st=1789484904~exp=1789488504~acl=/bpk-tv/ZeeTamil_BTS/WDVLive/*~hmac=2f158ef3783ad80ee4de3e2d0ae05cc6c51f5b53ac8ab04c8d5ab3f605fe4e4e
+#EXTHTTP:{"cookie":"__hdnea__=st=1789488416~exp=1789492016~acl=/bpk-tv/ZeeTamil_BTS/WDVLive/*~hmac=4b8fc27958a172b506cf552c0190d901e19096a2820303ed176bcd134ce403da"}
+https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeTamil_BTS/WDVLive/index.mpd?__hdnea__=st=1789488416~exp=1789492016~acl=/bpk-tv/ZeeTamil_BTS/WDVLive/*~hmac=4b8fc27958a172b506cf552c0190d901e19096a2820303ed176bcd134ce403da
 #EXTINF:-1 tvg-id="638" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/ZeeTelugu.png" CATCH-UP-FAILED="null" group-title="Telugu",Zee Telugu
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=https://game.playindia.fun/Jtv/key.php?id=638&token=RiYlIZ
@@ -560,20 +560,20 @@ https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeTV_BTS/WDVLive/index.mpd?__hdnea__=st=
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=https://game.playindia.fun/Jtv/key.php?id=1354&token=RiYlIZ
 #EXTVLCOPT:http-user-agent=Denver1769
-#EXTHTTP:{"cookie":"__hdnea__=st=1789484811~exp=1789488411~acl=/bpk-tv/ZeeTeluguHD_BTS/WDVLive/*~hmac=ea3e7713783589b4937680df9f75014428fc11e2e6c66a0266a880cb3241d212"}
-https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeTeluguHD_BTS/WDVLive/index.mpd?__hdnea__=st=1789484811~exp=1789488411~acl=/bpk-tv/ZeeTeluguHD_BTS/WDVLive/*~hmac=ea3e7713783589b4937680df9f75014428fc11e2e6c66a0266a880cb3241d212
+#EXTHTTP:{"cookie":"__hdnea__=st=1789488314~exp=1789491914~acl=/bpk-tv/ZeeTeluguHD_BTS/WDVLive/*~hmac=6e672db121b9f2fc94c2661bcbf540efd7473cb39c26e36d62ac3d40935637a3"}
+https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeTeluguHD_BTS/WDVLive/index.mpd?__hdnea__=st=1789488314~exp=1789491914~acl=/bpk-tv/ZeeTeluguHD_BTS/WDVLive/*~hmac=6e672db121b9f2fc94c2661bcbf540efd7473cb39c26e36d62ac3d40935637a3
 #EXTINF:-1 tvg-id="1356" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/ZeeTamilHD.png" CATCH-UP-FAILED="null" group-title="Tamil",Zee Tamil HD
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=https://game.playindia.fun/Jtv/key.php?id=1356&token=RiYlIZ
 #EXTVLCOPT:http-user-agent=Denver1769
-#EXTHTTP:{"cookie":"__hdnea__=st=1789484860~exp=1789488460~acl=/bpk-tv/ZeeTamilHD_BTS/WDVLive/*~hmac=ebbcb976a313da3b61b6cec05ce2f6cdbf35ef4b25c63756b9d40a9cf6c0220f"}
-https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeTamilHD_BTS/WDVLive/index.mpd?__hdnea__=st=1789484860~exp=1789488460~acl=/bpk-tv/ZeeTamilHD_BTS/WDVLive/*~hmac=ebbcb976a313da3b61b6cec05ce2f6cdbf35ef4b25c63756b9d40a9cf6c0220f
+#EXTHTTP:{"cookie":"__hdnea__=st=1789488346~exp=1789491946~acl=/bpk-tv/ZeeTamilHD_BTS/WDVLive/*~hmac=56fd3785d765087db2aff28b6268f7d76dbe1febadea181a41a7c1a2cf8efaf7"}
+https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeTamilHD_BTS/WDVLive/index.mpd?__hdnea__=st=1789488346~exp=1789491946~acl=/bpk-tv/ZeeTamilHD_BTS/WDVLive/*~hmac=56fd3785d765087db2aff28b6268f7d76dbe1febadea181a41a7c1a2cf8efaf7
 #EXTINF:-1 tvg-id="1358" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/ZeeTalkiesHD.png" CATCH-UP-FAILED="null" group-title="Marathi",Zee Talkies HD
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=https://game.playindia.fun/Jtv/key.php?id=1358&token=RiYlIZ
 #EXTVLCOPT:http-user-agent=Denver1769
-#EXTHTTP:{"cookie":"__hdnea__=st=1789487999~exp=1789491599~acl=/bpk-tv/ZeeTalkiesHD_BTS/WDVLive/*~hmac=b8ce3c682a9da272dfc300d23ca8c4ec90b5f3f6b565e6d7293d767ea68a14b3"}
-https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeTalkiesHD_BTS/WDVLive/index.mpd?__hdnea__=st=1789487999~exp=1789491599~acl=/bpk-tv/ZeeTalkiesHD_BTS/WDVLive/*~hmac=b8ce3c682a9da272dfc300d23ca8c4ec90b5f3f6b565e6d7293d767ea68a14b3
+#EXTHTTP:{"cookie":"__hdnea__=st=1789488000~exp=1789491600~acl=/bpk-tv/ZeeTalkiesHD_BTS/WDVLive/*~hmac=8545c6daba7bbbf7807b1eb7831dd46d8865b9e77d5187c97729fef1924c2f6c"}
+https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeTalkiesHD_BTS/WDVLive/index.mpd?__hdnea__=st=1789488000~exp=1789491600~acl=/bpk-tv/ZeeTalkiesHD_BTS/WDVLive/*~hmac=8545c6daba7bbbf7807b1eb7831dd46d8865b9e77d5187c97729fef1924c2f6c
 #EXTINF:-1 tvg-id="1360" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/ZeeMarathiHD.png" CATCH-UP-FAILED="null" group-title="Marathi",Zee Marathi HD
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=https://game.playindia.fun/Jtv/key.php?id=1360&token=RiYlIZ
@@ -614,20 +614,20 @@ https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeKeralamHD_BTS/WDVLive/index.mpd?__hdne
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=https://game.playindia.fun/Jtv/key.php?id=1691&token=RiYlIZ
 #EXTVLCOPT:http-user-agent=Denver1769
-#EXTHTTP:{"cookie":"__hdnea__=st=1789484905~exp=1789488505~acl=/bpk-tv/ZeeClassicSD_BTS/WDVLive/*~hmac=84dc099a02773f4114c80b82bc3c25586b9715b70a6d674baf6d843ab3c03cb9"}
-https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeClassicSD_BTS/WDVLive/index.mpd?__hdnea__=st=1789484905~exp=1789488505~acl=/bpk-tv/ZeeClassicSD_BTS/WDVLive/*~hmac=84dc099a02773f4114c80b82bc3c25586b9715b70a6d674baf6d843ab3c03cb9
+#EXTHTTP:{"cookie":"__hdnea__=st=1789488416~exp=1789492016~acl=/bpk-tv/ZeeClassicSD_BTS/WDVLive/*~hmac=7bbcbd53510a2fceddd7496d66e26dad163c787b8aa38bc37b464ad8bc8c9517"}
+https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeClassicSD_BTS/WDVLive/index.mpd?__hdnea__=st=1789488416~exp=1789492016~acl=/bpk-tv/ZeeClassicSD_BTS/WDVLive/*~hmac=7bbcbd53510a2fceddd7496d66e26dad163c787b8aa38bc37b464ad8bc8c9517
 #EXTINF:-1 tvg-id="1745" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/ZeeBiskope.png" CATCH-UP-FAILED="null" group-title="Bhojpuri",Zee Biskope
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=https://game.playindia.fun/Jtv/key.php?id=1745&token=RiYlIZ
 #EXTVLCOPT:http-user-agent=Denver1769
-#EXTHTTP:{"cookie":"__hdnea__=st=1789484906~exp=1789488506~acl=/bpk-tv/ZeeBiskope_BTS/WDVLive/*~hmac=3df49f960686cdbc67a06b4fc86013de2bc20f3dfa8538dea809d0e3e75bbbe5"}
-https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeBiskope_BTS/WDVLive/index.mpd?__hdnea__=st=1789484906~exp=1789488506~acl=/bpk-tv/ZeeBiskope_BTS/WDVLive/*~hmac=3df49f960686cdbc67a06b4fc86013de2bc20f3dfa8538dea809d0e3e75bbbe5
+#EXTHTTP:{"cookie":"__hdnea__=st=1789488415~exp=1789492015~acl=/bpk-tv/ZeeBiskope_BTS/WDVLive/*~hmac=f69c13a4fc6ecc2ec51d70bcf2fc162a013e27617b4ad3dc2e3416ce11b581d2"}
+https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeBiskope_BTS/WDVLive/index.mpd?__hdnea__=st=1789488415~exp=1789492015~acl=/bpk-tv/ZeeBiskope_BTS/WDVLive/*~hmac=f69c13a4fc6ecc2ec51d70bcf2fc162a013e27617b4ad3dc2e3416ce11b581d2
 #EXTINF:-1 tvg-id="1746" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/ZeePowerHD.png" CATCH-UP-FAILED="null" group-title="Kannada",Zee Power HD
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=https://game.playindia.fun/Jtv/key.php?id=1746&token=RiYlIZ
 #EXTVLCOPT:http-user-agent=Denver1769
-#EXTHTTP:{"cookie":"__hdnea__=st=1789484905~exp=1789488505~acl=/bpk-tv/ZeePowerHD_BTS/WDVLive/*~hmac=5c12c86bd8f18360a8b589b0251d69d770447cfe18fb341db5de5cdd4951d04b"}
-https://jiotvpllive.cdn.jio.com/bpk-tv/ZeePowerHD_BTS/WDVLive/index.mpd?__hdnea__=st=1789484905~exp=1789488505~acl=/bpk-tv/ZeePowerHD_BTS/WDVLive/*~hmac=5c12c86bd8f18360a8b589b0251d69d770447cfe18fb341db5de5cdd4951d04b
+#EXTHTTP:{"cookie":"__hdnea__=st=1789488414~exp=1789492014~acl=/bpk-tv/ZeePowerHD_BTS/WDVLive/*~hmac=aa09ed9bb81a40bc932689094219dcce767b330dadc87b3d941be569dfebd066"}
+https://jiotvpllive.cdn.jio.com/bpk-tv/ZeePowerHD_BTS/WDVLive/index.mpd?__hdnea__=st=1789488414~exp=1789492014~acl=/bpk-tv/ZeePowerHD_BTS/WDVLive/*~hmac=aa09ed9bb81a40bc932689094219dcce767b330dadc87b3d941be569dfebd066
 #EXTINF:-1 tvg-id="1751" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/ZeePunjabi.png" CATCH-UP-FAILED="null" group-title="Punjabi",Zee Punjabi
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=https://game.playindia.fun/Jtv/key.php?id=1751&token=RiYlIZ
