@@ -6,11 +6,9 @@ from urllib3.util.retry import Retry
 import threading
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
-MAX_CHANNELS = 1000  # Standard 1000 channels limit
+HEADERS = {"User-Agent": "plattv/7.1.5"}
+MAX_CHANNELS = 1000  # Exact 1000 channels limit
 MAX_WORKERS = 60     # Safe workers balance for speed & reliability
-
-# Eh additional channels sab ton pehla (top te) aunge
-ADDITIONAL_CHANNELS = ["Star Sports", "PTC Music", "Disney"]
 
 counter_lock = threading.Lock()
 processed_count = 0
@@ -43,12 +41,13 @@ def process_single_channel(i, lines, session):
             if "inputstream.adaptive.license_key=" in sub_b:
                 key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
 
-        # Sabhi channels te Mozilla user-agent fix kar dita hai
-        user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+        user_agent = "plattv/7.1.5"
         mpd_line = None
         for f in range(i + 1, min(len(lines), i + 4)):
             sub_f = lines[f].strip()
-            if sub_f.startswith("http") and (".mpd" in sub_f or ".m3u8" in sub_f):
+            if sub_f.startswith("#EXTVLCOPT:http-user-agent="):
+                user_agent = sub_f.split("=")[1].strip()
+            if sub_f.startswith("http") and ".mpd" in sub_f:
                 mpd_line = sub_f
 
         embedded_key_data = None
@@ -140,51 +139,31 @@ def process_single_channel(i, lines, session):
 
     return channel_lines
 
-def generate_safe_playlist_ordered():
+def generate_safe_playlist_1000():
     global processed_count
     processed_count = 0
-    print(f"[*] Downloading playlist and processing additional channels first, followed by up to {MAX_CHANNELS} channels...")
+    print(f"[*] Downloading playlist and processing up to {MAX_CHANNELS} channels using {MAX_WORKERS} workers...")
     session = get_robust_session()
     try:
-        res = session.get(PLAYLIST_URL, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"})
+        res = session.get(PLAYLIST_URL, headers={"User-Agent": "plattv/7.1.5"})
         if res.status_code != 200:
             print("[-] Failed to fetch playlist.")
             return
 
         lines = res.text.splitlines()  
 
-        # 1. Pehle Additional Channels labho taaki oh top te rakhe ja sakan
-        additional_indices = []
-        for i, line in enumerate(lines):
-            if line.strip().startswith("#EXTINF"):
-                for add_ch in ADDITIONAL_CHANNELS:
-                    if add_ch.lower() in line.lower():
-                        if i not in additional_indices:
-                            additional_indices.append(i)
-
-        # 2. Phir baaki standard 1000 channels labho
-        standard_indices = []
-        for i, line in enumerate(lines):
-            if line.strip().startswith("#EXTINF"):
-                standard_indices.append(i)
-                if len(standard_indices) >= MAX_CHANNELS:
-                    break
-
-        # 3. Combine: Additional pehla, te standard channels us ton baad (duplication avoid karde hoye)
-        target_indices = []
-        for idx in additional_indices:
-            if idx not in target_indices:
-                target_indices.append(idx)
-
-        for idx in standard_indices:
-            if idx not in target_indices:
-                target_indices.append(idx)
+        target_indices = []  
+        for i, line in enumerate(lines):  
+            if line.strip().startswith("#EXTINF"):  
+                target_indices.append(i)  
+                if len(target_indices) >= MAX_CHANNELS:  
+                    break  
 
         if not target_indices:  
             print("[-] No channels found in playlist.")  
             return  
 
-        print(f"[*] Total combined channels: {len(target_indices)}. Processing with multithreading...\n")  
+        print(f"[*] Found {len(target_indices)} channels. Launching multithreading with 100% count guarantee...\n")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -228,11 +207,10 @@ def generate_safe_playlist_ordered():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! {len(target_indices)} channels saved as '{output_file}' with Mozilla User-Agent.")
+        print(f"\n\n[+] Success! Exactly {len(target_indices)} channels saved as '{output_file}'.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
-    generate_safe_playlist_ordered()
-            
+    generate_safe_playlist_1000()
