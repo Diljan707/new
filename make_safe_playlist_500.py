@@ -6,11 +6,10 @@ from urllib3.util.retry import Retry
 import threading
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
-HEADERS = {"User-Agent": "plattv/7.1.5"}
 MAX_CHANNELS = 1000  # Standard 1000 channels limit
 MAX_WORKERS = 60     # Safe workers balance for speed & reliability
 
-# Eh additional channels sab ton pehla (top te) aunge
+# Additional channels jo sab ton pehla (top te) aunge
 ADDITIONAL_CHANNELS = ["Star Sports", "PTC Music", "Disney"]
 
 counter_lock = threading.Lock()
@@ -28,14 +27,14 @@ def process_single_channel(i, lines, session):
     extinf_line = line
 
     channel_lines = [extinf_line]
-    user_agent = "plattv/7.1.5"
+    user_agent = "Denver 1760"  # Sabhi channels te Denver user-agent fix kar dita hai
     key_url = None
     license_type = "clearkey"
     ext_http_line = None
     mpd_line = None
     raw_stream_line = ""
 
-    # JHS te standard formats nu handle krn lyi i ton aage te piche scan kro
+    # Scan upcoming lines for configuration options
     for f in range(i + 1, min(len(lines), i + 8)):
         sub_f = lines[f].strip()
         if sub_f.startswith("#EXTINF") or sub_f.startswith("#EXTM3U"):
@@ -45,8 +44,6 @@ def process_single_channel(i, lines, session):
             key_url = sub_f.split("inputstream.adaptive.license_key=")[1].strip()
         if "inputstream.adaptive.license_type=" in sub_f:
             license_type = sub_f.split("inputstream.adaptive.license_type=")[1].strip()
-        if sub_f.startswith("#EXTVLCOPT:http-user-agent="):
-            user_agent = sub_f.split("=")[1].strip()
         if sub_f.startswith("#EXTHTTP:"):
             ext_http_line = sub_f
         if sub_f.startswith("http") and (".mpd" in sub_f or ".m3u8" in sub_f):
@@ -54,7 +51,7 @@ def process_single_channel(i, lines, session):
         elif sub_f.startswith("http") and not raw_stream_line:
             raw_stream_line = sub_f.split()[0]
 
-    # Kise-kise case vich key upar v ho sakdi hai, ohi check la lo
+    # Check for license key in preceding lines if not found below
     if not key_url:
         for b in range(max(0, i - 3), i):
             sub_b = lines[b].strip()
@@ -62,24 +59,27 @@ def process_single_channel(i, lines, session):
                 key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
 
     try:
-        embedded_key_data = None
-        if key_url and "game.playindia.fun" not in key_url and "token=" not in key_url:
+        # License URL nu fully redirect/resolve karwa ke final modd/json tak leke jaana
+        resolved_key_url = key_url
+        if key_url:
+            if '"' in key_url:
+                key_url = key_url.replace('"', "")
             try:
-                if '"' in key_url:
-                    key_url = key_url.replace('"', "")
-                key_res = session.get(key_url, headers={"User-Agent": user_agent}, timeout=3)
-                if key_res.status_code == 200:
-                    key_json = key_res.json()
-                    embedded_key_data = json.dumps(key_json)
+                k_res = session.get(key_url, headers={"User-Agent": user_agent}, allow_redirects=True, timeout=3)
+                if k_res.status_code == 200:
+                    try:
+                        key_json = k_res.json()
+                        resolved_key_url = json.dumps(key_json)
+                    except Exception:
+                        resolved_key_url = k_res.url
+                else:
+                    resolved_key_url = k_res.url if k_res.url else key_url
             except Exception:
                 pass
 
         channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_type={license_type}")
-        
-        if embedded_key_data:
-            channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={embedded_key_data}")
-        elif key_url:
-            channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
+        if resolved_key_url:
+            channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={resolved_key_url}")
 
         channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
 
@@ -158,14 +158,14 @@ def generate_safe_playlist_ordered():
     print(f"[*] Downloading playlist and processing additional channels first, followed by up to {MAX_CHANNELS} channels...")
     session = get_robust_session()
     try:
-        res = session.get(PLAYLIST_URL, headers={"User-Agent": "plattv/7.1.5"})
+        res = session.get(PLAYLIST_URL, headers={"User-Agent": "Denver 1760"})
         if res.status_code != 200:
             print("[-] Failed to fetch playlist.")
             return
 
         lines = res.text.splitlines()  
 
-        # 1. Pehle Additional Channels labho taaki oh top te rakhe ja sakan
+        # 1. Additional Channels labho taaki oh top te rakhe ja sakan
         additional_indices = []
         for i, line in enumerate(lines):
             if line.strip().startswith("#EXTINF"):
@@ -174,7 +174,7 @@ def generate_safe_playlist_ordered():
                         if i not in additional_indices:
                             additional_indices.append(i)
 
-        # 2. Phir baaki standard 1000 channels labho
+        # 2. Baaki standard 1000 channels labho
         standard_indices = []
         for i, line in enumerate(lines):
             if line.strip().startswith("#EXTINF"):
@@ -182,7 +182,7 @@ def generate_safe_playlist_ordered():
                 if len(standard_indices) >= MAX_CHANNELS:
                     break
 
-        # 3. Combine: Additional pehla, te standard channels us ton baad (duplication avoid karde hoye)
+        # 3. Combine: Additional pehla, te standard channels us ton baad (duplication avoid karke)
         target_indices = []
         for idx in additional_indices:
             if idx not in target_indices:
@@ -228,11 +228,11 @@ def generate_safe_playlist_ordered():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! {len(target_indices)} channels saved as '{output_file}' with proper JHS and standard formatting.")
+        print(f"\n\n[+] Success! {len(target_indices)} channels saved as '{output_file}' with Denver User-Agent and fully resolved license keys.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_ordered()
-        
+            
