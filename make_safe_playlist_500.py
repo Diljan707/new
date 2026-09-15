@@ -1,5 +1,4 @@
 from concurrent.futures import ThreadPoolExecutor, as_completed
-import base64
 import json
 from requests.adapters import HTTPAdapter
 import requests
@@ -8,7 +7,7 @@ import threading
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 HEADERS = {"User-Agent": "plattv/7.1.5"}
-MAX_CHANNELS = 800   # Exact 800 channels limit
+MAX_CHANNELS = 800   # Updated to exact 800 channels limit
 MAX_WORKERS = 60     # Safe workers balance for speed & reliability
 
 counter_lock = threading.Lock()
@@ -20,18 +19,6 @@ def get_robust_session():
     session.mount("https://", HTTPAdapter(max_retries=retries))
     session.mount("http://", HTTPAdapter(max_retries=retries))
     return session
-
-def b64url_to_hex(val):
-    try:
-        # Je pehlan hi hex hove taan seedha return karo
-        if len(val) in (32, 64) and all(c in "0123456789abcdefABCDEF" for c in val):
-            return val.lower()
-        # Base64url to hex conversion
-        b64 = val.replace("-", "+").replace("_", "/")
-        b64 += "=" * ((4 - len(b64) % 4) % 4)
-        return base64.b64decode(b64).hex()
-    except Exception:
-        return val
 
 def process_single_channel(i, lines, session):
     line = lines[i].strip()
@@ -63,49 +50,41 @@ def process_single_channel(i, lines, session):
             if sub_f.startswith("http") and ".mpd" in sub_f:
                 mpd_line = sub_f
 
-        formatted_key_str = None
+        formatted_key_line = None
         if key_url:
             try:
                 if '"' in key_url:
                     key_url = key_url.replace('"', "")
                 
+                # Proper headers to avoid 404 / Not allowed from server/cloudflare
                 key_headers = {
                     "User-Agent": user_agent,
                     "Referer": PLAYLIST_URL,
                     "Accept": "application/json, text/javascript, */*; q=0.01"
                 }
-                key_res = session.get(key_url, headers=key_headers, timeout=4)
+                key_res = session.get(key_url, headers=key_headers, timeout=3)
                 
                 if key_res.status_code == 200:
                     key_json = key_res.json()
-                    keys_list = []
-                    
-                    if isinstance(key_json, dict):
-                        keys_list = key_json.get("keys", [])
-                        if not keys_list and "k" in key_json and "kid" in key_json:
-                            keys_list = [key_json]
-                    elif isinstance(key_json, list):
-                        keys_list = key_json
-
-                    key_pairs = []
-                    for k_item in keys_list:
-                        kid = k_item.get("kid") or k_item.get("key_id")
-                        k = k_item.get("k") or k_item.get("key")
-                        if kid and k:
-                            k_hex = b64url_to_hex(str(k))
-                            kid_hex = b64url_to_hex(str(kid))
-                            key_pairs.append(f"{k_hex}:{kid_hex}")
-                    
-                    if key_pairs:
-                        formatted_key_str = ",".join(key_pairs)
+                    # JSON vicho keys extract karke hex_key:hex_key_id format banana
+                    if "keys" in key_json and len(key_json["keys"]) > 0:
+                        key_entries = []
+                        for k_item in key_json["keys"]:
+                            if "k" in k_item and "kid" in k_item:
+                                hex_k = k_item["k"]
+                                hex_kid = k_item["kid"]
+                                key_entries.append(f"{hex_k}:{hex_kid}")
+                        if key_entries:
+                            formatted_key_line = ",".join(key_entries)
             except Exception:
                 pass
 
         channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
         
-        if formatted_key_str:
+        if formatted_key_line:
+            # hex_key:hex_key_id format pass karna
             channel_lines.append(
-                f"#KODIPROP:inputstream.adaptive.license_key={formatted_key_str}"
+                f"#KODIPROP:inputstream.adaptive.license_key={formatted_key_line}"
             )
         elif key_url:
             channel_lines.append(
@@ -261,11 +240,11 @@ def generate_safe_playlist_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with extracted key:key_id format.")
+        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with extracted keys in hex format.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-    
+        
