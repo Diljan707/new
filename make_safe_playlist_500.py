@@ -6,11 +6,11 @@ from urllib3.util.retry import Retry
 import threading
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
-TARGET_USER_AGENT = "Denver1760"  # Standard user-agent
-MAX_CHANNELS = 1000  # Total channels limit
+TARGET_USER_AGENT = "Denver1760"  # Exact working user-agent
+REGULAR_CHANNELS_LIMIT = 1000  # Exactly 1000 regular channels (excluding priority ones)
 MAX_WORKERS = 60     # Safe workers balance for speed & reliability
 
-# Priority channels to place at the very top
+# Priority channels to place at the very top (Excluded from the 1000 regular count)
 PRIORITY_KEYWORDS = [
     "nick", 
     "star sports", 
@@ -43,7 +43,7 @@ def process_single_channel(i, lines, session):
     channel_lines = [extinf_line]
 
     try:
-        # 1. Extract License Key (Supports both standard & JHS type=jhs keys)
+        # 1. Extract and follow redirects for License Key URL
         key_url = None
         for b in range(max(0, i - 3), i):
             sub_b = lines[b].strip()
@@ -72,45 +72,28 @@ def process_single_channel(i, lines, session):
         if resolved_key_data:
             channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={resolved_key_data}")
 
-        # Check for custom User-Agent in source lines if available, otherwise use target
-        channel_user_agent = TARGET_USER_AGENT
-        for f in range(i + 1, min(len(lines), i + 4)):
-            sub_f = lines[f].strip()
-            if sub_f.startswith("#EXTVLCOPT:http-user-agent="):
-                channel_user_agent = sub_f.split("=")[1].strip()
+        channel_lines.append(f"#EXTVLCOPT:http-user-agent={TARGET_USER_AGENT}")
 
-        channel_lines.append(f"#EXTVLCOPT:http-user-agent={channel_user_agent}")
-
-        # 2. Extract MPD or Stream line (Handles both JTV & JHS/Hotstar streams with cookies)
+        # 2. Extract MPD line and follow redirects to reach the ultimate real stream URL
         mpd_line = None
         for f in range(i + 1, min(len(lines), i + 4)):
             sub_f = lines[f].strip()
-            if sub_f.startswith("http") and (".mpd" in sub_f or "hotstar" in sub_f or "sources" in sub_f):
+            if sub_f.startswith("http") and ".mpd" in sub_f:
                 mpd_line = sub_f
 
         url_added = False
         if mpd_line:
             try:
-                channel_headers = {"User-Agent": channel_user_agent}
+                channel_headers = {"User-Agent": TARGET_USER_AGENT}
                 r = session.get(mpd_line, headers=channel_headers, allow_redirects=True, timeout=3)
                 
-                real_url = r.url if r.status_code in [200, 301, 302, 307, 308] else mpd_line
+                real_url = r.url if r.status_code == 200 else mpd_line
                 clean_url = real_url.strip().split()[0]
                 if clean_url.endswith("~"):
                     clean_url = clean_url[:-1]
                 
-                # Intelligent Cookie & Token extractor for both JTV and JHS (Hotstar / hdntl / hdnea)
-                if "hdntl=" in clean_url:
-                    try:
-                        parts = clean_url.split("hdntl=")
-                        if len(parts) > 1:
-                            hdntl_val = parts[1].split("&")[0]
-                            channel_lines.append(f'#EXTHTTP:{{"cookie":"hdntl={hdntl_val}"}}')
-                    except Exception:
-                        pass
-                    channel_lines.append(clean_url)
-                    url_added = True
-                elif "__hdnea__=" in clean_url:
+                # Check for embedded cookies in the final URL and format properly
+                if "__hdnea__=" in clean_url:
                     try:
                         parts = clean_url.split("__hdnea__=")
                         if len(parts) > 1:
@@ -156,7 +139,7 @@ def process_single_channel(i, lines, session):
 def generate_priority_playlist():
     global processed_count
     processed_count = 0
-    print(f"[*] Downloading playlist and filtering priority channels + up to {MAX_CHANNELS} total channels...")
+    print(f"[*] Downloading playlist and filtering priority channels + exactly {REGULAR_CHANNELS_LIMIT} regular channels...")
     session = get_robust_session()
     try:
         res = session.get(PLAYLIST_URL, headers={"User-Agent": TARGET_USER_AGENT})
@@ -191,16 +174,20 @@ def generate_priority_playlist():
             else:
                 regular_indices.append(idx)
 
-        target_indices = priority_indices.copy()
-        remaining_slots = MAX_CHANNELS - len(target_indices)
+        # Separate selection: Priority channels + up to 1000 regular channels (avoiding duplicates if priority is also in regular)
+        priority_set = set(priority_indices)
+        filtered_regular_indices = [idx for idx in regular_indices if idx not in priority_set]
         
-        if remaining_slots > 0:
-            target_indices.extend(regular_indices[:remaining_slots])
-        else:
-            target_indices = target_indices[:MAX_CHANNELS]
+        # Take up to REGULAR_CHANNELS_LIMIT from regular channels
+        selected_regular = filtered_regular_indices[:REGULAR_CHANNELS_LIMIT]
 
-        print(f"[*] Found {len(priority_indices)} priority channels. Total channels to process: {len(target_indices)}.")
-        print(f"[*] Launching multithreading with dual-type support (JTV + JHS)...\n")
+        # Combine: Priority first, then the 1000 regular channels
+        target_indices = priority_indices + selected_regular
+
+        print(f"[*] Found {len(priority_indices)} priority channels.")
+        print(f"[*] Added {len(selected_regular)} regular channels (Limit: {REGULAR_CHANNELS_LIMIT}).")
+        print(f"[*] Total channels to process: {len(target_indices)}.\n")
+        print(f"[*] Launching multithreading...\n")
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -238,16 +225,17 @@ def generate_priority_playlist():
                 new_lines.extend(channel_results[idx])
             else:
                 new_lines.append(lines[idx].strip())
-                new_lines.append("http://dummy-link-hor-prevent-break")
+                new_lines.append("http://dummy-link-to-prevent-break")
 
         output_file = "safe_500_channels.m3u"  
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! Playlist saved as '{output_file}' supporting both JTV and JHS types.")
+        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with priority channels + {len(selected_regular)} regular channels.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_priority_playlist()
+                
