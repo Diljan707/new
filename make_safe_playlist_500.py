@@ -50,41 +50,30 @@ def process_single_channel(i, lines, session):
             if sub_f.startswith("http") and ".mpd" in sub_f:
                 mpd_line = sub_f
 
-        formatted_key_line = None
+        embedded_key_data = None
         if key_url:
             try:
                 if '"' in key_url:
                     key_url = key_url.replace('"', "")
                 
-                # Added proper Referer and Accept headers to bypass 404 block
+                # Added Referer and Accept headers to bypass 404 Not Allowed block
                 key_headers = {
                     "User-Agent": user_agent,
                     "Referer": PLAYLIST_URL,
                     "Accept": "application/json, text/javascript, */*; q=0.01"
                 }
                 key_res = session.get(key_url, headers=key_headers, timeout=3)
-                
                 if key_res.status_code == 200:
                     key_json = key_res.json()
-                    # Extract keys and convert into kid:key format
-                    if "keys" in key_json and len(key_json["keys"]) > 0:
-                        key_entries = []
-                        for k_item in key_json["keys"]:
-                            if "k" in k_item and "kid" in k_item:
-                                k_val = k_item["k"]
-                                kid_val = k_item["kid"]
-                                key_entries.append(f"{kid_val}:{k_val}")
-                        if key_entries:
-                            formatted_key_line = ",".join(key_entries)
+                    embedded_key_data = json.dumps(key_json)
             except Exception:
                 pass
 
         channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
         
-        if formatted_key_line:
-            # Passes clean kid:key hex format instead of full JSON
+        if embedded_key_data:
             channel_lines.append(
-                f"#KODIPROP:inputstream.adaptive.license_key={formatted_key_line}"
+                f"#KODIPROP:inputstream.adaptive.license_key={embedded_key_data}"
             )
         elif key_url:
             channel_lines.append(
@@ -177,6 +166,7 @@ def generate_safe_playlist_1000():
         other_priority_indices = []
         regular_indices = []
 
+        # First pass: Categorize lines into Star first, then other priorities, then regular channels up to 800 limit
         for i, line in enumerate(lines):  
             if line.strip().startswith("#EXTINF"):  
                 channel_name = line.split(",")[-1].strip().lower()
@@ -191,6 +181,7 @@ def generate_safe_playlist_1000():
                     if len(regular_indices) < MAX_CHANNELS:
                         regular_indices.append(i)
 
+        # Star channels come absolute first, followed by other priorities, then regular channels
         target_indices = star_indices + other_priority_indices + regular_indices
         
         if not target_indices:  
@@ -208,7 +199,8 @@ def generate_safe_playlist_1000():
             for future in as_completed(futures):
                 idx = futures[future]
                 try:
-                    channel_results[idx] = future.result()
+                    channel_lines = future.result()
+                    channel_results[idx] = channel_lines
                 except Exception:
                     fallback_lines = [lines[idx].strip()]
                     raw_url = ""
@@ -228,7 +220,9 @@ def generate_safe_playlist_1000():
                     processed_count += 1
                     print(f"[*] Progress: {processed_count}/{len(target_indices)} channels processed...", end="\r")
 
+        # Build final playlist starting with #EXTM3U
         new_lines = ["#EXTM3U"]
+        
         for idx in target_indices:
             if idx in channel_results:
                 new_lines.extend(channel_results[idx])
@@ -240,11 +234,10 @@ def generate_safe_playlist_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with clean hex key format.")
+        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with embedded JSON ClearKey data and correct sorting.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-                       
