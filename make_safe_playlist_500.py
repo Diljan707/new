@@ -7,7 +7,7 @@ import threading
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 HEADERS = {"User-Agent": "plattv/7.1.5"}
-MAX_CHANNELS = 1000  # Exact 1000 channels limit from source
+MAX_CHANNELS = 1000  # Exact 1000 channels limit
 MAX_WORKERS = 60     # Safe workers balance for speed & reliability
 
 counter_lock = threading.Lock()
@@ -152,8 +152,8 @@ def generate_safe_playlist_1000():
 
         lines = res.text.splitlines()  
 
-        # Keywords to search at the start of channel names
-        priority_keywords = ("nick", "star", "disney", "ptc")
+        # Keywords to search at the start of channel names (Added 'zee' here)
+        priority_keywords = ("nick", "star", "disney", "ptc", "zee")
 
         priority_indices = []
         regular_indices = []
@@ -171,15 +171,13 @@ def generate_safe_playlist_1000():
                     if len(regular_indices) < MAX_CHANNELS:
                         regular_indices.append(i)
 
-        # Combine them keeping priority channels at the very top, followed by regular ones up to 1000 total or remaining
         target_indices = priority_indices + regular_indices
-        # Trim or keep within safe bounds if needed, but priority won't eat into the 1000 limit calculation awkwardly
         
         if not target_indices:  
             print("[-] No channels found in playlist.")  
             return  
 
-        print(f"[*] Found {len(priority_indices)} priority channels (Nick/Star/Disney/PTC) and {len(regular_indices)} regular channels. Processing...")  
+        print(f"[*] Found {len(priority_indices)} priority channels (Nick/Star/Disney/PTC/Zee) and {len(regular_indices)} regular channels. Processing...")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -225,7 +223,7 @@ def generate_safe_playlist_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with Priority channels (Nick, Star, Disney, PTC) placed at the top.")
+        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with Priority channels (Nick, Star, Disney, PTC, Zee) placed at the top.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
