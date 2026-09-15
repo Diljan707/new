@@ -43,8 +43,8 @@ def process_single_channel(i, lines, session):
             if "inputstream.adaptive.license_key=" in sub_b:
                 key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
 
-        # Sabhi channels te Denver 1769 user-agent fix kar dita hai
-        user_agent = "Denver 1769"
+        # Sabhi channels te Mozilla user-agent fix kar dita hai
+        user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
         mpd_line = None
         for f in range(i + 1, min(len(lines), i + 4)):
             sub_f = lines[f].strip()
@@ -146,7 +146,7 @@ def generate_safe_playlist_ordered():
     print(f"[*] Downloading playlist and processing additional channels first, followed by up to {MAX_CHANNELS} channels...")
     session = get_robust_session()
     try:
-        res = session.get(PLAYLIST_URL, headers={"User-Agent": "Denver 1769"})
+        res = session.get(PLAYLIST_URL, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"})
         if res.status_code != 200:
             print("[-] Failed to fetch playlist.")
             return
@@ -228,11 +228,11 @@ def generate_safe_playlist_ordered():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! {len(target_indices)} channels saved as '{output_file}' with Denver 1769 User-Agent.")
+        print(f"\n\n[+] Success! {len(target_indices)} channels saved as '{output_file}' with Mozilla User-Agent.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_ordered()
-        
+            
