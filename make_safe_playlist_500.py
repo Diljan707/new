@@ -27,7 +27,7 @@ def process_single_channel(i, lines, session):
     extinf_line = line
 
     channel_lines = [extinf_line]
-    user_agent = "Denver 1760"  # Sabhi channels te Denver user-agent fix kar dita hai
+    user_agent = "Denver 1760"  # Sabhi channels te Denver user-agent fix hai
     key_url = None
     license_type = "clearkey"
     ext_http_line = None
@@ -59,21 +59,24 @@ def process_single_channel(i, lines, session):
                 key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
 
     try:
-        # License URL nu fully redirect/resolve karwa ke final modd/json tak leke jaana
+        # 1. Clear Key URL nu hit karke JSON / Real key data fetch karna
         resolved_key_url = key_url
         if key_url:
             if '"' in key_url:
                 key_url = key_url.replace('"', "")
             try:
-                k_res = session.get(key_url, headers={"User-Agent": user_agent}, allow_redirects=True, timeout=3)
+                k_res = session.get(key_url, headers={"User-Agent": user_agent}, timeout=3)
                 if k_res.status_code == 200:
                     try:
+                        # Je response JSON hai (clearkey format) taan usnu string vich convert karo
                         key_json = k_res.json()
                         resolved_key_url = json.dumps(key_json)
                     except Exception:
-                        resolved_key_url = k_res.url
-                else:
-                    resolved_key_url = k_res.url if k_res.url else key_url
+                        # Je text/url hai taan ohi rakho
+                        if k_res.text and not k_res.text.strip().startswith("<"):
+                            resolved_key_url = k_res.text.strip()
+                elif k_res.url:
+                    resolved_key_url = k_res.url
             except Exception:
                 pass
 
@@ -86,6 +89,7 @@ def process_single_channel(i, lines, session):
         if ext_http_line:
             channel_lines.append(ext_http_line)
 
+        # 2. Stream URL (MPD / m3u8 / game.playindia links) nu resolve karna
         url_added = False
         target_url = mpd_line if mpd_line else raw_stream_line
 
@@ -95,48 +99,28 @@ def process_single_channel(i, lines, session):
             
             try:
                 channel_headers = {"User-Agent": user_agent}
-                r = session.get(target_url, headers=channel_headers, allow_redirects=False, timeout=3)
+                # allow_redirects = True kita hai taaki game.playindia de internal redirects/API response mil sakan
+                r = session.get(target_url, headers=channel_headers, allow_redirects=True, timeout=4)
 
-                if r.status_code == 403 and raw_stream_line:
-                    channel_lines.append(raw_stream_line)
-                    url_added = True
-                else:
-                    real_url = (  
-                        r.headers.get("Location")  
-                        if r.status_code in [301, 302, 303, 307, 308]  
-                        else target_url  
-                    )  
-                    clean_url = real_url.strip().split()[0]  
-                    if clean_url.endswith("~"):  
-                        clean_url = clean_url[:-1]  
-                    
-                    if "__hdnea__=" in clean_url and not ext_http_line:
-                        try:
-                            parts = clean_url.split("__hdnea__=")
-                            if len(parts) > 1:
-                                hdnea_val = parts[1].split("&")[0]
-                                channel_lines.append(f'#EXTHTTP:{{"cookie":"__hdnea__={hdnea_val}"}}')
-                        except Exception:
-                            pass
-                        channel_lines.append(clean_url)
-                        url_added = True
-                    elif "%7Ccookie=" in clean_url and not ext_http_line:
-                        parts = clean_url.split("%7Ccookie=")
-                        base_url = parts[0]
-                        cookie_val = parts[1].split("&")[0] if "&" in parts[1] else parts[1]
-                        channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}"}}')
-                        channel_lines.append(base_url)
-                        url_added = True
-                    elif "|cookie=" in clean_url and not ext_http_line:
-                        parts = clean_url.split("|cookie=")
-                        base_url = parts[0]
-                        cookie_val = parts[1].split("&")[0] if "&" in parts[1] else parts[1]
-                        channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}"}}')
-                        channel_lines.append(base_url)
+                if r.status_code == 200:
+                    # Check je response vich koi real stream link ya text aeya hove
+                    final_text = r.text.strip()
+                    if final_text.startswith("http") and not final_text.startswith("<"):
+                        channel_lines.append(final_text.split()[0])
                         url_added = True
                     else:
-                        channel_lines.append(clean_url)
+                        channel_lines.append(r.url if r.url else target_url)
                         url_added = True
+                elif r.status_code in [301, 302, 303, 307, 308]:
+                    real_url = r.headers.get("Location", target_url)
+                    channel_lines.append(real_url.strip().split()[0])
+                    url_added = True
+                else:
+                    if raw_stream_line:
+                        channel_lines.append(raw_stream_line)
+                    else:
+                        channel_lines.append(target_url)
+                    url_added = True
             except Exception:
                 channel_lines.append(target_url)
                 url_added = True
@@ -228,7 +212,7 @@ def generate_safe_playlist_ordered():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! {len(target_indices)} channels saved as '{output_file}' with Denver User-Agent and fully resolved license keys.")
+        print(f"\n\n[+] Success! {len(target_indices)} channels saved as '{output_file}' with fully resolved links.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
