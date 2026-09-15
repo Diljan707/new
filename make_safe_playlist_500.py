@@ -7,10 +7,10 @@ import threading
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 HEADERS = {"User-Agent": "plattv/7.1.5"}
-MAX_CHANNELS = 1000  # Pehle 1000 standard channels
+MAX_CHANNELS = 1000  # Standard 1000 channels limit
 MAX_WORKERS = 60     # Safe workers balance for speed & reliability
 
-# Eh additional channels ohi original playlist vichon hi search karke add honge
+# Eh additional channels sab ton pehla (top te) aunge
 ADDITIONAL_CHANNELS = ["Star Sports", "PTC Music", "Disney"]
 
 counter_lock = threading.Lock()
@@ -142,10 +142,10 @@ def process_single_channel(i, lines, session):
 
     return channel_lines
 
-def generate_safe_playlist_with_additionals():
+def generate_safe_playlist_ordered():
     global processed_count
     processed_count = 0
-    print(f"[*] Downloading playlist and processing up to {MAX_CHANNELS} channels + additional search channels...")
+    print(f"[*] Downloading playlist and processing additional channels first, followed by up to {MAX_CHANNELS} channels...")
     session = get_robust_session()
     try:
         res = session.get(PLAYLIST_URL, headers={"User-Agent": "plattv/7.1.5"})
@@ -155,26 +155,38 @@ def generate_safe_playlist_with_additionals():
 
         lines = res.text.splitlines()  
 
-        target_indices = []  
-        for i, line in enumerate(lines):  
-            if line.strip().startswith("#EXTINF"):  
-                target_indices.append(i)  
-                if len(target_indices) >= MAX_CHANNELS:  
-                    break  
-
-        # Playlist vichon hi additional channels search karke add karna
+        # 1. Pehle Additional Channels labho taaki oh top te rakhe ja sakan
+        additional_indices = []
         for i, line in enumerate(lines):
             if line.strip().startswith("#EXTINF"):
                 for add_ch in ADDITIONAL_CHANNELS:
                     if add_ch.lower() in line.lower():
-                        if i not in target_indices:
-                            target_indices.append(i)
+                        if i not in additional_indices:
+                            additional_indices.append(i)
+
+        # 2. Phir baaki standard 1000 channels labho
+        standard_indices = []
+        for i, line in enumerate(lines):
+            if line.strip().startswith("#EXTINF"):
+                standard_indices.append(i)
+                if len(standard_indices) >= MAX_CHANNELS:
+                    break
+
+        # 3. Combine: Additional pehla, te standard channels us ton baad (duplication avoid karde hoye)
+        target_indices = []
+        for idx in additional_indices:
+            if idx not in target_indices:
+                target_indices.append(idx)
+
+        for idx in standard_indices:
+            if idx not in target_indices:
+                target_indices.append(idx)
 
         if not target_indices:  
             print("[-] No channels found in playlist.")  
             return  
 
-        print(f"[*] Total channels selected: {len(target_indices)}. Processing with multithreading...\n")  
+        print(f"[*] Total combined channels: {len(target_indices)}. Processing with multithreading...\n")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -218,11 +230,11 @@ def generate_safe_playlist_with_additionals():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! {len(target_indices)} channels saved as '{output_file}'.")
+        print(f"\n\n[+] Success! {len(target_indices)} channels saved as '{output_file}' with additional channels at the top.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
-    generate_safe_playlist_with_additionals()
-        
+    generate_safe_playlist_ordered()
+                
