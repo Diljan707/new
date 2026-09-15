@@ -27,34 +27,43 @@ def process_single_channel(i, lines, session):
     line = lines[i].strip()
     extinf_line = line
 
-    raw_stream_line = ""
-    for f in range(i + 1, min(len(lines), i + 5)):
-        if lines[f].strip().startswith("http"):
-            raw_stream_line = lines[f].strip().split()[0]
-            if raw_stream_line.endswith("~"):
-                raw_stream_line = raw_stream_line[:-1]
-            break
-
     channel_lines = [extinf_line]
+    user_agent = "plattv/7.1.5"
+    key_url = None
+    license_type = "clearkey"
+    ext_http_line = None
+    mpd_line = None
+    raw_stream_line = ""
 
-    try:
-        key_url = None
+    # JHS te standard formats nu handle krn lyi i ton aage te piche scan kro
+    for f in range(i + 1, min(len(lines), i + 8)):
+        sub_f = lines[f].strip()
+        if sub_f.startswith("#EXTINF") or sub_f.startswith("#EXTM3U"):
+            break
+        
+        if "inputstream.adaptive.license_key=" in sub_f:
+            key_url = sub_f.split("inputstream.adaptive.license_key=")[1].strip()
+        if "inputstream.adaptive.license_type=" in sub_f:
+            license_type = sub_f.split("inputstream.adaptive.license_type=")[1].strip()
+        if sub_f.startswith("#EXTVLCOPT:http-user-agent="):
+            user_agent = sub_f.split("=")[1].strip()
+        if sub_f.startswith("#EXTHTTP:"):
+            ext_http_line = sub_f
+        if sub_f.startswith("http") and (".mpd" in sub_f or ".m3u8" in sub_f):
+            mpd_line = sub_f
+        elif sub_f.startswith("http") and not raw_stream_line:
+            raw_stream_line = sub_f.split()[0]
+
+    # Kise-kise case vich key upar v ho sakdi hai, ohi check la lo
+    if not key_url:
         for b in range(max(0, i - 3), i):
             sub_b = lines[b].strip()
             if "inputstream.adaptive.license_key=" in sub_b:
                 key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
 
-        user_agent = "plattv/7.1.5"
-        mpd_line = None
-        for f in range(i + 1, min(len(lines), i + 4)):
-            sub_f = lines[f].strip()
-            if sub_f.startswith("#EXTVLCOPT:http-user-agent="):
-                user_agent = sub_f.split("=")[1].strip()
-            if sub_f.startswith("http") and ".mpd" in sub_f:
-                mpd_line = sub_f
-
+    try:
         embedded_key_data = None
-        if key_url:
+        if key_url and "game.playindia.fun" not in key_url and "token=" not in key_url:
             try:
                 if '"' in key_url:
                     key_url = key_url.replace('"', "")
@@ -65,26 +74,28 @@ def process_single_channel(i, lines, session):
             except Exception:
                 pass
 
-        channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
+        channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_type={license_type}")
         
         if embedded_key_data:
-            channel_lines.append(
-                f"#KODIPROP:inputstream.adaptive.license_key={embedded_key_data}"
-            )
+            channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={embedded_key_data}")
         elif key_url:
-            channel_lines.append(
-                f"#KODIPROP:inputstream.adaptive.license_key={key_url}"
-            )
+            channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
 
         channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
 
+        if ext_http_line:
+            channel_lines.append(ext_http_line)
+
         url_added = False
-        if mpd_line:
+        target_url = mpd_line if mpd_line else raw_stream_line
+
+        if target_url:
+            if target_url.endswith("~"):
+                target_url = target_url[:-1]
+            
             try:
                 channel_headers = {"User-Agent": user_agent}
-                r = session.get(
-                    mpd_line, headers=channel_headers, allow_redirects=False, timeout=3
-                )
+                r = session.get(target_url, headers=channel_headers, allow_redirects=False, timeout=3)
 
                 if r.status_code == 403 and raw_stream_line:
                     channel_lines.append(raw_stream_line)
@@ -93,13 +104,13 @@ def process_single_channel(i, lines, session):
                     real_url = (  
                         r.headers.get("Location")  
                         if r.status_code in [301, 302, 303, 307, 308]  
-                        else mpd_line  
+                        else target_url  
                     )  
                     clean_url = real_url.strip().split()[0]  
                     if clean_url.endswith("~"):  
                         clean_url = clean_url[:-1]  
                     
-                    if "__hdnea__=" in clean_url:
+                    if "__hdnea__=" in clean_url and not ext_http_line:
                         try:
                             parts = clean_url.split("__hdnea__=")
                             if len(parts) > 1:
@@ -109,14 +120,14 @@ def process_single_channel(i, lines, session):
                             pass
                         channel_lines.append(clean_url)
                         url_added = True
-                    elif "%7Ccookie=" in clean_url:
+                    elif "%7Ccookie=" in clean_url and not ext_http_line:
                         parts = clean_url.split("%7Ccookie=")
                         base_url = parts[0]
                         cookie_val = parts[1].split("&")[0] if "&" in parts[1] else parts[1]
                         channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}"}}')
                         channel_lines.append(base_url)
                         url_added = True
-                    elif "|cookie=" in clean_url:
+                    elif "|cookie=" in clean_url and not ext_http_line:
                         parts = clean_url.split("|cookie=")
                         base_url = parts[0]
                         cookie_val = parts[1].split("&")[0] if "&" in parts[1] else parts[1]
@@ -127,11 +138,10 @@ def process_single_channel(i, lines, session):
                         channel_lines.append(clean_url)
                         url_added = True
             except Exception:
-                pass
+                channel_lines.append(target_url)
+                url_added = True
 
-        if not url_added and raw_stream_line:
-            channel_lines.append(raw_stream_line)
-        elif not url_added and not raw_stream_line:
+        if not url_added:
             channel_lines.append("http://dummy-link-to-prevent-break")
 
     except Exception:
@@ -197,21 +207,9 @@ def generate_safe_playlist_ordered():
             for future in as_completed(futures):
                 idx = futures[future]
                 try:
-                    channel_lines = future.result()
-                    channel_results[idx] = channel_lines
+                    channel_results[idx] = future.result()
                 except Exception:
-                    fallback_lines = [lines[idx].strip()]
-                    raw_url = ""
-                    for f in range(idx + 1, min(len(lines), idx + 5)):
-                        if lines[f].strip().startswith("http"):
-                            raw_url = lines[f].strip().split()[0]
-                            if raw_url.endswith("~"):
-                                raw_url = raw_url[:-1]
-                            break
-                    if raw_url:
-                        fallback_lines.append(raw_url)
-                    else:
-                        fallback_lines.append("http://dummy-link-to-prevent-break")
+                    fallback_lines = [lines[idx].strip(), "http://dummy-link-to-prevent-break"]
                     channel_results[idx] = fallback_lines
 
                 with counter_lock:
@@ -230,11 +228,11 @@ def generate_safe_playlist_ordered():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! {len(target_indices)} channels saved as '{output_file}' with additional channels at the top.")
+        print(f"\n\n[+] Success! {len(target_indices)} channels saved as '{output_file}' with proper JHS and standard formatting.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_ordered()
-                
+        
