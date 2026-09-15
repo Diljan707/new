@@ -7,7 +7,7 @@ import threading
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 HEADERS = {"User-Agent": "plattv/7.1.5"}
-MAX_CHANNELS = 1000  # Exact 1000 channels limit
+MAX_CHANNELS = 800   # Updated to exact 800 channels limit
 MAX_WORKERS = 60     # Safe workers balance for speed & reliability
 
 counter_lock = threading.Lock()
@@ -152,34 +152,36 @@ def generate_safe_playlist_1000():
 
         lines = res.text.splitlines()  
 
-        # Keywords to search anywhere inside channel names (Added 'sony' here)
-        priority_keywords = ("nick", "star", "disney", "ptc", "zee", "sony")
+        star_keyword = "star"
+        other_keywords = ("nick", "disney", "ptc", "zee", "sony")
 
-        priority_indices = []
+        star_indices = []
+        other_priority_indices = []
         regular_indices = []
 
-        # First pass: Categorize lines into priority and regular channels
+        # First pass: Categorize lines into Star first, then other priorities, then regular channels up to 800 limit
         for i, line in enumerate(lines):  
             if line.strip().startswith("#EXTINF"):  
                 channel_name = line.split(",")[-1].strip().lower()
                 
-                # Check if ANY of the priority keywords are inside the channel name
-                is_priority = any(kw in channel_name for kw in priority_keywords)
-
-                if is_priority:
-                    if i not in priority_indices:
-                        priority_indices.append(i)
+                if star_keyword in channel_name:
+                    if i not in star_indices:
+                        star_indices.append(i)
+                elif any(kw in channel_name for kw in other_keywords):
+                    if i not in other_priority_indices:
+                        other_priority_indices.append(i)
                 else:
                     if len(regular_indices) < MAX_CHANNELS:
                         regular_indices.append(i)
 
-        target_indices = priority_indices + regular_indices
+        # Star channels come absolute first, followed by other priorities, then regular channels
+        target_indices = star_indices + other_priority_indices + regular_indices
         
         if not target_indices:  
             print("[-] No channels found in playlist.")  
             return  
 
-        print(f"[*] Found {len(priority_indices)} priority channels and {len(regular_indices)} regular channels. Processing...")  
+        print(f"[*] Found {len(star_indices)} Star channels, {len(other_priority_indices)} other priority channels, and {len(regular_indices)} regular channels. Processing...")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -211,7 +213,7 @@ def generate_safe_playlist_1000():
                     processed_count += 1
                     print(f"[*] Progress: {processed_count}/{len(target_indices)} channels processed...", end="\r")
 
-        # Build final playlist starting with #EXTM3U, then priority channels first, then regular ones
+        # Build final playlist starting with #EXTM3U
         new_lines = ["#EXTM3U"]
         
         for idx in target_indices:
@@ -225,10 +227,11 @@ def generate_safe_playlist_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with all matching Sony, Star, Zee, Nick, Disney, and PTC channels placed at the top.")
+        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with Star channels at the very top, followed by other priority and regular channels.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
+    
