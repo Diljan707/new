@@ -27,89 +27,75 @@ https://game.playindia.fun/Jtv/RiYlIZ/Jtv.mpd?id=1373
 #EXTINF:-1 tvg-id="Add_15037" tvg-logo="https://prodcdn1.wavespb.com/shows/thumbnail/2073643161PTC-Music.webp" group-title="Extra Addon",PTC MUSIC
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #EXTVLCOPT:http-user-agent=Denver 1760
-https://d2lk5u59tns74c.cloudfront.net/out/v1/f913cf893c594f73b114216e74a2efbc/index.m3u8?|User-Agent=Mozilla%2F5.0%20%28Windows%20NT%2010.0%3B%20Win64%3B%20x64%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F129.0.0.0%20Safari%2F537.36&domain=https://www.google.com&Referer=https://www.google.com/
+https://d2lk5u59tns74c.cloudfront.net/out/v1/f913cf893c594f73b114216e74a2efbc/index.m3u8?%7CUser-Agent=Mozilla%2F5.0%20%28Windows%20NT%2010.0%3B%20Win64%3B%20x64%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F129.0.0.0%20Safari%2F537.36&domain=https://www.google.com&Referer=https://www.google.com/
 #EXTINF:-1 tvg-id="1260000024" tvg-logo="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/7437/567437-h" group-title="Jhs Sports", Star Sports Select HD2
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=https://game.playindia.fun/Jtv/key.php?id=1260000031&token=RiYlIZ&type=jhs
 #EXTVLCOPT:http-user-agent=Denver 1760
-#EXTHTTP:{"cookie":"hdntl=exp=1789516858~acl=%2f*~id=e87d9870033b5b7b5c4645065a88670a~data=hdntl~hmac=ea7f56456441c296676a133774465db1d16af26c902ad0ba1debe161e3e5c78a"}
-https://livetv.hotstar.com/mp1/gec-india-1540065794/e2408fbafb9d4a5ab23775b69e5737d7/index.mpd?start=2026-09-14T13%3A27%3A31
+https://livetv.hotstar.com/mp1/gec-india-1540065794/e2408fbafb9d4a5ab23775b69e5737d7/index.mpd?start=2026-09-14T13%3A31%3A00|cookie=hdntl=exp=1789516858~acl=%2f*~id=e87d9870033b5b7b5c4645065a88670a~data=hdntl~hmac=ea7f56456441c296676a133774465db1d16af26c902ad0ba1debe161e3e5c78a&User-Agent=Hotstar%3Bin.startv.hotstar%2F25.02.24.8.11169%20%28Android%2F15%29
 #EXTINF:-1 tvg-id="1260000034" tvg-logo="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/7435/567435-h" group-title="Jhs Sports", Star Sports Select HD1
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=https://game.playindia.fun/Jtv/key.php?id=1260000039&token=RiYlIZ&type=jhs
 #EXTVLCOPT:http-user-agent=Denver 1760
-#EXTHTTP:{"cookie":"hdntl=exp=1789516858~acl=%2f*~id=e87d9870033b5b7b5c4645065a88670a~data=hdntl~hmac=ea7f56456441c296676a133774465db1d16af26c902ad0ba1debe161e3e5c78a"}
-https://livetv.hotstar.com/mp2/gec-india-1540065791/8bb5cd7a8e274186977473a6771d9352/index.mpd?start=2026-09-14T13%3A27%3A31
+https://livetv.hotstar.com/mp2/gec-india-1540065791/8bb5cd7a8e274186977473a6771d9352/index.mpd?start=2026-09-14T13%3A31%3A00|cookie=hdntl=exp=1789516858~acl=%2f*~id=e87d9870033b5b7b5c4645065a88670a~data=hdntl~hmac=ea7f56456441c296676a133774465db1d16af26c902ad0ba1debe161e3e5c78a&User-Agent=Hotstar%3Bin.startv.hotstar%2F25.02.24.8.11169%20%28Android%2F15%29
 #EXTINF:-1 tvg-id="1540068247" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/7482/1782284567482-h" group-title="Jhs Sports", Star Sports 1 Digital
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=https://game.playindia.fun/Jtv/key.php?id=1540068295&token=RiYlIZ&type=jhs
 #EXTVLCOPT:http-user-agent=Denver 1760
-#EXTHTTP:{"cookie":"hdntl=exp=1789516858~acl=%2f*~id=e87d9870033b5b7b5c4645065a88670a~data=hdntl~hmac=ea7f56456441c296676a133774465db1d16af26c902ad0ba1debe161e3e5c78a"}
-https://livetv.hotstar.com/mp1/gec-india-1540068247/9a6e7c30f9194cc1a6a6250cedb115fb/index.mpd?start=2026-09-14T13%3A27%3A31
+https://livetv.hotstar.com/mp1/gec-india-1540068247/9a6e7c30f9194cc1a6a6250cedb115fb/index.mpd?start=2026-09-14T13%3A31%3A00|cookie=hdntl=exp=1789516858~acl=%2f*~id=e87d9870033b5b7b5c4645065a88670a~data=hdntl~hmac=ea7f56456441c296676a133774465db1d16af26c902ad0ba1debe161e3e5c78a&User-Agent=Hotstar%3Bin.startv.hotstar%2F25.02.24.8.11169%20%28Android%2F15%29
 #EXTINF:-1 tvg-id="1540068295" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/8867/1782284658867-h" group-title="Jhs Sports", Star Sports 1 Hindi Digital
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=https://game.playindia.fun/Jtv/key.php?id=1540068298&token=RiYlIZ&type=jhs
 #EXTVLCOPT:http-user-agent=Denver 1760
-#EXTHTTP:{"cookie":"hdntl=exp=1789516858~acl=%2f*~id=e87d9870033b5b7b5c4645065a88670a~data=hdntl~hmac=ea7f56456441c296676a133774465db1d16af26c902ad0ba1debe161e3e5c78a"}
-https://livetv.hotstar.com/mp1/gec-india-1540068295/5a4eb3ac6e424eef8a30962d2232f80f/index.mpd?start=2026-09-14T13%3A27%3A31
+https://livetv.hotstar.com/mp1/gec-india-1540068295/5a4eb3ac6e424eef8a30962d2232f80f/index.mpd?start=2026-09-14T13%3A31%3A00|cookie=hdntl=exp=1789516858~acl=%2f*~id=e87d9870033b5b7b5c4645065a88670a~data=hdntl~hmac=ea7f56456441c296676a133774465db1d16af26c902ad0ba1debe161e3e5c78a&User-Agent=Hotstar%3Bin.startv.hotstar%2F25.02.24.8.11169%20%28Android%2F15%29
 #EXTINF:-1 tvg-id="1540068298" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/6371/1783000736371-h" group-title="Jhs Sports", Star Sports 2 Hindi Digital
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=https://game.playindia.fun/Jtv/key.php?id=1540068301&token=RiYlIZ&type=jhs
 #EXTVLCOPT:http-user-agent=Denver 1760
-#EXTHTTP:{"cookie":"hdntl=exp=1789516858~acl=%2f*~id=e87d9870033b5b7b5c4645065a88670a~data=hdntl~hmac=ea7f56456441c296676a133774465db1d16af26c902ad0ba1debe161e3e5c78a"}
-https://livetv.hotstar.com/mp2/gec-india-1540068298/9f99e1af0bdc465b8a3015e3a1a689d8/index.mpd?start=2026-09-14T13%3A27%3A31
+https://livetv.hotstar.com/mp2/gec-india-1540068298/9f99e1af0bdc465b8a3015e3a1a689d8/index.mpd?start=2026-09-14T13%3A31%3A00|cookie=hdntl=exp=1789516858~acl=%2f*~id=e87d9870033b5b7b5c4645065a88670a~data=hdntl~hmac=ea7f56456441c296676a133774465db1d16af26c902ad0ba1debe161e3e5c78a&User-Agent=Hotstar%3Bin.startv.hotstar%2F25.02.24.8.11169%20%28Android%2F15%29
 #EXTINF:-1 tvg-id="1540068301" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/2523/1783001062523-h" group-title="Jhs Sports", Star Sports 3 Digital
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=https://game.playindia.fun/Jtv/key.php?id=1540068723&token=RiYlIZ&type=jhs
 #EXTVLCOPT:http-user-agent=Denver 1760
-#EXTHTTP:{"cookie":"hdntl=exp=1789516858~acl=%2f*~id=e87d9870033b5b7b5c4645065a88670a~data=hdntl~hmac=ea7f56456441c296676a133774465db1d16af26c902ad0ba1debe161e3e5c78a"}
-https://livetv.hotstar.com/mp1/gec-india-1540068301/c776132a964441e1b929b2c0451222af/index.mpd?start=2026-09-14T13%3A27%3A31
+https://livetv.hotstar.com/mp1/gec-india-1540068301/c776132a964441e1b929b2c0451222af/index.mpd?start=2026-09-14T13%3A31%3A00|cookie=hdntl=exp=1789516858~acl=%2f*~id=e87d9870033b5b7b5c4645065a88670a~data=hdntl~hmac=ea7f56456441c296676a133774465db1d16af26c902ad0ba1debe161e3e5c78a&User-Agent=Hotstar%3Bin.startv.hotstar%2F25.02.24.8.11169%20%28Android%2F15%29
 #EXTINF:-1 tvg-id="1540068723" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/1176/1783001141176-h" group-title="Jhs Sports", Star Sports Select 1 Digital
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=https://game.playindia.fun/Jtv/key.php?id=1540068726&token=RiYlIZ&type=jhs
 #EXTVLCOPT:http-user-agent=Denver 1760
-#EXTHTTP:{"cookie":"hdntl=exp=1789516858~acl=%2f*~id=e87d9870033b5b7b5c4645065a88670a~data=hdntl~hmac=ea7f56456441c296676a133774465db1d16af26c902ad0ba1debe161e3e5c78a"}
-https://livetv.hotstar.com/mp1/gec-india-1540068723/bf078703201f419b89e87fedda08b8f1/index.mpd?start=2026-09-14T13%3A27%3A31
+https://livetv.hotstar.com/mp1/gec-india-1540068723/bf078703201f419b89e87fedda08b8f1/index.mpd?start=2026-09-14T13%3A31%3A00|cookie=hdntl=exp=1789516858~acl=%2f*~id=e87d9870033b5b7b5c4645065a88670a~data=hdntl~hmac=ea7f56456441c296676a133774465db1d16af26c902ad0ba1debe161e3e5c78a&User-Agent=Hotstar%3Bin.startv.hotstar%2F25.02.24.8.11169%20%28Android%2F15%29
 #EXTINF:-1 tvg-id="1540068726" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/7266/1783001217266-h" group-title="Jhs Sports", Star Sports Select 2 Digital
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=https://game.playindia.fun/Jtv/key.php?id=1540068283&token=RiYlIZ&type=jhs
 #EXTVLCOPT:http-user-agent=Denver 1760
-#EXTHTTP:{"cookie":"hdntl=exp=1789516858~acl=%2f*~id=e87d9870033b5b7b5c4645065a88670a~data=hdntl~hmac=ea7f56456441c296676a133774465db1d16af26c902ad0ba1debe161e3e5c78a"}
-https://livetv.hotstar.com/mp2/gec-india-1540068726/07582d46912e46cbb5f802923a0257d1/index.mpd?start=2026-09-14T13%3A27%3A31
+https://livetv.hotstar.com/mp2/gec-india-1540068726/07582d46912e46cbb5f802923a0257d1/index.mpd?start=2026-09-14T13%3A31%3A00|cookie=hdntl=exp=1789516858~acl=%2f*~id=e87d9870033b5b7b5c4645065a88670a~data=hdntl~hmac=ea7f56456441c296676a133774465db1d16af26c902ad0ba1debe161e3e5c78a&User-Agent=Hotstar%3Bin.startv.hotstar%2F25.02.24.8.11169%20%28Android%2F15%29
 #EXTINF:-1 tvg-id="1540068283" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/2716/1783000912716-h" group-title="Jhs Sports", Star Sports 2 Telugu Digital
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=https://game.playindia.fun/Jtv/key.php?id=1540073624&token=RiYlIZ&type=jhs
 #EXTVLCOPT:http-user-agent=Denver 1760
-#EXTHTTP:{"cookie":"hdntl=exp=1789516858~acl=%2f*~id=e87d9870033b5b7b5c4645065a88670a~data=hdntl~hmac=ea7f56456441c296676a133774465db1d16af26c902ad0ba1debe161e3e5c78a"}
-https://livetv.hotstar.com/mp1/gec-india-1540068283/9fdb797729344658957bd7382590c557/index.mpd?start=2026-09-14T13%3A27%3A31
+https://livetv.hotstar.com/mp1/gec-india-1540068283/9fdb797729344658957bd7382590c557/index.mpd?start=2026-09-14T13%3A31%3A00|cookie=hdntl=exp=1789516858~acl=%2f*~id=e87d9870033b5b7b5c4645065a88670a~data=hdntl~hmac=ea7f56456441c296676a133774465db1d16af26c902ad0ba1debe161e3e5c78a&User-Agent=Hotstar%3Bin.startv.hotstar%2F25.02.24.8.11169%20%28Android%2F15%29
 #EXTINF:-1 tvg-id="1540073624" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/270/1782998020270-h" group-title="Jhs Sports", Star Sports Khel Digital
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=https://game.playindia.fun/Jtv/key.php?id=1540068292&token=RiYlIZ&type=jhs
 #EXTVLCOPT:http-user-agent=Denver 1760
-#EXTHTTP:{"cookie":"hdntl=exp=1789516858~acl=%2f*~id=e87d9870033b5b7b5c4645065a88670a~data=hdntl~hmac=ea7f56456441c296676a133774465db1d16af26c902ad0ba1debe161e3e5c78a"}
-https://livetv.hotstar.com/mp2/gec-india-1540073624/4a56d383d1074f3d908a7f9b7a3321f1/index.mpd?start=2026-09-14T13%3A27%3A31
+https://livetv.hotstar.com/mp2/gec-india-1540073624/4a56d383d1074f3d908a7f9b7a3321f1/index.mpd?start=2026-09-14T13%3A31%3A00|cookie=hdntl=exp=1789516858~acl=%2f*~id=e87d9870033b5b7b5c4645065a88670a~data=hdntl~hmac=ea7f56456441c296676a133774465db1d16af26c902ad0ba1debe161e3e5c78a&User-Agent=Hotstar%3Bin.startv.hotstar%2F25.02.24.8.11169%20%28Android%2F15%29
 #EXTINF:-1 tvg-id="1540075053" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/1540/1785251571540-h" group-title="Jhs Kids", Disney Channel Digital
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=https://game.playindia.fun/Jtv/key.php?id=1540075059&token=RiYlIZ&type=jhs
 #EXTVLCOPT:http-user-agent=Denver 1760
-#EXTHTTP:{"cookie":"hdntl=exp=1789516858~acl=%2f*~id=e87d9870033b5b7b5c4645065a88670a~data=hdntl~hmac=ea7f56456441c296676a133774465db1d16af26c902ad0ba1debe161e3e5c78a"}
-https://livetv.hotstar.com/mp2/gec-india-1540075053/f9f3720bed4e4ce0b644bfeec74f8fee/index.mpd?start=2026-09-14T13%3A27%3A31
+https://livetv.hotstar.com/mp2/gec-india-1540075053/f9f3720bed4e4ce0b644bfeec74f8fee/index.mpd?start=2026-09-14T13%3A31%3A00|cookie=hdntl=exp=1789516858~acl=%2f*~id=e87d9870033b5b7b5c4645065a88670a~data=hdntl~hmac=ea7f56456441c296676a133774465db1d16af26c902ad0ba1debe161e3e5c78a&User-Agent=Hotstar%3Bin.startv.hotstar%2F25.02.24.8.11169%20%28Android%2F15%29
 #EXTINF:-1 tvg-id="1540075059" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/1599/1785251761599-h" group-title="Jhs Kids", Disney Junior Digital
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=https://game.playindia.fun/Jtv/key.php?id=1540075047&token=RiYlIZ&type=jhs
 #EXTVLCOPT:http-user-agent=Denver 1760
-#EXTHTTP:{"cookie":"hdntl=exp=1789516858~acl=%2f*~id=e87d9870033b5b7b5c4645065a88670a~data=hdntl~hmac=ea7f56456441c296676a133774465db1d16af26c902ad0ba1debe161e3e5c78a"}
-https://livetv.hotstar.com/mp1/gec-india-1540075059/9fcb1f02cf7249ef8428b9f3c981e08c/index.mpd?start=2026-09-14T13%3A27%3A31
+https://livetv.hotstar.com/mp1/gec-india-1540075059/9fcb1f02cf7249ef8428b9f3c981e08c/index.mpd?start=2026-09-14T13%3A31%3A00|cookie=hdntl=exp=1789516858~acl=%2f*~id=e87d9870033b5b7b5c4645065a88670a~data=hdntl~hmac=ea7f56456441c296676a133774465db1d16af26c902ad0ba1debe161e3e5c78a&User-Agent=Hotstar%3Bin.startv.hotstar%2F25.02.24.8.11169%20%28Android%2F15%29
 #EXTINF:-1 tvg-id="1271407200" tvg-logo="https://dvdh7g0f0hwck.cloudfront.net/assets/images/channel/StarSports2HindiHD_Transparent_c72d6289-27aa-422d-8420-40135329a5b6.png" group-title="Jhs Sports", Star Sports 2 Hindi HD
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #EXTVLCOPT:http-user-agent=Denver 1760
-#EXTHTTP:{"cookie":"hdntl=exp=1789516860~acl=%2f*~id=d3f68c258b8c865ac2136ed6f0d92618~data=hdntl~hmac=d8333e5561bda57cb7ad5f718947511c7239a7fe293b98e0b0a50d805064d885"}
-https://jcevents.hotstar.com/bpk-tv/082c75fa2fec61647e9192140d488d30/JioHotstar/082c75fa2fec61647e9192140d488d30.m3u8
+https://jcevents.hotstar.com/bpk-tv/082c75fa2fec61647e9192140d488d30/JioHotstar/082c75fa2fec61647e9192140d488d30.m3u8|cookie=hdntl=exp=1789516860~acl=%2f*~id=d3f68c258b8c865ac2136ed6f0d92618~data=hdntl~hmac=d8333e5561bda57cb7ad5f718947511c7239a7fe293b98e0b0a50d805064d885&User-Agent=Hotstar%3Bin.startv.hotstar%2F25.01.27.5.3788%20%28Android%2F13%29&origin=https://www.hotstar.com&Referer=https://www.hotstar.com/
 #EXTINF:-1 tvg-id="1540040052" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/7739/1782284837739-b" group-title="Jhs Sports", Star Sports Cricket Classics
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #EXTVLCOPT:http-user-agent=Denver 1760
-#EXTHTTP:{"cookie":"hdntl=exp=1789516860~acl=%2f*~id=d3f68c258b8c865ac2136ed6f0d92618~data=hdntl~hmac=d8333e5561bda57cb7ad5f718947511c7239a7fe293b98e0b0a50d805064d885"}
-https://livetv.hotstar.com/out/v1/llg-tv-mum/1540072851_hindi_80f5ecaf/gec-india_hls_unencrypted/master-ap-1080-4.m3u8
+https://livetv.hotstar.com/out/v1/llg-tv-mum/1540072851_hindi_80f5ecaf/gec-india_hls_unencrypted/master-ap-1080-4.m3u8|cookie=hdntl=exp=1789516860~acl=%2f*~id=d3f68c258b8c865ac2136ed6f0d92618~data=hdntl~hmac=d8333e5561bda57cb7ad5f718947511c7239a7fe293b98e0b0a50d805064d885&User-Agent=Hotstar%3Bin.startv.hotstar%2F25.01.27.5.3788%20%28Android%2F13%29&origin=https://www.hotstar.com&Referer=https://www.hotstar.com/
 #EXTINF:-1 tvg-id="151" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Movies_Now_HD.png" CATCH-UP-FAILED="null" group-title="English",Movies Now HD
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=https://game.playindia.fun/Jtv/key.php?id=153&token=RiYlIZ
