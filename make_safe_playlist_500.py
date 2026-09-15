@@ -23,6 +23,9 @@ def get_robust_session():
 
 def b64url_to_hex(val):
     try:
+        # Check if it's already hex or looks like hex
+        if len(val) in (32, 64) and all(c in "0123456789abcdefABCDEF" for c in val):
+            return val.lower()
         b64 = val.replace("-", "+").replace("_", "/")
         b64 += "=" * ((4 - len(b64) % 4) % 4)
         return base64.b64decode(b64).hex()
@@ -66,17 +69,28 @@ def process_single_channel(i, lines, session):
                     key_url = key_url.replace('"', "")
                 key_res = session.get(key_url, headers={"User-Agent": user_agent}, timeout=3)
                 if key_res.status_code == 200:
-                    key_json = key_res.json()
-                    keys_list = key_json.get("keys", [])
+                    try:
+                        key_json = key_res.json()
+                    except Exception:
+                        key_json = {}
+
+                    keys_list = []
+                    if isinstance(key_json, dict):
+                        keys_list = key_json.get("keys", [])
+                        if not keys_list and "k" in key_json and "kid" in key_json:
+                            keys_list = [key_json]
+                    elif isinstance(key_json, list):
+                        keys_list = key_json
+
                     key_pairs = []
                     for k_item in keys_list:
-                        kid = k_item.get("kid")
-                        k = k_item.get("k")
+                        kid = k_item.get("kid") or k_item.get("key_id")
+                        k = k_item.get("k") or k_item.get("key")
                         if kid and k:
-                            # Convert to hex if base64url, format as key:key_id (k:kid)
-                            k_hex = b64url_to_hex(k)
-                            kid_hex = b64url_to_hex(kid)
+                            k_hex = b64url_to_hex(str(k))
+                            kid_hex = b64url_to_hex(str(kid))
                             key_pairs.append(f"{k_hex}:{kid_hex}")
+                    
                     if key_pairs:
                         formatted_key_str = ",".join(key_pairs)
             except Exception:
@@ -88,10 +102,9 @@ def process_single_channel(i, lines, session):
             channel_lines.append(
                 f"#KODIPROP:inputstream.adaptive.license_key={formatted_key_str}"
             )
-        elif key_url:
-            channel_lines.append(
-                f"#KODIPROP:inputstream.adaptive.license_key={key_url}"
-            )
+        else:
+            # Fallback placeholder if key extraction fails, preventing raw URL injection
+            channel_lines.append("#KODIPROP:inputstream.adaptive.license_key=00000000000000000000000000000000:00000000000000000000000000000000")
 
         channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
 
@@ -179,7 +192,6 @@ def generate_safe_playlist_1000():
         other_priority_indices = []
         regular_indices = []
 
-        # First pass: Categorize lines into Star first, then other priorities, then regular channels up to 800 limit
         for i, line in enumerate(lines):  
             if line.strip().startswith("#EXTINF"):  
                 channel_name = line.split(",")[-1].strip().lower()
@@ -232,7 +244,6 @@ def generate_safe_playlist_1000():
                     processed_count += 1
                     print(f"[*] Progress: {processed_count}/{len(target_indices)} channels processed...", end="\r")
 
-        # Build final playlist starting with #EXTM3U
         new_lines = ["#EXTM3U"]
         
         for idx in target_indices:
@@ -246,11 +257,10 @@ def generate_safe_playlist_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with key:key_id format applied.")
+        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with forced key:key_id format.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-        
