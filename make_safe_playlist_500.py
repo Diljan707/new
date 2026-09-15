@@ -23,9 +23,10 @@ def get_robust_session():
 
 def b64url_to_hex(val):
     try:
-        # Check if it's already hex or looks like hex
+        # Je pehlan hi hex hove taan seedha return karo
         if len(val) in (32, 64) and all(c in "0123456789abcdefABCDEF" for c in val):
             return val.lower()
+        # Base64url to hex conversion
         b64 = val.replace("-", "+").replace("_", "/")
         b64 += "=" * ((4 - len(b64) % 4) % 4)
         return base64.b64decode(b64).hex()
@@ -67,14 +68,18 @@ def process_single_channel(i, lines, session):
             try:
                 if '"' in key_url:
                     key_url = key_url.replace('"', "")
-                key_res = session.get(key_url, headers={"User-Agent": user_agent}, timeout=3)
+                
+                key_headers = {
+                    "User-Agent": user_agent,
+                    "Referer": PLAYLIST_URL,
+                    "Accept": "application/json, text/javascript, */*; q=0.01"
+                }
+                key_res = session.get(key_url, headers=key_headers, timeout=4)
+                
                 if key_res.status_code == 200:
-                    try:
-                        key_json = key_res.json()
-                    except Exception:
-                        key_json = {}
-
+                    key_json = key_res.json()
                     keys_list = []
+                    
                     if isinstance(key_json, dict):
                         keys_list = key_json.get("keys", [])
                         if not keys_list and "k" in key_json and "kid" in key_json:
@@ -102,9 +107,10 @@ def process_single_channel(i, lines, session):
             channel_lines.append(
                 f"#KODIPROP:inputstream.adaptive.license_key={formatted_key_str}"
             )
-        else:
-            # Fallback placeholder if key extraction fails, preventing raw URL injection
-            channel_lines.append("#KODIPROP:inputstream.adaptive.license_key=00000000000000000000000000000000:00000000000000000000000000000000")
+        elif key_url:
+            channel_lines.append(
+                f"#KODIPROP:inputstream.adaptive.license_key={key_url}"
+            )
 
         channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
 
@@ -223,8 +229,7 @@ def generate_safe_playlist_1000():
             for future in as_completed(futures):
                 idx = futures[future]
                 try:
-                    channel_lines = future.result()
-                    channel_results[idx] = channel_lines
+                    channel_results[idx] = future.result()
                 except Exception:
                     fallback_lines = [lines[idx].strip()]
                     raw_url = ""
@@ -245,7 +250,6 @@ def generate_safe_playlist_1000():
                     print(f"[*] Progress: {processed_count}/{len(target_indices)} channels processed...", end="\r")
 
         new_lines = ["#EXTM3U"]
-        
         for idx in target_indices:
             if idx in channel_results:
                 new_lines.extend(channel_results[idx])
@@ -257,10 +261,11 @@ def generate_safe_playlist_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with forced key:key_id format.")
+        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with extracted key:key_id format.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
+    
