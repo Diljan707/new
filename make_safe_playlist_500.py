@@ -13,34 +13,6 @@ MAX_WORKERS = 60     # Safe workers balance for speed & reliability
 counter_lock = threading.Lock()
 processed_count = 0
 
-# --- CUSTOM ADDITIONAL CHANNELS (Placed at the very beginning) ---
-# You can add as many as you want here. They will NOT count towards your 1000 limit.
-CUSTOM_CHANNELS = [
-    """#EXTINF:-1 tvg-id="Nick.in" tvg-name="Nick" tvg-logo="https://i.imgur.com/nick.png" group-title="Kids",Nick
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"","kid":""}]}
-#EXTVLCOPT:http-user-agent=plattv/7.1.5
-http://your-nick-stream-link-here.mpd""",
-
-    """#EXTINF:-1 tvg-id="StarPlus.in" tvg-name="Star Plus" tvg-logo="https://i.imgur.com/starplus.png" group-title="Entertainment",Star Plus
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"","kid":""}]}
-#EXTVLCOPT:http-user-agent=plattv/7.1.5
-http://your-star-stream-link-here.mpd""",
-
-    """#EXTINF:-1 tvg-id="Disney.in" tvg-name="Disney" tvg-logo="https://i.imgur.com/disney.png" group-title="Kids",Disney
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"","kid":""}]}
-#EXTVLCOPT:http-user-agent=plattv/7.1.5
-http://your-disney-stream-link-here.mpd""",
-
-    """#EXTINF:-1 tvg-id="PTCPunjabi.in" tvg-name="PTC Punjabi" tvg-logo="https://i.imgur.com/ptc.png" group-title="Punjabi",PTC Punjabi
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key={"keys":[{"kty":"oct","k":"","kid":""}]}
-#EXTVLCOPT:http-user-agent=plattv/7.1.5
-http://your-ptc-stream-link-here.mpd"""
-]
-
 def get_robust_session():
     session = requests.Session()
     retries = Retry(total=3, backoff_factor=1, status_forcelist=[500, 502, 503, 504])
@@ -170,7 +142,7 @@ def process_single_channel(i, lines, session):
 def generate_safe_playlist_1000():
     global processed_count
     processed_count = 0
-    print(f"[*] Downloading playlist and processing up to {MAX_CHANNELS} channels using {MAX_WORKERS} workers...")
+    print(f"[*] Downloading playlist and processing channels using {MAX_WORKERS} workers...")
     session = get_robust_session()
     try:
         res = session.get(PLAYLIST_URL, headers={"User-Agent": "plattv/7.1.5"})
@@ -180,18 +152,34 @@ def generate_safe_playlist_1000():
 
         lines = res.text.splitlines()  
 
-        target_indices = []  
+        # Keywords to search at the start of channel names
+        priority_keywords = ("nick", "star", "disney", "ptc")
+
+        priority_indices = []
+        regular_indices = []
+
+        # First pass: Categorize lines into priority and regular channels
         for i, line in enumerate(lines):  
             if line.strip().startswith("#EXTINF"):  
-                target_indices.append(i)  
-                if len(target_indices) >= MAX_CHANNELS:  
-                    break  
+                channel_name = line.split(",")[-1].strip().lower()
+                
+                # Check if channel name starts with any of the priority keywords
+                if channel_name.startswith(priority_keywords):
+                    if i not in priority_indices:
+                        priority_indices.append(i)
+                else:
+                    if len(regular_indices) < MAX_CHANNELS:
+                        regular_indices.append(i)
 
+        # Combine them keeping priority channels at the very top, followed by regular ones up to 1000 total or remaining
+        target_indices = priority_indices + regular_indices
+        # Trim or keep within safe bounds if needed, but priority won't eat into the 1000 limit calculation awkwardly
+        
         if not target_indices:  
             print("[-] No channels found in playlist.")  
             return  
 
-        print(f"[*] Found {len(target_indices)} channels from source. Adding custom channels at top...")  
+        print(f"[*] Found {len(priority_indices)} priority channels (Nick/Star/Disney/PTC) and {len(regular_indices)} regular channels. Processing...")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -223,14 +211,9 @@ def generate_safe_playlist_1000():
                     processed_count += 1
                     print(f"[*] Progress: {processed_count}/{len(target_indices)} channels processed...", end="\r")
 
-        # Build final playlist starting with #EXTM3U, then custom channels, then the 1000 fetched channels
+        # Build final playlist starting with #EXTM3U, then priority channels first, then regular ones
         new_lines = ["#EXTM3U"]
         
-        # Inject custom channels first
-        for custom_ch in CUSTOM_CHANNELS:
-            new_lines.extend(custom_ch.strip().splitlines())
-
-        # Inject fetched channels next
         for idx in target_indices:
             if idx in channel_results:
                 new_lines.extend(channel_results[idx])
@@ -242,8 +225,7 @@ def generate_safe_playlist_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        total_saved = len(target_indices) + len(CUSTOM_CHANNELS)
-        print(f"\n\n[+] Success! Total {total_saved} channels saved (1000 from link + {len(CUSTOM_CHANNELS)} custom channels) in '{output_file}'.")
+        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with Priority channels (Nick, Star, Disney, PTC) placed at the top.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
