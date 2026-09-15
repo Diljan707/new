@@ -152,7 +152,7 @@ def generate_safe_playlist_1000():
 
         lines = res.text.splitlines()  
 
-        # Keywords to search at the start of channel names (Added 'zee' here)
+        # Keywords to search anywhere inside channel names
         priority_keywords = ("nick", "star", "disney", "ptc", "zee")
 
         priority_indices = []
@@ -163,8 +163,10 @@ def generate_safe_playlist_1000():
             if line.strip().startswith("#EXTINF"):  
                 channel_name = line.split(",")[-1].strip().lower()
                 
-                # Check if channel name starts with any of the priority keywords
-                if channel_name.startswith(priority_keywords):
+                # Check if ANY of the priority keywords are inside the channel name
+                is_priority = any(kw in channel_name for kw in priority_keywords)
+
+                if is_priority:
                     if i not in priority_indices:
                         priority_indices.append(i)
                 else:
@@ -177,7 +179,7 @@ def generate_safe_playlist_1000():
             print("[-] No channels found in playlist.")  
             return  
 
-        print(f"[*] Found {len(priority_indices)} priority channels (Nick/Star/Disney/PTC/Zee) and {len(regular_indices)} regular channels. Processing...")  
+        print(f"[*] Found {len(priority_indices)} priority channels and {len(regular_indices)} regular channels. Processing...")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -223,10 +225,11 @@ def generate_safe_playlist_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with Priority channels (Nick, Star, Disney, PTC, Zee) placed at the top.")
+        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with all matching Star, Zee, Nick, Disney, and PTC channels placed at the top.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
+            
