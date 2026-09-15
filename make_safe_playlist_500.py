@@ -193,7 +193,6 @@ def generate_priority_playlist():
         if remaining_slots > 0:
             target_indices.extend(regular_indices[:remaining_slots])
         else:
-            # If priority channels exceed MAX_CHANNELS, keep them up to the limit
             target_indices = target_indices[:MAX_CHANNELS]
 
         print(f"[*] Found {len(priority_indices)} priority channels (Nick, Star Sports, PTC Music, Disney, etc.).")
@@ -237,7 +236,8 @@ def generate_priority_playlist():
                 new_lines.append(lines[idx].strip())
                 new_lines.append("http://dummy-link-to-prevent-break")
 
-        output_file = "priority_channels_1000.m3u"  
+        # Restored old file name here
+        output_file = "safe_500_channels.m3u"  
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
@@ -248,4 +248,4 @@ def generate_priority_playlist():
 
 if __name__ == "__main__":
     generate_priority_playlist()
-    
+            
