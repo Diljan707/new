@@ -56,7 +56,7 @@ def process_single_channel(i, lines, session):
                 if '"' in key_url:
                     key_url = key_url.replace('"', "")
                 
-                # Proper headers to avoid 404 / Not allowed from server/cloudflare
+                # Added proper Referer and Accept headers to bypass 404 block
                 key_headers = {
                     "User-Agent": user_agent,
                     "Referer": PLAYLIST_URL,
@@ -66,14 +66,14 @@ def process_single_channel(i, lines, session):
                 
                 if key_res.status_code == 200:
                     key_json = key_res.json()
-                    # JSON vicho keys extract karke hex_key:hex_key_id format banana
+                    # Extract keys and convert into kid:key format
                     if "keys" in key_json and len(key_json["keys"]) > 0:
                         key_entries = []
                         for k_item in key_json["keys"]:
                             if "k" in k_item and "kid" in k_item:
-                                hex_k = k_item["k"]
-                                hex_kid = k_item["kid"]
-                                key_entries.append(f"{hex_k}:{hex_kid}")
+                                k_val = k_item["k"]
+                                kid_val = k_item["kid"]
+                                key_entries.append(f"{kid_val}:{k_val}")
                         if key_entries:
                             formatted_key_line = ",".join(key_entries)
             except Exception:
@@ -82,7 +82,7 @@ def process_single_channel(i, lines, session):
         channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
         
         if formatted_key_line:
-            # hex_key:hex_key_id format pass karna
+            # Passes clean kid:key hex format instead of full JSON
             channel_lines.append(
                 f"#KODIPROP:inputstream.adaptive.license_key={formatted_key_line}"
             )
@@ -240,11 +240,11 @@ def generate_safe_playlist_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with extracted keys in hex format.")
+        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with clean hex key format.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-        
+                       
