@@ -1,4 +1,5 @@
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import base64
 import json
 from requests.adapters import HTTPAdapter
 import requests
@@ -7,7 +8,7 @@ import threading
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 HEADERS = {"User-Agent": "plattv/7.1.5"}
-MAX_CHANNELS = 800   # Updated to exact 800 channels limit
+MAX_CHANNELS = 800   # Exact 800 channels limit
 MAX_WORKERS = 60     # Safe workers balance for speed & reliability
 
 counter_lock = threading.Lock()
@@ -19,6 +20,14 @@ def get_robust_session():
     session.mount("https://", HTTPAdapter(max_retries=retries))
     session.mount("http://", HTTPAdapter(max_retries=retries))
     return session
+
+def b64url_to_hex(val):
+    try:
+        b64 = val.replace("-", "+").replace("_", "/")
+        b64 += "=" * ((4 - len(b64) % 4) % 4)
+        return base64.b64decode(b64).hex()
+    except Exception:
+        return val
 
 def process_single_channel(i, lines, session):
     line = lines[i].strip()
@@ -50,7 +59,7 @@ def process_single_channel(i, lines, session):
             if sub_f.startswith("http") and ".mpd" in sub_f:
                 mpd_line = sub_f
 
-        embedded_key_data = None
+        formatted_key_str = None
         if key_url:
             try:
                 if '"' in key_url:
@@ -58,15 +67,26 @@ def process_single_channel(i, lines, session):
                 key_res = session.get(key_url, headers={"User-Agent": user_agent}, timeout=3)
                 if key_res.status_code == 200:
                     key_json = key_res.json()
-                    embedded_key_data = json.dumps(key_json)
+                    keys_list = key_json.get("keys", [])
+                    key_pairs = []
+                    for k_item in keys_list:
+                        kid = k_item.get("kid")
+                        k = k_item.get("k")
+                        if kid and k:
+                            # Convert to hex if base64url, format as key:key_id (k:kid)
+                            k_hex = b64url_to_hex(k)
+                            kid_hex = b64url_to_hex(kid)
+                            key_pairs.append(f"{k_hex}:{kid_hex}")
+                    if key_pairs:
+                        formatted_key_str = ",".join(key_pairs)
             except Exception:
                 pass
 
         channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
         
-        if embedded_key_data:
+        if formatted_key_str:
             channel_lines.append(
-                f"#KODIPROP:inputstream.adaptive.license_key={embedded_key_data}"
+                f"#KODIPROP:inputstream.adaptive.license_key={formatted_key_str}"
             )
         elif key_url:
             channel_lines.append(
@@ -174,7 +194,6 @@ def generate_safe_playlist_1000():
                     if len(regular_indices) < MAX_CHANNELS:
                         regular_indices.append(i)
 
-        # Star channels come absolute first, followed by other priorities, then regular channels
         target_indices = star_indices + other_priority_indices + regular_indices
         
         if not target_indices:  
@@ -227,11 +246,11 @@ def generate_safe_playlist_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with Star channels at the very top, followed by other priority and regular channels.")
+        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with key:key_id format applied.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-    
+        
