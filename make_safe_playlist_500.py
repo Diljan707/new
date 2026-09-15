@@ -7,8 +7,16 @@ import threading
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 HEADERS = {"User-Agent": "plattv/7.1.5"}
-MAX_CHANNELS = 1000  # Exact 1000 channels limit
+MAX_CHANNELS = 1000  # Total channels limit
 MAX_WORKERS = 60     # Safe workers balance for speed & reliability
+
+# List of additional/priority channels to place at the very top
+PRIORITY_KEYWORDS = [
+    "nick", 
+    "star sports", 
+    "ptc music", 
+    "disney"
+]
 
 counter_lock = threading.Lock()
 processed_count = 0
@@ -139,10 +147,10 @@ def process_single_channel(i, lines, session):
 
     return channel_lines
 
-def generate_safe_playlist_1000():
+def generate_priority_playlist():
     global processed_count
     processed_count = 0
-    print(f"[*] Downloading playlist and processing up to {MAX_CHANNELS} channels using {MAX_WORKERS} workers...")
+    print(f"[*] Downloading playlist and filtering priority channels + up to {MAX_CHANNELS} total channels...")
     session = get_robust_session()
     try:
         res = session.get(PLAYLIST_URL, headers={"User-Agent": "plattv/7.1.5"})
@@ -152,18 +160,44 @@ def generate_safe_playlist_1000():
 
         lines = res.text.splitlines()  
 
-        target_indices = []  
-        for i, line in enumerate(lines):  
-            if line.strip().startswith("#EXTINF"):  
-                target_indices.append(i)  
-                if len(target_indices) >= MAX_CHANNELS:  
-                    break  
+        all_extinf_indices = []
+        for i, line in enumerate(lines):
+            if line.strip().startswith("#EXTINF"):
+                all_extinf_indices.append(i)
 
-        if not target_indices:  
-            print("[-] No channels found in playlist.")  
-            return  
+        if not all_extinf_indices:
+            print("[-] No channels found in playlist.")
+            return
 
-        print(f"[*] Found {len(target_indices)} channels. Launching multithreading with 100% count guarantee...\n")  
+        # Separate priority channels and regular channels
+        priority_indices = []
+        regular_indices = []
+
+        for idx in all_extinf_indices:
+            channel_title = lines[idx].lower()
+            is_priority = False
+            for kw in PRIORITY_KEYWORDS:
+                if kw in channel_title:
+                    is_priority = True
+                    break
+            
+            if is_priority:
+                priority_indices.append(idx)
+            else:
+                regular_indices.append(idx)
+
+        # Build target indices: Priority channels first, then fill up to MAX_CHANNELS using regular channels
+        target_indices = priority_indices.copy()
+        remaining_slots = MAX_CHANNELS - len(target_indices)
+        
+        if remaining_slots > 0:
+            target_indices.extend(regular_indices[:remaining_slots])
+        else:
+            # If priority channels exceed MAX_CHANNELS, keep them up to the limit
+            target_indices = target_indices[:MAX_CHANNELS]
+
+        print(f"[*] Found {len(priority_indices)} priority channels (Nick, Star Sports, PTC Music, Disney, etc.).")
+        print(f"[*] Total channels to process: {len(target_indices)}. Launching multithreading...\n")
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -203,14 +237,15 @@ def generate_safe_playlist_1000():
                 new_lines.append(lines[idx].strip())
                 new_lines.append("http://dummy-link-to-prevent-break")
 
-        output_file = "safe_500_channels.m3u"  
+        output_file = "priority_channels_1000.m3u"  
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! Exactly {len(target_indices)} channels saved as '{output_file}'.")
+        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with priority channels at the top.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
-    generate_safe_playlist_1000()
+    generate_priority_playlist()
+    
