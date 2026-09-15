@@ -6,11 +6,11 @@ from urllib3.util.retry import Retry
 import threading
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
-HEADERS = {"User-Agent": "plattv/7.1.5"}
+TARGET_USER_AGENT = "Denver1760"  # Standard user-agent
 MAX_CHANNELS = 1000  # Total channels limit
 MAX_WORKERS = 60     # Safe workers balance for speed & reliability
 
-# List of additional/priority channels to place at the very top
+# Priority channels to place at the very top
 PRIORITY_KEYWORDS = [
     "nick", 
     "star sports", 
@@ -43,94 +43,100 @@ def process_single_channel(i, lines, session):
     channel_lines = [extinf_line]
 
     try:
+        # 1. Extract License Key (Supports both standard & JHS type=jhs keys)
         key_url = None
         for b in range(max(0, i - 3), i):
             sub_b = lines[b].strip()
             if "inputstream.adaptive.license_key=" in sub_b:
                 key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
 
-        user_agent = "plattv/7.1.5"
-        mpd_line = None
-        for f in range(i + 1, min(len(lines), i + 4)):
-            sub_f = lines[f].strip()
-            if sub_f.startswith("#EXTVLCOPT:http-user-agent="):
-                user_agent = sub_f.split("=")[1].strip()
-            if sub_f.startswith("http") and ".mpd" in sub_f:
-                mpd_line = sub_f
-
-        embedded_key_data = None
+        resolved_key_data = None
         if key_url:
             try:
                 if '"' in key_url:
                     key_url = key_url.replace('"', "")
-                key_res = session.get(key_url, headers={"User-Agent": user_agent}, timeout=3)
-                if key_res.status_code == 200:
-                    key_json = key_res.json()
-                    embedded_key_data = json.dumps(key_json)
+                k_res = session.get(key_url, headers={"User-Agent": TARGET_USER_AGENT}, allow_redirects=True, timeout=3)
+                if k_res.status_code == 200:
+                    try:
+                        key_json = k_res.json()
+                        resolved_key_data = json.dumps(key_json)
+                    except Exception:
+                        resolved_key_data = k_res.url
+                else:
+                    resolved_key_data = key_url
             except Exception:
-                pass
+                resolved_key_data = key_url
 
         channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
         
-        if embedded_key_data:
-            channel_lines.append(
-                f"#KODIPROP:inputstream.adaptive.license_key={embedded_key_data}"
-            )
-        elif key_url:
-            channel_lines.append(
-                f"#KODIPROP:inputstream.adaptive.license_key={key_url}"
-            )
+        if resolved_key_data:
+            channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={resolved_key_data}")
 
-        channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
+        # Check for custom User-Agent in source lines if available, otherwise use target
+        channel_user_agent = TARGET_USER_AGENT
+        for f in range(i + 1, min(len(lines), i + 4)):
+            sub_f = lines[f].strip()
+            if sub_f.startswith("#EXTVLCOPT:http-user-agent="):
+                channel_user_agent = sub_f.split("=")[1].strip()
+
+        channel_lines.append(f"#EXTVLCOPT:http-user-agent={channel_user_agent}")
+
+        # 2. Extract MPD or Stream line (Handles both JTV & JHS/Hotstar streams with cookies)
+        mpd_line = None
+        for f in range(i + 1, min(len(lines), i + 4)):
+            sub_f = lines[f].strip()
+            if sub_f.startswith("http") and (".mpd" in sub_f or "hotstar" in sub_f or "sources" in sub_f):
+                mpd_line = sub_f
 
         url_added = False
         if mpd_line:
             try:
-                channel_headers = {"User-Agent": user_agent}
-                r = session.get(
-                    mpd_line, headers=channel_headers, allow_redirects=False, timeout=3
-                )
-
-                if r.status_code == 403 and raw_stream_line:
-                    channel_lines.append(raw_stream_line)
+                channel_headers = {"User-Agent": channel_user_agent}
+                r = session.get(mpd_line, headers=channel_headers, allow_redirects=True, timeout=3)
+                
+                real_url = r.url if r.status_code in [200, 301, 302, 307, 308] else mpd_line
+                clean_url = real_url.strip().split()[0]
+                if clean_url.endswith("~"):
+                    clean_url = clean_url[:-1]
+                
+                # Intelligent Cookie & Token extractor for both JTV and JHS (Hotstar / hdntl / hdnea)
+                if "hdntl=" in clean_url:
+                    try:
+                        parts = clean_url.split("hdntl=")
+                        if len(parts) > 1:
+                            hdntl_val = parts[1].split("&")[0]
+                            channel_lines.append(f'#EXTHTTP:{{"cookie":"hdntl={hdntl_val}"}}')
+                    except Exception:
+                        pass
+                    channel_lines.append(clean_url)
+                    url_added = True
+                elif "__hdnea__=" in clean_url:
+                    try:
+                        parts = clean_url.split("__hdnea__=")
+                        if len(parts) > 1:
+                            hdnea_val = parts[1].split("&")[0]
+                            channel_lines.append(f'#EXTHTTP:{{"cookie":"__hdnea__={hdnea_val}"}}')
+                    except Exception:
+                        pass
+                    channel_lines.append(clean_url)
+                    url_added = True
+                elif "%7Ccookie=" in clean_url:
+                    parts = clean_url.split("%7Ccookie=")
+                    base_url = parts[0]
+                    cookie_val = parts[1].split("&")[0] if "&" in parts[1] else parts[1]
+                    channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}"}}')
+                    channel_lines.append(base_url)
+                    url_added = True
+                elif "|cookie=" in clean_url:
+                    parts = clean_url.split("|cookie=")
+                    base_url = parts[0]
+                    cookie_val = parts[1].split("&")[0] if "&" in parts[1] else parts[1]
+                    channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}"}}')
+                    channel_lines.append(base_url)
                     url_added = True
                 else:
-                    real_url = (  
-                        r.headers.get("Location")  
-                        if r.status_code in [301, 302, 303, 307, 308]  
-                        else mpd_line  
-                    )  
-                    clean_url = real_url.strip().split()[0]  
-                    if clean_url.endswith("~"):  
-                        clean_url = clean_url[:-1]  
-                    
-                    if "__hdnea__=" in clean_url:
-                        try:
-                            parts = clean_url.split("__hdnea__=")
-                            if len(parts) > 1:
-                                hdnea_val = parts[1].split("&")[0]
-                                channel_lines.append(f'#EXTHTTP:{{"cookie":"__hdnea__={hdnea_val}"}}')
-                        except Exception:
-                            pass
-                        channel_lines.append(clean_url)
-                        url_added = True
-                    elif "%7Ccookie=" in clean_url:
-                        parts = clean_url.split("%7Ccookie=")
-                        base_url = parts[0]
-                        cookie_val = parts[1].split("&")[0] if "&" in parts[1] else parts[1]
-                        channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}"}}')
-                        channel_lines.append(base_url)
-                        url_added = True
-                    elif "|cookie=" in clean_url:
-                        parts = clean_url.split("|cookie=")
-                        base_url = parts[0]
-                        cookie_val = parts[1].split("&")[0] if "&" in parts[1] else parts[1]
-                        channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}"}}')
-                        channel_lines.append(base_url)
-                        url_added = True
-                    else:
-                        channel_lines.append(clean_url)
-                        url_added = True
+                    channel_lines.append(clean_url)
+                    url_added = True
             except Exception:
                 pass
 
@@ -153,7 +159,7 @@ def generate_priority_playlist():
     print(f"[*] Downloading playlist and filtering priority channels + up to {MAX_CHANNELS} total channels...")
     session = get_robust_session()
     try:
-        res = session.get(PLAYLIST_URL, headers={"User-Agent": "plattv/7.1.5"})
+        res = session.get(PLAYLIST_URL, headers={"User-Agent": TARGET_USER_AGENT})
         if res.status_code != 200:
             print("[-] Failed to fetch playlist.")
             return
@@ -169,7 +175,6 @@ def generate_priority_playlist():
             print("[-] No channels found in playlist.")
             return
 
-        # Separate priority channels and regular channels
         priority_indices = []
         regular_indices = []
 
@@ -186,7 +191,6 @@ def generate_priority_playlist():
             else:
                 regular_indices.append(idx)
 
-        # Build target indices: Priority channels first, then fill up to MAX_CHANNELS using regular channels
         target_indices = priority_indices.copy()
         remaining_slots = MAX_CHANNELS - len(target_indices)
         
@@ -195,8 +199,8 @@ def generate_priority_playlist():
         else:
             target_indices = target_indices[:MAX_CHANNELS]
 
-        print(f"[*] Found {len(priority_indices)} priority channels (Nick, Star Sports, PTC Music, Disney, etc.).")
-        print(f"[*] Total channels to process: {len(target_indices)}. Launching multithreading...\n")
+        print(f"[*] Found {len(priority_indices)} priority channels. Total channels to process: {len(target_indices)}.")
+        print(f"[*] Launching multithreading with dual-type support (JTV + JHS)...\n")
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -234,18 +238,16 @@ def generate_priority_playlist():
                 new_lines.extend(channel_results[idx])
             else:
                 new_lines.append(lines[idx].strip())
-                new_lines.append("http://dummy-link-to-prevent-break")
+                new_lines.append("http://dummy-link-hor-prevent-break")
 
-        # Restored old file name here
         output_file = "safe_500_channels.m3u"  
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with priority channels at the top.")
+        print(f"\n\n[+] Success! Playlist saved as '{output_file}' supporting both JTV and JHS types.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_priority_playlist()
-            
