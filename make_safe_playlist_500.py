@@ -8,6 +8,7 @@ import threading
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 MAX_CHANNELS = 800   # Exact 800 channels limit
 MAX_WORKERS = 60     # Super fast processing workers
+DEFAULT_USER_AGENT = "Denver1769"  # Explicitly set to Denver1769
 
 counter_lock = threading.Lock()
 processed_count = 0
@@ -40,7 +41,7 @@ def process_single_channel(i, lines, session):
             if "inputstream.adaptive.license_key=" in sub_b:
                 key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
 
-        user_agent = "plattv/7.1.5"
+        user_agent = DEFAULT_USER_AGENT
         mpd_line = None
         for f in range(i + 1, min(len(lines), i + 4)):
             sub_f = lines[f].strip()
@@ -64,7 +65,6 @@ def process_single_channel(i, lines, session):
                 if key_res.status_code == 200:
                     key_json = key_res.json()
                     
-                    # Extracting keys with 'kty', 'kid', and 'k' to prevent DRM error
                     raw_keys = []
                     if "base64" in key_json and "keys" in key_json["base64"]:
                         raw_keys = key_json["base64"]["keys"]
@@ -169,7 +169,7 @@ def generate_safe_playlist_1000():
     print(f"[*] Downloading playlist and processing channels using {MAX_WORKERS} workers...")
     session = get_robust_session()
     try:
-        res = session.get(PLAYLIST_URL, headers={"User-Agent": "plattv/7.1.5"})
+        res = session.get(PLAYLIST_URL, headers={"User-Agent": DEFAULT_USER_AGENT})
         if res.status_code != 200:
             print("[-] Failed to fetch playlist.")
             return
@@ -246,11 +246,11 @@ def generate_safe_playlist_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with fixed DRM keys format.")
+        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with Denver1769 user agent.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-            
+    
