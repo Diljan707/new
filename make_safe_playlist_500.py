@@ -222,7 +222,7 @@ def generate_safe_playlist_1000():
                         fallback_lines.append("http://dummy-link-to-prevent-break")
                     channel_results[idx] = fallback_lines
 
-                with counter_lock:
+                with counter_lock: 
                     processed_count += 1
                     print(f"[*] Progress: {processed_count}/{len(target_indices)} channels processed...", end="\r")
 
@@ -245,4 +245,9 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-                
+
+
+
+
+
+
