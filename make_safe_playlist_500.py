@@ -63,8 +63,18 @@ def process_single_channel(i, lines, session):
                 key_res = session.get(key_url, headers=key_headers, timeout=3)
                 if key_res.status_code == 200:
                     key_json = key_res.json()
-                    # Extracting keys from JSON and formatting as standard JSON string
-                    embedded_key_data = json.dumps(key_json)
+                    
+                    # Extracting only necessary keys to avoid heavy parsing delay
+                    raw_keys = []
+                    if "base64" in key_json and "keys" in key_json["base64"]:
+                        raw_keys = key_json["base64"]["keys"]
+                    elif "keys" in key_json:
+                        raw_keys = key_json["keys"]
+                    
+                    if raw_keys:
+                        cleaned_keys = [{"kid": k.get("kid"), "k": k.get("k")} for k in raw_keys if "kid" in k and "k" in k]
+                        minimal_json = {"keys": cleaned_keys}
+                        embedded_key_data = json.dumps(minimal_json, separators=(',', ':'))
             except Exception:
                 pass
 
@@ -228,11 +238,11 @@ def generate_safe_playlist_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with extracted JSON key pairs.")
+        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with optimized lightweight key format.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-    
+                
