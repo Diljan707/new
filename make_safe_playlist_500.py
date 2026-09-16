@@ -88,18 +88,12 @@ def process_single_channel(i, lines, session):
 
         channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
         
+        # Embed the keys directly so player doesn't need to fetch direct key URL at runtime
         if embedded_key_data:
             channel_lines.append(
                 f"#KODIPROP:inputstream.adaptive.license_key={embedded_key_data}"
             )
-        elif key_url:
-            channel_lines.append(
-                f"#KODIPROP:inputstream.adaptive.license_key={key_url}"
-            )
 
-        # Anti-Buffering Caching Options added directly inside playlist
-        channel_lines.append("#EXTVLCOPT:network-caching=6000")
-        channel_lines.append("#EXTVLCOPT:live-caching=6000")
         channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
 
         url_added = False
@@ -250,11 +244,11 @@ def generate_safe_playlist_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with built-in anti-buffering cache settings.")
+        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with pre-fetched embedded keys (no direct key URLs).")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-        
+                
