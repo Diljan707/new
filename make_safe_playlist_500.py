@@ -88,7 +88,6 @@ def process_single_channel(i, lines, session):
 
         channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
         
-        # Embed the keys directly so player doesn't need to fetch direct key URL at runtime
         if embedded_key_data:
             channel_lines.append(
                 f"#KODIPROP:inputstream.adaptive.license_key={embedded_key_data}"
@@ -117,33 +116,9 @@ def process_single_channel(i, lines, session):
                     if clean_url.endswith("~"):  
                         clean_url = clean_url[:-1]  
                     
-                    if "__hdnea__=" in clean_url:
-                        try:
-                            parts = clean_url.split("__hdnea__=")
-                            if len(parts) > 1:
-                                hdnea_val = parts[1].split("&")[0]
-                                channel_lines.append(f'#EXTHTTP:{{"cookie":"__hdnea__={hdnea_val}"}}')
-                        except Exception:
-                            pass
-                        channel_lines.append(clean_url)
-                        url_added = True
-                    elif "%7Ccookie=" in clean_url:
-                        parts = clean_url.split("%7Ccookie=")
-                        base_url = parts[0]
-                        cookie_val = parts[1].split("&")[0] if "&" in parts[1] else parts[1]
-                        channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}"}}')
-                        channel_lines.append(base_url)
-                        url_added = True
-                    elif "|cookie=" in clean_url:
-                        parts = clean_url.split("|cookie=")
-                        base_url = parts[0]
-                        cookie_val = parts[1].split("&")[0] if "&" in parts[1] else parts[1]
-                        channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}"}}')
-                        channel_lines.append(base_url)
-                        url_added = True
-                    else:
-                        channel_lines.append(clean_url)
-                        url_added = True
+                    # Keep full clean URL with tokens intact for ExoPlayer compatibility
+                    channel_lines.append(clean_url)
+                    url_added = True
             except Exception:
                 pass
 
@@ -244,11 +219,11 @@ def generate_safe_playlist_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with pre-fetched embedded keys (no direct key URLs).")
+        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with token-in-URL compatibility for OTT Navigator.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-                
+    
