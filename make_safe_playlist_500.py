@@ -64,7 +64,7 @@ def process_single_channel(i, lines, session):
                 if key_res.status_code == 200:
                     key_json = key_res.json()
                     
-                    # Extracting only necessary keys to avoid heavy parsing delay
+                    # Extracting keys with 'kty', 'kid', and 'k' to prevent DRM error
                     raw_keys = []
                     if "base64" in key_json and "keys" in key_json["base64"]:
                         raw_keys = key_json["base64"]["keys"]
@@ -72,9 +72,17 @@ def process_single_channel(i, lines, session):
                         raw_keys = key_json["keys"]
                     
                     if raw_keys:
-                        cleaned_keys = [{"kid": k.get("kid"), "k": k.get("k")} for k in raw_keys if "kid" in k and "k" in k]
-                        minimal_json = {"keys": cleaned_keys}
-                        embedded_key_data = json.dumps(minimal_json, separators=(',', ':'))
+                        cleaned_keys = []
+                        for k in raw_keys:
+                            if "kid" in k and "k" in k:
+                                cleaned_keys.append({
+                                    "kty": k.get("kty", "oct"),
+                                    "kid": k.get("kid"),
+                                    "k": k.get("k")
+                                })
+                        if cleaned_keys:
+                            minimal_json = {"keys": cleaned_keys}
+                            embedded_key_data = json.dumps(minimal_json, separators=(',', ':'))
             except Exception:
                 pass
 
@@ -222,7 +230,7 @@ def generate_safe_playlist_1000():
                         fallback_lines.append("http://dummy-link-to-prevent-break")
                     channel_results[idx] = fallback_lines
 
-                with counter_lock: 
+                with counter_lock:
                     processed_count += 1
                     print(f"[*] Progress: {processed_count}/{len(target_indices)} channels processed...", end="\r")
 
@@ -238,16 +246,11 @@ def generate_safe_playlist_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with optimized lightweight key format.")
+        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with fixed DRM keys format.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-
-
-
-
-
-
+            
