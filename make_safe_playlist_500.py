@@ -239,7 +239,8 @@ def generate_safe_playlist_1000():
 
         new_lines = ["#EXTM3U"]
         for idx in target_indices:
-            if idx in channel_listed := channel_results.get(idx):
+            channel_listed = channel_results.get(idx)
+            if channel_listed:
                 new_lines.extend(channel_listed)
             else:
                 new_lines.append(lines[idx].strip())
@@ -256,4 +257,4 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-            
+        
