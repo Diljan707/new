@@ -8,7 +8,7 @@ import threading
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 MAX_CHANNELS = 800   # Exact 800 channels limit
 MAX_WORKERS = 60     # Super fast processing workers
-DEFAULT_USER_AGENT = "Denver1769"  # Explicitly set to Denver1769
+DEFAULT_USER_AGENT = "Denver1769"
 
 counter_lock = threading.Lock()
 processed_count = 0
@@ -97,6 +97,9 @@ def process_single_channel(i, lines, session):
                 f"#KODIPROP:inputstream.adaptive.license_key={key_url}"
             )
 
+        # Anti-Buffering Caching Options added directly inside playlist
+        channel_lines.append("#EXTVLCOPT:network-caching=6000")
+        channel_lines.append("#EXTVLCOPT:live-caching=6000")
         channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
 
         url_added = False
@@ -236,8 +239,8 @@ def generate_safe_playlist_1000():
 
         new_lines = ["#EXTM3U"]
         for idx in target_indices:
-            if idx in channel_results:
-                new_lines.extend(channel_results[idx])
+            if idx in channel_listed := channel_results.get(idx):
+                new_lines.extend(channel_listed)
             else:
                 new_lines.append(lines[idx].strip())
                 new_lines.append("http://dummy-link-to-prevent-break")
@@ -246,11 +249,11 @@ def generate_safe_playlist_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with Denver1769 user agent.")
+        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with built-in anti-buffering cache settings.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-    
+            
