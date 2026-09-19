@@ -1,5 +1,4 @@
 from concurrent.futures import ThreadPoolExecutor, as_completed
-import json
 from requests.adapters import HTTPAdapter
 import requests
 from urllib3.util.retry import Retry
@@ -50,7 +49,8 @@ def process_single_channel(i, lines, session):
             if sub_f.startswith("http") and ".mpd" in sub_f:
                 mpd_line = sub_f
 
-        embedded_key_data = None
+        # Extract direct kid:key format like the working playlist example
+        direct_clearkey = None
         if key_url:
             try:
                 if '"' in key_url:
@@ -64,7 +64,6 @@ def process_single_channel(i, lines, session):
                 key_res = session.get(key_url, headers=key_headers, timeout=3)
                 if key_res.status_code == 200:
                     key_json = key_res.json()
-                    
                     raw_keys = []
                     if "base64" in key_json and "keys" in key_json["base64"]:
                         raw_keys = key_json["base64"]["keys"]
@@ -72,26 +71,25 @@ def process_single_channel(i, lines, session):
                         raw_keys = key_json["keys"]
                     
                     if raw_keys:
-                        cleaned_keys = []
+                        # Convert base64 or raw keys to standard hex/direct format if needed, 
+                        # or extract standard kid and k pairs
+                        k_list = []
                         for k in raw_keys:
                             if "kid" in k and "k" in k:
-                                cleaned_keys.append({
-                                    "kty": k.get("kty", "oct"),
-                                    "kid": k.get("kid"),
-                                    "k": k.get("k")
-                                })
-                        if cleaned_keys:
-                            minimal_json = {"keys": cleaned_keys}
-                            embedded_key_data = json.dumps(minimal_json, separators=(',', ':'))
+                                kid_val = k.get("kid")
+                                k_val = k.get("k")
+                                k_list.append(f"{kid_val}:{k_val}")
+                        if k_list:
+                            direct_clearkey = ",".join(k_list)
             except Exception:
                 pass
 
         channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
         
-        if embedded_key_data:
-            channel_lines.append(
-                f"#KODIPROP:inputstream.adaptive.license_key={embedded_key_data}"
-            )
+        if direct_clearkey:
+            channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={direct_clearkey}")
+        elif key_url:
+            channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
 
         channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
 
@@ -116,7 +114,6 @@ def process_single_channel(i, lines, session):
                     if clean_url.endswith("~"):  
                         clean_url = clean_url[:-1]  
                     
-                    # Keep full clean URL with tokens intact for ExoPlayer compatibility
                     channel_lines.append(clean_url)
                     url_added = True
             except Exception:
@@ -219,11 +216,11 @@ def generate_safe_playlist_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with token-in-URL compatibility for OTT Navigator.")
+        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with direct clear key formatting.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-    
+                    
