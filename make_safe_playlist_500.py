@@ -83,10 +83,14 @@ def process_single_channel(i, lines, session):
                                     keys_list.append(k_val)
                         
                         if kids_list and keys_list:
-                            # Bina kisi comma ya space de saari kids te keys nu merge karna
                             joined_kids = "".join(kids_list)
                             joined_keys = "".join(keys_list)
-                            direct_clearkey = f"{joined_kids}:{joined_keys}"
+                            
+                            # Colon (:) nu chhad ke baki saare signs, hyphen (-), underscore (_) remove karna
+                            clean_kids = "".join(ch for ch in joined_kids if ch.isalnum())
+                            clean_keys = "".join(ch for ch in joined_keys if ch.isalnum())
+                            
+                            direct_clearkey = f"{clean_kids}:{clean_keys}"
             except Exception:
                 pass
 
@@ -223,7 +227,7 @@ def generate_safe_playlist_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with fully merged single format.")
+        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with fully cleaned & merged format.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
