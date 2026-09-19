@@ -70,8 +70,7 @@ def process_single_channel(i, lines, session):
                         raw_keys = key_json["keys"]
                     
                     if raw_keys:
-                        kids_list = []
-                        keys_list = []
+                        pair_list = []
                         seen_kids = set()
                         for k in raw_keys:
                             if "kid" in k and "k" in k:
@@ -79,18 +78,11 @@ def process_single_channel(i, lines, session):
                                 k_val = k.get("k")
                                 if kid_val not in seen_kids:
                                     seen_kids.add(kid_val)
-                                    kids_list.append(kid_val)
-                                    keys_list.append(k_val)
+                                    pair_list.append(f"{kid_val}:{k_val}")
                         
-                        if kids_list and keys_list:
-                            joined_kids = "".join(kids_list)
-                            joined_keys = "".join(keys_list)
-                            
-                            # Colon (:) nu chhad ke baki saare signs, hyphen (-), underscore (_) remove karna
-                            clean_kids = "".join(ch for ch in joined_kids if ch.isalnum())
-                            clean_keys = "".join(ch for ch in joined_keys if ch.isalnum())
-                            
-                            direct_clearkey = f"{clean_kids}:{clean_keys}"
+                        if pair_list:
+                            # Purana wakra wakhra pair format with commas
+                            direct_clearkey = ",".join(pair_list)
             except Exception:
                 pass
 
@@ -227,11 +219,10 @@ def generate_safe_playlist_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with fully cleaned & merged format.")
+        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with original separate key pairs format.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-            
