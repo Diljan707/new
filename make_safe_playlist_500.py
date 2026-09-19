@@ -70,7 +70,8 @@ def process_single_channel(i, lines, session):
                         raw_keys = key_json["keys"]
                     
                     if raw_keys:
-                        k_list = []
+                        kids_list = []
+                        keys_list = []
                         seen_kids = set()
                         for k in raw_keys:
                             if "kid" in k and "k" in k:
@@ -78,9 +79,14 @@ def process_single_channel(i, lines, session):
                                 k_val = k.get("k")
                                 if kid_val not in seen_kids:
                                     seen_kids.add(kid_val)
-                                    k_list.append(f"{kid_val}:{k_val}")
-                        if k_list:
-                            direct_clearkey = ",".join(k_list)
+                                    kids_list.append(kid_val)
+                                    keys_list.append(k_val)
+                        
+                        if kids_list and keys_list:
+                            # Bina kisi comma ya space de saari kids te keys nu merge karna
+                            joined_kids = "".join(kids_list)
+                            joined_keys = "".join(keys_list)
+                            direct_clearkey = f"{joined_kids}:{joined_keys}"
             except Exception:
                 pass
 
@@ -217,10 +223,11 @@ def generate_safe_playlist_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with exact desired format.")
+        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with fully merged single format.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
+            
