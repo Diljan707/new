@@ -7,7 +7,7 @@ import threading
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
 MAX_CHANNELS = 800   # Exact 800 channels limit
 MAX_WORKERS = 60     # Super fast processing workers
-DEFAULT_USER_AGENT = "Denver1769"
+DEFAULT_USER_AGENT = "plaYtv/7.1.5"
 
 counter_lock = threading.Lock()
 processed_count = 0
@@ -49,7 +49,6 @@ def process_single_channel(i, lines, session):
             if sub_f.startswith("http") and ".mpd" in sub_f:
                 mpd_line = sub_f
 
-        # Extract direct kid:key format like the working playlist example
         direct_clearkey = None
         if key_url:
             try:
@@ -58,7 +57,7 @@ def process_single_channel(i, lines, session):
                 
                 key_headers = {
                     "User-Agent": user_agent,
-                    "Referer": PLAYLIST_URL,
+                    "Referer": "https://www.jiotv.com/",
                     "Accept": "application/json, text/javascript, */*; q=0.01"
                 }
                 key_res = session.get(key_url, headers=key_headers, timeout=3)
@@ -71,14 +70,15 @@ def process_single_channel(i, lines, session):
                         raw_keys = key_json["keys"]
                     
                     if raw_keys:
-                        # Convert base64 or raw keys to standard hex/direct format if needed, 
-                        # or extract standard kid and k pairs
                         k_list = []
+                        seen_kids = set()
                         for k in raw_keys:
                             if "kid" in k and "k" in k:
                                 kid_val = k.get("kid")
                                 k_val = k.get("k")
-                                k_list.append(f"{kid_val}:{k_val}")
+                                if kid_val not in seen_kids:
+                                    seen_kids.add(kid_val)
+                                    k_list.append(f"{kid_val}:{k_val}")
                         if k_list:
                             direct_clearkey = ",".join(k_list)
             except Exception:
@@ -92,6 +92,7 @@ def process_single_channel(i, lines, session):
             channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
 
         channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
+        channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
 
         url_added = False
         if mpd_line:
@@ -216,11 +217,11 @@ def generate_safe_playlist_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with direct clear key formatting.")
+        print(f"\n\n[+] Success! Playlist saved as '{output_file}' with exact desired format.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-                    
+        
