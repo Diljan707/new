@@ -1,4 +1,4 @@
-From concurrent.futures import ThreadPoolExecutor, as_completed
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
 from requests.adapters import HTTPAdapter
 import requests
