@@ -21,6 +21,7 @@ def get_robust_session():
     return session
 
 def b64_to_hex(b64_str):
+    # Base64 string nu hex vich convert karn di function
     padding = 4 - (len(b64_str) % 4)
     if padding < 4:
         b64_str += '=' * padding
@@ -69,6 +70,7 @@ def process_single_channel(i, lines, session):
                 if key_res.status_code == 200:
                     key_json = key_res.json()
                     
+                    # Extract keys and convert base64 kid/k to hex format (kid:k)
                     key_pairs = []
                     keys_list = key_json.get("base64", {}).get("keys", [])
                     for k_obj in keys_list:
@@ -134,6 +136,7 @@ def process_single_channel(i, lines, session):
 
                     url_added = True
 
+                # Inject #EXTHTTP with Cookie, Origin, and Referer exactly matching sample format
                 if cookie_val:
                     channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}","Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}}')
                 else:
@@ -163,7 +166,7 @@ def process_single_channel(i, lines, session):
 def generate_safe_playlist_1000():
     global processed_count
     processed_count = 0
-    print(f"[*] Downloading playlist and prioritizing Zee channels...")
+    print(f"[*] Downloading playlist and processing up to {MAX_CHANNELS} channels using {MAX_WORKERS} workers...")
     session = get_robust_session()
     try:
         res = session.get(PLAYLIST_URL, headers={"User-Agent": "plaYtv/7.1.5"})
@@ -173,33 +176,18 @@ def generate_safe_playlist_1000():
 
         lines = res.text.splitlines()  
 
-        # Saare channels te unke indices nu ikatha karo
-        all_channels = []
+        target_indices = []  
         for i, line in enumerate(lines):  
             if line.strip().startswith("#EXTINF"):  
-                all_channels.append((i, line))
+                target_indices.append(i)  
+                if len(target_indices) >= MAX_CHANNELS:  
+                    break  
 
-        if not all_channels:  
+        if not target_indices:  
             print("[-] No channels found in playlist.")  
             return  
 
-        # Zee channels nu wakhra karo te baaki nu wakhra
-        zee_channels = []
-        other_channels = []
-
-        for idx, line in all_channels:
-            # Channel name check karn lyi comma (,) ton baad wala hisaab dekho ya poori line vich "Zee" search karo
-            channel_name = line.split(',')[-1].strip().lower() if ',' in line else line.lower()
-            if "zee" in channel_name:
-                zee_channels.append((idx, line))
-            else:
-                other_channels.append((idx, line))
-
-        # Priority order: Sab toh pehla Zee channels, te us to baad baaki channels, total limit MAX_CHANNELS tak
-        prioritized_channels = (zee_channels + other_channels)[:MAX_CHANNELS]
-        target_indices = [item[0] for item in prioritized_channels]
-
-        print(f"[*] Found {len(zee_channels)} Zee channels. Total processing {len(target_indices)} channels with multithreading...\n")  
+        print(f"[*] Found {len(target_indices)} channels. Launching multithreading...\n")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -244,11 +232,10 @@ def generate_safe_playlist_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! Zee channels prioritized. Saved {len(target_indices)} channels as '{output_file}'.")
+        print(f"\n\n[+] Success! Exactly {len(target_indices)} channels saved as '{output_file}'.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-    
