@@ -41,7 +41,7 @@ def process_single_channel(i, lines, session):
             if "inputstream.adaptive.license_key=" in sub_b:
                 key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
 
-        user_agent = "plattv/7.1.5"
+        user_agent = "Denver1769"
         mpd_line = None
         for f in range(i + 1, min(len(lines), i + 4)):
             sub_f = lines[f].strip()
@@ -76,6 +76,8 @@ def process_single_channel(i, lines, session):
         channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
 
         url_added = False
+        cookie_val = None
+
         if mpd_line:
             try:
                 channel_headers = {"User-Agent": user_agent}
@@ -84,7 +86,7 @@ def process_single_channel(i, lines, session):
                 )
 
                 if r.status_code == 403 and raw_stream_line:
-                    channel_lines.append(raw_stream_line)
+                    clean_url = raw_stream_line
                     url_added = True
                 else:
                     real_url = (  
@@ -100,38 +102,40 @@ def process_single_channel(i, lines, session):
                         try:
                             parts = clean_url.split("__hdnea__=")
                             if len(parts) > 1:
-                                hdnea_val = parts[1].split("&")[0]
-                                channel_lines.append(f'#EXTHTTP:{{"cookie":"__hdnea__={hdnea_val}"}}')
+                                cookie_val = f"__hdnea__={parts[1].split('&')[0]}"
                         except Exception:
                             pass
-                        channel_lines.append(clean_url)
-                        url_added = True
                     elif "%7Ccookie=" in clean_url:
                         parts = clean_url.split("%7Ccookie=")
-                        base_url = parts[0]
+                        clean_url = parts[0]
                         cookie_val = parts[1].split("&")[0] if "&" in parts[1] else parts[1]
-                        channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}"}}')
-                        channel_lines.append(base_url)
-                        url_added = True
                     elif "|cookie=" in clean_url:
                         parts = clean_url.split("|cookie=")
-                        base_url = parts[0]
+                        clean_url = parts[0]
                         cookie_val = parts[1].split("&")[0] if "&" in parts[1] else parts[1]
-                        channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}"}}')
-                        channel_lines.append(base_url)
-                        url_added = True
-                    else:
-                        channel_lines.append(clean_url)
-                        url_added = True
+
+                    url_added = True
+
+                # Inject #EXTHTTP with Cookie, Origin, and Referer
+                if cookie_val:
+                    channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}","Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}}')
+                else:
+                    channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
+
+                channel_lines.append(clean_url)
+
             except Exception:
                 pass
 
-        if not url_added and raw_stream_line:
-            channel_lines.append(raw_stream_line)
-        elif not url_added and not raw_stream_line:
-            channel_lines.append("http://dummy-link-to-prevent-break")
+        if not url_added:
+            channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
+            if raw_stream_line:
+                channel_lines.append(raw_stream_line)
+            else:
+                channel_lines.append("http://dummy-link-to-prevent-break")
 
     except Exception:
+        channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
         if raw_stream_line:
             channel_lines.append(raw_stream_line)
         else:
@@ -177,7 +181,7 @@ def generate_safe_playlist_1000():
                     channel_lines = future.result()
                     channel_results[idx] = channel_lines
                 except Exception:
-                    fallback_lines = [lines[idx].strip()]
+                    fallback_lines = [lines[idx].strip(), '#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}']
                     raw_url = ""
                     for f in range(idx + 1, min(len(lines), idx + 5)):
                         if lines[f].strip().startswith("http"):
@@ -201,6 +205,7 @@ def generate_safe_playlist_1000():
                 new_lines.extend(channel_results[idx])
             else:
                 new_lines.append(lines[idx].strip())
+                new_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
                 new_lines.append("http://dummy-link-to-prevent-break")
 
         output_file = "safe_500_channels.m3u"  
@@ -214,3 +219,4 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
+                       
