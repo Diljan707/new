@@ -1,12 +1,12 @@
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
+import base64
 from requests.adapters import HTTPAdapter
 import requests
 from urllib3.util.retry import Retry
 import threading
 
 PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
-HEADERS = {"User-Agent": "plattv/7.1.5"}
 MAX_CHANNELS = 1000  # Exact 1000 channels limit
 MAX_WORKERS = 60     # Safe workers balance for speed & reliability
 
@@ -19,6 +19,17 @@ def get_robust_session():
     session.mount("https://", HTTPAdapter(max_retries=retries))
     session.mount("http://", HTTPAdapter(max_retries=retries))
     return session
+
+def b64_to_hex(b64_str):
+    # Base64 string nu hex vich convert karn di function
+    padding = 4 - (len(b64_str) % 4)
+    if padding < 4:
+        b64_str += '=' * padding
+    try:
+        decoded = base64.urlsafe_b64decode(b64_str)
+        return decoded.hex()
+    except Exception:
+        return b64_str
 
 def process_single_channel(i, lines, session):
     line = lines[i].strip()
@@ -41,7 +52,7 @@ def process_single_channel(i, lines, session):
             if "inputstream.adaptive.license_key=" in sub_b:
                 key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
 
-        user_agent = "Denver1769"
+        user_agent = "plaYtv/7.1.5"
         mpd_line = None
         for f in range(i + 1, min(len(lines), i + 4)):
             sub_f = lines[f].strip()
@@ -50,7 +61,7 @@ def process_single_channel(i, lines, session):
             if sub_f.startswith("http") and ".mpd" in sub_f:
                 mpd_line = sub_f
 
-        embedded_key_data = None
+        formatted_license_key = None
         if key_url:
             try:
                 if '"' in key_url:
@@ -58,20 +69,29 @@ def process_single_channel(i, lines, session):
                 key_res = session.get(key_url, headers={"User-Agent": user_agent}, timeout=3)
                 if key_res.status_code == 200:
                     key_json = key_res.json()
-                    embedded_key_data = json.dumps(key_json)
+                    
+                    # Extract keys and convert base64 kid/k to hex format (kid:k)
+                    key_pairs = []
+                    keys_list = key_json.get("base64", {}).get("keys", [])
+                    for k_obj in keys_list:
+                        kid_b64 = k_obj.get("kid", "")
+                        k_b64 = k_obj.get("k", "")
+                        if kid_b64 and k_b64:
+                            kid_hex = b64_to_hex(kid_b64)
+                            k_hex = b64_to_hex(k_b64)
+                            key_pairs.append(f"{kid_hex}:{k_hex}")
+                    
+                    if key_pairs:
+                        formatted_license_key = ",".join(key_pairs)
             except Exception:
                 pass
 
         channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
         
-        if embedded_key_data:
-            channel_lines.append(
-                f"#KODIPROP:inputstream.adaptive.license_key={embedded_key_data}"
-            )
+        if formatted_license_key:
+            channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
         elif key_url:
-            channel_lines.append(
-                f"#KODIPROP:inputstream.adaptive.license_key={key_url}"
-            )
+            channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
 
         channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
 
@@ -116,7 +136,7 @@ def process_single_channel(i, lines, session):
 
                     url_added = True
 
-                # Inject #EXTHTTP with Cookie, Origin, and Referer
+                # Inject #EXTHTTP with Cookie, Origin, and Referer exactly matching sample format
                 if cookie_val:
                     channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}","Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}}')
                 else:
@@ -149,7 +169,7 @@ def generate_safe_playlist_1000():
     print(f"[*] Downloading playlist and processing up to {MAX_CHANNELS} channels using {MAX_WORKERS} workers...")
     session = get_robust_session()
     try:
-        res = session.get(PLAYLIST_URL, headers={"User-Agent": "plattv/7.1.5"})
+        res = session.get(PLAYLIST_URL, headers={"User-Agent": "plaYtv/7.1.5"})
         if res.status_code != 200:
             print("[-] Failed to fetch playlist.")
             return
@@ -167,7 +187,7 @@ def generate_safe_playlist_1000():
             print("[-] No channels found in playlist.")  
             return  
 
-        print(f"[*] Found {len(target_indices)} channels. Launching multithreading with 100% count guarantee...\n")  
+        print(f"[*] Found {len(target_indices)} channels. Launching multithreading...\n")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -208,7 +228,7 @@ def generate_safe_playlist_1000():
                 new_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
                 new_lines.append("http://dummy-link-to-prevent-break")
 
-        output_file = "safe_500_channels.m3u"  
+        output_file = "JioTV_Auto.m3u"  
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
@@ -219,4 +239,4 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-                       
+                
