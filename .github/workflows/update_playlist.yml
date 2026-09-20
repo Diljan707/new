@@ -40,3 +40,4 @@ jobs:
         git commit --allow-empty -m "Auto-update safe_500_channels.m3u [skip ci]"
         git pull --rebase origin main || git pull --rebase origin master || true
         git push origin HEAD:main || git push origin HEAD:master || true
+        
