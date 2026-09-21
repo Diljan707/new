@@ -21,7 +21,6 @@ def get_robust_session():
     return session
 
 def b64_to_hex(b64_str):
-    # Base64 string nu hex vich convert karn di function
     padding = 4 - (len(b64_str) % 4)
     if padding < 4:
         b64_str += '=' * padding
@@ -70,7 +69,6 @@ def process_single_channel(i, lines, session):
                 if key_res.status_code == 200:
                     key_json = key_res.json()
                     
-                    # Extract keys and convert base64 kid/k to hex format (kid:k)
                     key_pairs = []
                     keys_list = key_json.get("base64", {}).get("keys", [])
                     for k_obj in keys_list:
@@ -136,7 +134,6 @@ def process_single_channel(i, lines, session):
 
                     url_added = True
 
-                # Inject #EXTHTTP with Cookie, Origin, and Referer exactly matching sample format
                 if cookie_val:
                     channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}","Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}}')
                 else:
@@ -166,7 +163,7 @@ def process_single_channel(i, lines, session):
 def generate_safe_playlist_1000():
     global processed_count
     processed_count = 0
-    print(f"[*] Downloading playlist and processing up to {MAX_CHANNELS} channels using {MAX_WORKERS} workers...")
+    print(f"[*] Downloading playlist and prioritizing Sony, Star, and PTC channels...")
     session = get_robust_session()
     try:
         res = session.get(PLAYLIST_URL, headers={"User-Agent": "plaYtv/7.1.5"})
@@ -176,18 +173,38 @@ def generate_safe_playlist_1000():
 
         lines = res.text.splitlines()  
 
-        target_indices = []  
+        all_channels = []
         for i, line in enumerate(lines):  
             if line.strip().startswith("#EXTINF"):  
-                target_indices.append(i)  
-                if len(target_indices) >= MAX_CHANNELS:  
-                    break  
+                all_channels.append((i, line))
 
-        if not target_indices:  
+        if not all_channels:  
             print("[-] No channels found in playlist.")  
             return  
 
-        print(f"[*] Found {len(target_indices)} channels. Launching multithreading...\n")  
+        # Priority categories grouping
+        sony_channels = []
+        star_channels = []
+        ptc_channels = []
+        other_channels = []
+
+        for idx, line in all_channels:
+            channel_name = line.split(',')[-1].strip().lower() if ',' in line else line.lower()
+            
+            if "sony" in channel_name:
+                sony_channels.append((idx, line))
+            elif "star" in channel_name:
+                star_channels.append((idx, line))
+            elif "ptc" in channel_name:
+                ptc_channels.append((idx, line))
+            else:
+                other_channels.append((idx, line))
+
+        # Order: Sony -> Star -> PTC -> Baaki de channels, te total limit MAX_CHANNELS (1000) tak
+        prioritized_channels = (sony_channels + star_channels + ptc_channels + other_channels)[:MAX_CHANNELS]
+        target_indices = [item[0] for item in prioritized_channels]
+
+        print(f"[*] Found Sony: {len(sony_channels)}, Star: {len(star_channels)}, PTC: {len(ptc_channels)}. Total processing {len(target_indices)} channels...\n")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -207,7 +224,7 @@ def generate_safe_playlist_1000():
                         if lines[f].strip().startswith("http"):
                             raw_url = lines[f].strip().split()[0]
                             if raw_url.endswith("~"):
-                                raw_url = raw_url[:-1]
+                                raw_url = raw, raw_url[:-1] if isinstance(raw_url, str) else "" # safe
                             break
                     if raw_url:
                         fallback_lines.append(raw_url)
@@ -232,10 +249,11 @@ def generate_safe_playlist_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! Exactly {len(target_indices)} channels saved as '{output_file}'.")
+        print(f"\n\n[+] Success! Sony, Star, & PTC prioritized. Saved {len(target_indices)} channels as '{output_file}'.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
+            
