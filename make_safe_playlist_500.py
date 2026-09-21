@@ -69,12 +69,12 @@ def process_single_channel(i, lines, session):
                 if key_res.status_code == 200:
                     key_json = key_res.json()
                     
-                    # Sirf pehla key pair hi extract karange (Only first pair)
+                    # Second key pair (keys_list[1]) extract karange, je available hove
                     keys_list = key_json.get("base64", {}).get("keys", [])
                     if keys_list:
-                        k_obj = keys_list[0]
-                        kid_b64 = k_obj.get("kid", "")
-                        k_b64 = k_obj.get("k", "")
+                        target_obj = keys_list[1] if len(keys_list) > 1 else keys_list[0]
+                        kid_b64 = target_obj.get("kid", "")
+                        k_b64 = target_obj.get("k", "")
                         if kid_b64 and k_b64:
                             kid_hex = b64_to_hex(kid_b64)
                             k_hex = b64_to_hex(k_b64)
@@ -161,7 +161,7 @@ def process_single_channel(i, lines, session):
 def generate_safe_playlist_1000():
     global processed_count
     processed_count = 0
-    print(f"[*] Downloading playlist, prioritizing Sony, Star, PTC & keeping single clearkey...")
+    print(f"[*] Downloading playlist, prioritizing Sony, Star, PTC & using SECOND key pair...")
     session = get_robust_session()
     try:
         res = session.get(PLAYLIST_URL, headers={"User-Agent": "plaYtv/7.1.5"})
@@ -197,11 +197,10 @@ def generate_safe_playlist_1000():
             else:
                 other_channels.append((idx, line))
 
-        # Priority order: Sony -> Star -> PTC -> Baaki channels, limit 1000
         prioritized_channels = (sony_channels + star_channels + ptc_channels + other_channels)[:MAX_CHANNELS]
         target_indices = [item[0] for item in prioritized_channels]
 
-        print(f"[*] Processing {len(target_indices)} prioritized channels with multithreading...\n")  
+        print(f"[*] Processing {len(target_indices)} prioritized channels with second key pair...\n")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -212,8 +211,7 @@ def generate_safe_playlist_1000():
             for future in as_completed(futures):
                 idx = futures[future]
                 try:
-                    channel_lines = future.result()
-                    channel_results[idx] = channel_lines
+                    channel_results[idx] = future.result()
                 except Exception:
                     fallback_lines = [lines[idx].strip(), '#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}']
                     raw_url = ""
@@ -246,11 +244,10 @@ def generate_safe_playlist_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! Saved {len(target_indices)} channels as '{output_file}'.")
+        print(f"\n\n[+] Success! Saved {len(target_indices)} channels with second key pair as '{output_file}'.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-                    
