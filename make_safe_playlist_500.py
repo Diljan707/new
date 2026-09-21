@@ -42,7 +42,6 @@ def process_single_channel(i, lines, session):
                 raw_stream_line = raw_stream_line[:-1]
             break
 
-    # Check if this channel belongs to Hotstar
     is_hotstar = "hotstar" in extinf_line.lower() or "hotstar" in raw_stream_line.lower()
     for b in range(max(0, i - 3), i + 4):
         if "hotstar" in lines[b].lower():
@@ -58,34 +57,38 @@ def process_single_channel(i, lines, session):
             if "inputstream.adaptive.license_key=" in sub_b:
                 key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
 
-        # Hotstar Special Formatting
-        if is_hotstar:
-            user_agent = "Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)"
-            for f in range(i + 1, min(len(lines), i + 4)):
-                sub_f = lines[f].strip()
-                if sub_f.startswith("#EXTVLCOPT:http-user-agent="):
-                    user_agent = sub_f.split("=")[1].strip()
+        # Extract ALL available key pairs from JSON and join them with comma
+        formatted_license_key = None
+        user_agent = "Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)" if is_hotstar else "plaYtv/7.1.5"
+        
+        for f in range(i + 1, min(len(lines), i + 4)):
+            sub_f = lines[f].strip()
+            if sub_f.startswith("#EXTVLCOPT:http-user-agent="):
+                user_agent = sub_f.split("=")[1].strip()
 
-            formatted_license_key = None
-            if key_url:
-                try:
-                    if '"' in key_url:
-                        key_url = key_url.replace('"', "")
-                    key_res = session.get(key_url, headers={"User-Agent": user_agent}, timeout=3)
-                    if key_res.status_code == 200:
-                        key_json = key_res.json()
-                        keys_list = key_json.get("base64", {}).get("keys", [])
-                        if keys_list:
-                            target_obj = keys_list[1] if len(keys_list) > 1 else keys_list[0]
-                            kid_b64 = target_obj.get("kid", "")
-                            k_b64 = target_obj.get("k", "")
+        if key_url:
+            try:
+                if '"' in key_url:
+                    key_url = key_url.replace('"', "")
+                key_res = session.get(key_url, headers={"User-Agent": user_agent}, timeout=3)
+                if key_res.status_code == 200:
+                    key_json = key_res.json()
+                    keys_list = key_json.get("base64", {}).get("keys", [])
+                    if keys_list:
+                        pair_strings = []
+                        for k_obj in keys_list:
+                            kid_b64 = k_obj.get("kid", "")
+                            k_b64 = k_obj.get("k", "")
                             if kid_b64 and k_b64:
                                 kid_hex = b64_to_hex(kid_b64)
                                 k_hex = b64_to_hex(k_b64)
-                                formatted_license_key = f"{kid_hex}:{k_hex}"
-                except Exception:
-                    pass
+                                pair_strings.append(f"{kid_hex}:{k_hex}")
+                        if pair_strings:
+                            formatted_license_key = ",".join(pair_strings)
+            except Exception:
+                pass
 
+        if is_hotstar:
             channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
             channel_lines.append("#KODIPROP:inputstream.adaptive.manifest_type=mpd")
             channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
@@ -99,7 +102,6 @@ def process_single_channel(i, lines, session):
             channel_lines.append("#EXTVLCOPT:http-referrer=https://www.hotstar.com/")
             channel_lines.append("#EXTVLCOPT:http-extra-headers=Origin: https://www.hotstar.com")
             
-            # Extract cookie if present in raw stream line or check nearby lines
             cookie_str = "hdntl=exp=1790060007~acl=%2f*~id=3923d2a2be266251ea16fcf0686afb7f~data=hdntl~hmac=ef5e4e132c593978b4d0e4871486267d5aaee8fa8d0bc4669a753c1ee6fe9acb"
             if "|cookie=" in raw_stream_line:
                 try:
@@ -116,35 +118,11 @@ def process_single_channel(i, lines, session):
                 channel_lines.append("http://dummy-link-to-prevent-break")
 
         else:
-            # JioTV Standard Formatting
-            user_agent = "plaYtv/7.1.5"
             mpd_line = None
             for f in range(i + 1, min(len(lines), i + 4)):
                 sub_f = lines[f].strip()
-                if sub_f.startswith("#EXTVLCOPT:http-user-agent="):
-                    user_agent = sub_f.split("=")[1].strip()
                 if sub_f.startswith("http") and ".mpd" in sub_f:
                     mpd_line = sub_f
-
-            formatted_license_key = None
-            if key_url:
-                try:
-                    if '"' in key_url:
-                        key_url = key_url.replace('"', "")
-                    key_res = session.get(key_url, headers={"User-Agent": user_agent}, timeout=3)
-                    if key_res.status_code == 200:
-                        key_json = key_res.json()
-                        keys_list = key_json.get("base64", {}).get("keys", [])
-                        if keys_list:
-                            target_obj = keys_list[1] if len(keys_list) > 1 else keys_list[0]
-                            kid_b64 = target_obj.get("kid", "")
-                            k_b64 = target_obj.get("k", "")
-                            if kid_b64 and k_b64:
-                                kid_hex = b64_to_hex(kid_b64)
-                                k_hex = b64_to_hex(k_b64)
-                                formatted_license_key = f"{kid_hex}:{k_hex}"
-                except Exception:
-                    pass
 
             channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
             
@@ -225,7 +203,7 @@ def process_single_channel(i, lines, session):
 def generate_safe_playlist_1000():
     global processed_count
     processed_count = 0
-    print(f"[*] Downloading playlist, prioritizing Sony, Star, PTC & handling Hotstar format...")
+    print(f"[*] Downloading playlist, prioritizing Sony, Star, PTC & using ALL key pairs...")
     session = get_robust_session()
     try:
         res = session.get(PLAYLIST_URL, headers={"User-Agent": "plaYtv/7.1.5"})
@@ -264,7 +242,7 @@ def generate_safe_playlist_1000():
         prioritized_channels = (sony_channels + star_channels + ptc_channels + other_channels)[:MAX_CHANNELS]
         target_indices = [item[0] for item in prioritized_channels]
 
-        print(f"[*] Processing {len(target_indices)} channels with smart Hotstar/JioTV formatting...\n")  
+        print(f"[*] Processing {len(target_indices)} channels with multi-key clear key support...\n")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
