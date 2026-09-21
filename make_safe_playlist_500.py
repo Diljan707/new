@@ -21,6 +21,7 @@ def get_robust_session():
     return session
 
 def b64_to_hex(b64_str):
+    # Base64 string nu hex vich convert karn di function
     padding = 4 - (len(b64_str) % 4)
     if padding < 4:
         b64_str += '=' * padding
@@ -69,16 +70,19 @@ def process_single_channel(i, lines, session):
                 if key_res.status_code == 200:
                     key_json = key_res.json()
                     
-                    # Second key pair (keys_list[1]) extract karange, je available hove
+                    # Extract keys and convert base64 kid/k to hex format (kid:k)
+                    key_pairs = []
                     keys_list = key_json.get("base64", {}).get("keys", [])
-                    if keys_list:
-                        target_obj = keys_list[1] if len(keys_list) > 1 else keys_list[0]
-                        kid_b64 = target_obj.get("kid", "")
-                        k_b64 = target_obj.get("k", "")
+                    for k_obj in keys_list:
+                        kid_b64 = k_obj.get("kid", "")
+                        k_b64 = k_obj.get("k", "")
                         if kid_b64 and k_b64:
                             kid_hex = b64_to_hex(kid_b64)
                             k_hex = b64_to_hex(k_b64)
-                            formatted_license_key = f"{kid_hex}:{k_hex}"
+                            key_pairs.append(f"{kid_hex}:{k_hex}")
+                    
+                    if key_pairs:
+                        formatted_license_key = ",".join(key_pairs)
             except Exception:
                 pass
 
@@ -132,6 +136,7 @@ def process_single_channel(i, lines, session):
 
                     url_added = True
 
+                # Inject #EXTHTTP with Cookie, Origin, and Referer exactly matching sample format
                 if cookie_val:
                     channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}","Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}}')
                 else:
@@ -161,7 +166,7 @@ def process_single_channel(i, lines, session):
 def generate_safe_playlist_1000():
     global processed_count
     processed_count = 0
-    print(f"[*] Downloading playlist, prioritizing Sony, Star, PTC & using SECOND key pair...")
+    print(f"[*] Downloading playlist and processing up to {MAX_CHANNELS} channels using {MAX_WORKERS} workers...")
     session = get_robust_session()
     try:
         res = session.get(PLAYLIST_URL, headers={"User-Agent": "plaYtv/7.1.5"})
@@ -171,36 +176,18 @@ def generate_safe_playlist_1000():
 
         lines = res.text.splitlines()  
 
-        all_channels = []
+        target_indices = []  
         for i, line in enumerate(lines):  
             if line.strip().startswith("#EXTINF"):  
-                all_channels.append((i, line))
+                target_indices.append(i)  
+                if len(target_indices) >= MAX_CHANNELS:  
+                    break  
 
-        if not all_channels:  
+        if not target_indices:  
             print("[-] No channels found in playlist.")  
             return  
 
-        sony_channels = []
-        star_channels = []
-        ptc_channels = []
-        other_channels = []
-
-        for idx, line in all_channels:
-            channel_name = line.split(',')[-1].strip().lower() if ',' in line else line.lower()
-            
-            if "sony" in channel_name:
-                sony_channels.append((idx, line))
-            elif "star" in channel_name:
-                star_channels.append((idx, line))
-            elif "ptc" in channel_name:
-                ptc_channels.append((idx, line))
-            else:
-                other_channels.append((idx, line))
-
-        prioritized_channels = (sony_channels + star_channels + ptc_channels + other_channels)[:MAX_CHANNELS]
-        target_indices = [item[0] for item in prioritized_channels]
-
-        print(f"[*] Processing {len(target_indices)} prioritized channels with second key pair...\n")  
+        print(f"[*] Found {len(target_indices)} channels. Launching multithreading...\n")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -211,7 +198,8 @@ def generate_safe_playlist_1000():
             for future in as_completed(futures):
                 idx = futures[future]
                 try:
-                    channel_results[idx] = future.result()
+                    channel_lines = future.result()
+                    channel_results[idx] = channel_lines
                 except Exception:
                     fallback_lines = [lines[idx].strip(), '#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}']
                     raw_url = ""
@@ -244,7 +232,7 @@ def generate_safe_playlist_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! Saved {len(target_indices)} channels with second key pair as '{output_file}'.")
+        print(f"\n\n[+] Success! Exactly {len(target_indices)} channels saved as '{output_file}'.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
