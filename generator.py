@@ -282,7 +282,7 @@ def generate_safe_playlist_1000():
                 new_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
                 new_lines.append("http://dummy-link-to-prevent-break")
 
-        output_file = "safe_500_channels.m3u"  
+        output_file = ".m3u"  
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
