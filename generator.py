@@ -1,12 +1,14 @@
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
 import base64
+import os
 from requests.adapters import HTTPAdapter
 import requests
 from urllib3.util.retry import Retry
 import threading
 
-PLAYLIST_URL = "https://game.playindia.fun/Jtv/RiYlIZ/Playlist.m3u"
+# GitHub Secret ton URL fetch karega (Safety layi)
+PLAYLIST_URL = os.environ.get("PLAYLIST_URL")
 MAX_CHANNELS = 1000  # Exact 1000 channels limit
 MAX_WORKERS = 60     # Safe workers balance for speed & reliability
 
@@ -42,7 +44,6 @@ def process_single_channel(i, lines, session):
                 raw_stream_line = raw_stream_line[:-1]
             break
 
-    # Check if channel belongs to Hotstar
     is_hotstar = "hotstar" in extinf_line.lower() or "hotstar" in raw_stream_line.lower()
     for b in range(max(0, i - 3), i + 4):
         if "hotstar" in lines[b].lower():
@@ -87,7 +88,6 @@ def process_single_channel(i, lines, session):
                 pass
 
         if is_hotstar:
-            # Hotstar Specific Format Injection
             channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
             channel_lines.append("#KODIPROP:inputstream.adaptive.manifest_type=mpd")
             channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
@@ -117,7 +117,6 @@ def process_single_channel(i, lines, session):
                 channel_lines.append("http://dummy-link-to-prevent-break")
 
         else:
-            # JioTV Standard Format Injection
             mpd_line = None
             for f in range(i + 1, min(len(lines), i + 4)):
                 sub_f = lines[f].strip()
@@ -203,7 +202,11 @@ def process_single_channel(i, lines, session):
 def generate_safe_playlist_1000():
     global processed_count
     processed_count = 0
-    print(f"[*] Downloading playlist, prioritizing Sony, Star, PTC & handling Hotstar/JioTV formats...")
+    if not PLAYLIST_URL:
+        print("[-] Error: PLAYLIST_URL environment variable is not set!")
+        return
+
+    print(f"[*] Downloading playlist, prioritizing Sony, Star, PTC & handling formats...")
     session = get_robust_session()
     try:
         res = session.get(PLAYLIST_URL, headers={"User-Agent": "plaYtv/7.1.5"})
@@ -293,4 +296,4 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-        
+                                  
