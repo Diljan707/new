@@ -29,6 +29,8 @@ jobs:
         pip install requests
 
     - name: Run script
+      env:
+        PLAYLIST_URL: ${{ secrets.PLAYLIST_URL }}
       run: |
         python3 generator.py
 
