@@ -1,4 +1,3 @@
-cat << 'EOF' > make_final_playlist.py
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
 import base64
@@ -50,7 +49,6 @@ def process_single_channel(i, lines, session):
             is_hotstar = True
             break
 
-    # Strictly ordered channel lines block to prevent player delay and black screen
     channel_lines = [extinf_line]
 
     try:
@@ -297,4 +295,3 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-EOF
