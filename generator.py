@@ -43,7 +43,19 @@ def process_single_channel(i, lines, session):
                 raw_stream_line = raw_stream_line[:-1]
             break
 
-    is_hotstar = "hotstar" in extinf_line.lower() or "hotstar" in raw_stream_line.lower()
+    # Resolve proxy/redirect links to original source URLs
+    real_stream_url = raw_stream_line
+    if "game.playindia.fun" in raw_stream_line or "oops.m3u8" in raw_stream_line:
+        try:
+            resp = session.get(raw_stream_line, headers={"User-Agent": "plaYtv/7.1.5"}, allow_redirects=True, timeout=3)
+            if resp.status_code == 200 and ("m3u8" in resp.url or "mpd" in resp.url):
+                real_stream_url = resp.url
+            elif resp.history:
+                real_stream_url = resp.history[-1].url
+        except Exception:
+            pass
+
+    is_hotstar = "hotstar" in extinf_line.lower() or "hotstar" in real_stream_url.lower()
     for b in range(max(0, i - 3), i + 4):
         if "hotstar" in lines[b].lower():
             is_hotstar = True
@@ -101,17 +113,17 @@ def process_single_channel(i, lines, session):
             channel_lines.append("#EXTVLCOPT:http-extra-headers=Origin: https://www.hotstar.com")
             
             cookie_str = "hdntl=exp=1790060007~acl=%2f*~id=3923d2a2be266251ea16fcf0686afb7f~data=hdntl~hmac=ef5e4e132c593978b4d0e4871486267d5aaee8fa8d0bc4669a753c1ee6fe9acb"
-            if "|cookie=" in raw_stream_line:
+            if "|cookie=" in real_stream_url:
                 try:
-                    cookie_str = raw_stream_line.split("|cookie=")[1].split("&")[0]
+                    cookie_str = real_stream_url.split("|cookie=")[1].split("&")[0]
                 except Exception:
                     pass
 
             channel_lines.append(f"#EXTVLCOPT:http-cookie={cookie_str}")
             channel_lines.append(f'#EXTHTTP:{{"Origin":"https://www.hotstar.com","Referer":"https://www.hotstar.com/","Cookie":"{cookie_str}"}}')
             
-            if raw_stream_line:
-                channel_lines.append(raw_stream_line)
+            if real_stream_url:
+                channel_lines.append(real_stream_url)
             else:
                 channel_lines.append("http://dummy-link-to-prevent-break")
 
@@ -141,8 +153,8 @@ def process_single_channel(i, lines, session):
                         mpd_line, headers=channel_headers, allow_redirects=False, timeout=3
                     )
 
-                    if r.status_code == 403 and raw_stream_line:
-                        clean_url = raw_stream_line
+                    if r.status_code == 403 and real_stream_url:
+                        clean_url = real_stream_url
                         url_added = True
                     else:
                         real_url = (  
@@ -184,15 +196,15 @@ def process_single_channel(i, lines, session):
 
             if not url_added:
                 channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
-                if raw_stream_line:
-                    channel_lines.append(raw_stream_line)
+                if real_stream_url:
+                    channel_lines.append(real_stream_url)
                 else:
                     channel_lines.append("http://dummy-link-to-prevent-break")
 
     except Exception:
         channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
-        if raw_stream_line:
-            channel_lines.append(raw_stream_line)
+        if real_stream_url:
+                    channel_lines.append(real_stream_url)
         else:
             channel_lines.append("http://dummy-link-to-prevent-break")
 
