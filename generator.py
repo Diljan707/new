@@ -31,6 +31,35 @@ def b64_to_hex(b64_str):
     except Exception:
         return b64_str
 
+def resolve_deep_redirect(url, session):
+    """
+    Step 1: First resolve game.playindia.fun redirect.
+    Step 2: If the resulting URL contains oops.m3u8 or sliv proxy, resolve it again to get the final stream.
+    """
+    current_url = url
+    for _ in range(3): # Max 3 redirect hops
+        if not current_url:
+            break
+        try:
+            resp = session.get(current_url, headers={"User-Agent": "plaYtv/7.1.5"}, allow_redirects=True, timeout=5)
+            next_url = resp.url
+            if resp.history:
+                next_url = resp.history[-1].url
+            
+            # If the URL changed, update it
+            if next_url != current_url:
+                current_url = next_url
+            else:
+                # If no redirect happened via history/url, check if body or text contains location or if we hit the final format
+                break
+                
+            # If we landed on a final m3u8/mpd that is not an oops proxy, we can stop
+            if ("m3u8" in current_url or "mpd" in current_url) and "oops.m3u8" not in current_url and "game.playindia.fun" not in current_url:
+                break
+        except Exception:
+            break
+    return current_url
+
 def process_single_channel(i, lines, session):
     line = lines[i].strip()
     extinf_line = line
@@ -43,10 +72,10 @@ def process_single_channel(i, lines, session):
                 raw_stream_line = raw_stream_line[:-1]
             break
 
-    # Clean handling for proxy/game links without breaking formatting
+    # Apply deep multi-level redirect resolution (game.playindia.fun -> oops.m3u8 -> final stream)
     real_stream_url = raw_stream_line
     if "game.playindia.fun" in raw_stream_line or "oops.m3u8" in raw_stream_line:
-        real_stream_url = raw_stream_line
+        real_stream_url = resolve_deep_redirect(raw_stream_line, session)
 
     is_hotstar = "hotstar" in extinf_line.lower() or "hotstar" in real_stream_url.lower()
     for b in range(max(0, i - 3), i + 4):
@@ -54,7 +83,6 @@ def process_single_channel(i, lines, session):
             is_hotstar = True
             break
 
-    # Temporary list to hold lines for this specific channel
     temp_channel_lines = [extinf_line]
 
     try:
@@ -140,7 +168,7 @@ def process_single_channel(i, lines, session):
             url_added = False
             cookie_val = None
 
-            if mpd_line and "game.playindia.fun" not in mpd_line:
+            if mpd_line and "game.playindia.fun" not in mpd_line and "oops.m3u8" not in mpd_line:
                 try:
                     channel_headers = {"User-Agent": user_agent}
                     r = session.get(
@@ -202,7 +230,6 @@ def process_single_channel(i, lines, session):
         else:
             temp_channel_lines.append("http://dummy-link-to-prevent-break")
 
-    # Ensure every single line is strictly separated
     final_channel_lines = [str(item).strip() for item in temp_channel_lines if item]
     return final_channel_lines
 
@@ -306,4 +333,3 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-        
