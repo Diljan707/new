@@ -1,3 +1,4 @@
+cat << 'EOF' > make_final_playlist.py
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
 import base64
@@ -7,10 +8,9 @@ import requests
 from urllib3.util.retry import Retry
 import threading
 
-# GitHub Secret ton URL fetch karega (Safety layi)
 PLAYLIST_URL = os.environ.get("PLAYLIST_URL")
-MAX_CHANNELS = 1000  # Exact 1000 channels limit
-MAX_WORKERS = 60     # Safe workers balance for speed & reliability
+MAX_CHANNELS = 1000
+MAX_WORKERS = 60
 
 counter_lock = threading.Lock()
 processed_count = 0
@@ -50,6 +50,7 @@ def process_single_channel(i, lines, session):
             is_hotstar = True
             break
 
+    # Strictly ordered channel lines block to prevent player delay and black screen
     channel_lines = [extinf_line]
 
     try:
@@ -206,7 +207,7 @@ def generate_safe_playlist_1000():
         print("[-] Error: PLAYLIST_URL environment variable is not set!")
         return
 
-    print(f"[*] Downloading playlist, prioritizing Sony, Star, PTC & handling formats...")
+    print(f"[*] Downloading playlist & formatting lines perfectly...")
     session = get_robust_session()
     try:
         res = session.get(PLAYLIST_URL, headers={"User-Agent": "plaYtv/7.1.5"})
@@ -296,4 +297,4 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-                                  
+EOF
