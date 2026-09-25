@@ -43,17 +43,10 @@ def process_single_channel(i, lines, session):
                 raw_stream_line = raw_stream_line[:-1]
             break
 
-    # Resolve proxy/redirect links to original source URLs
+    # Clean handling for proxy/game links without breaking formatting
     real_stream_url = raw_stream_line
     if "game.playindia.fun" in raw_stream_line or "oops.m3u8" in raw_stream_line:
-        try:
-            resp = session.get(raw_stream_line, headers={"User-Agent": "plaYtv/7.1.5"}, allow_redirects=True, timeout=3)
-            if resp.status_code == 200 and ("m3u8" in resp.url or "mpd" in resp.url):
-                real_stream_url = resp.url
-            elif resp.history:
-                real_stream_url = resp.history[-1].url
-        except Exception:
-            pass
+        real_stream_url = raw_stream_line
 
     is_hotstar = "hotstar" in extinf_line.lower() or "hotstar" in real_stream_url.lower()
     for b in range(max(0, i - 3), i + 4):
@@ -61,7 +54,8 @@ def process_single_channel(i, lines, session):
             is_hotstar = True
             break
 
-    channel_lines = [extinf_line]
+    # Temporary list to hold lines for this specific channel
+    temp_channel_lines = [extinf_line]
 
     try:
         key_url = None
@@ -99,18 +93,18 @@ def process_single_channel(i, lines, session):
                 pass
 
         if is_hotstar:
-            channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
-            channel_lines.append("#KODIPROP:inputstream.adaptive.manifest_type=mpd")
-            channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
+            temp_channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
+            temp_channel_lines.append("#KODIPROP:inputstream.adaptive.manifest_type=mpd")
+            temp_channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
             
             if formatted_license_key:
-                channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
+                temp_channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
             elif key_url:
-                channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
+                temp_channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
 
-            channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
-            channel_lines.append("#EXTVLCOPT:http-referrer=https://www.hotstar.com/")
-            channel_lines.append("#EXTVLCOPT:http-extra-headers=Origin: https://www.hotstar.com")
+            temp_channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
+            temp_channel_lines.append("#EXTVLCOPT:http-referrer=https://www.hotstar.com/")
+            temp_channel_lines.append("#EXTVLCOPT:http-extra-headers=Origin: https://www.hotstar.com")
             
             cookie_str = "hdntl=exp=1790060007~acl=%2f*~id=3923d2a2be266251ea16fcf0686afb7f~data=hdntl~hmac=ef5e4e132c593978b4d0e4871486267d5aaee8fa8d0bc4669a753c1ee6fe9acb"
             if "|cookie=" in real_stream_url:
@@ -119,13 +113,13 @@ def process_single_channel(i, lines, session):
                 except Exception:
                     pass
 
-            channel_lines.append(f"#EXTVLCOPT:http-cookie={cookie_str}")
-            channel_lines.append(f'#EXTHTTP:{{"Origin":"https://www.hotstar.com","Referer":"https://www.hotstar.com/","Cookie":"{cookie_str}"}}')
+            temp_channel_lines.append(f"#EXTVLCOPT:http-cookie={cookie_str}")
+            temp_channel_lines.append(f'#EXTHTTP:{{"Origin":"https://www.hotstar.com","Referer":"https://www.hotstar.com/","Cookie":"{cookie_str}"}}')
             
             if real_stream_url:
-                channel_lines.append(real_stream_url)
+                temp_channel_lines.append(real_stream_url)
             else:
-                channel_lines.append("http://dummy-link-to-prevent-break")
+                temp_channel_lines.append("http://dummy-link-to-prevent-break")
 
         else:
             mpd_line = None
@@ -134,19 +128,19 @@ def process_single_channel(i, lines, session):
                 if sub_f.startswith("http") and ".mpd" in sub_f:
                     mpd_line = sub_f
 
-            channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
+            temp_channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
             
             if formatted_license_key:
-                channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
+                temp_channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
             elif key_url:
-                channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
+                temp_channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
 
-            channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
+            temp_channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
 
             url_added = False
             cookie_val = None
 
-            if mpd_line:
+            if mpd_line and "game.playindia.fun" not in mpd_line:
                 try:
                     channel_headers = {"User-Agent": user_agent}
                     r = session.get(
@@ -185,30 +179,32 @@ def process_single_channel(i, lines, session):
                         url_added = True
 
                     if cookie_val:
-                        channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}","Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}}')
+                        temp_channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}","Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}}')
                     else:
-                        channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
+                        temp_channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
 
-                    channel_lines.append(clean_url)
+                    temp_channel_lines.append(clean_url)
 
                 except Exception:
                     pass
 
             if not url_added:
-                channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
+                temp_channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
                 if real_stream_url:
-                    channel_lines.append(real_stream_url)
+                    temp_channel_lines.append(real_stream_url)
                 else:
-                    channel_lines.append("http://dummy-link-to-prevent-break")
+                    temp_channel_lines.append("http://dummy-link-to-prevent-break")
 
     except Exception:
-        channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
+        temp_channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
         if real_stream_url:
-                    channel_lines.append(real_stream_url)
+            temp_channel_lines.append(real_stream_url)
         else:
-            channel_lines.append("http://dummy-link-to-prevent-break")
+            temp_channel_lines.append("http://dummy-link-to-prevent-break")
 
-    return channel_lines
+    # Ensure every single line is strictly separated
+    final_channel_lines = [str(item).strip() for item in temp_channel_lines if item]
+    return final_channel_lines
 
 def generate_safe_playlist_1000():
     global processed_count
@@ -269,7 +265,10 @@ def generate_safe_playlist_1000():
                 try:
                     channel_results[idx] = future.result()
                 except Exception:
-                    fallback_lines = [lines[idx].strip(), '#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}']
+                    fallback_lines = [
+                        lines[idx].strip(), 
+                        '#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}'
+                    ]
                     raw_url = ""
                     for f in range(idx + 1, min(len(lines), idx + 5)):
                         if lines[f].strip().startswith("http"):
@@ -297,7 +296,7 @@ def generate_safe_playlist_1000():
                 new_lines.append("http://dummy-link-to-prevent-break")
 
         output_file = ".m3u"  
-        with open(output_file, "w", encoding="utf-8") as f:  
+        with open(output_file, "w", encoding="utf-8", newline="\n") as f:  
             f.write("\n".join(new_lines))  
 
         print(f"\n\n[+] Success! Saved {len(target_indices)} channels as '{output_file}'.")
@@ -307,3 +306,4 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
+        
