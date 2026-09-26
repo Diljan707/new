@@ -6,14 +6,60 @@ from requests.adapters import HTTPAdapter
 import requests
 from urllib3.util.retry import Retry
 import threading
+from bs4 import BeautifulSoup
 
 # GitHub Secret ton URL fetch karega (Safety layi)
 PLAYLIST_URL = os.environ.get("PLAYLIST_URL")
+# IP manager link (Token RiY1IZ ala)
+IP_MANAGER_URL = "https://game.playindia.fun/Jtv/IP.php?id=RiYlIZ"
+
 MAX_CHANNELS = 1000  # Exact 1000 channels limit
 MAX_WORKERS = 60     # Safe workers balance for speed & reliability
 
 counter_lock = threading.Lock()
 processed_count = 0
+
+def clear_old_ips(session):
+    print("[*] Checking and clearing old IPs from IP Manager...")
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
+        "Referer": "https://game.playindia.fun/"
+    }
+    try:
+        res = session.get(IP_MANAGER_URL, headers=headers, timeout=10)
+        if res.status_code != 200:
+            print("[-] Failed to load IP manager page.")
+            return
+
+        soup = BeautifulSoup(res.text, 'html.parser')
+        forms = soup.find_all('form')
+        
+        ip_list = []
+        for form in forms:
+            action_input = form.find('input', {'name': 'action', 'value': 'delete_ip'})
+            ip_input = form.find('input', {'name': 'ip'})
+            if action_input and ip_input:
+                ip_list.append(ip_input.get('value'))
+
+        if not ip_list:
+            print("[+] No old IPs found to delete.")
+            return
+
+        print(f"[*] Found {len(ip_list)} old IPs. Deleting them fast...")
+
+        def delete_single(ip_val):
+            data = {'action': 'delete_ip', 'ip': ip_val}
+            try:
+                session.post(IP_MANAGER_URL, data=data, headers=headers, timeout=5)
+            except Exception:
+                pass
+
+        with ThreadPoolExecutor(max_workers=15) as executor:
+            executor.map(delete_single, ip_list)
+
+        print("[+] All old IPs cleared successfully!\n")
+    except Exception as e:
+        print(f"[-] Error clearing IPs: {e}")
 
 def get_robust_session():
     session = requests.Session()
@@ -206,8 +252,12 @@ def generate_safe_playlist_1000():
         print("[-] Error: PLAYLIST_URL environment variable is not set!")
         return
 
-    print(f"[*] Downloading playlist, prioritizing Sony, Star, PTC & handling formats...")
     session = get_robust_session()
+    
+    # Sab ton pehlan purani IPs delete karo
+    clear_old_ips(session)
+
+    print(f"[*] Downloading playlist, prioritizing Sony, Star, PTC & handling formats...")
     try:
         res = session.get(PLAYLIST_URL, headers={"User-Agent": "plaYtv/7.1.5"})
         if res.status_code != 200:
@@ -296,3 +346,4 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
+        
