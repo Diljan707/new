@@ -12,7 +12,7 @@ PLAYLIST_URL = os.environ.get("PLAYLIST_URL")
 IP_MANAGER_URL = "https://game.playindia.fun/Jtv/IP.php?id=RiYlIZ"
 
 MAX_CHANNELS = 1000
-MAX_WORKERS = 40  # Thoda safe rakhya hai taaki requests slow na hon
+MAX_WORKERS = 40
 
 counter_lock = threading.Lock()
 processed_count = 0
@@ -98,9 +98,10 @@ def process_single_channel(i, lines, session):
             except Exception:
                 pass
 
-    is_hotstar = "hotstar" in extinf_line.lower() or "hotstar" in raw_stream_line.lower()
+    # ਚੈੱਕ ਕਰੋ ਕਿ ਕੀ ਚੈਨਲ Hotstar/JHS ਵਾਲਾ ਹੈ ਜਾਂ ਨਹੀਂ
+    is_hotstar = "hotstar" in extinf_line.lower() or "hotstar" in raw_stream_line.lower() or "jhs" in extinf_line.lower()
     for b in range(max(0, i - 3), i + 4):
-        if "hotstar" in lines[b].lower():
+        if "hotstar" in lines[b].lower() or "jhs" in lines[b].lower():
             is_hotstar = True
             break
 
@@ -113,12 +114,18 @@ def process_single_channel(i, lines, session):
             if "inputstream.adaptive.license_key=" in sub_b:
                 key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
 
+        user_agent = "Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)" if is_hotstar else "Denver1769"
+        for f in range(i + 1, min(len(lines), i + 4)):
+            sub_f = lines[f].strip()
+            if sub_f.startswith("#EXTVLCOPT:http-user-agent="):
+                user_agent = sub_f.split("=")[1].strip()
+
         formatted_license_key = None
-        if key_url and not is_hotstar:
+        if key_url:
             try:
                 if '"' in key_url:
                     key_url = key_url.replace('"', "")
-                key_res = session.get(key_url, headers={"User-Agent": "Denver1769"}, timeout=3)
+                key_res = session.get(key_url, headers={"User-Agent": user_agent}, timeout=3)
                 if key_res.status_code == 200:
                     key_json = key_res.json()
                     key_pairs = []
@@ -139,12 +146,31 @@ def process_single_channel(i, lines, session):
             channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
             channel_lines.append("#KODIPROP:inputstream.adaptive.manifest_type=mpd")
             channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
+            
             if formatted_license_key:
                 channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
             elif key_url:
                 channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
-            channel_lines.append("#EXTVLCOPT:http-user-agent=Denver1769")
-            channel_lines.append(raw_stream_line if raw_stream_line else "http://dummy-link-to-prevent-break")
+
+            channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
+            channel_lines.append("#EXTVLCOPT:http-referrer=https://www.hotstar.com/")
+            channel_lines.append("#EXTVLCOPT:http-extra-headers=Origin: https://www.hotstar.com")
+            
+            cookie_str = "hdntl=exp=1790060007~acl=%2f*~id=3923d2a2be266251ea16fcf0686afb7f~data=hdntl~hmac=ef5e4e132c593978b4d0e4871486267d5aaee8fa8d0bc4669a753c1ee6fe9acb"
+            if "|cookie=" in raw_stream_line:
+                try:
+                    cookie_str = raw_stream_line.split("|cookie=")[1].split("&")[0]
+                except Exception:
+                    pass
+
+            channel_lines.append(f"#EXTVLCOPT:http-cookie={cookie_str}")
+            channel_lines.append(f'#EXTHTTP:{{"Origin":"https://www.hotstar.com","Referer":"https://www.hotstar.com/","Cookie":"{cookie_str}"}}')
+            
+            if raw_stream_line:
+                channel_lines.append(raw_stream_line)
+            else:
+                channel_lines.append("http://dummy-link-to-prevent-break")
+
         else:
             channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
             if formatted_license_key:
@@ -170,6 +196,8 @@ def process_single_channel(i, lines, session):
                 except Exception:
                     pass
 
+            channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
+
             if final_stream_url:
                 channel_lines.append(final_stream_url)
             else:
@@ -177,6 +205,7 @@ def process_single_channel(i, lines, session):
 
     except Exception:
         channel_lines.append("#EXTVLCOPT:http-user-agent=Denver1769")
+        channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
         channel_lines.append(raw_stream_line if raw_stream_line else "http://dummy-link-to-prevent-break")
 
     return channel_lines
@@ -205,7 +234,7 @@ def generate_safe_playlist_1000():
             return  
 
         target_indices = [item[0] for item in all_channels[:MAX_CHANNELS]]
-        print(f"[*] Fetching original CDN links for {len(target_indices)} channels...")  
+        print(f"[*] Processing {len(target_indices)} channels with JHS/Hotstar & Jio support...")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -229,11 +258,11 @@ def generate_safe_playlist_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n[+] Success! Saved original CDN links as '{output_file}'.")
+        print(f"\n[+] Success! Saved playlist as '{output_file}'.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-        
+                               
