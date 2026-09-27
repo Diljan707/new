@@ -12,7 +12,7 @@ PLAYLIST_URL = os.environ.get("PLAYLIST_URL")
 IP_MANAGER_URL = "https://game.playindia.fun/Jtv/IP.php?id=RiYlIZ"
 
 MAX_CHANNELS = 1000
-MAX_WORKERS = 60
+MAX_WORKERS = 40  # Thoda safe rakhya hai taaki requests slow na hon
 
 counter_lock = threading.Lock()
 processed_count = 0
@@ -26,33 +26,25 @@ def clear_old_ips(session):
     try:
         res = session.get(IP_MANAGER_URL, headers=headers, timeout=10)
         if res.status_code != 200:
-            print("[-] Failed to load IP manager page.")
             return
-
         soup = BeautifulSoup(res.text, 'html.parser')
         forms = soup.find_all('form')
-        
         ip_list = []
         for form in forms:
             action_input = form.find('input', {'name': 'action', 'value': 'delete_ip'})
             ip_input = form.find('input', {'name': 'ip'})
             if action_input and ip_input:
                 ip_list.append(ip_input.get('value'))
-
         if not ip_list:
-            print("[+] No old IPs found to delete.")
             return
-
         def delete_single(ip_val):
             data = {'action': 'delete_ip', 'ip': ip_val}
             try:
                 session.post(IP_MANAGER_URL, data=data, headers=headers, timeout=5)
             except Exception:
                 pass
-
         with ThreadPoolExecutor(max_workers=15) as executor:
             executor.map(delete_single, ip_list)
-
         print("[+] All old IPs cleared successfully!\n")
     except Exception as e:
         print(f"[-] Error clearing IPs: {e}")
@@ -79,7 +71,6 @@ def process_single_channel(i, lines, session):
     extinf_line = line
 
     channel_id = ""
-    # 1. tvg-id ਲੱਭੋ
     if 'tvg-id="' in extinf_line:
         try:
             channel_id = extinf_line.split('tvg-id="')[1].split('"')[0]
@@ -94,7 +85,6 @@ def process_single_channel(i, lines, session):
                 raw_stream_line = raw_stream_line[:-1]
             break
             
-    # 2. ਜੇ tvg-id ਨਾ ਮਿਲੇ, ਤਾਂ URL ਜਾਂ ਲਾਈਨ ਵਿੱਚੋਂ id ਲੱਭੋ
     if not channel_id and "id=" in extinf_line:
         try:
             channel_id = extinf_line.split('id="')[1].split('"')[0]
@@ -162,20 +152,31 @@ def process_single_channel(i, lines, session):
             elif key_url:
                 channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
 
-            # ਇੱਥੇ ਹਰ ਚੈਨਲ ਲਈ Denver1769 ਅਤੇ ਰੀਡਾਇਰੈਕਟ ਲਿੰਕ ਪੱਕਾ ਕੀਤਾ ਗਿਆ ਹੈ
             channel_lines.append("#EXTVLCOPT:http-user-agent=Denver1769")
             
+            # Original CDN link fetch karan layi redirect link nu request marage
+            final_stream_url = raw_stream_line
             if channel_id:
                 redirect_url = f"https://game.playindia.fun/Jtv/RiYlIZ/Jtv.m3u8?id={channel_id}"
-                channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
-                channel_lines.append(redirect_url)
+                try:
+                    headers = {
+                        "User-Agent": "Denver1769",
+                        "Origin": "https://www.jiotv.com/",
+                        "Referer": "https://www.jiotv.com/"
+                    }
+                    r = session.get(redirect_url, headers=headers, allow_redirects=False, timeout=5)
+                    if r.status_code in [301, 302, 303, 307, 308] and "location" in r.headers:
+                        final_stream_url = r.headers["location"]
+                except Exception:
+                    pass
+
+            if final_stream_url:
+                channel_lines.append(final_stream_url)
             else:
-                channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
-                channel_lines.append(raw_stream_line if raw_stream_line else "http://dummy-link-to-prevent-break")
+                channel_lines.append("http://dummy-link-to-prevent-break")
 
     except Exception:
         channel_lines.append("#EXTVLCOPT:http-user-agent=Denver1769")
-        channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
         channel_lines.append(raw_stream_line if raw_stream_line else "http://dummy-link-to-prevent-break")
 
     return channel_lines
@@ -184,33 +185,27 @@ def generate_safe_playlist_1000():
     global processed_count
     processed_count = 0
     if not PLAYLIST_URL:
-        print("[-] Error: PLAYLIST_URL environment variable is not set!")
         return
 
     session = get_robust_session()
     clear_old_ips(session)
 
-    print(f"[*] Downloading and formatting playlist...")
     try:
         res = session.get(PLAYLIST_URL, headers={"User-Agent": "Denver1769"})
         if res.status_code != 200:
-            print("[-] Failed to fetch playlist.")
             return
 
         lines = res.text.splitlines()  
-
         all_channels = []
         for i, line in enumerate(lines):  
             if line.strip().startswith("#EXTINF"):  
                 all_channels.append((i, line))
 
         if not all_channels:  
-            print("[-] No channels found in playlist.")  
             return  
 
         target_indices = [item[0] for item in all_channels[:MAX_CHANNELS]]
-
-        print(f"[*] Processing {len(target_indices)} channels...")  
+        print(f"[*] Fetching original CDN links for {len(target_indices)} channels...")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -234,10 +229,11 @@ def generate_safe_playlist_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n\n[+] Success! Saved {len(target_indices)} channels as '{output_file}'.")
+        print(f"\n[+] Success! Saved original CDN links as '{output_file}'.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
+        
