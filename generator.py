@@ -98,7 +98,6 @@ def process_single_channel(i, lines, session):
             except Exception:
                 pass
 
-    # ਚੈੱਕ ਕਰੋ ਕਿ ਕੀ ਚੈਨਲ Hotstar/JHS ਵਾਲਾ ਹੈ ਜਾਂ ਨਹੀਂ
     is_hotstar = "hotstar" in extinf_line.lower() or "hotstar" in raw_stream_line.lower() or "jhs" in extinf_line.lower()
     for b in range(max(0, i - 3), i + 4):
         if "hotstar" in lines[b].lower() or "jhs" in lines[b].lower():
@@ -153,10 +152,10 @@ def process_single_channel(i, lines, session):
                 channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
 
             channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
-            channel_lines.append("#EXTVLCOPT:http-referrer=https://www.hotstar.com/")
+            channel_lines.append("EXTVLCOPT:http-referrer=https://www.hotstar.com/")
             channel_lines.append("#EXTVLCOPT:http-extra-headers=Origin: https://www.hotstar.com")
             
-            cookie_str = "hdntl=exp=1790060007~acl=%2f*~id=3923d2a2be266251ea16fcf0686afb7f~data=hdntl~hmac=ef5e4e132c593978b4d0e4871486267d5aaee8fa8d0bc4669a753c1ee6fe9acb"
+            cookie_str = "hdntl=exp=1790565752~acl=%2f*~id=55dc428906557b031549e4ae4033ec3f~data=hdntl~hmac=381b5f55bf364c778fc4e9bef4d63014bb5a829bb3c3720f84a0f9cd5b002c01"
             if "|cookie=" in raw_stream_line:
                 try:
                     cookie_str = raw_stream_line.split("|cookie=")[1].split("&")[0]
@@ -180,7 +179,6 @@ def process_single_channel(i, lines, session):
 
             channel_lines.append("#EXTVLCOPT:http-user-agent=Denver1769")
             
-            # Original CDN link fetch karan layi redirect link nu request marage
             final_stream_url = raw_stream_line
             if channel_id:
                 redirect_url = f"https://game.playindia.fun/Jtv/RiYlIZ/Jtv.m3u8?id={channel_id}"
@@ -234,7 +232,7 @@ def generate_safe_playlist_1000():
             return  
 
         target_indices = [item[0] for item in all_channels[:MAX_CHANNELS]]
-        print(f"[*] Processing {len(target_indices)} channels with JHS/Hotstar & Jio support...")  
+        print(f"[*] Processing {len(target_indices)} channels with Complete Final setup...")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -258,11 +256,11 @@ def generate_safe_playlist_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n[+] Success! Saved playlist as '{output_file}'.")
+        print(f"\n[+] Success! Final playlist saved as '{output_file}'.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-                               
+            
