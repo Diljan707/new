@@ -8,13 +8,11 @@ from urllib3.util.retry import Retry
 import threading
 from bs4 import BeautifulSoup
 
-# GitHub Secret ton URL fetch karega (Safety layi)
 PLAYLIST_URL = os.environ.get("PLAYLIST_URL")
-# IP manager link (Token RiY1IZ ala)
 IP_MANAGER_URL = "https://game.playindia.fun/Jtv/IP.php?id=RiYlIZ"
 
-MAX_CHANNELS = 1000  # Exact 1000 channels limit
-MAX_WORKERS = 60     # Safe workers balance for speed & reliability
+MAX_CHANNELS = 1000
+MAX_WORKERS = 60
 
 counter_lock = threading.Lock()
 processed_count = 0
@@ -22,7 +20,7 @@ processed_count = 0
 def clear_old_ips(session):
     print("[*] Checking and clearing old IPs from IP Manager...")
     headers = {
-        "User-Agent": "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36",
+        "User-Agent": "Denver1769",
         "Referer": "https://game.playindia.fun/"
     }
     try:
@@ -44,8 +42,6 @@ def clear_old_ips(session):
         if not ip_list:
             print("[+] No old IPs found to delete.")
             return
-
-        print(f"[*] Found {len(ip_list)} old IPs. Deleting them fast...")
 
         def delete_single(ip_val):
             data = {'action': 'delete_ip', 'ip': ip_val}
@@ -82,15 +78,14 @@ def process_single_channel(i, lines, session):
     line = lines[i].strip()
     extinf_line = line
 
-    # 1. ਪਹਿਲਾਂ tvg-id ਲੱਭਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ
     channel_id = ""
+    # 1. tvg-id ਲੱਭੋ
     if 'tvg-id="' in extinf_line:
         try:
             channel_id = extinf_line.split('tvg-id="')[1].split('"')[0]
         except Exception:
             pass
 
-    # ਅਗਲੀਆਂ ਲਾਈਨਾਂ ਤੋਂ ਰਾਕ ਸਟ੍ਰੀਮ ਯੂ.ਆਰ.ਐੱਲ. ਲੱਭੋ
     raw_stream_line = ""
     for f in range(i + 1, min(len(lines), i + 5)):
         if lines[f].strip().startswith("http"):
@@ -99,14 +94,13 @@ def process_single_channel(i, lines, session):
                 raw_stream_line = raw_stream_line[:-1]
             break
             
-    # 2. ਜੇ tvg-id ਨਾ ਮਿਲੇ, ਤਾਂ EXTINF ਲਾਈਨ ਵਿੱਚੋਂ ਹੀ id= ਲੱਭੋ
+    # 2. ਜੇ tvg-id ਨਾ ਮਿਲੇ, ਤਾਂ URL ਜਾਂ ਲਾਈਨ ਵਿੱਚੋਂ id ਲੱਭੋ
     if not channel_id and "id=" in extinf_line:
         try:
             channel_id = extinf_line.split('id="')[1].split('"')[0]
         except Exception:
             pass
 
-    # 3. ਜੇ ਫਿਰ ਵੀ ਨਾ ਮਿਲੇ, ਤਾਂ raw_stream_line ਵਿੱਚੋਂ id= ਲੱਭੋ
     if not channel_id and raw_stream_line:
         if "id=" in raw_stream_line:
             try:
@@ -129,18 +123,12 @@ def process_single_channel(i, lines, session):
             if "inputstream.adaptive.license_key=" in sub_b:
                 key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
 
-        user_agent = "Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)" if is_hotstar else "plaYtv/7.1.5"
-        for f in range(i + 1, min(len(lines), i + 4)):
-            sub_f = lines[f].strip()
-            if sub_f.startswith("#EXTVLCOPT:http-user-agent="):
-                user_agent = sub_f.split("=")[1].strip()
-
         formatted_license_key = None
-        if key_url:
+        if key_url and not is_hotstar:
             try:
                 if '"' in key_url:
                     key_url = key_url.replace('"', "")
-                key_res = session.get(key_url, headers={"User-Agent": user_agent}, timeout=3)
+                key_res = session.get(key_url, headers={"User-Agent": "Denver1769"}, timeout=3)
                 if key_res.status_code == 200:
                     key_json = key_res.json()
                     key_pairs = []
@@ -161,59 +149,34 @@ def process_single_channel(i, lines, session):
             channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
             channel_lines.append("#KODIPROP:inputstream.adaptive.manifest_type=mpd")
             channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
-            
             if formatted_license_key:
                 channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
             elif key_url:
                 channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
-
-            channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
-            channel_lines.append("#EXTVLCOPT:http-referrer=https://www.hotstar.com/")
-            channel_lines.append("#EXTVLCOPT:http-extra-headers=Origin: https://www.hotstar.com")
-            
-            cookie_str = "hdntl=exp=1790060007~acl=%2f*~id=3923d2a2be266251ea16fcf0686afb7f~data=hdntl~hmac=ef5e4e132c593978b4d0e4871486267d5aaee8fa8d0bc4669a753c1ee6fe9acb"
-            if "|cookie=" in raw_stream_line:
-                try:
-                    cookie_str = raw_stream_line.split("|cookie=")[1].split("&")[0]
-                except Exception:
-                    pass
-
-            channel_lines.append(f"#EXTVLCOPT:http-cookie={cookie_str}")
-            channel_lines.append(f'#EXTHTTP:{{"Origin":"https://www.hotstar.com","Referer":"https://www.hotstar.com/","Cookie":"{cookie_str}"}}')
-            
-            if raw_stream_line:
-                channel_lines.append(raw_stream_line)
-            else:
-                channel_lines.append("http://dummy-link-to-prevent-break")
-
+            channel_lines.append("#EXTVLCOPT:http-user-agent=Denver1769")
+            channel_lines.append(raw_stream_line if raw_stream_line else "http://dummy-link-to-prevent-break")
         else:
             channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
-            
             if formatted_license_key:
                 channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
             elif key_url:
                 channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
 
-            channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
-
-            # ਰੀਡਾਇਰੈਕਟ/ਪ੍ਰੌਕਸੀ ਲਿੰਕ ਜੋੜਨਾ ਜੇ ID ਮਿਲ ਜਾਵੇ
+            # ਇੱਥੇ ਹਰ ਚੈਨਲ ਲਈ Denver1769 ਅਤੇ ਰੀਡਾਇਰੈਕਟ ਲਿੰਕ ਪੱਕਾ ਕੀਤਾ ਗਿਆ ਹੈ
+            channel_lines.append("#EXTVLCOPT:http-user-agent=Denver1769")
+            
             if channel_id:
                 redirect_url = f"https://game.playindia.fun/Jtv/RiYlIZ/Jtv.m3u8?id={channel_id}"
                 channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
                 channel_lines.append(redirect_url)
             else:
                 channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
-                if raw_stream_line:
-                    channel_lines.append(raw_stream_line)
-                else:
-                    channel_lines.append("http://dummy-link-to-prevent-break")
+                channel_lines.append(raw_stream_line if raw_stream_line else "http://dummy-link-to-prevent-break")
 
     except Exception:
+        channel_lines.append("#EXTVLCOPT:http-user-agent=Denver1769")
         channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
-        if raw_stream_line:
-            channel_lines.append(raw_stream_line)
-        else:
-            channel_lines.append("http://dummy-link-to-prevent-break")
+        channel_lines.append(raw_stream_line if raw_stream_line else "http://dummy-link-to-prevent-break")
 
     return channel_lines
 
@@ -225,13 +188,11 @@ def generate_safe_playlist_1000():
         return
 
     session = get_robust_session()
-    
-    # ਪਹਿਲਾਂ ਪੁਰਾਣੀਆਂ IPs ਡਿਲੀਟ ਕਰੋ
     clear_old_ips(session)
 
-    print(f"[*] Downloading playlist, prioritizing Sony, Star, PTC & handling formats...")
+    print(f"[*] Downloading and formatting playlist...")
     try:
-        res = session.get(PLAYLIST_URL, headers={"User-Agent": "plaYtv/7.1.5"})
+        res = session.get(PLAYLIST_URL, headers={"User-Agent": "Denver1769"})
         if res.status_code != 200:
             print("[-] Failed to fetch playlist.")
             return
@@ -247,27 +208,9 @@ def generate_safe_playlist_1000():
             print("[-] No channels found in playlist.")  
             return  
 
-        sony_channels = []
-        star_channels = []
-        ptc_channels = []
-        other_channels = []
+        target_indices = [item[0] for item in all_channels[:MAX_CHANNELS]]
 
-        for idx, line in all_channels:
-            channel_name = line.split(',')[-1].strip().lower() if ',' in line else line.lower()
-            
-            if "sony" in channel_name:
-                sony_channels.append((idx, line))
-            elif "star" in channel_name:
-                star_channels.append((idx, line))
-            elif "ptc" in channel_name:
-                ptc_channels.append((idx, line))
-            else:
-                other_channels.append((idx, line))
-
-        prioritized_channels = (sony_channels + star_channels + ptc_channels + other_channels)[:MAX_CHANNELS]
-        target_indices = [item[0] for item in prioritized_channels]
-
-        print(f"[*] Processing {len(target_indices)} prioritized channels with multithreading...\n")  
+        print(f"[*] Processing {len(target_indices)} channels...")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -280,32 +223,12 @@ def generate_safe_playlist_1000():
                 try:
                     channel_results[idx] = future.result()
                 except Exception:
-                    fallback_lines = [lines[idx].strip(), '#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}']
-                    raw_url = ""
-                    for f in range(idx + 1, min(len(lines), idx + 5)):
-                        if lines[f].strip().startswith("http"):
-                            raw_url = lines[f].strip().split()[0]
-                            if raw_url.endswith("~"):
-                                raw_url = raw_url[:-1]
-                            break
-                    if raw_url:
-                        fallback_lines.append(raw_url)
-                    else:
-                        fallback_lines.append("http://dummy-link-to-prevent-break")
-                    channel_results[idx] = fallback_lines
-
-                with counter_lock:
-                    processed_count += 1
-                    print(f"[*] Progress: {processed_count}/{len(target_indices)} channels processed...", end="\r")
+                    pass
 
         new_lines = ["#EXTM3U"]
         for idx in target_indices:
             if idx in channel_results:
                 new_lines.extend(channel_results[idx])
-            else:
-                new_lines.append(lines[idx].strip())
-                new_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
-                new_lines.append("http://dummy-link-to-prevent-break")
 
         output_file = ".m3u"  
         with open(output_file, "w", encoding="utf-8") as f:  
