@@ -179,16 +179,16 @@ def process_single_channel(i, lines, session):
 
             channel_lines.append("#EXTVLCOPT:http-user-agent=Denver1769")
             
+            # --- Auto-resolve redirect for any raw stream link without hardcoding format ---
             final_stream_url = raw_stream_line
-            if channel_id:
-                redirect_url = f"https://game.playindia.fun/Jtv/RiYlIZ/Jtv.m3u8?id={channel_id}"
+            if raw_stream_line:
                 try:
                     headers = {
                         "User-Agent": "Denver1769",
                         "Origin": "https://www.jiotv.com/",
                         "Referer": "https://www.jiotv.com/"
                     }
-                    r = session.get(redirect_url, headers=headers, allow_redirects=False, timeout=5)
+                    r = session.get(raw_stream_line, headers=headers, allow_redirects=False, timeout=5)
                     if r.status_code in [301, 302, 303, 307, 308] and "location" in r.headers:
                         final_stream_url = r.headers["location"]
                 except Exception:
@@ -232,7 +232,7 @@ def generate_safe_playlist_1000():
             return  
 
         target_indices = [item[0] for item in all_channels[:MAX_CHANNELS]]
-        print(f"[*] Processing {len(target_indices)} channels with Complete Final setup...")  
+        print(f"[*] Processing {len(target_indices)} channels with Auto-Redirect resolution...")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
