@@ -82,6 +82,14 @@ def process_single_channel(i, lines, session):
     line = lines[i].strip()
     extinf_line = line
 
+    # tvg-id ਕੱਢਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ যাতে ਰੀਡਾਇਰੈਕਟ ਲਿੰਕ ਵਿੱਚ id ਪਾਸ ਕੀਤੀ ਜਾ ਸਕੇ
+    channel_id = ""
+    if 'tvg-id="' in extinf_line:
+        try:
+            channel_id = extinf_line.split('tvg-id="')[1].split('"')[0]
+        except Exception:
+            pass
+
     raw_stream_line = ""
     for f in range(i + 1, min(len(lines), i + 5)):
         if lines[f].strip().startswith("http"):
@@ -89,6 +97,14 @@ def process_single_channel(i, lines, session):
             if raw_stream_line.endswith("~"):
                 raw_stream_line = raw_stream_line[:-1]
             break
+            
+    # ਜੇ tvg-id ਨਾ ਮਿਲੇ, ਤਾਂ URL ਵਿੱਚੋਂ id ਕੱਢਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ
+    if not channel_id and raw_stream_line:
+        if "id=" in raw_stream_line:
+            try:
+                channel_id = raw_stream_line.split("id=")[1].split("&")[0]
+            except Exception:
+                pass
 
     is_hotstar = "hotstar" in extinf_line.lower() or "hotstar" in raw_stream_line.lower()
     for b in range(max(0, i - 3), i + 4):
@@ -163,12 +179,6 @@ def process_single_channel(i, lines, session):
                 channel_lines.append("http://dummy-link-to-prevent-break")
 
         else:
-            mpd_line = None
-            for f in range(i + 1, min(len(lines), i + 4)):
-                sub_f = lines[f].strip()
-                if sub_f.startswith("http") and ".mpd" in sub_f:
-                    mpd_line = sub_f
-
             channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
             
             if formatted_license_key:
@@ -178,58 +188,13 @@ def process_single_channel(i, lines, session):
 
             channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
 
-            url_added = False
-            cookie_val = None
-
-            if mpd_line:
-                try:
-                    channel_headers = {"User-Agent": user_agent}
-                    r = session.get(
-                        mpd_line, headers=channel_headers, allow_redirects=False, timeout=3
-                    )
-
-                    if r.status_code == 403 and raw_stream_line:
-                        clean_url = raw_stream_line
-                        url_added = True
-                    else:
-                        real_url = (  
-                            r.headers.get("Location")  
-                            if r.status_code in [301, 302, 303, 307, 308]  
-                            else mpd_line  
-                        )  
-                        clean_url = real_url.strip().split()[0]  
-                        if clean_url.endswith("~"):  
-                            clean_url = clean_url[:-1]  
-                        
-                        if "__hdnea__=" in clean_url:
-                            try:
-                                parts = clean_url.split("__hdnea__=")
-                                if len(parts) > 1:
-                                    cookie_val = f"__hdnea__={parts[1].split('&')[0]}"
-                            except Exception:
-                                pass
-                        elif "%7Ccookie=" in clean_url:
-                            parts = clean_url.split("%7Ccookie=")
-                            clean_url = parts[0]
-                            cookie_val = parts[1].split("&")[0] if "&" in parts[1] else parts[1]
-                        elif "|cookie=" in clean_url:
-                            parts = clean_url.split("|cookie=")
-                            clean_url = parts[0]
-                            cookie_val = parts[1].split("&")[0] if "&" in parts[1] else parts[1]
-
-                        url_added = True
-
-                    if cookie_val:
-                        channel_lines.append(f'#EXTHTTP:{{"cookie":"{cookie_val}","Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}}')
-                    else:
-                        channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
-
-                    channel_lines.append(clean_url)
-
-                except Exception:
-                    pass
-
-            if not url_added:
+            # ਇੱਥੇ ਰੀਡਾਇਰੈਕਟ/ਪ੍ਰੌਕਸੀ ਲિંਕ ਲਾਗੂ ਕੀਤਾ ਗਿਆ ਹੈ
+            if channel_id:
+                redirect_url = f"https://game.playindia.fun/Jtv/RiYlIZ/Jtv.m3u8?id={channel_id}"
+                channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
+                channel_lines.append(redirect_url)
+            else:
+                # ਜੇ id ਨਾ ਮਿਲੇ ਤਾਂ ਪੁਰਾਣਾ ਰਾਕ ਲਿੰਕ ਵਰਤੋ
                 channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
                 if raw_stream_line:
                     channel_lines.append(raw_stream_line)
@@ -346,4 +311,3 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-        
