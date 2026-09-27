@@ -82,7 +82,7 @@ def process_single_channel(i, lines, session):
     line = lines[i].strip()
     extinf_line = line
 
-    # tvg-id ਕੱਢਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ যাতে ਰੀਡਾਇਰੈਕਟ ਲਿੰਕ ਵਿੱਚ id ਪਾਸ ਕੀਤੀ ਜਾ ਸਕੇ
+    # 1. ਪਹਿਲਾਂ tvg-id ਲੱਭਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ
     channel_id = ""
     if 'tvg-id="' in extinf_line:
         try:
@@ -90,6 +90,7 @@ def process_single_channel(i, lines, session):
         except Exception:
             pass
 
+    # ਅਗਲੀਆਂ ਲਾਈਨਾਂ ਤੋਂ ਰਾਕ ਸਟ੍ਰੀਮ ਯੂ.ਆਰ.ਐੱਲ. ਲੱਭੋ
     raw_stream_line = ""
     for f in range(i + 1, min(len(lines), i + 5)):
         if lines[f].strip().startswith("http"):
@@ -98,7 +99,14 @@ def process_single_channel(i, lines, session):
                 raw_stream_line = raw_stream_line[:-1]
             break
             
-    # ਜੇ tvg-id ਨਾ ਮਿਲੇ, ਤਾਂ URL ਵਿੱਚੋਂ id ਕੱਢਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ
+    # 2. ਜੇ tvg-id ਨਾ ਮਿਲੇ, ਤਾਂ EXTINF ਲਾਈਨ ਵਿੱਚੋਂ ਹੀ id= ਲੱਭੋ
+    if not channel_id and "id=" in extinf_line:
+        try:
+            channel_id = extinf_line.split('id="')[1].split('"')[0]
+        except Exception:
+            pass
+
+    # 3. ਜੇ ਫਿਰ ਵੀ ਨਾ ਮਿਲੇ, ਤਾਂ raw_stream_line ਵਿੱਚੋਂ id= ਲੱਭੋ
     if not channel_id and raw_stream_line:
         if "id=" in raw_stream_line:
             try:
@@ -188,13 +196,12 @@ def process_single_channel(i, lines, session):
 
             channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
 
-            # ਇੱਥੇ ਰੀਡਾਇਰੈਕਟ/ਪ੍ਰੌਕਸੀ ਲિંਕ ਲਾਗੂ ਕੀਤਾ ਗਿਆ ਹੈ
+            # ਰੀਡਾਇਰੈਕਟ/ਪ੍ਰੌਕਸੀ ਲਿੰਕ ਜੋੜਨਾ ਜੇ ID ਮਿਲ ਜਾਵੇ
             if channel_id:
                 redirect_url = f"https://game.playindia.fun/Jtv/RiYlIZ/Jtv.m3u8?id={channel_id}"
                 channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
                 channel_lines.append(redirect_url)
             else:
-                # ਜੇ id ਨਾ ਮਿਲੇ ਤਾਂ ਪੁਰਾਣਾ ਰਾਕ ਲਿੰਕ ਵਰਤੋ
                 channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
                 if raw_stream_line:
                     channel_lines.append(raw_stream_line)
@@ -219,7 +226,7 @@ def generate_safe_playlist_1000():
 
     session = get_robust_session()
     
-    # Sab ton pehlan purani IPs delete karo
+    # ਪਹਿਲਾਂ ਪੁਰਾਣੀਆਂ IPs ਡਿਲੀਟ ਕਰੋ
     clear_old_ips(session)
 
     print(f"[*] Downloading playlist, prioritizing Sony, Star, PTC & handling formats...")
