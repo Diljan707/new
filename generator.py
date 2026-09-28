@@ -177,9 +177,10 @@ def process_single_channel(i, lines, session):
             elif key_url:
                 channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
 
-            channel_lines.append("#EXTVLCOPT:http-user-agent=Denver1769")
+            # --- M3U ਪਲੇਅਰ ਲਈ ਅਸਲੀ Jio User-Agent ---
+            channel_lines.append("#EXTVLCOPT:http-user-agent=JioTV/6.0.0 (Linux; Android 11) ExoPlayerLib/2.11.8")
             
-            # --- Auto-resolve redirect for any raw stream link without hardcoding format ---
+            # --- Auto-resolve redirect (ਇੱਥੇ ਰੀਡਾਇਰੈਕਸ਼ਨ ਲਈ Denver1769 ਹੀ ਵਰਤਿਆ ਹੈ) ---
             final_stream_url = raw_stream_line
             if raw_stream_line:
                 try:
@@ -202,7 +203,7 @@ def process_single_channel(i, lines, session):
                 channel_lines.append("http://dummy-link-to-prevent-break")
 
     except Exception:
-        channel_lines.append("#EXTVLCOPT:http-user-agent=Denver1769")
+        channel_lines.append("#EXTVLCOPT:http-user-agent=JioTV/6.0.0 (Linux; Android 11) ExoPlayerLib/2.11.8")
         channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
         channel_lines.append(raw_stream_line if raw_stream_line else "http://dummy-link-to-prevent-break")
 
@@ -263,4 +264,4 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-            
+        
