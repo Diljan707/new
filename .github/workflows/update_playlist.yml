@@ -13,6 +13,7 @@ jobs:
 
     permissions:
       contents: write
+      actions: write  # Actions nu delete karn layi permissions zaroori ne
 
     steps:
     - name: Checkout repository
@@ -35,12 +36,20 @@ jobs:
         python3 generator.py
 
     - name: Delete old workflow runs to save storage
-      uses: MattIPv4/delete-workflow-runs@v2
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        repository: ${{ github.repository }}
-        retain_days: 0
-        keep_minimum_runs: 1
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        set +e
+        # Sab ton last (current) run nu chhad ke baki sare purane runs di ID chak ke delete kar devega
+        run_ids=$(gh run list --limit 100 --json databaseId,status --jq '.[] | select(.status != "in_progress") | .databaseId')
+        current_run_id="${{ github.run_id }}"
+        
+        for id in $run_ids; do
+          if [ "$id" != "$current_run_id" ]; then
+            echo "Deleting old run ID: $id"
+            gh run delete "$id"
+          fi
+        done
 
     - name: Commit and push always
       run: |
@@ -50,3 +59,4 @@ jobs:
         git commit --allow-empty -m ".m3u [skip ci]"
         git pull --rebase origin main || git pull --rebase origin master || true
         git push origin HEAD:main || git push origin HEAD:master || true
+        
