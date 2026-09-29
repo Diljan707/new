@@ -36,12 +36,12 @@ jobs:
         python3 generator.py
 
     - name: Delete old workflow runs to save storage
-      uses: sbkwer/del-gh-runs@v3
+      uses: Mattraks/delete-workflow-runs@v2
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        repo: ${{ github.repository }}
+        repository: ${{ github.repository }}
+        retain_days: 0
         keep_minimum_runs: 1
-        exclude_workflow_names: ""
 
     - name: Commit and push always
       run: |
