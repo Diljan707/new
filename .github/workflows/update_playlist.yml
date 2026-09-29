@@ -36,19 +36,12 @@ jobs:
         python3 generator.py
 
     - name: Delete old workflow runs to save storage
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        set +e
-        run_ids=$(gh run list --limit 100 --json databaseId,status --jq '.[] | select(.status != "in_progress") | .databaseId')
-        current_run_id="${{ github.run_id }}"
-        
-        for id in $run_ids; do
-          if [ "$id" != "$current_run_id" ]; then
-            echo "Deleting old run ID: $id"
-            gh run delete "$id"
-          fi
-        done
+      uses: sbkwer/del-gh-runs@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        repo: ${{ github.repository }}
+        keep_minimum_runs: 1
+        exclude_workflow_names: ""
 
     - name: Commit and push always
       run: |
