@@ -13,7 +13,7 @@ jobs:
 
     permissions:
       contents: write
-      actions: write  # Actions nu delete karn layi permissions zaroori ne
+      actions: write
 
     steps:
     - name: Checkout repository
@@ -27,7 +27,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install requests
+        pip install requests beautifulsoup4
 
     - name: Run script
       env:
@@ -40,7 +40,6 @@ jobs:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         set +e
-        # Sab ton last (current) run nu chhad ke baki sare purane runs di ID chak ke delete kar devega
         run_ids=$(gh run list --limit 100 --json databaseId,status --jq '.[] | select(.status != "in_progress") | .databaseId')
         current_run_id="${{ github.run_id }}"
         
