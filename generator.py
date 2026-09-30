@@ -68,18 +68,7 @@ def b64_to_hex(b64_str):
 
 def process_single_channel(i, lines, session):
     line = lines[i].strip()
-    
-    # --- Remove group-title from EXTINF as requested ---
     extinf_line = line
-    if "group-title=" in extinf_line:
-        parts = extinf_line.split("group-title=")
-        if len(parts) > 1:
-            after_group = parts[1]
-            if '"' in after_group[1:]:
-                end_quote_idx = after_group[1:].index('"') + 2
-                extinf_line = parts[0] + after_group[end_quote_idx:].lstrip()
-            else:
-                extinf_line = parts[0]
 
     channel_id = ""
     if 'tvg-id="' in extinf_line:
@@ -152,53 +141,70 @@ def process_single_channel(i, lines, session):
             except Exception:
                 pass
 
-        channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
-        channel_lines.append("#KODIPROP:inputstream.adaptive.manifest_type=mpd")
-        channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
-        
-        if formatted_license_key:
-            channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
-        elif key_url:
-            channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
+        if is_hotstar:
+            channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
+            channel_lines.append("#KODIPROP:inputstream.adaptive.manifest_type=mpd")
+            channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
+            
+            if formatted_license_key:
+                channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
+            elif key_url:
+                channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
 
-        # --- User-Agent updated from the image ---
-        channel_lines.append("#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Mobile Safari/537.36")
+            channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
+            channel_lines.append("EXTVLCOPT:http-referrer=https://www.hotstar.com/")
+            channel_lines.append("#EXTVLCOPT:http-extra-headers=Origin: https://www.hotstar.com")
+            
+            cookie_str = "hdntl=exp=1790565752~acl=%2f*~id=55dc428906557b031549e4ae4033ec3f~data=hdntl~hmac=381b5f55bf364c778fc4e9bef4d63014bb5a829bb3c3720f84a0f9cd5b002c01"
+            if "|cookie=" in raw_stream_line:
+                try:
+                    cookie_str = raw_stream_line.split("|cookie=")[1].split("&")[0]
+                except Exception:
+                    pass
 
-        cookie_str = "hdntl=exp=1700712437~acl=%2f*~hmac=a7b94cbae6903fca66f5d865cac96a5cd7e1c168b83c05f60a47f04fb5d01"
-        if "|cookie=" in raw_stream_line:
-            try:
-                cookie_str = raw_stream_line.split("|cookie=")[1].split("&")[0]
-            except Exception:
-                pass
+            channel_lines.append(f"#EXTVLCOPT:http-cookie={cookie_str}")
+            channel_lines.append(f'#EXTHTTP:{{"Origin":"https://www.hotstar.com","Referer":"https://www.hotstar.com/","Cookie":"{cookie_str}"}}')
+            
+            if raw_stream_line:
+                channel_lines.append(raw_stream_line)
+            else:
+                channel_lines.append("http://dummy-link-to-prevent-break")
 
-        channel_lines.append(f'#EXTHTTP:{{"Cookie":"{cookie_str}"}}')
-
-        # --- Auto-resolve redirect for stream link ---
-        final_stream_url = raw_stream_line
-        if raw_stream_line:
-            try:
-                headers = {
-                    "User-Agent": "Denver1769",
-                    "Origin": "https://www.jiotv.com/",
-                    "Referer": "https://www.jiotv.com/"
-                }
-                r = session.get(raw_stream_line, headers=headers, allow_redirects=False, timeout=5)
-                if r.status_code in [301, 302, 303, 307, 308] and "location" in r.headers:
-                    final_stream_url = r.headers["location"]
-            except Exception:
-                pass
-
-        if final_stream_url:
-            channel_lines.append(final_stream_url)
         else:
-            channel_lines.append("http://dummy-link-to-prevent-break")
+            channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
+            if formatted_license_key:
+                channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
+            elif key_url:
+                channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
+
+            # --- ਨਵਾਂ User-Agent (plaTV/7.1.5) ਪਲੇਲਿਸਟ ਲਈ ---
+            channel_lines.append("#EXTVLCOPT:http-user-agent=plaTV/7.1.5")
+            
+            # --- ਰੀਡਾਇਰੈਕਸ਼ਨ ਲਈ Denver1769 ਜਿਵੇਂ ਪਹਿਲਾਂ ਸੀ ---
+            final_stream_url = raw_stream_line
+            if raw_stream_line:
+                try:
+                    headers = {
+                        "User-Agent": "Denver1769",
+                        "Origin": "https://www.jiotv.com/",
+                        "Referer": "https://www.jiotv.com/"
+                    }
+                    r = session.get(raw_stream_line, headers=headers, allow_redirects=False, timeout=5)
+                    if r.status_code in [301, 302, 303, 307, 308] and "location" in r.headers:
+                        final_stream_url = r.headers["location"]
+                except Exception:
+                    pass
+
+            channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
+
+            if final_stream_url:
+                channel_lines.append(final_stream_url)
+            else:
+                channel_lines.append("http://dummy-link-to-prevent-break")
 
     except Exception:
-        channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
-        channel_lines.append("#KODIPROP:inputstream.adaptive.manifest_type=mpd")
-        channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
-        channel_lines.append("#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Mobile Safari/537.36")
-        channel_lines.append('#EXTHTTP:{"Cookie":"hdntl=exp=1700712437~acl=%2f*~hmac=a7b94cbae6903fca66f5d865cac96a5cd7e1c168b83c05f60a47f04fb5d01"}')
+        channel_lines.append("#EXTVLCOPT:http-user-agent=plaTV/7.1.5")
+        channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
         channel_lines.append(raw_stream_line if raw_stream_line else "http://dummy-link-to-prevent-break")
 
     return channel_lines
@@ -227,7 +233,7 @@ def generate_safe_playlist_1000():
             return  
 
         target_indices = [item[0] for item in all_channels[:MAX_CHANNELS]]
-        print(f"[*] Processing {len(target_indices)} channels without category & with new format...")  
+        print(f"[*] Processing {len(target_indices)} channels with Auto-Redirect resolution...")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -258,3 +264,4 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
+        
