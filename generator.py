@@ -152,10 +152,10 @@ def process_single_channel(i, lines, session):
                 channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
 
             channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
-            channel_lines.append("EXTVLCOPT:http-referrer=https://www.hotstar.com/")
+            channel_lines.append("#EXTVLCOPT:http-referrer=https://www.hotstar.com/")
             channel_lines.append("#EXTVLCOPT:http-extra-headers=Origin: https://www.hotstar.com")
             
-            cookie_str = "hdntl=exp=1790565752~acl=%2f*~id=55dc428906557b031549e4ae4033ec3f~data=hdntl~hmac=381b5f55bf364c778fc4e9bef4d63014bb5a829bb3c3720f84a0f9cd5b002c01"
+            cookie_str = "hdntl=exp=1790846295~acl=%2f*~id=af9f2444dbd242ba96e15a82e9d5f668~data=hdntl~hmac=85fbbe3fd86f68e27d194b494a1eab8666d65bf230c58a4231acdbc50e3b2caa"
             if "|cookie=" in raw_stream_line:
                 try:
                     cookie_str = raw_stream_line.split("|cookie=")[1].split("&")[0]
@@ -177,10 +177,8 @@ def process_single_channel(i, lines, session):
             elif key_url:
                 channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
 
-            # --- M3U ਪਲੇਅਰ ਲਈ ਅਸਲੀ Jio User-Agent ---
             channel_lines.append("#EXTVLCOPT:http-user-agent=JioTV/6.0.0 (Linux; Android 11) ExoPlayerLib/2.11.8")
             
-            # --- Auto-resolve redirect (ਇੱਥੇ ਰੀਡਾਇਰੈਕਸ਼ਨ ਲਈ Denver1769 ਹੀ ਵਰਤਿਆ ਹੈ) ---
             final_stream_url = raw_stream_line
             if raw_stream_line:
                 try:
