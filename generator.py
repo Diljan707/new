@@ -146,9 +146,6 @@ def process_single_channel(i, lines, session):
             channel_lines.append("#KODIPROP:inputstream.adaptive.manifest_type=mpd")
             channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
             channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
-            # Added zero-buffer / low latency configurations
-            channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=buffered")
-            channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=1")
             
             if formatted_license_key:
                 channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
@@ -177,9 +174,6 @@ def process_single_channel(i, lines, session):
         else:
             channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
             channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
-            # Added zero-buffer / low latency configurations
-            channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=buffered")
-            channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=1")
             
             if formatted_license_key:
                 channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
@@ -210,10 +204,6 @@ def process_single_channel(i, lines, session):
                 channel_lines.append("http://dummy-link-to-prevent-break")
 
     except Exception:
-        channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
-        channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
-        channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=buffered")
-        channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=1")
         channel_lines.append("#EXTVLCOPT:http-user-agent=JioTV/6.0.0 (Linux; Android 11) ExoPlayerLib/2.11.8")
         channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/","Connection":"keep-alive"}')
         channel_lines.append(raw_stream_line if raw_stream_line else "http://dummy-link-to-prevent-break")
@@ -275,4 +265,3 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-            
