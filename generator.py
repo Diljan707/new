@@ -98,11 +98,13 @@ def process_single_channel(i, lines, session):
             except Exception:
                 pass
 
-    is_hotstar = "hotstar" in extinf_line.lower() or "hotstar" in raw_stream_line.lower() or "jhs" in extinf_line.lower()
+    # Identify Provider Type
+    lower_text = (extinf_line + raw_stream_line).lower()
     for b in range(max(0, i - 3), i + 4):
-        if "hotstar" in lines[b].lower() or "jhs" in lines[b].lower():
-            is_hotstar = True
-            break
+        lower_text += lines[b].lower()
+
+    is_hotstar = "hotstar" in lower_text or "jhs" in lower_text
+    is_sliv = "sliv" in lower_text or "sony" in lower_text or "ten" in lower_text
 
     channel_lines = [extinf_line]
 
@@ -113,7 +115,14 @@ def process_single_channel(i, lines, session):
             if "inputstream.adaptive.license_key=" in sub_b:
                 key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
 
-        user_agent = "Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)" if is_hotstar else "Denver1769"
+        # Set specific User-Agent based on provider
+        if is_hotstar:
+            user_agent = "Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)"
+        elif is_sliv:
+            user_agent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
+        else:
+            user_agent = "Denver1769"
+
         for f in range(i + 1, min(len(lines), i + 4)):
             sub_f = lines[f].strip()
             if sub_f.startswith("#EXTVLCOPT:http-user-agent="):
@@ -141,11 +150,31 @@ def process_single_channel(i, lines, session):
             except Exception:
                 pass
 
+        # Universal auto-redirect resolution for all URLs
+        final_stream_url = raw_stream_line
+        if raw_stream_line:
+            try:
+                check_headers = {"User-Agent": user_agent}
+                if is_hotstar:
+                    check_headers.update({"Origin": "https://www.hotstar.com", "Referer": "https://www.hotstar.com/"})
+                elif is_sliv:
+                    check_headers.update({"Origin": "https://www.sonyliv.com", "Referer": "https://www.sonyliv.com/"})
+                else:
+                    check_headers.update({"Origin": "https://www.jiotv.com/", "Referer": "https://www.jiotv.com/"})
+
+                r = session.get(raw_stream_line, headers=check_headers, allow_redirects=False, timeout=5)
+                if r.status_code in [301, 302, 303, 307, 308] and "location" in r.headers:
+                    final_stream_url = r.headers["location"]
+            except Exception:
+                pass
+
         if is_hotstar:
             channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
             channel_lines.append("#KODIPROP:inputstream.adaptive.manifest_type=mpd")
             channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
             channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
+            channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=buffered")
+            channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=1")
             
             if formatted_license_key:
                 channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
@@ -165,15 +194,26 @@ def process_single_channel(i, lines, session):
 
             channel_lines.append(f"#EXTVLCOPT:http-cookie={cookie_str}")
             channel_lines.append(f'#EXTHTTP:{{"Origin":"https://www.hotstar.com","Referer":"https://www.hotstar.com/","Cookie":"{cookie_str}","Connection":"keep-alive"}}')
-            
-            if raw_stream_line:
-                channel_lines.append(raw_stream_line)
-            else:
-                channel_lines.append("http://dummy-link-to-prevent-break")
+            channel_lines.append(final_stream_url if final_stream_url else "http://dummy-link-to-prevent-break")
 
-        else:
+        elif is_sliv:
+            channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
+            channel_lines.append("#KODIPROP:inputstream.adaptive.manifest_type=hls")
+            channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
+            channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=buffered")
+            channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=1")
+
+            channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
+            channel_lines.append("#EXTVLCOPT:http-referrer=https://www.sonyliv.com/")
+            channel_lines.append("#EXTVLCOPT:http-extra-headers=Origin: https://www.sonyliv.com")
+            channel_lines.append('#EXTHTTP:{"Origin":"https://www.sonyliv.com/","Referer":"https://www.sonyliv.com/","Connection":"keep-alive"}')
+            channel_lines.append(final_stream_url if final_stream_url else "http://dummy-link-to-prevent-break")
+
+        else:  # Default / JioTV
             channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
             channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
+            channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=buffered")
+            channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=1")
             
             if formatted_license_key:
                 channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
@@ -181,31 +221,11 @@ def process_single_channel(i, lines, session):
                 channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
 
             channel_lines.append("#EXTVLCOPT:http-user-agent=JioTV/6.0.0 (Linux; Android 11) ExoPlayerLib/2.11.8")
-            
-            final_stream_url = raw_stream_line
-            if raw_stream_line:
-                try:
-                    headers = {
-                        "User-Agent": "Denver1769",
-                        "Origin": "https://www.jiotv.com/",
-                        "Referer": "https://www.jiotv.com/"
-                    }
-                    r = session.get(raw_stream_line, headers=headers, allow_redirects=False, timeout=5)
-                    if r.status_code in [301, 302, 303, 307, 308] and "location" in r.headers:
-                        final_stream_url = r.headers["location"]
-                except Exception:
-                    pass
-
             channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/","Connection":"keep-alive"}')
-
-            if final_stream_url:
-                channel_lines.append(final_stream_url)
-            else:
-                channel_lines.append("http://dummy-link-to-prevent-break")
+            channel_lines.append(final_stream_url if final_stream_url else "http://dummy-link-to-prevent-break")
 
     except Exception:
-        channel_lines.append("#EXTVLCOPT:http-user-agent=JioTV/6.0.0 (Linux; Android 11) ExoPlayerLib/2.11.8")
-        channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/","Connection":"keep-alive"}')
+        channel_lines.append("#EXTVLCOPT:http-user-agent=Denver1769")
         channel_lines.append(raw_stream_line if raw_stream_line else "http://dummy-link-to-prevent-break")
 
     return channel_lines
@@ -234,7 +254,7 @@ def generate_safe_playlist_1000():
             return  
 
         target_indices = [item[0] for item in all_channels[:MAX_CHANNELS]]
-        print(f"[*] Processing {len(target_indices)} channels with Auto-Redirect resolution...")  
+        print(f"[*] Processing {len(target_indices)} channels with Auto-Redirect resolution for Jio, Hotstar, & SonyLIV...")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -265,3 +285,4 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
+        
