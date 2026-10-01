@@ -104,7 +104,7 @@ def resolve_deep_redirects(url, session, user_agent, depth=0):
                 if line.endswith(".ts") or line.endswith(".m4s") or "#EXTINF" in line:
                     has_media_chunks = True
                 
-                if line.startswith("http") and ("m3u8" in line or "master" in line or "index" in line):
+                if line.startswith("http") and ("m3u8" in line or "master" in line or "index" in line or "mpd" in line):
                     nested_links.append(line)
             
             if has_media_chunks or not nested_links:
@@ -162,8 +162,7 @@ def process_single_channel(i, lines, session):
         lower_text += lines[b].lower()
 
     is_hotstar = "hotstar" in lower_text or "jhs" in lower_text
-    is_mpd_forced = ".mpd" in raw_stream_line.lower() or "mpd" in lower_text or "sab" in lower_text
-    is_sliv = ("sliv" in lower_text or ("sony" in lower_text)) and not is_mpd_forced
+    is_sliv = "sliv" in lower_text or ("sony" in lower_text and ".mpd" not in raw_stream_line.lower())
 
     channel_lines = [extinf_line]
 
@@ -208,6 +207,9 @@ def process_single_channel(i, lines, session):
             if resolved:
                 final_stream_url = resolved
 
+        # Check if final link contains mpd
+        is_mpd_link = ".mpd" in final_stream_url.lower()
+
         if is_hotstar:
             channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
             channel_lines.append("#KODIPROP:inputstream.adaptive.manifest_type=mpd")
@@ -236,7 +238,7 @@ def process_single_channel(i, lines, session):
             channel_lines.append(f'#EXTHTTP:{{"Origin":"https://www.hotstar.com","Referer":"https://www.hotstar.com/","Cookie":"{cookie_str}","Connection":"keep-alive"}}')
             channel_lines.append(final_stream_url if final_stream_url else "http://dummy-link-to-prevent-break")
 
-        elif is_sliv:
+        elif is_sliv and not is_mpd_link:
             channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
             channel_lines.append("#KODIPROP:inputstream.adaptive.manifest_type=hls")
             channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
@@ -251,8 +253,7 @@ def process_single_channel(i, lines, session):
 
         else:  
             channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
-            channel_lines.append("#KODIPROP:inputstream.adaptive.manifest_type=mpd")
-            channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
+            channel_lines.append(f"#KODIPROP:inputstream.adaptive.manifest_type={'mpd' if is_mpd_link else 'hls'}")
             channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
             channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=buffered")
             channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=1")
@@ -296,7 +297,7 @@ def generate_safe_playlist_1000():
             return  
 
         target_indices = [item[0] for item in all_channels[:MAX_CHANNELS]]
-        print(f"[*] Processing {len(target_indices)} channels with strict MPD manifest enforcement...")  
+        print(f"[*] Processing {len(target_indices)} channels with accurate MPD/HLS manifest mapping...")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -327,3 +328,4 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
+                
