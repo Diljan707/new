@@ -72,8 +72,7 @@ def resolve_deep_redirects(url, session, user_agent, depth=0):
 
     headers = {
         "User-Agent": user_agent,
-        "Referer": "https://www.hotstar.com/",
-        "Origin": "https://www.hotstar.com",
+        "Referer": "https://game.playindia.fun/",
         "Connection": "keep-alive"
     }
 
@@ -163,8 +162,8 @@ def process_single_channel(i, lines, session):
         lower_text += lines[b].lower()
 
     is_hotstar = "hotstar" in lower_text or "jhs" in lower_text
-    is_jhs = "jhs" in lower_text
-
+    
+    # Strictly enforce MPD check: if raw link or context contains mpd, or is Sony SAB, treat as MPD
     is_mpd_forced = ".mpd" in raw_stream_line.lower() or "mpd" in lower_text or "sab" in lower_text
     is_sliv = ("sliv" in lower_text or ("sony" in lower_text)) and not is_mpd_forced
 
@@ -177,15 +176,11 @@ def process_single_channel(i, lines, session):
             if "inputstream.adaptive.license_key=" in sub_b:
                 key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
 
-        # Apply specific Hotstar Android user agent if 'jhs' or hotstar is found
-        if is_jhs or is_hotstar:
-            user_agent = "Hotstar;in.startv.hotstar/25.02.24.8.11169@frosttdrift(Android/15)"
-        else:
-            user_agent = "Denver1769"
-            for f in range(i + 1, min(len(lines), i + 4)):
-                sub_f = lines[f].strip()
-                if sub_f.startswith("#EXTVLCOPT:http-user-agent="):
-                    user_agent = sub_f.split("=")[1].strip()
+        user_agent = "Denver1769"
+        for f in range(i + 1, min(len(lines), i + 4)):
+            sub_f = lines[f].strip()
+            if sub_f.startswith("#EXTVLCOPT:http-user-agent="):
+                user_agent = sub_f.split("=")[1].strip()
 
         formatted_license_key = None
         if key_url:
@@ -302,7 +297,7 @@ def generate_safe_playlist_1000():
             return  
 
         target_indices = [item[0] for item in all_channels[:MAX_CHANNELS]]
-        print(f"[*] Processing {len(target_indices)} channels with custom Hotstar User-Agent for jhs...")  
+        print(f"[*] Processing {len(target_indices)} channels with strict MPD manifest enforcement...")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
