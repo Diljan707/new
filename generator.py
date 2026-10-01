@@ -148,7 +148,7 @@ def process_single_channel(i, lines, session):
             except Exception:
                 pass
 
-        # Advanced Resolution: Fetch index.m3u8 and parse master link inside it
+        # Fetch index.m3u8 and pick the LAST master link
         final_stream_url = raw_stream_line
         if raw_stream_line:
             try:
@@ -163,17 +163,16 @@ def process_single_channel(i, lines, session):
                 r = session.get(raw_stream_line, headers=check_headers, allow_redirects=True, timeout=6)
                 if r.status_code == 200:
                     res_text = r.text
-                    # Je text andar .m3u8 master links pehe ne, taan sabse pehla http link extract kar lange
                     playlist_lines = res_text.splitlines()
-                    found_master = False
+                    master_links = []
                     for pl_line in playlist_lines:
                         pl_line = pl_line.strip()
                         if pl_line.startswith("http") and ("m3u8" in pl_line or "master" in pl_line):
-                            final_stream_url = pl_line
-                            found_master = True
-                            break
-                    if not found_master and r.url:
-                        final_stream_url = r.url
+                            master_links.append(pl_line)
+                    
+                    # Sabh ton aakhri (last) link chunnange
+                    if len(master_links) > 0:
+                        final_stream_url = master_links[-1]
             except Exception:
                 pass
 
@@ -263,7 +262,7 @@ def generate_safe_playlist_1000():
             return  
 
         target_indices = [item[0] for item in all_channels[:MAX_CHANNELS]]
-        print(f"[*] Processing {len(target_indices)} channels with deep playlist parsing...")  
+        print(f"[*] Processing {len(target_indices)} channels, picking last master link...")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
