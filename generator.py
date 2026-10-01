@@ -98,7 +98,6 @@ def process_single_channel(i, lines, session):
             except Exception:
                 pass
 
-    # Identify Provider Type
     lower_text = (extinf_line + raw_stream_line).lower()
     for b in range(max(0, i - 3), i + 4):
         lower_text += lines[b].lower()
@@ -115,11 +114,10 @@ def process_single_channel(i, lines, session):
             if "inputstream.adaptive.license_key=" in sub_b:
                 key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
 
-        # Set specific User-Agent based on provider
         if is_hotstar:
             user_agent = "Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)"
         elif is_sliv:
-            user_agent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36"
+            user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         else:
             user_agent = "Denver1769"
 
@@ -150,7 +148,7 @@ def process_single_channel(i, lines, session):
             except Exception:
                 pass
 
-        # Universal auto-redirect resolution for all URLs
+        # Strict & Forced Full Redirection Handling for ALL URLs
         final_stream_url = raw_stream_line
         if raw_stream_line:
             try:
@@ -162,9 +160,14 @@ def process_single_channel(i, lines, session):
                 else:
                     check_headers.update({"Origin": "https://www.jiotv.com/", "Referer": "https://www.jiotv.com/"})
 
-                r = session.get(raw_stream_line, headers=check_headers, allow_redirects=False, timeout=5)
-                if r.status_code in [301, 302, 303, 307, 308] and "location" in r.headers:
-                    final_stream_url = r.headers["location"]
+                # allow_redirects=True karke saare redirects follow karage
+                r = session.get(raw_stream_line, headers=check_headers, allow_redirects=True, timeout=6)
+                if r.history:
+                    # Je redirect hoya hai, taan akhri final URL chak lange
+                    final_stream_url = r.url
+                elif r.status_code == 200 and "m3u8" in r.text:
+                    # Je index.m3u8 si, taan andar m3u8 link find karan di koshish karage ya url use karange
+                    final_stream_url = r.url
             except Exception:
                 pass
 
@@ -209,7 +212,7 @@ def process_single_channel(i, lines, session):
             channel_lines.append('#EXTHTTP:{"Origin":"https://www.sonyliv.com/","Referer":"https://www.sonyliv.com/","Connection":"keep-alive"}')
             channel_lines.append(final_stream_url if final_stream_url else "http://dummy-link-to-prevent-break")
 
-        else:  # Default / JioTV
+        else:  
             channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
             channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
             channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=buffered")
@@ -254,7 +257,7 @@ def generate_safe_playlist_1000():
             return  
 
         target_indices = [item[0] for item in all_channels[:MAX_CHANNELS]]
-        print(f"[*] Processing {len(target_indices)} channels with Auto-Redirect resolution for Jio, Hotstar, & SonyLIV...")  
+        print(f"[*] Processing {len(target_indices)} channels with strict forced redirection...")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -285,4 +288,4 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-        
+                
