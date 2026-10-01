@@ -81,7 +81,6 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
     try:
         r = session.get(url, headers=check_headers, allow_redirects=True, timeout=7)
         
-        # Check redirect history for actual stream URL (.mpd or .m3u8)
         if r.history:
             for resp in r.history:
                 loc = resp.headers.get("Location", "")
@@ -93,7 +92,6 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
 
         if r.status_code == 200:
             res_text = r.text
-            # Je response text vich direct stream links ya playlist hai
             if "#EXTM3U" in res_text or "<MPD" in res_text or "bandwidth" in res_text:
                 lines = res_text.splitlines()
                 nested_links = []
@@ -104,7 +102,6 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
                 if nested_links:
                     return nested_links[-1]
             
-            # Je text vich koi URL mil jave jo playindia.fun na hove
             for line in res_text.splitlines():
                 line = line.strip()
                 if line.startswith("http") and "playindia.fun" not in line and (".mpd" in line or ".m3u8" in line):
@@ -210,11 +207,13 @@ def process_single_channel(i, lines, session):
 
         is_mpd_link = ".mpd" in final_stream_url.lower()
 
+        # Low-latency optimization properties for inputstream.adaptive
         channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
         channel_lines.append(f"#KODIPROP:inputstream.adaptive.manifest_type={'mpd' if is_mpd_link else 'hls'}")
         channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
-        channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=automatic")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=secure-highest")
         channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=1")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.live_delay=2")
 
         if is_hotstar:
             channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
@@ -282,7 +281,7 @@ def generate_safe_playlist_1000():
             return  
 
         target_indices = [item[0] for item in all_channels[:MAX_CHANNELS]]
-        print(f"[*] Processing {len(target_indices)} channels with force-redirection resolver...")  
+        print(f"[*] Processing {len(target_indices)} channels with low-latency settings...")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
