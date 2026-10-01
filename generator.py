@@ -104,7 +104,7 @@ def resolve_deep_redirects(url, session, user_agent, depth=0):
                 if line.endswith(".ts") or line.endswith(".m4s") or "#EXTINF" in line:
                     has_media_chunks = True
                 
-                if line.startswith("http") and ("m3u8" in line or "master" in line or "index" in line or "mpd" in line):
+                if line.startswith("http") and ("m3u8" in line or "master" in line or "index" in line):
                     nested_links.append(line)
             
             if has_media_chunks or not nested_links:
@@ -162,7 +162,10 @@ def process_single_channel(i, lines, session):
         lower_text += lines[b].lower()
 
     is_hotstar = "hotstar" in lower_text or "jhs" in lower_text
-    is_sliv = "sliv" in lower_text or ("sony" in lower_text and ".mpd" not in raw_stream_line.lower())
+    
+    # Strictly enforce MPD check: if raw link or context contains mpd, or is Sony SAB, treat as MPD
+    is_mpd_forced = ".mpd" in raw_stream_line.lower() or "mpd" in lower_text or "sab" in lower_text
+    is_sliv = ("sliv" in lower_text or ("sony" in lower_text)) and not is_mpd_forced
 
     channel_lines = [extinf_line]
 
@@ -186,34 +189,26 @@ def process_single_channel(i, lines, session):
                     key_url = key_url.replace('"', "")
                 key_res = session.get(key_url, headers={"User-Agent": user_agent}, timeout=3)
                 if key_res.status_code == 200:
-                    try:
-                        key_json = key_res.json()
-                        key_pairs = []
-                        keys_list = key_json.get("base64", {}).get("keys", [])
-                        for k_obj in keys_list:
-                            kid_b64 = k_obj.get("kid", "")
-                            k_b64 = k_obj.get("k", "")
-                            if kid_b64 and k_b64:
-                                kid_hex = b64_to_hex(kid_b64)
-                                k_hex = b64_to_hex(k_b64)
-                                key_pairs.append(f"{kid_hex}:{k_hex}")
-                        if key_pairs:
-                            formatted_license_key = ",".join(key_pairs)
-                    except Exception:
-                        pass
+                    key_json = key_res.json()
+                    key_pairs = []
+                    keys_list = key_json.get("base64", {}).get("keys", [])
+                    for k_obj in keys_list:
+                        kid_b64 = k_obj.get("kid", "")
+                        k_b64 = k_obj.get("k", "")
+                        if kid_b64 and k_b64:
+                            kid_hex = b64_to_hex(kid_b64)
+                            k_hex = b64_to_hex(k_b64)
+                            key_pairs.append(f"{kid_hex}:{k_hex}")
+                    if key_pairs:
+                        formatted_license_key = ",".join(key_pairs)
             except Exception:
                 pass
-        
-        if not formatted_license_key:
-            formatted_license_key = "null:null"
 
         final_stream_url = raw_stream_line
         if raw_stream_line:
             resolved = resolve_deep_redirects(raw_stream_line, session, user_agent)
             if resolved:
                 final_stream_url = resolved
-
-        is_mpd_link = ".mpd" in final_stream_url.lower()
 
         if is_hotstar:
             channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
@@ -222,7 +217,11 @@ def process_single_channel(i, lines, session):
             channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
             channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=buffered")
             channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=1")
-            channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
+            
+            if formatted_license_key:
+                channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
+            elif key_url:
+                channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
 
             channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
             channel_lines.append("#EXTVLCOPT:http-referrer=https://www.hotstar.com/")
@@ -241,10 +240,7 @@ def process_single_channel(i, lines, session):
 
         elif is_sliv:
             channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
-            channel_lines.append(f"#KODIPROP:inputstream.adaptive.manifest_type={'mpd' if is_mpd_link else 'hls'}")
-            if is_mpd_link:
-                channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
-                channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
+            channel_lines.append("#KODIPROP:inputstream.adaptive.manifest_type=hls")
             channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
             channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=buffered")
             channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=1")
@@ -257,17 +253,15 @@ def process_single_channel(i, lines, session):
 
         else:  
             channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
-            channel_lines.append(f"#KODIPROP:inputstream.adaptive.manifest_type={'mpd' if is_mpd_link else 'hls'}")
-            
-            if is_mpd_link:
-                channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
-
+            channel_lines.append("#KODIPROP:inputstream.adaptive.manifest_type=mpd")
             channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
             channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=buffered")
             channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=1")
             
-            if is_mpd_link:
+            if formatted_license_key:
                 channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
+            elif key_url:
+                channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
 
             channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
             channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/","Connection":"keep-alive"}')
@@ -303,7 +297,7 @@ def generate_safe_playlist_1000():
             return  
 
         target_indices = [item[0] for item in all_channels[:MAX_CHANNELS]]
-        print(f"[*] Processing {len(target_indices)} channels with specific platform headers & correct formatting...")  
+        print(f"[*] Processing {len(target_indices)} channels with strict MPD manifest enforcement...")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -334,4 +328,3 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-    
