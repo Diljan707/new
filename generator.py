@@ -67,10 +67,6 @@ def b64_to_hex(b64_str):
         return b64_str
 
 def resolve_deep_redirects(url, session, user_agent, depth=0):
-    """
-    Recursive function to follow all redirects and parse m3u8 files 
-    until the absolute final stream link is extracted using Denver1769 headers.
-    """
     if depth > 5 or not url:
         return url
 
@@ -81,14 +77,11 @@ def resolve_deep_redirects(url, session, user_agent, depth=0):
     }
 
     try:
-        # allow_redirects=False taaki apa khud status codes (301, 302, etc.) nu handle kar sakiye
         response = session.get(url, headers=headers, allow_redirects=False, timeout=6)
         
-        # 1. Je server redirect bhej reha hai (301, 302, 303, 307, 308)
         if response.status_code in [301, 302, 303, 307, 308]:
             redirect_url = response.headers.get("Location")
             if redirect_url:
-                # Relative URL nu absolute banan vaste
                 if redirect_url.startswith("/"):
                     from urllib.parse import urlparse
                     parsed_url = urlparse(url)
@@ -96,26 +89,34 @@ def resolve_deep_redirects(url, session, user_agent, depth=0):
                 elif not redirect_url.startswith("http"):
                     redirect_url = url.rsplit("/", 1)[0] + "/" + redirect_url
                 
-                # Agle redirect te recursive call
                 return resolve_deep_redirects(redirect_url, session, user_agent, depth + 1)
 
-        # 2. Je 200 OK ya hor status code aaya te content vich m3u8 playlist payi hai
         elif response.status_code == 200:
             text = response.text
             lines = text.splitlines()
             nested_links = []
+            has_media_chunks = False
+            
             for line in lines:
                 line = line.strip()
+                if "#EXT-X-STREAM-INF" in line or "master" in line:
+                    has_media_chunks = False
+                if line.endswith(".ts") or line.endswith(".m4s") or "#EXTINF" in line:
+                    has_media_chunks = True
+                
                 if line.startswith("http") and ("m3u8" in line or "master" in line or "index" in line):
                     nested_links.append(line)
             
-            # Je andar hor links ne, taan sabh ton aakhri (last) link nu chakk ke fer redirect resolve karo
+            if has_media_chunks or not nested_links:
+                if response.url:
+                    return response.url
+                return url
+
             if nested_links:
                 last_link = nested_links[-1]
                 if last_link != url:
                     return resolve_deep_redirects(last_link, session, user_agent, depth + 1)
             
-            # Je koi nested link nahi milya, taan response da final URL return karo
             if response.url and response.url != url:
                 return resolve_deep_redirects(response.url, session, user_agent, depth + 1)
 
@@ -161,7 +162,8 @@ def process_single_channel(i, lines, session):
         lower_text += lines[b].lower()
 
     is_hotstar = "hotstar" in lower_text or "jhs" in lower_text
-    is_sliv = "sliv" in lower_text or "sony" in lower_text or "ten" in lower_text
+    # Sony SAB jioth channel .mpd hunda hai, is layi isnu pure sliv hls vich na ginti karke standard mpd rakhan waley block vich rakhiye
+    is_sliv = ("sliv" in lower_text or ("sony" in lower_text and "mpd" not in raw_stream_line)) and "sab" not in lower_text
 
     channel_lines = [extinf_line]
 
@@ -172,7 +174,6 @@ def process_single_channel(i, lines, session):
             if "inputstream.adaptive.license_key=" in sub_b:
                 key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
 
-        # Denver1769 header preference
         user_agent = "Denver1769"
         for f in range(i + 1, min(len(lines), i + 4)):
             sub_f = lines[f].strip()
@@ -201,7 +202,6 @@ def process_single_channel(i, lines, session):
             except Exception:
                 pass
 
-        # Fully forced recursive redirection tracking using Denver1769 headers
         final_stream_url = raw_stream_line
         if raw_stream_line:
             resolved = resolve_deep_redirects(raw_stream_line, session, user_agent)
@@ -250,7 +250,8 @@ def process_single_channel(i, lines, session):
             channel_lines.append(final_stream_url if final_stream_url else "http://dummy-link-to-prevent-break")
 
         else:  
-            channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
+            channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
+            channel_lines.append("#KODIPROP:inputstream.adaptive.manifest_type=mpd")
             channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
             channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=buffered")
             channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=1")
@@ -294,7 +295,7 @@ def generate_safe_playlist_1000():
             return  
 
         target_indices = [item[0] for item in all_channels[:MAX_CHANNELS]]
-        print(f"[*] Processing {len(target_indices)} channels with deep recursive redirect resolution...")  
+        print(f"[*] Processing {len(target_indices)} channels with correct mpd/hls handling...")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -325,4 +326,4 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-        
+            
