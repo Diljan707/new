@@ -162,8 +162,6 @@ def process_single_channel(i, lines, session):
         lower_text += lines[b].lower()
 
     is_hotstar = "hotstar" in lower_text or "jhs" in lower_text
-    
-    # Strictly enforce MPD check: if raw link or context contains mpd, or is Sony SAB, treat as MPD
     is_mpd_forced = ".mpd" in raw_stream_line.lower() or "mpd" in lower_text or "sab" in lower_text
     is_sliv = ("sliv" in lower_text or ("sony" in lower_text)) and not is_mpd_forced
 
@@ -254,6 +252,7 @@ def process_single_channel(i, lines, session):
         else:  
             channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
             channel_lines.append("#KODIPROP:inputstream.adaptive.manifest_type=mpd")
+            channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
             channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
             channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=buffered")
             channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=1")
