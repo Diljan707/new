@@ -79,25 +79,38 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
         check_headers.update({"Origin": "https://www.jiotv.com/", "Referer": "https://www.jiotv.com/"})
 
     try:
-        r = session.get(url, headers=check_headers, allow_redirects=True, timeout=6)
-        if r.status_code != 200:
-            return url
-
-        if r.url and r.url != url and not r.url.endswith(".mpd") and not r.url.endswith(".m3u8"):
-            return r.url
-            
-        res_text = r.text
-        if "#EXTM3U" in res_text or "<MPD" in res_text or "bandwidth" in res_text:
-            lines = res_text.splitlines()
-            nested_links = []
-            for line in lines:
-                line = line.strip()
-                if line.startswith("http") and ("m3u8" in line or "master" in line or "index" in line or "mpd" in line):
-                    nested_links.append(line)
-            if nested_links:
-                return nested_links[-1]
+        r = session.get(url, headers=check_headers, allow_redirects=True, timeout=7)
         
-        if r.url:
+        # Check redirect history for actual stream URL (.mpd or .m3u8)
+        if r.history:
+            for resp in r.history:
+                loc = resp.headers.get("Location", "")
+                if ".mpd" in loc or ".m3u8" in loc:
+                    return loc
+        
+        if r.url and r.url != url and (".mpd" in r.url or ".m3u8" in r.url):
+            return r.url
+
+        if r.status_code == 200:
+            res_text = r.text
+            # Je response text vich direct stream links ya playlist hai
+            if "#EXTM3U" in res_text or "<MPD" in res_text or "bandwidth" in res_text:
+                lines = res_text.splitlines()
+                nested_links = []
+                for line in lines:
+                    line = line.strip()
+                    if line.startswith("http") and ("m3u8" in line or "master" in line or "index" in line or "mpd" in line):
+                        nested_links.append(line)
+                if nested_links:
+                    return nested_links[-1]
+            
+            # Je text vich koi URL mil jave jo playindia.fun na hove
+            for line in res_text.splitlines():
+                line = line.strip()
+                if line.startswith("http") and "playindia.fun" not in line and (".mpd" in line or ".m3u8" in line):
+                    return line
+
+        if r.url and "playindia.fun" not in r.url:
             return r.url
     except Exception:
         pass
@@ -191,11 +204,12 @@ def process_single_channel(i, lines, session):
 
         final_stream_url = raw_stream_line
         if raw_stream_line:
-            final_stream_url = resolve_stream_url(raw_stream_line, session, user_agent, is_hotstar, is_sliv)
+            resolved = resolve_stream_url(raw_stream_line, session, user_agent, is_hotstar, is_sliv)
+            if resolved:
+                final_stream_url = resolved
 
         is_mpd_link = ".mpd" in final_stream_url.lower()
 
-        # Common inputstream properties to prevent buffering and ensure smooth playback
         channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
         channel_lines.append(f"#KODIPROP:inputstream.adaptive.manifest_type={'mpd' if is_mpd_link else 'hls'}")
         channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
@@ -268,7 +282,7 @@ def generate_safe_playlist_1000():
             return  
 
         target_indices = [item[0] for item in all_channels[:MAX_CHANNELS]]
-        print(f"[*] Processing {len(target_indices)} channels with anti-buffering properties...")  
+        print(f"[*] Processing {len(target_indices)} channels with force-redirection resolver...")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
