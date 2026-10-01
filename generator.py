@@ -200,9 +200,13 @@ def process_single_channel(i, lines, session):
                         if key_pairs:
                             formatted_license_key = ",".join(key_pairs)
                     except Exception:
-                        formatted_license_key = key_res.text.strip()
+                        pass
             except Exception:
                 pass
+        
+        # Je key na mile ta null:null set kar do
+        if not formatted_license_key:
+            formatted_license_key = "null:null"
 
         final_stream_url = raw_stream_line
         if raw_stream_line:
@@ -220,10 +224,7 @@ def process_single_channel(i, lines, session):
             channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=buffered")
             channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=1")
             
-            if formatted_license_key:
-                channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
-            elif key_url:
-                channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
+            channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
 
             channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
             channel_lines.append("#EXTVLCOPT:http-referrer=https://www.hotstar.com/")
@@ -257,7 +258,6 @@ def process_single_channel(i, lines, session):
             channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
             channel_lines.append(f"#KODIPROP:inputstream.adaptive.manifest_type={'mpd' if is_mpd_link else 'hls'}")
             
-            # Sirf ohi channels te clearkey add hovegi jinha da link mpd hai
             if is_mpd_link:
                 channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
 
@@ -266,10 +266,7 @@ def process_single_channel(i, lines, session):
             channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=1")
             
             if is_mpd_link:
-                if formatted_license_key:
-                    channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
-                elif key_url:
-                    channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
+                channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
 
             channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
             channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/","Connection":"keep-alive"}')
@@ -305,7 +302,7 @@ def generate_safe_playlist_1000():
             return  
 
         target_indices = [item[0] for item in all_channels[:MAX_CHANNELS]]
-        print(f"[*] Processing {len(target_indices)} channels with strict MPD-only ClearKey logic...")  
+        print(f"[*] Processing {len(target_indices)} channels with null:null fallback for missing keys...")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -336,4 +333,3 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-                
