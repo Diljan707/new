@@ -66,6 +66,64 @@ def b64_to_hex(b64_str):
     except Exception:
         return b64_str
 
+def resolve_deep_redirects(url, session, user_agent, depth=0):
+    """
+    Recursive function to follow all redirects and parse m3u8 files 
+    until the absolute final stream link is extracted using Denver1769 headers.
+    """
+    if depth > 5 or not url:
+        return url
+
+    headers = {
+        "User-Agent": user_agent,
+        "Referer": "https://game.playindia.fun/",
+        "Connection": "keep-alive"
+    }
+
+    try:
+        # allow_redirects=False taaki apa khud status codes (301, 302, etc.) nu handle kar sakiye
+        response = session.get(url, headers=headers, allow_redirects=False, timeout=6)
+        
+        # 1. Je server redirect bhej reha hai (301, 302, 303, 307, 308)
+        if response.status_code in [301, 302, 303, 307, 308]:
+            redirect_url = response.headers.get("Location")
+            if redirect_url:
+                # Relative URL nu absolute banan vaste
+                if redirect_url.startswith("/"):
+                    from urllib.parse import urlparse
+                    parsed_url = urlparse(url)
+                    redirect_url = f"{parsed_url.scheme}://{parsed_url.netloc}{redirect_url}"
+                elif not redirect_url.startswith("http"):
+                    redirect_url = url.rsplit("/", 1)[0] + "/" + redirect_url
+                
+                # Agle redirect te recursive call
+                return resolve_deep_redirects(redirect_url, session, user_agent, depth + 1)
+
+        # 2. Je 200 OK ya hor status code aaya te content vich m3u8 playlist payi hai
+        elif response.status_code == 200:
+            text = response.text
+            lines = text.splitlines()
+            nested_links = []
+            for line in lines:
+                line = line.strip()
+                if line.startswith("http") and ("m3u8" in line or "master" in line or "index" in line):
+                    nested_links.append(line)
+            
+            # Je andar hor links ne, taan sabh ton aakhri (last) link nu chakk ke fer redirect resolve karo
+            if nested_links:
+                last_link = nested_links[-1]
+                if last_link != url:
+                    return resolve_deep_redirects(last_link, session, user_agent, depth + 1)
+            
+            # Je koi nested link nahi milya, taan response da final URL return karo
+            if response.url and response.url != url:
+                return resolve_deep_redirects(response.url, session, user_agent, depth + 1)
+
+    except Exception:
+        pass
+
+    return url
+
 def process_single_channel(i, lines, session):
     line = lines[i].strip()
     extinf_line = line
@@ -114,13 +172,8 @@ def process_single_channel(i, lines, session):
             if "inputstream.adaptive.license_key=" in sub_b:
                 key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
 
-        if is_hotstar:
-            user_agent = "Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)"
-        elif is_sliv:
-            user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-        else:
-            user_agent = "Denver1769"
-
+        # Denver1769 header preference
+        user_agent = "Denver1769"
         for f in range(i + 1, min(len(lines), i + 4)):
             sub_f = lines[f].strip()
             if sub_f.startswith("#EXTVLCOPT:http-user-agent="):
@@ -148,33 +201,12 @@ def process_single_channel(i, lines, session):
             except Exception:
                 pass
 
-        # Fetch index.m3u8 and pick the LAST master link
+        # Fully forced recursive redirection tracking using Denver1769 headers
         final_stream_url = raw_stream_line
         if raw_stream_line:
-            try:
-                check_headers = {"User-Agent": user_agent}
-                if is_hotstar:
-                    check_headers.update({"Origin": "https://www.hotstar.com", "Referer": "https://www.hotstar.com/"})
-                elif is_sliv:
-                    check_headers.update({"Origin": "https://www.sonyliv.com", "Referer": "https://www.sonyliv.com/"})
-                else:
-                    check_headers.update({"Origin": "https://www.jiotv.com/", "Referer": "https://www.jiotv.com/"})
-
-                r = session.get(raw_stream_line, headers=check_headers, allow_redirects=True, timeout=6)
-                if r.status_code == 200:
-                    res_text = r.text
-                    playlist_lines = res_text.splitlines()
-                    master_links = []
-                    for pl_line in playlist_lines:
-                        pl_line = pl_line.strip()
-                        if pl_line.startswith("http") and ("m3u8" in pl_line or "master" in pl_line):
-                            master_links.append(pl_line)
-                    
-                    # Sabh ton aakhri (last) link chunnange
-                    if len(master_links) > 0:
-                        final_stream_url = master_links[-1]
-            except Exception:
-                pass
+            resolved = resolve_deep_redirects(raw_stream_line, session, user_agent)
+            if resolved:
+                final_stream_url = resolved
 
         if is_hotstar:
             channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
@@ -228,7 +260,7 @@ def process_single_channel(i, lines, session):
             elif key_url:
                 channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
 
-            channel_lines.append("#EXTVLCOPT:http-user-agent=JioTV/6.0.0 (Linux; Android 11) ExoPlayerLib/2.11.8")
+            channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
             channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/","Connection":"keep-alive"}')
             channel_lines.append(final_stream_url if final_stream_url else "http://dummy-link-to-prevent-break")
 
@@ -262,7 +294,7 @@ def generate_safe_playlist_1000():
             return  
 
         target_indices = [item[0] for item in all_channels[:MAX_CHANNELS]]
-        print(f"[*] Processing {len(target_indices)} channels, picking last master link...")  
+        print(f"[*] Processing {len(target_indices)} channels with deep recursive redirect resolution...")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -293,3 +325,4 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
+        
