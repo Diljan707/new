@@ -80,23 +80,22 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
 
     try:
         r = session.get(url, headers=check_headers, allow_redirects=True, timeout=6)
-        
-        # Je link direct redirect hoya hai taan oh URL return karo
+        if r.status_code != 200:
+            return url
+
         if r.url and r.url != url and not r.url.endswith(".mpd") and not r.url.endswith(".m3u8"):
             return r.url
             
-        if r.status_code == 200:
-            res_text = r.text
-            # Je eh playlist text hai (.m3u8 ya .mpd text content)
-            if "#EXTM3U" in res_text or "<MPD" in res_text or "bandwidth" in res_text:
-                lines = res_text.splitlines()
-                nested_links = []
-                for line in lines:
-                    line = line.strip()
-                    if line.startswith("http") and ("m3u8" in line or "master" in line or "index" in line or "mpd" in line):
-                        nested_links.append(line)
-                if nested_links:
-                    return nested_links[-1]
+        res_text = r.text
+        if "#EXTM3U" in res_text or "<MPD" in res_text or "bandwidth" in res_text:
+            lines = res_text.splitlines()
+            nested_links = []
+            for line in lines:
+                line = line.strip()
+                if line.startswith("http") and ("m3u8" in line or "master" in line or "index" in line or "mpd" in line):
+                    nested_links.append(line)
+            if nested_links:
+                return nested_links[-1]
         
         if r.url:
             return r.url
@@ -190,22 +189,22 @@ def process_single_channel(i, lines, session):
         if not formatted_license_key:
             formatted_license_key = "null:null"
 
-        # Resolve final stream URL properly including MPD redirection
         final_stream_url = raw_stream_line
         if raw_stream_line:
             final_stream_url = resolve_stream_url(raw_stream_line, session, user_agent, is_hotstar, is_sliv)
 
         is_mpd_link = ".mpd" in final_stream_url.lower()
 
-        if is_hotstar:
-            channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
-            channel_lines.append("#KODIPROP:inputstream.adaptive.manifest_type=mpd")
-            channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
-            channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
-            channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=buffered")
-            channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=1")
-            channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
+        # Common inputstream properties to prevent buffering and ensure smooth playback
+        channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
+        channel_lines.append(f"#KODIPROP:inputstream.adaptive.manifest_type={'mpd' if is_mpd_link else 'hls'}")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=automatic")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=1")
 
+        if is_hotstar:
+            channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
+            channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
             channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
             channel_lines.append("#EXTVLCOPT:http-referrer=https://www.hotstar.com/")
             channel_lines.append("#EXTVLCOPT:http-extra-headers=Origin: https://www.hotstar.com")
@@ -222,11 +221,6 @@ def process_single_channel(i, lines, session):
             channel_lines.append(final_stream_url if final_stream_url else "http://dummy-link-to-prevent-break")
 
         elif is_sliv:
-            channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
-            channel_lines.append(f"#KODIPROP:inputstream.adaptive.manifest_type={'mpd' if is_mpd_link else 'hls'}")
-            channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
-            channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=buffered")
-            channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=1")
             if is_mpd_link:
                 channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
                 channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
@@ -239,11 +233,7 @@ def process_single_channel(i, lines, session):
 
         else:  
             channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
-            channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
-            channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=buffered")
-            channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=1")
             channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
-
             channel_lines.append("#EXTVLCOPT:http-user-agent=JioTV/6.0.0 (Linux; Android 11) ExoPlayerLib/2.11.8")
             channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/","Connection":"keep-alive"}')
             channel_lines.append(final_stream_url if final_stream_url else "http://dummy-link-to-prevent-break")
@@ -278,7 +268,7 @@ def generate_safe_playlist_1000():
             return  
 
         target_indices = [item[0] for item in all_channels[:MAX_CHANNELS]]
-        print(f"[*] Processing {len(target_indices)} channels with advanced redirection resolution...")  
+        print(f"[*] Processing {len(target_indices)} channels with anti-buffering properties...")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
