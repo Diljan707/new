@@ -186,18 +186,22 @@ def process_single_channel(i, lines, session):
                     key_url = key_url.replace('"', "")
                 key_res = session.get(key_url, headers={"User-Agent": user_agent}, timeout=3)
                 if key_res.status_code == 200:
-                    key_json = key_res.json()
-                    key_pairs = []
-                    keys_list = key_json.get("base64", {}).get("keys", [])
-                    for k_obj in keys_list:
-                        kid_b64 = k_obj.get("kid", "")
-                        k_b64 = k_obj.get("k", "")
-                        if kid_b64 and k_b64:
-                            kid_hex = b64_to_hex(kid_b64)
-                            k_hex = b64_to_hex(k_b64)
-                            key_pairs.append(f"{kid_hex}:{k_hex}")
-                    if key_pairs:
-                        formatted_license_key = ",".join(key_pairs)
+                    try:
+                        key_json = key_res.json()
+                        key_pairs = []
+                        keys_list = key_json.get("base64", {}).get("keys", [])
+                        for k_obj in keys_list:
+                            kid_b64 = k_obj.get("kid", "")
+                            k_b64 = k_obj.get("k", "")
+                            if kid_b64 and k_b64:
+                                kid_hex = b64_to_hex(kid_b64)
+                                k_hex = b64_to_hex(k_b64)
+                                key_pairs.append(f"{kid_hex}:{k_hex}")
+                        if key_pairs:
+                            formatted_license_key = ",".join(key_pairs)
+                    except Exception:
+                        # Fallback je response text hi kid:key di form vich hove ya plain text hove
+                        formatted_license_key = key_res.text.strip()
             except Exception:
                 pass
 
@@ -207,7 +211,6 @@ def process_single_channel(i, lines, session):
             if resolved:
                 final_stream_url = resolved
 
-        # Check if final link contains mpd
         is_mpd_link = ".mpd" in final_stream_url.lower()
 
         if is_hotstar:
@@ -254,6 +257,7 @@ def process_single_channel(i, lines, session):
         else:  
             channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
             channel_lines.append(f"#KODIPROP:inputstream.adaptive.manifest_type={'mpd' if is_mpd_link else 'hls'}")
+            channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
             channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
             channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=buffered")
             channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=1")
@@ -297,7 +301,7 @@ def generate_safe_playlist_1000():
             return  
 
         target_indices = [item[0] for item in all_channels[:MAX_CHANNELS]]
-        print(f"[*] Processing {len(target_indices)} channels with accurate MPD/HLS manifest mapping...")  
+        print(f"[*] Processing {len(target_indices)} channels with proper JSON Clearkey decoding & MPD/HLS handling...")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -328,4 +332,4 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-                                            
+            
