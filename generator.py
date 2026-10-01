@@ -207,13 +207,13 @@ def process_single_channel(i, lines, session):
 
         is_mpd_link = ".mpd" in final_stream_url.lower()
 
-        # Low-latency optimization properties for inputstream.adaptive
+        # Ultra Low Latency properties (Zero/Minimal Delay)
         channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
         channel_lines.append(f"#KODIPROP:inputstream.adaptive.manifest_type={'mpd' if is_mpd_link else 'hls'}")
         channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
-        channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=secure-highest")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=buffered")
         channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=1")
-        channel_lines.append("#KODIPROP:inputstream.adaptive.live_delay=2")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.live_delay=0")
 
         if is_hotstar:
             channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
@@ -281,7 +281,7 @@ def generate_safe_playlist_1000():
             return  
 
         target_indices = [item[0] for item in all_channels[:MAX_CHANNELS]]
-        print(f"[*] Processing {len(target_indices)} channels with low-latency settings...")  
+        print(f"[*] Processing {len(target_indices)} channels with zero-delay settings...")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -312,3 +312,4 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
+    
