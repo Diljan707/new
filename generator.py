@@ -204,7 +204,6 @@ def process_single_channel(i, lines, session):
             except Exception:
                 pass
         
-        # Je key na mile ta null:null set kar do
         if not formatted_license_key:
             formatted_license_key = "null:null"
 
@@ -223,7 +222,6 @@ def process_single_channel(i, lines, session):
             channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
             channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=buffered")
             channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=1")
-            
             channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
 
             channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
@@ -241,9 +239,12 @@ def process_single_channel(i, lines, session):
             channel_lines.append(f'#EXTHTTP:{{"Origin":"https://www.hotstar.com","Referer":"https://www.hotstar.com/","Cookie":"{cookie_str}","Connection":"keep-alive"}}')
             channel_lines.append(final_stream_url if final_stream_url else "http://dummy-link-to-prevent-break")
 
-        elif is_sliv and not is_mpd_link:
+        elif is_sliv:
             channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
-            channel_lines.append("#KODIPROP:inputstream.adaptive.manifest_type=hls")
+            channel_lines.append(f"#KODIPROP:inputstream.adaptive.manifest_type={'mpd' if is_mpd_link else 'hls'}")
+            if is_mpd_link:
+                channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
+                channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
             channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
             channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=buffered")
             channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=1")
@@ -302,7 +303,7 @@ def generate_safe_playlist_1000():
             return  
 
         target_indices = [item[0] for item in all_channels[:MAX_CHANNELS]]
-        print(f"[*] Processing {len(target_indices)} channels with null:null fallback for missing keys...")  
+        print(f"[*] Processing {len(target_indices)} channels with specific platform headers & correct formatting...")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -333,3 +334,4 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
+    
