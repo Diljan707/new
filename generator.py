@@ -80,33 +80,22 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
 
     try:
         r = session.get(url, headers=check_headers, allow_redirects=True, timeout=7)
-        
-        if r.history:
-            for resp in r.history:
-                loc = resp.headers.get("Location", "")
-                if ".mpd" in loc or ".m3u8" in loc:
-                    return loc
-        
-        if r.url and r.url != url and (".mpd" in r.url or ".m3u8" in r.url):
-            return r.url
-
         if r.status_code == 200:
             res_text = r.text
-            if "#EXTM3U" in res_text or "<MPD" in res_text or "bandwidth" in res_text:
-                lines = res_text.splitlines()
-                nested_links = []
-                for line in lines:
-                    line = line.strip()
-                    if line.startswith("http") and ("m3u8" in line or "master" in line or "index" in line or "mpd" in line):
-                        nested_links.append(line)
-                if nested_links:
-                    return nested_links[-1]
-            
-            for line in res_text.splitlines():
+            lines = res_text.splitlines()
+            nested_links = []
+            for line in lines:
                 line = line.strip()
-                if line.startswith("http") and "playindia.fun" not in line and (".mpd" in line or ".m3u8" in line):
-                    return line
-
+                if "http" in line and ("m3u8" in line or "mpd" in line) and "playindia.fun" not in line:
+                    idx = line.find("http")
+                    clean_link = line[idx:].split()[0].strip('"' + "'")
+                    nested_links.append(clean_link)
+            
+            if nested_links:
+                if len(nested_links) >= 3:
+                    return nested_links[2]
+                return nested_links[-1]
+                
         if r.url and "playindia.fun" not in r.url:
             return r.url
     except Exception:
@@ -312,3 +301,4 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
+            
