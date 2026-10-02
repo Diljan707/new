@@ -70,21 +70,23 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
     if not url:
         return url
     
-    # Je link pehlan hi MPD/WDVLive wala hai, taan usnu request maran di lorh nahi, ohi final hai
-    if not is_hotstar and not is_sliv:
-        if ".mpd" in url.lower() or "wdvlive" in url.lower():
-            return url
+    if is_hotstar or is_sliv:
+        check_headers = {"User-Agent": user_agent}
+        if is_hotstar:
+            check_headers.update({"Origin": "https://www.hotstar.com", "Referer": "https://www.hotstar.com/"})
+        else:
+            check_headers.update({"Origin": "https://www.sonyliv.com", "Referer": "https://www.sonyliv.com/"})
+        try:
+            r = session.get(url, headers=check_headers, allow_redirects=True, timeout=7)
+            if r.url:
+                return r.url
+        except Exception:
+            pass
+        return url
 
-    check_headers = {"User-Agent": user_agent}
-    if is_hotstar:
-        check_headers.update({"Origin": "https://www.hotstar.com", "Referer": "https://www.hotstar.com/"})
-    elif is_sliv:
-        check_headers.update({"Origin": "https://www.sonyliv.com", "Referer": "https://www.sonyliv.com/"})
-    else:
-        check_headers.update({"Origin": "https://www.jiotv.com/", "Referer": "https://www.jiotv.com/"})
-
+    headers = {"User-Agent": user_agent}
     try:
-        r = session.get(url, headers=check_headers, allow_redirects=True, timeout=7)
+        r = session.get(url, headers=headers, allow_redirects=True, timeout=7)
         if r.status_code == 200:
             res_text = r.text
             lines = res_text.splitlines()
@@ -97,23 +99,13 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
                     nested_links.append(clean_link)
             
             if nested_links:
-                final_link = nested_links[-1]
-                if not is_hotstar and not is_sliv:
-                    if "HLSPartner" in final_link or ".m3u8" in final_link:
-                        final_link = final_link.replace("HLSPartner", "WDVLive").replace(".m3u8", ".mpd")
-                return final_link
+                return nested_links[-1]
                 
         if r.url and "playindia.fun" not in r.url:
-            resolved_url = r.url
-            if not is_hotstar and not is_sliv:
-                if "HLSPartner" in resolved_url or ".m3u8" in resolved_url:
-                    resolved_url = resolved_url.replace("HLSPartner", "WDVLive").replace(".m3u8", ".mpd")
-            return resolved_url
+            return r.url
+            
     except Exception:
         pass
-        
-    if not is_hotstar and not is_sliv and "HLSPartner" in url:
-        return url.replace("HLSPartner", "WDVLive").replace(".m3u8", ".mpd")
         
     return url
 
@@ -208,7 +200,7 @@ def process_single_channel(i, lines, session):
             if resolved:
                 final_stream_url = resolved
 
-        is_mpd_link = True if (not is_hotstar and not is_sliv) else (".mpd" in final_stream_url.lower())
+        is_mpd_link = ".mpd" in final_stream_url.lower()
 
         # Ultra Low Latency properties (Zero/Minimal Delay)
         channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
@@ -250,7 +242,7 @@ def process_single_channel(i, lines, session):
         else:  
             channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
             channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
-            channel_lines.append("#EXTVLCOPT:http-user-agent=JioTV/6.0.0 (Linux; Android 11) ExoPlayerLib/2.11.8")
+            channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
             channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/","Connection":"keep-alive"}')
             channel_lines.append(final_stream_url if final_stream_url else "http://dummy-link-to-prevent-break")
 
@@ -315,4 +307,3 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-        
