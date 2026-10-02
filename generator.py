@@ -5,6 +5,7 @@ import os
 from requests.adapters import HTTPAdapter
 import requests
 from urllib3.util.retry import Retry
+from urllib.parse import urljoin
 import threading
 from bs4 import BeautifulSoup
 
@@ -99,7 +100,10 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
                     nested_links.append(clean_link)
             
             if nested_links:
-                return nested_links[-1]
+                chosen_link = nested_links[-1]
+                if not chosen_link.startswith("http"):
+                    chosen_link = urljoin(r.url, chosen_link)
+                return chosen_link
                 
         if r.url and "playindia.fun" not in r.url:
             return r.url
@@ -307,3 +311,4 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
+        
