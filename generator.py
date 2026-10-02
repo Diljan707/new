@@ -15,9 +15,6 @@ IP_MANAGER_URL = "https://game.playindia.fun/Jtv/IP.php?id=RiYlIZ"
 MAX_CHANNELS = 1000
 MAX_WORKERS = 40
 
-counter_lock = threading.Lock()
-processed_count = 0
-
 def clear_old_ips(session):
     print("[*] Checking and clearing old IPs from IP Manager...")
     headers = {
@@ -106,7 +103,10 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
                 return chosen_link
                 
         if r.url and "playindia.fun" not in r.url:
-            return r.url
+            resolved_final = r.url
+            if not resolved_final.startswith("http"):
+                resolved_final = urljoin(url, resolved_final)
+            return resolved_final
             
     except Exception:
         pass
@@ -257,8 +257,6 @@ def process_single_channel(i, lines, session):
     return channel_lines
 
 def generate_safe_playlist_1000():
-    global processed_count
-    processed_count = 0
     if not PLAYLIST_URL:
         return
 
@@ -280,7 +278,7 @@ def generate_safe_playlist_1000():
             return  
 
         target_indices = [item[0] for item in all_channels[:MAX_CHANNELS]]
-        print(f"[*] Processing {len(target_indices)} channels with zero-delay settings...")  
+        print(f"[*] Processing {len(target_indices)} channels cleanly...")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -291,7 +289,9 @@ def generate_safe_playlist_1000():
             for future in as_completed(futures):
                 idx = futures[future]
                 try:
-                    channel_results[idx] = future.result()
+                    res_lines = future.result()
+                    if res_lines:
+                        channel_results[idx] = res_lines
                 except Exception:
                     pass
 
@@ -311,4 +311,3 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-        
