@@ -70,6 +70,11 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
     if not url:
         return url
     
+    # Je link pehlan hi MPD/WDVLive wala hai, taan usnu request maran di lorh nahi, ohi final hai
+    if not is_hotstar and not is_sliv:
+        if ".mpd" in url.lower() or "wdvlive" in url.lower():
+            return url
+
     check_headers = {"User-Agent": user_agent}
     if is_hotstar:
         check_headers.update({"Origin": "https://www.hotstar.com", "Referer": "https://www.hotstar.com/"})
@@ -92,12 +97,23 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
                     nested_links.append(clean_link)
             
             if nested_links:
-                return nested_links[-1]
+                final_link = nested_links[-1]
+                if not is_hotstar and not is_sliv:
+                    if "HLSPartner" in final_link or ".m3u8" in final_link:
+                        final_link = final_link.replace("HLSPartner", "WDVLive").replace(".m3u8", ".mpd")
+                return final_link
                 
         if r.url and "playindia.fun" not in r.url:
-            return r.url
+            resolved_url = r.url
+            if not is_hotstar and not is_sliv:
+                if "HLSPartner" in resolved_url or ".m3u8" in resolved_url:
+                    resolved_url = resolved_url.replace("HLSPartner", "WDVLive").replace(".m3u8", ".mpd")
+            return resolved_url
     except Exception:
         pass
+        
+    if not is_hotstar and not is_sliv and "HLSPartner" in url:
+        return url.replace("HLSPartner", "WDVLive").replace(".m3u8", ".mpd")
         
     return url
 
@@ -192,8 +208,7 @@ def process_single_channel(i, lines, session):
             if resolved:
                 final_stream_url = resolved
 
-        # Sahi check: Sirf WDVLive ya .mpd wale links nu hi mpd set karega, HLSPartner/m3u8 wale hls rahenge
-        is_mpd_link = ".mpd" in final_stream_url.lower() or "wdvlive" in final_stream_url.lower()
+        is_mpd_link = True if (not is_hotstar and not is_sliv) else (".mpd" in final_stream_url.lower())
 
         # Ultra Low Latency properties (Zero/Minimal Delay)
         channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
@@ -300,3 +315,4 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
+        
