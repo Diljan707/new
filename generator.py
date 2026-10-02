@@ -92,8 +92,7 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
                     nested_links.append(clean_link)
             
             if nested_links:
-                if len(nested_links) >= 3:
-                    return nested_links[2]
+                # Master m3u8 ya multiple links vichon hamesha akhri (highest quality) link chakn layi
                 return nested_links[-1]
                 
         if r.url and "playindia.fun" not in r.url:
@@ -194,7 +193,8 @@ def process_single_channel(i, lines, session):
             if resolved:
                 final_stream_url = resolved
 
-        is_mpd_link = ".mpd" in final_stream_url.lower()
+        # Check for MPD links or Jio streaming domains to properly configure manifest type
+        is_mpd_link = ".mpd" in final_stream_url.lower() or "jiotvmbhlive.cdn.jio.com" in final_stream_url.lower() or "bpk-tv" in final_stream_url.lower()
 
         # Ultra Low Latency properties (Zero/Minimal Delay)
         channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
@@ -301,4 +301,3 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-            
