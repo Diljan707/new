@@ -68,21 +68,12 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
     if not url:
         return url
     
-    if is_hotstar or is_sliv:
-        check_headers = {"User-Agent": user_agent}
-        if is_hotstar:
-            check_headers.update({"Origin": "https://www.hotstar.com", "Referer": "https://www.hotstar.com/"})
-        else:
-            check_headers.update({"Origin": "https://www.sonyliv.com", "Referer": "https://www.sonyliv.com/"})
-        try:
-            r = session.get(url, headers=check_headers, allow_redirects=True, timeout=7)
-            if r.url:
-                return r.url
-        except Exception:
-            pass
-        return url
-
     headers = {"User-Agent": user_agent}
+    if is_hotstar:
+        headers.update({"Origin": "https://www.hotstar.com", "Referer": "https://www.hotstar.com/"})
+    elif is_sliv:
+        headers.update({"Origin": "https://www.sonyliv.com", "Referer": "https://www.sonyliv.com/"})
+
     try:
         r = session.get(url, headers=headers, allow_redirects=True, timeout=7)
         if r.status_code == 200:
