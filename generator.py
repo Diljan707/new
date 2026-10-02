@@ -153,7 +153,8 @@ def process_single_channel(i, lines, session):
                 key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
 
         if is_hotstar:
-            user_agent = "Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)"
+            # Updated Hotstar User Agent from screenshot
+            user_agent = "Hotstar;in.startv.hotstar/25.02.26.8.11169@Premium Plugx(Android/15)"
         elif is_sliv:
             user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         else:
@@ -242,7 +243,8 @@ def process_single_channel(i, lines, session):
             channel_lines.append(final_stream_url if final_stream_url else "http://dummy-link-to-prevent-break")
 
     except Exception:
-        channel_lines.append("#EXTVLCOPT:http-user-agent=Denver1769")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
+        channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
         channel_lines.append(raw_stream_line if raw_stream_line else "http://dummy-link-to-prevent-break")
 
     return channel_lines
