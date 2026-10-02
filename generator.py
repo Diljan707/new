@@ -153,7 +153,6 @@ def process_single_channel(i, lines, session):
                 key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
 
         if is_hotstar:
-            # Updated Hotstar User Agent from screenshot
             user_agent = "Hotstar;in.startv.hotstar/25.02.26.8.11169@Premium Plugx(Android/15)"
         elif is_sliv:
             user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
@@ -198,7 +197,6 @@ def process_single_channel(i, lines, session):
 
         is_mpd_link = ".mpd" in final_stream_url.lower()
 
-        # Ultra Low Latency properties (Zero/Minimal Delay)
         channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
         channel_lines.append(f"#KODIPROP:inputstream.adaptive.manifest_type={'mpd' if is_mpd_link else 'hls'}")
         channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
@@ -213,12 +211,23 @@ def process_single_channel(i, lines, session):
             channel_lines.append("#EXTVLCOPT:http-referrer=https://www.hotstar.com/")
             channel_lines.append("#EXTVLCOPT:http-extra-headers=Origin: https://www.hotstar.com")
             
-            cookie_str = "hdntl=exp=1790846295~acl=%2f*~id=af9f2444dbd242ba96e15a82e9d5f668~data=hdntl~hmac=85fbbe3fd86f68e27d194b494a1eab8666d65bf230c58a4231acdbc50e3b2caa"
-            if "|cookie=" in raw_stream_line:
-                try:
-                    cookie_str = raw_stream_line.split("|cookie=")[1].split("&")[0]
-                except Exception:
-                    pass
+            cookie_str = ""
+            for check_line in [raw_stream_line] + lines[max(0, i-2):min(len(lines), i+3)]:
+                if "hdntl=" in check_line:
+                    try:
+                        parts = check_line.split("hdntl=")
+                        for p in parts[1:]:
+                            candidate = p.split()[0].strip('"\'')
+                            if "exp=" in candidate:
+                                cookie_str = "hdntl=" + candidate.split("&")[0]
+                                break
+                    except Exception:
+                        pass
+                if cookie_str:
+                    break
+            
+            if not cookie_str:
+                cookie_str = "hdntl=exp=1790846295~acl=%2f*~id=af9f2444dbd242ba96e15a82e9d5f668~data=hdntl~hmac=85fbbe3fd86f68e27d194b494a1eab8666d65bf230c58a4231acdbc50e3b2caa"
 
             channel_lines.append(f"#EXTVLCOPT:http-cookie={cookie_str}")
             channel_lines.append(f'#EXTHTTP:{{"Origin":"https://www.hotstar.com","Referer":"https://www.hotstar.com/","Cookie":"{cookie_str}","Connection":"keep-alive"}}')
@@ -239,11 +248,33 @@ def process_single_channel(i, lines, session):
             channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
             channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
             channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
-            channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/","Connection":"keep-alive"}')
+            
+            jio_cookie = ""
+            for check_line in [raw_stream_line] + lines[max(0, i-2):min(len(lines), i+3)]:
+                if "hdnea=" in check_line:
+                    try:
+                        parts = check_line.split("hdnea=")
+                        for p in parts[1:]:
+                            candidate = p.split()[0].strip('"\'')
+                            if "exp=" in candidate or "st=" in candidate:
+                                jio_cookie = "hdnea=" + candidate.split("&")[0]
+                                break
+                    except Exception:
+                        pass
+                if jio_cookie:
+                    break
+
+            if jio_cookie:
+                channel_lines.append(f"#EXTVLCOPT:http-cookie={jio_cookie}")
+                channel_lines.append(f'#EXTHTTP:{{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/","Cookie":"{jio_cookie}","Connection":"keep-alive"}}')
+            else:
+                channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/","Connection":"keep-alive"}')
+
             channel_lines.append(final_stream_url if final_stream_url else "http://dummy-link-to-prevent-break")
 
     except Exception:
         channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
+        channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
         channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
         channel_lines.append(raw_stream_line if raw_stream_line else "http://dummy-link-to-prevent-break")
 
