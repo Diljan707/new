@@ -7,13 +7,13 @@
 #KODIPROP:inputstream.adaptive.buffer_segment_size=1
 #KODIPROP:inputstream.adaptive.live_delay=0
 #KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=e85897bf6e594d698b7c82646c8e0000:d2dda31234ae40538843e871cd4dcc2a,7822ec64734a6ac4de5a51b8fb9dcb33:049618dd803d25238e2438f3c7889682,e8ddb4652739239030ef02d9e615a32e:a8ac87df234c28834a44146e88e691c1,4a5232e0ce445ec4e1cc068712d0b87e:b246a6e428fc65811c710ca19e4b33d9,6b95c986f9f74f1c83abc7433e9bc3a8:311a418be44e6fc3d1df2d6afa0f8dc6
+#KODIPROP:inputstream.adaptive.license_key=de2207e5d6b3d0a2c6b2ec66142bc2f5:3ebb9d30ca9fd539a1c9899a452b09b8,77328a7f193aae8d4578bd39f8af0e49:43d44372e529b7eba4feeef494cc26e1,e85897bf6e594d698b7c82646c8e0000:d2dda31234ae40538843e871cd4dcc2a,d482a51240b13909629d365c59f29de3:8f75cd73f5c1e6de9541782d7bbb2f85,25ac665d4d01b911d3c767dc581cca2e:28f6d5820ab8eea1a75e0c656a38f1c7
 #EXTVLCOPT:http-user-agent=Hotstar;in.startv.hotstar/25.02.26.8.11169@Premium Plugx(Android/15)
 #EXTVLCOPT:http-referrer=https://www.hotstar.com/
 #EXTVLCOPT:http-extra-headers=Origin: https://www.hotstar.com
 #EXTVLCOPT:http-cookie=hdntl=exp=1791547213~acl=%2f*~id=ab745def3d3cf073437099ca93f6560a~data=hdntl~hmac=d79aa680787ee1cbbc09f424741fe38031c438fc6c23639f6f65c1514d0ed0ad"}
 #EXTHTTP:{"Origin":"https://www.hotstar.com","Referer":"https://www.hotstar.com/","Cookie":"hdntl=exp=1791547213~acl=%2f*~id=ab745def3d3cf073437099ca93f6560a~data=hdntl~hmac=d79aa680787ee1cbbc09f424741fe38031c438fc6c23639f6f65c1514d0ed0ad"}","Connection":"keep-alive"}
-https://livetv.hotstar.com/mp1/gec-india-1540068247/9a6e7c30f9194cc1a6a6250cedb115fb/index.mpd?start=2026-10-08T01%3A45%3A43
+https://livetv.hotstar.com/mp1/gec-india-1540068247/9a6e7c30f9194cc1a6a6250cedb115fb/index.mpd?start=2026-10-08T01%3A50%3A44
 #EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo9cZGt3VJujNhF5G4hLRy4LMC6LVznt8J_xVguOvDzw&s=10" group-title="Live events",
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
