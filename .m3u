@@ -7,13 +7,13 @@
 #KODIPROP:inputstream.adaptive.buffer_segment_size=1
 #KODIPROP:inputstream.adaptive.live_delay=0
 #KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=de2207e5d6b3d0a2c6b2ec66142bc2f5:3ebb9d30ca9fd539a1c9899a452b09b8,77328a7f193aae8d4578bd39f8af0e49:43d44372e529b7eba4feeef494cc26e1,e85897bf6e594d698b7c82646c8e0000:d2dda31234ae40538843e871cd4dcc2a,d482a51240b13909629d365c59f29de3:8f75cd73f5c1e6de9541782d7bbb2f85,25ac665d4d01b911d3c767dc581cca2e:28f6d5820ab8eea1a75e0c656a38f1c7
+#KODIPROP:inputstream.adaptive.license_key=f10fe882fc621beb8cd90dbcc7d4bf32:28ac6b1264ea5a785c1356c5a262b3cf,eb1bf2ff22a358301ec93c8c3d82c8e1:bdd868f32016e324751f76a75dafcd77,890d86e277cf5b61db7f07957f3e7878:585fc37a6ac029b29d3ce1e659100b7e,0bee9092bcd5cfbcbfbd128e3f6e1284:a8f477da86085616220eeaf4411b7947,e85897bf6e594d698b7c82646c8e0000:d2dda31234ae40538843e871cd4dcc2a
 #EXTVLCOPT:http-user-agent=Hotstar;in.startv.hotstar/25.02.26.8.11169@Premium Plugx(Android/15)
 #EXTVLCOPT:http-referrer=https://www.hotstar.com/
 #EXTVLCOPT:http-extra-headers=Origin: https://www.hotstar.com
 #EXTVLCOPT:http-cookie=hdntl=exp=1791547213~acl=%2f*~id=ab745def3d3cf073437099ca93f6560a~data=hdntl~hmac=d79aa680787ee1cbbc09f424741fe38031c438fc6c23639f6f65c1514d0ed0ad"}
 #EXTHTTP:{"Origin":"https://www.hotstar.com","Referer":"https://www.hotstar.com/","Cookie":"hdntl=exp=1791547213~acl=%2f*~id=ab745def3d3cf073437099ca93f6560a~data=hdntl~hmac=d79aa680787ee1cbbc09f424741fe38031c438fc6c23639f6f65c1514d0ed0ad"}","Connection":"keep-alive"}
-https://livetv.hotstar.com/mp1/gec-india-1540068247/9a6e7c30f9194cc1a6a6250cedb115fb/index.mpd?start=2026-10-08T01%3A50%3A44
+https://livetv.hotstar.com/mp1/gec-india-1540068247/9a6e7c30f9194cc1a6a6250cedb115fb/index.mpd?start=2026-10-08T01%3A55%3A50
 #EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo9cZGt3VJujNhF5G4hLRy4LMC6LVznt8J_xVguOvDzw&s=10" group-title="Live events",
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
@@ -50,123 +50,3 @@ http://dummy-link-to-prevent-break
 #EXTVLCOPT:http-user-agent=Denver1769
 #EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/","Connection":"keep-alive"}
 http://dummy-link-to-prevent-break
-#EXTINF:-1 tvg-id="4250124_ENG" group-title="Live events" tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/Badminton_FC-Web_1791376059215.png", FC: BWF Super 500 - Arctic Open 2026 [English]
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.max_bandwidth=0
-#KODIPROP:inputstream.adaptive.stream_selection_type=buffered
-#KODIPROP:inputstream.adaptive.buffer_segment_size=1
-#KODIPROP:inputstream.adaptive.live_delay=0
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-#EXTVLCOPT:http-user-agent=ReactNativeVideo/9.7.0 (Linux;Android 10) AndroidXMedia3/1.6.1
-#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/","Connection":"keep-alive"}
-https://in-mc-flive.fancode.com/mumbai/4250124_english_hls_6746768b5a57756_1ta-di_h264/1080p.m3u8?hdntl=Expires=1791528342~_GO=Generated~acl=/mumbai/4250124_english_hls_6746768b5a57756_1ta-di_h264/*~SessionID=025afa70ba2e8012_fc-app_sportsguruand_c1698c17-1a91-44~Signature=AXZsC1CPYo0u__34hKjBQgE5kuoQfLD1Z3-h9bLNNghMExYr_xnYi3mi-3mQKMVkQPFh3fzOaTpPGHj44EZByFfPYHIA
-#EXTINF:-1 tvg-id="1090547521_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000025989/1791370390628475_VCL_Emperia-Marathas-vs-Rajasthan-Spikers_live_landscape_thumb.jpg",Sony: Emperia Marathas vs Rajasthan Spikers
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.max_bandwidth=0
-#KODIPROP:inputstream.adaptive.stream_selection_type=buffered
-#KODIPROP:inputstream.adaptive.buffer_segment_size=1
-#KODIPROP:inputstream.adaptive.live_delay=0
-#EXTVLCOPT:http-user-agent=Denver1769
-#EXTVLCOPT:http-referrer=https://www.sonyliv.com/
-#EXTVLCOPT:http-extra-headers=Origin: https://www.sonyliv.com
-#EXTHTTP:{"Origin":"https://www.sonyliv.com/","Referer":"https://www.sonyliv.com/","Connection":"keep-alive"}
-https://sonydaimenew.akamaized.net/hls/live/2120302/Volleyba0810/ENG/std_lrh-800300010.m3u8?hdnea=exp=1791509463~acl=/*~id=66664877131827430033203079568314~hmac=7caa5dc249cf2b39dc1175c9ac24a00174cac103fd1eddaddaf6cfa01ea0161f
-#EXTINF:-1 tvg-id="1090547521_HIN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000025989/1791370390628475_VCL_Emperia-Marathas-vs-Rajasthan-Spikers_live_landscape_thumb.jpg",Sony: Emperia Marathas vs Rajasthan Spikers
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.max_bandwidth=0
-#KODIPROP:inputstream.adaptive.stream_selection_type=buffered
-#KODIPROP:inputstream.adaptive.buffer_segment_size=1
-#KODIPROP:inputstream.adaptive.live_delay=0
-#EXTVLCOPT:http-user-agent=Denver1769
-#EXTVLCOPT:http-referrer=https://www.sonyliv.com/
-#EXTVLCOPT:http-extra-headers=Origin: https://www.sonyliv.com
-#EXTHTTP:{"Origin":"https://www.sonyliv.com/","Referer":"https://www.sonyliv.com/","Connection":"keep-alive"}
-https://sonydaimenew.akamaized.net/hls/live/2120301/Volleyba0810/HIN/std_lrh-800300010.m3u8?hdnea=exp=1791509463~acl=/*~id=66664877131827430033203079568314~hmac=7caa5dc249cf2b39dc1175c9ac24a00174cac103fd1eddaddaf6cfa01ea0161f
-#EXTINF:-1 tvg-id="1090547516_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000025963/1791360261025494_APL26_Rajputana-Royals-vs-Prithviraj-Yodhas_live_landscape_thumb.jpg",Sony: Rajputana Royals vs Prithviraj Yodhas
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.max_bandwidth=0
-#KODIPROP:inputstream.adaptive.stream_selection_type=buffered
-#KODIPROP:inputstream.adaptive.buffer_segment_size=1
-#KODIPROP:inputstream.adaptive.live_delay=0
-#EXTVLCOPT:http-user-agent=Denver1769
-#EXTVLCOPT:http-referrer=https://www.sonyliv.com/
-#EXTVLCOPT:http-extra-headers=Origin: https://www.sonyliv.com
-#EXTHTTP:{"Origin":"https://www.sonyliv.com/","Referer":"https://www.sonyliv.com/","Connection":"keep-alive"}
-https://sonydaimenew.akamaized.net/hls/live/2120303/Archery_0810/ENG/std_lrh-800300010.m3u8?hdnea=exp=1791509463~acl=/*~id=66664877131827430033203079568314~hmac=7caa5dc249cf2b39dc1175c9ac24a00174cac103fd1eddaddaf6cfa01ea0161f
-#EXTINF:-1 tvg-id="1090547326_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000025235/1790649374942310_DP_World_Tour_2026_OpendeEspana_presentedby_Madrid_Day1_landscape_thumb.jpg",Sony: Open de Espana Presented By Madrid - Day 1
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.max_bandwidth=0
-#KODIPROP:inputstream.adaptive.stream_selection_type=buffered
-#KODIPROP:inputstream.adaptive.buffer_segment_size=1
-#KODIPROP:inputstream.adaptive.live_delay=0
-#EXTVLCOPT:http-user-agent=Denver1769
-#EXTVLCOPT:http-referrer=https://www.sonyliv.com/
-#EXTVLCOPT:http-extra-headers=Origin: https://www.sonyliv.com
-#EXTHTTP:{"Origin":"https://www.sonyliv.com/","Referer":"https://www.sonyliv.com/","Connection":"keep-alive"}
-https://sonydaimenew.akamaized.net/hls/live/2120300/golflive0810/ENG/std_lrh-800300010.m3u8?hdnea=exp=1791509463~acl=/*~id=66664877131827430033203079568314~hmac=7caa5dc249cf2b39dc1175c9ac24a00174cac103fd1eddaddaf6cfa01ea0161f
-#EXTINF:-1 tvg-id="amzn1.dv.gti.11c0edbc-8211-459b-880b-d945e2bb824b" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.11c0edbc-8211-459b-880b-d945e2bb824b/2/BOXART-16X9/en-US._UR1920,1080_.jpeg", Willow: World Championship of Legends 2026 - 5th Match - Australia Champions vs Pakistan Champions
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.max_bandwidth=0
-#KODIPROP:inputstream.adaptive.stream_selection_type=buffered
-#KODIPROP:inputstream.adaptive.buffer_segment_size=1
-#KODIPROP:inputstream.adaptive.live_delay=0
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-#EXTVLCOPT:http-user-agent=Denver1769
-#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/","Connection":"keep-alive"}
-http://www.w3.org/2001/XMLSchema-instance
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg",TNT Sports 1
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.max_bandwidth=0
-#KODIPROP:inputstream.adaptive.stream_selection_type=buffered
-#KODIPROP:inputstream.adaptive.buffer_segment_size=1
-#KODIPROP:inputstream.adaptive.live_delay=0
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-#EXTVLCOPT:http-user-agent=Denver1769
-#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/","Connection":"keep-alive"}
-http://www.w3.org/2001/XMLSchema-instance
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg",TNT Sports 2
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.max_bandwidth=0
-#KODIPROP:inputstream.adaptive.stream_selection_type=buffered
-#KODIPROP:inputstream.adaptive.buffer_segment_size=1
-#KODIPROP:inputstream.adaptive.live_delay=0
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-#EXTVLCOPT:http-user-agent=Denver1769
-#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/","Connection":"keep-alive"}
-http://www.w3.org/2001/XMLSchema-instance
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg",TNT Sports 3
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.max_bandwidth=0
-#KODIPROP:inputstream.adaptive.stream_selection_type=buffered
-#KODIPROP:inputstream.adaptive.buffer_segment_size=1
-#KODIPROP:inputstream.adaptive.live_delay=0
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-#EXTVLCOPT:http-user-agent=Denver1769
-#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/","Connection":"keep-alive"}
-http://www.w3.org/2001/XMLSchema-instance
-#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png",TNT Sports 4
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.max_bandwidth=0
-#KODIPROP:inputstream.adaptive.stream_selection_type=buffered
-#KODIPROP:inputstream.adaptive.buffer_segment_size=1
-#KODIPROP:inputstream.adaptive.live_delay=0
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-#EXTVLCOPT:http-user-agent=Denver1769
-#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/","Connection":"keep-alive"}
-http://www.w3.org/2001/XMLSchema-instance
