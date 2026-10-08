@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 PLAYLIST_URL = os.environ.get("PLAYLIST_URL")
 IP_MANAGER_URL = "https://game.playindia.fun/Jtv/IP.php?id=RiYlIZ"
 
-MAX_CHANNELS = 1000
+MAX_CHANNELS = 2000
 MAX_WORKERS = 40
 
 def clear_old_ips(session):
