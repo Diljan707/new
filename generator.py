@@ -230,7 +230,7 @@ def process_single_channel(i, lines, session):
                 cookie_str = "hdntl=exp=1790846295~acl=%2f*~id=af9f2444dbd242ba96e15a82e9d5f668~data=hdntl~hmac=85fbbe3fd86f68e27d194b494a1eab8666d65bf230c58a4231acdbc50e3b2caa"
 
             channel_lines.append(f"#EXTVLCOPT:http-cookie={cookie_str}")
-            channel_lines.append(f'#EXTHTTP:{{"Origin":"https://www.hotstar.com","Referer":"https://www.hotstar.com/","Cookie":"{cookie_str}","Connection":"keep-alive"}}')
+            channel_lines.append(f'#EXTHTTP:{{"User-Agent":"{user_agent}","Origin":"https://www.hotstar.com","Referer":"https://www.hotstar.com/","Cookie":"{cookie_str}","Accept-Encoding":"identity","Connection":"keep-alive"}}')
             channel_lines.append(final_stream_url if final_stream_url else "http://dummy-link-to-prevent-break")
 
         elif is_sliv:
