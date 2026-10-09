@@ -195,8 +195,8 @@ def process_single_channel(i, lines, session):
             formatted_license_key = "null:null"
 
         final_stream_url = raw_stream_line
-        # Hotstar links nu resolve karn di lod nahi, seedha raw link use hovega taaki tokens safe rehan
-        if raw_stream_line and not is_hotstar:
+        if raw_stream_line:
+            # Hotstar links nu vi resolve karan do taaki playindia redirect hoke asli mpd link de de
             resolved = resolve_stream_url(raw_stream_line, session, user_agent, is_hotstar, is_sliv)
             if resolved:
                 final_stream_url = resolved
