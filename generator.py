@@ -70,7 +70,12 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
     
     headers = {"User-Agent": user_agent}
     if is_hotstar:
-        headers.update({"Origin": "https://www.hotstar.com", "Referer": "https://www.hotstar.com/"})
+        headers.update({
+            "User-Agent": "Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)",
+            "Origin": "https://www.hotstar.com",
+            "Referer": "https://www.hotstar.com/",
+            "Accept-Encoding": "gzip"
+        })
     elif is_sliv:
         headers.update({"Origin": "https://www.sonyliv.com", "Referer": "https://www.sonyliv.com/"})
 
@@ -153,7 +158,7 @@ def process_single_channel(i, lines, session):
                 key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
 
         if is_hotstar:
-            user_agent = "Hotstar;in.startv.hotstar/25.02.26.8.11169@Premium Plugx(Android/15)"
+            user_agent = "Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)"
         elif is_sliv:
             user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         else:
@@ -227,10 +232,10 @@ def process_single_channel(i, lines, session):
                     break
             
             if not cookie_str:
-                cookie_str = "hdntl=exp=1790846295~acl=%2f*~id=af9f2444dbd242ba96e15a82e9d5f668~data=hdntl~hmac=85fbbe3fd86f68e27d194b494a1eab8666d65bf230c58a4231acdbc50e3b2caa"
+                cookie_str = "hdntl=exp=1791547213~acl=%2f*~id=ab745def3d3cf073437099ca93f6560a~data=hdntl~hmac=d79aa680787ee1cbbc09f424741fe38031c438fc6c23639f6f65c1514d0ed0ad"
 
             channel_lines.append(f"#EXTVLCOPT:http-cookie={cookie_str}")
-            channel_lines.append(f'#EXTHTTP:{{"User-Agent":"{user_agent}","Origin":"https://www.hotstar.com","Referer":"https://www.hotstar.com/","Cookie":"{cookie_str}","Accept-Encoding":"identity","Connection":"keep-alive"}}')
+            channel_lines.append(f'#EXTHTTP:{{"User-Agent":"{user_agent}","Origin":"https://www.hotstar.com","Referer":"https://www.hotstar.com/","Cookie":"{cookie_str}","Accept-Encoding":"gzip","Connection":"keep-alive"}}')
             channel_lines.append(final_stream_url if final_stream_url else "http://dummy-link-to-prevent-break")
 
         elif is_sliv:
@@ -260,78 +265,4 @@ def process_single_channel(i, lines, session):
                                 jio_cookie = "hdnea=" + candidate.split("&")[0]
                                 break
                     except Exception:
-                        pass
-                if jio_cookie:
-                    break
-
-            if jio_cookie:
-                channel_lines.append(f"#EXTVLCOPT:http-cookie={jio_cookie}")
-                channel_lines.append(f'#EXTHTTP:{{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/","Cookie":"{jio_cookie}","Connection":"keep-alive"}}')
-            else:
-                channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/","Connection":"keep-alive"}')
-
-            channel_lines.append(final_stream_url if final_stream_url else "http://dummy-link-to-prevent-break")
-
-    except Exception:
-        channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
-        channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
-        channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
-        channel_lines.append(raw_stream_line if raw_stream_line else "http://dummy-link-to-prevent-break")
-
-    return channel_lines
-
-def generate_safe_playlist_1000():
-    if not PLAYLIST_URL:
-        return
-
-    session = get_robust_session()
-    clear_old_ips(session)
-
-    try:
-        res = session.get(PLAYLIST_URL, headers={"User-Agent": "Denver1769"})
-        if res.status_code != 200:
-            return
-
-        lines = res.text.splitlines()  
-        all_channels = []
-        for i, line in enumerate(lines):  
-            if line.strip().startswith("#EXTINF"):  
-                all_channels.append((i, line))
-
-        if not all_channels:  
-            return  
-
-        target_indices = [item[0] for item in all_channels[:MAX_CHANNELS]]
-        print(f"[*] Processing {len(target_indices)} channels cleanly...")  
-
-        channel_results = {}
-        with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-            futures = {
-                executor.submit(process_single_channel, idx, lines, session): idx
-                for idx in target_indices
-            }
-            for future in as_completed(futures):
-                idx = futures[future]
-                try:
-                    res_lines = future.result()
-                    if res_lines:
-                        channel_results[idx] = res_lines
-                except Exception:
-                    pass
-
-        new_lines = ["#EXTM3U"]
-        for idx in target_indices:
-            if idx in channel_results:
-                new_lines.extend(channel_results[idx])
-
-        output_file = ".m3u"  
-        with open(output_file, "w", encoding="utf-8") as f:  
-            f.write("\n".join(new_lines))  
-
-        print(f"\n[+] Success! Final playlist saved as '{output_file}'.")
-
-    except Exception as e:
-        print(f"\n[-] Critical Error: {e}")
-
-if __name__ == "__main__":
-    generate_safe_playlist_1000()
+                        
