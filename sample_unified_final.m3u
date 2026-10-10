@@ -1,0 +1,96 @@
+#EXTM3U
+#EXTINF:-1 tvg-id="1260000024" tvg-language="English" tvg-name="Star Sports Select 2 HD" tvg-logo="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/7437/567437-h" catchup-type="append" catchup-days="14" catchup-source="&start={utc}&end={utcend}" group-title="Jhs Sports", Star Sports Select 2 HD
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=434ef62f5208b6413db7b790d502af0a:e2429e4f700de240e992b7ed4bb25488,309b0677ab46bca64106e37ede5e6427:1d883292205c015aaf2b6a1b0569e2c8,2effd2e98f95492cb7418857bf610000:f0e42f1c91fb4b59bf6684cb4478d82e,a730487dccc67ddf972625c88bdd172e:79137e472cfb3f75368a351c1a16212e,b052be9ad364dab5c9b3d5549a20883a:f4ae30bedc10b261fabaa790c446fc82
+#EXTVLCOPT:http-user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)
+#EXTVLCOPT:http-referrer=https://www.hotstar.com/
+#EXTVLCOPT:http-extra-headers=Origin: https://www.hotstar.com
+#EXTVLCOPT:http-cookie=hdntl=exp=1791676807~acl=%2f*~id=f194a9404b0e47f5232883c3a58805eb~data=hdntl~hmac=cfc2fc68c3ceaf90211cd6c68af741f6d947aa5f377a7ac160583351406e786b"}
+#EXTHTTP:{"User-Agent": "Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)", "Origin": "https://www.hotstar.com", "Referer": "https://www.hotstar.com/", "Cookie": "hdntl=exp=1791676807~acl=%2f*~id=f194a9404b0e47f5232883c3a58805eb~data=hdntl~hmac=cfc2fc68c3ceaf90211cd6c68af741f6d947aa5f377a7ac160583351406e786b\"}", "Accept-Encoding": "identity", "Connection": "keep-alive"}
+https://livetv.hotstar.com/mp1/gec-india-1540065794/e2408fbafb9d4a5ab23775b69e5737d7/index.mpd?start=2026-10-09T20%3A13%3A25
+#EXTINF:-1 tvg-id="1260000034" tvg-language="English" tvg-name="Star Sports Select HD1" tvg-logo="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1920/sources/r1/cms/prod/7435/567435-h" catchup-type="append" catchup-days="14" catchup-source="&start={utc}&end={utcend}" group-title="Jhs Sports", Star Sports Select HD1
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=35e28f407a998d3a6d29e140285866d6:62283cb49963ec046918ef83c3c0df75,9b06fd1f960a95f2a97bd2ce53778b2a:b98f1250bc7fa2de39a064f4a749c377,b395fa8172539ff16f30ff340803243b:2ee583a96b728b863cfd358329983422,5031db43171233d27cd54b1d85503a00:6acefec0bba29dc07e5ec739476c8ea6,1f64a24b3950468497390155c4880000:68f788aced6c4ecb89108f22fe9ee087
+#EXTVLCOPT:http-user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)
+#EXTVLCOPT:http-referrer=https://www.hotstar.com/
+#EXTVLCOPT:http-extra-headers=Origin: https://www.hotstar.com
+#EXTVLCOPT:http-cookie=hdntl=exp=1791676807~acl=%2f*~id=f194a9404b0e47f5232883c3a58805eb~data=hdntl~hmac=cfc2fc68c3ceaf90211cd6c68af741f6d947aa5f377a7ac160583351406e786b"}
+#EXTHTTP:{"User-Agent": "Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)", "Origin": "https://www.hotstar.com", "Referer": "https://www.hotstar.com/", "Cookie": "hdntl=exp=1791676807~acl=%2f*~id=f194a9404b0e47f5232883c3a58805eb~data=hdntl~hmac=cfc2fc68c3ceaf90211cd6c68af741f6d947aa5f377a7ac160583351406e786b\"}", "Accept-Encoding": "identity", "Connection": "keep-alive"}
+https://livetv.hotstar.com/mp2/gec-india-1540065791/8bb5cd7a8e274186977473a6771d9352/index.mpd?start=2026-10-09T20%3A13%3A27
+#EXTINF:-1 tvg-id="1540068247" tvg-language="English" tvg-name="Star Sports 1" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/7482/1782284567482-h" catchup-type="append" catchup-days="14" catchup-source="&start={utc}&end={utcend}" group-title="Jhs Sports", Star Sports 1 Digital
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=e85897bf6e594d698b7c82646c8e0000:d2dda31234ae40538843e871cd4dcc2a,1e524bac2eaa75e5088c6bd99d5933a4:6900ddd8f5dccb689a13c886069e8dba,d1d0c64b6714474df90a6d7a6dfb2ed6:e6de43b8269b98f7dac50e91bfe8cfe7,7356da458108f8f6198b9e4280255796:c37bf17633d7237b383cff330e4005fe,dc0a05269046a2f2336a889263b2b4ac:cf88b193d2c7d38ccb411ac920cfa8eb
+#EXTVLCOPT:http-user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)
+#EXTVLCOPT:http-referrer=https://www.hotstar.com/
+#EXTVLCOPT:http-extra-headers=Origin: https://www.hotstar.com
+#EXTVLCOPT:http-cookie=hdntl=exp=1791676807~acl=%2f*~id=f194a9404b0e47f5232883c3a58805eb~data=hdntl~hmac=cfc2fc68c3ceaf90211cd6c68af741f6d947aa5f377a7ac160583351406e786b"}
+#EXTHTTP:{"User-Agent": "Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)", "Origin": "https://www.hotstar.com", "Referer": "https://www.hotstar.com/", "Cookie": "hdntl=exp=1791676807~acl=%2f*~id=f194a9404b0e47f5232883c3a58805eb~data=hdntl~hmac=cfc2fc68c3ceaf90211cd6c68af741f6d947aa5f377a7ac160583351406e786b\"}", "Accept-Encoding": "identity", "Connection": "keep-alive"}
+https://livetv.hotstar.com/mp1/gec-india-1540068247/9a6e7c30f9194cc1a6a6250cedb115fb/index.mpd?start=2026-10-09T20%3A13%3A27
+#EXTINF:-1 tvg-id="1540068295" tvg-language="Hindi" tvg-name="Star Sports 1 Hindi" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/8867/1782284658867-h" catchup-type="append" catchup-days="14" catchup-source="&start={utc}&end={utcend}" group-title="Jhs Sports", Star Sports 1 Hindi Digital
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=9076853d4145f7e4eb4e0d9edb2b5b0c:ea4d141f99cea8d6c4293554e21a88b5,24689ea8594308d24b5323da8c66ef8c:e02e6af920b752642ef3acd92b25c89b,b8862a84c8c91a29ceff7a4db0c001de:4d7a35ebc2e83d3e7a3dfdfa101321d2,b9f1cb8a1361457bbd8097f8c2590000:1960274b7ba344cb899eba2e80916774,4d61a20e29833f53ec325750d610d18e:0af4e83cc8aef771da98471a50f80d44
+#EXTVLCOPT:http-user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)
+#EXTVLCOPT:http-referrer=https://www.hotstar.com/
+#EXTVLCOPT:http-extra-headers=Origin: https://www.hotstar.com
+#EXTVLCOPT:http-cookie=hdntl=exp=1791676807~acl=%2f*~id=f194a9404b0e47f5232883c3a58805eb~data=hdntl~hmac=cfc2fc68c3ceaf90211cd6c68af741f6d947aa5f377a7ac160583351406e786b"}
+#EXTHTTP:{"User-Agent": "Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)", "Origin": "https://www.hotstar.com", "Referer": "https://www.hotstar.com/", "Cookie": "hdntl=exp=1791676807~acl=%2f*~id=f194a9404b0e47f5232883c3a58805eb~data=hdntl~hmac=cfc2fc68c3ceaf90211cd6c68af741f6d947aa5f377a7ac160583351406e786b\"}", "Accept-Encoding": "identity", "Connection": "keep-alive"}
+https://livetv.hotstar.com/mp1/gec-india-1540068295/5a4eb3ac6e424eef8a30962d2232f80f/index.mpd?start=2026-10-09T20%3A13%3A27
+#EXTINF:-1 tvg-id="1540068250" tvg-language="English" tvg-name="Star Sports 2" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/7957/1783000567957-h" catchup-type="append" catchup-days="14" catchup-source="&start={utc}&end={utcend}" group-title="Jhs Sports", Star Sports 2 Digital
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=022745a857d2d41db6957aa06f79bb2f:fdc95409065d7276b3dcea7add2d6219,f72d2de422e1f25de1ece7bffda26426:05d4f8b96fa05c58812e17f17dafb311,14d0c8ee09944c32bafea44a987d0000:74d35f4034b14854bd3ca83dd3aa2fb1,80a26180ab0591e4e6aaea0a6ac9379a:175ef93b4cd1783a2d694d65bacb1bc7,9be2d230296d643db42c8db7d8a4b1ef:981bdcf07ad348c2115a0bf6598da457
+#EXTVLCOPT:http-user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)
+#EXTVLCOPT:http-referrer=https://www.hotstar.com/
+#EXTVLCOPT:http-extra-headers=Origin: https://www.hotstar.com
+#EXTVLCOPT:http-cookie=hdntl=exp=1791676807~acl=%2f*~id=f194a9404b0e47f5232883c3a58805eb~data=hdntl~hmac=cfc2fc68c3ceaf90211cd6c68af741f6d947aa5f377a7ac160583351406e786b"}
+#EXTHTTP:{"User-Agent": "Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)", "Origin": "https://www.hotstar.com", "Referer": "https://www.hotstar.com/", "Cookie": "hdntl=exp=1791676807~acl=%2f*~id=f194a9404b0e47f5232883c3a58805eb~data=hdntl~hmac=cfc2fc68c3ceaf90211cd6c68af741f6d947aa5f377a7ac160583351406e786b\"}", "Accept-Encoding": "identity", "Connection": "keep-alive"}
+https://livetv.hotstar.com/mp1/gec-india-1540068250/1d0752e2f605404886fec4ab49cc3350/index.mpd?start=2026-10-09T20%3A13%3A27
+#EXTINF:-1 tvg-id="144" tvg-language="Hindi" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/ColorsHD.png" catchup-type="append" catchup-days="8" catchup-source="&begin={utc}&end={utcend}" group-title="Entertainment",Colors HD
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=39d216df1386c302709368cec4311c06:8be29aa6e8d9b79c5d7e8bc8c677ae7b,d795afc8c275556ebd92b598bc963181:8ff79d0b30cf79b69a65938c4de96265,d70c4758660e5a3ca5a86779b9dbd510:a9d76a696dbe5f2d9be4f6145c213200,9c0fe0f306a94f55ca384a93ae19ac28:33626298b63f5bba81de935ca1bc9f7b,1d7a8345bdd5523a92c7929fbff30eae:62619f96edbe92a31944ffc7cc090fe7,02accf961aa2529ea3efa1091dcaeeaf:df5b7a40fb82f42e494020df27616889,5360e12d4bb2519a9148d1089a55908d:7e8f500cef51595f3d43acafab1a8fb4,6fc08c30ab7fd897d8d82a2ca0c95ddc:a39c022a0db0bc432eecfa8c00c33b30,59a2d4673c975bc690c5b542fcdcc05b:2bafe6ec89b3920bf9566f28f56eed6b,a6bd5c484471320279933ce399903b05:13b5be859d6313ef5600cfd7a69692cc
+#EXTVLCOPT:http-user-agent=Denver1769
+#EXTHTTP:{"Origin": "https://www.jiotv.com/", "Referer": "https://www.jiotv.com/", "Connection": "keep-alive"}
+https://jiotvmblive.cdn.jio.com/bpk-tv/ColorsHD_MOB/WDVLive/index.mpd?__hdnea__=st=1791619203~exp=1791640803~acl=/*~hmac=75c024ce250e7c58d2c9111bc0a3e8f3850a804fee60adc60d4452f74ea12aa3
+#EXTINF:-1 tvg-id="151" tvg-language="English" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Movies_Now_HD.png" CATCH-UP-FAILED="null" group-title="English",Movies Now HD
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=40f019b86241d23ef075633fd7f1e927:058dec845bd340178a388edd104a015e,2b3238dad7ac16fdb5f098ca098c4f8b:c710c0572bb7b4e966ca2c5f906d9408,991c0d45b379fb04a651a3b029eccd09:bfd7b9a0d91fe73899c99c85879f3b01,9de28830839d71e5b80aa21857680dc0:3a9c6d4de1b3a4c11ba952004b6d17a9,40f019b86241d23ef075633fd7f1e927:058dec845bd340178a388edd104a015e,97255134e5e35398a17a2790c67b70f5:0166d6cbcc371c86b7188af53d5f5310
+#EXTVLCOPT:http-user-agent=Denver1769
+#EXTHTTP:{"Origin": "https://www.jiotv.com/", "Referer": "https://www.jiotv.com/", "Connection": "keep-alive"}
+https://times-ott-live.akamaized.net/moviesnow_wv_drm/index.mpd?mblive?__hdnea__=st=1791619203~exp=1791640803~acl=/*~hmac=75c024ce250e7c58d2c9111bc0a3e8f3850a804fee60adc60d4452f74ea12aa3
+#EXTINF:-1 tvg-id="153" tvg-language="Marathi" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/ZeeTalkies.png" CATCH-UP-FAILED="null" group-title="Marathi",Zee Talkies
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=dca1d44892b452a7a1121842007ef3b4:c0709e63f9ed2eb851f7a325c7e65b3e,410fbcc3903c4cf71856b13a7e6c9e71:63fb948aa76e352fbf0b003357dee8cf,b495c6bba74d52039b0d310ef2bc9cc2:8672293f4472f01fdf74660e2e0fd602,7da69b07ce529f36b3ecf61efd4a71c9:01fa7a9bb1ff51a3d61a93eec9e3eae2,509216860f8e594aaf7e921296f53851:536df1e35e2bb055be0117b51db8139c,932581fa65b5bd36269d3b887dafcd3c:e1696295ba24406c3a453e5116f5c72b,4c976d9d17e72cd993618dd0705a4627:8d87fffbc01cdcb9c16c036729992205
+#EXTVLCOPT:http-user-agent=Denver1769
+#EXTHTTP:{"Origin": "https://www.jiotv.com/", "Referer": "https://www.jiotv.com/", "Connection": "keep-alive"}
+https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeTalkies_BTS/WDVLive/index.mpd?__hdnea__=st=1791617614~exp=1791621214~acl=/bpk-tv/ZeeTalkies_BTS/WDVLive/*~hmac=0b98a3ce444e668258a05152555e85818bc588b0735764e8f05219cb41c2dfd8
+#EXTINF:-1 tvg-id="154" tvg-language="Hindi" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Sony_SAB.png" catchup-type="append" catchup-days="8" catchup-source="&begin={utc}&end={utcend}" group-title="Entertainment",Sony SAB
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=48ff2351498d4c81eeffca81d6357158:81f24a1801bbec340807edba65532593,ba4d9b38517552de9654d3652d27933b:31e7cbf3d289d3116386457ed8bac3a2,f97a6822d3339721016d8d99540904d2:f55a1389229df804373f8b0c5d7858fa,b8c94faf20c715d45f51ed6fbbe3d78b:25bfa745ed3dfad2ab01d3013d8ee952,ba4d9b38517552de9654d3652d27933b:31e7cbf3d289d3116386457ed8bac3a2,d5deb90adea409b2f310e0b6c8cb53e0:5a045836ef0f2edf6dd87b55ba7e9283
+#EXTVLCOPT:http-user-agent=Denver1769
+#EXTHTTP:{"Origin": "https://www.jiotv.com/", "Referer": "https://www.jiotv.com/", "Connection": "keep-alive"}
+https://jiotvmblive.cdn.jio.com/bpk-tv/Sony_SAB_MOB/WDVLive/index.mpd?__hdnea__=st=1791619203~exp=1791640803~acl=/*~hmac=75c024ce250e7c58d2c9111bc0a3e8f3850a804fee60adc60d4452f74ea12aa3
+#EXTINF:-1 tvg-id="155" tvg-language="English" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Six_HD.png" CATCH-UP-FAILED="null" group-title="Sports",Sony Ten 5 HD
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=42566c7287ce545d91234b03485cce8a:bd251578248e2f8df050eb81b04d056a,524673b27efd3aba7872e83fb2efb7d5:450be9f8c41290386600d55aa357c340,1aae91dec0a5caa7c418a3a537c0f9cb:6b8f5c5029354c4dd4bb499e713eca58,0aa326481a89fb725ec2a8fcc5dad3ec:e75592f90b05dc388b9e80d8e765b5c1,4fae034e381baeff8fe0e16aabff6a93:ffa885c0bfc6735e1ed78f150b074b63,8cb7b40cefe053ea91895e3194bb9912:467cf6d740b7212fcfc648644fb79943
+#EXTVLCOPT:http-user-agent=Denver1769
+#EXTHTTP:{"Origin": "https://www.jiotv.com/", "Referer": "https://www.jiotv.com/", "Connection": "keep-alive"}
+https://jiotvmblive.cdn.jio.com/bpk-tv/Six_HD_MOB/WDVLive/index.mpd?__hdnea__=st=1791619203~exp=1791640803~acl=/*~hmac=75c024ce250e7c58d2c9111bc0a3e8f3850a804fee60adc60d4452f74ea12aa3
