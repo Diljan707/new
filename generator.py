@@ -340,4 +340,4 @@ def generate_safe_playlist_1000():
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
-    generate_safe_playlist_1000() jhs waleya ch oh format va4t
+    generate_safe_playlist_1000()
