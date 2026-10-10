@@ -54,6 +54,16 @@ def get_robust_session():
     session.mount("http://", HTTPAdapter(max_retries=retries))
     return session
 
+def b64_to_hex(b64_str):
+    padding = 4 - (len(b64_str) % 4)
+    if padding < 4:
+        b64_str += '=' * padding
+    try:
+        decoded = base64.urlsafe_b64decode(b64_str)
+        return decoded.hex()
+    except Exception:
+        return b64_str
+
 def resolve_stream_url(url, session, user_agent):
     if not url:
         return url
@@ -101,10 +111,8 @@ def process_single_channel(i, lines, session):
 
     raw_stream_line = ""
     for f in range(i + 1, min(len(lines), i + 5)):
-        cleaned_f = lines[f].strip()
-        cleaned_f = cleaned_f.replace('"}","', '","').replace('"}', '').replace('""', '"')
-        if cleaned_f.startswith("http"):
-            raw_stream_line = cleaned_f.split()[0]
+        if lines[f].strip().startswith("http"):
+            raw_stream_line = lines[f].strip().split()[0]
             if raw_stream_line.endswith("~"):
                 raw_stream_line = raw_stream_line[:-1]
             break
@@ -122,7 +130,7 @@ def process_single_channel(i, lines, session):
 
         formatted_license_key = None
         if key_url:
-            formatted_license_key = key_url.replace('"}', '').replace('"', '')
+            formatted_license_key = key_url
         
         final_stream_url = raw_stream_line
         if raw_stream_line:
@@ -151,7 +159,7 @@ def process_single_channel(i, lines, session):
                     for p in parts[1:]:
                         candidate = p.split()[0].strip('"\'')
                         if "exp=" in candidate:
-                            cookie_str = "hdntl=" + candidate.split("&")[0].replace('"}', '').replace('"', '')
+                            cookie_str = "hdntl=" + candidate.split("&")[0]
                             break
                 except Exception:
                     pass
@@ -159,7 +167,7 @@ def process_single_channel(i, lines, session):
                 break
         
         if not cookie_str:
-            cookie_str = "hdntl=exp=1791720008~acl=%2f*~id=5efd87485574d86cce4fdc97d33e2973~data=hdntl~hmac=581b5d1a16770de336d289c3d8c047e595c4135effa9b22dc441862a08af7250"
+            cookie_str = "hdntl=exp=1791683205~acl=%2f*~id=8a0f084a08c7b8da69eaecf4ebdf7027~data=hdntl~hmac=dc8db40dbcee02223ba7cd875c04c40cf31f9991b6d262131edc6a94af00f063"
 
         channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
         channel_lines.append("#EXTVLCOPT:http-referrer=https://www.hotstar.com/")
@@ -237,4 +245,4 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-    
+            
