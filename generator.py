@@ -333,7 +333,7 @@ def generate_safe_playlist_1000():
             if idx in channel_results:
                 new_lines.extend(channel_results[idx])
 
-        output_file = "playlist.m3u"  
+        output_file = ".m3u"  
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
