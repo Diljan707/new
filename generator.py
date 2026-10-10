@@ -64,16 +64,20 @@ def b64_to_hex(b64_str):
     except Exception:
         return b64_str
 
-def resolve_stream_url(url, session, user_agent):
+def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
     if not url:
         return url
     
-    headers = {
-        "User-Agent": "Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)",
-        "Origin": "https://www.hotstar.com",
-        "Referer": "https://www.hotstar.com/",
-        "Accept-Encoding": "identity"
-    }
+    headers = {"User-Agent": user_agent}
+    if is_hotstar:
+        headers.update({
+            "User-Agent": "Hotstar;in.startv.hotstar/25.02.26.8.11169@Premium Plugx(Android/15)",
+            "Origin": "https://www.hotstar.com",
+            "Referer": "https://www.hotstar.com/",
+            "Accept-Encoding": "identity"
+        })
+    elif is_sliv:
+        headers.update({"Origin": "https://www.sonyliv.com", "Referer": "https://www.sonyliv.com/"})
 
     try:
         r = session.get(url, headers=headers, allow_redirects=True, timeout=7)
@@ -109,6 +113,13 @@ def process_single_channel(i, lines, session):
     line = lines[i].strip()
     extinf_line = line
 
+    channel_id = ""
+    if 'tvg-id="' in extinf_line:
+        try:
+            channel_id = extinf_line.split('tvg-id="')[1].split('"')[0]
+        except Exception:
+            pass
+
     raw_stream_line = ""
     for f in range(i + 1, min(len(lines), i + 5)):
         if lines[f].strip().startswith("http"):
@@ -116,56 +127,161 @@ def process_single_channel(i, lines, session):
             if raw_stream_line.endswith("~"):
                 raw_stream_line = raw_stream_line[:-1]
             break
+            
+    if not channel_id and "id=" in extinf_line:
+        try:
+            channel_id = extinf_line.split('id="')[1].split('"')[0]
+        except Exception:
+            pass
+
+    if not channel_id and raw_stream_line:
+        if "id=" in raw_stream_line:
+            try:
+                channel_id = raw_stream_line.split("id=")[1].split("&")[0]
+            except Exception:
+                pass
 
     lower_text = (extinf_line + raw_stream_line).lower()
     for b in range(max(0, i - 3), i + 4):
         lower_text += lines[b].lower()
 
-    # Sabhi links nu Hotstar / JioHotstar hi treat karage taaki tusi mangya ohi format mile
-    user_agent = "Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)"
-    
+    is_hotstar = "hotstar" in lower_text or "jhs" in lower_text
+    is_sliv = "sliv" in lower_text or "sony" in lower_text or "ten" in lower_text
+
     channel_lines = [extinf_line]
 
     try:
+        key_url = None
+        for b in range(max(0, i - 3), i):
+            sub_b = lines[b].strip()
+            if "inputstream.adaptive.license_key=" in sub_b:
+                key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
+
+        if is_hotstar:
+            user_agent = "Hotstar;in.startv.hotstar/25.02.26.8.11169@Premium Plugx(Android/15)"
+        elif is_sliv:
+            user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        else:
+            user_agent = "Denver1769"
+
+        for f in range(i + 1, min(len(lines), i + 4)):
+            sub_f = lines[f].strip()
+            if sub_f.startswith("#EXTVLCOPT:http-user-agent="):
+                user_agent = sub_f.split("=")[1].strip()
+
+        formatted_license_key = None
+        if key_url:
+            try:
+                if '"' in key_url:
+                    key_url = key_url.replace('"', "")
+                key_res = session.get(key_url, headers={"User-Agent": user_agent}, timeout=3)
+                if key_res.status_code == 200:
+                    key_json = key_res.json()
+                    key_pairs = []
+                    keys_list = key_json.get("base64", {}).get("keys", [])
+                    for k_obj in keys_list:
+                        kid_b64 = k_obj.get("kid", "")
+                        k_b64 = k_obj.get("k", "")
+                        if kid_b64 and k_b64:
+                            kid_hex = b64_to_hex(kid_b64)
+                            k_hex = b64_to_hex(k_b64)
+                            key_pairs.append(f"{kid_hex}:{k_hex}")
+                    if key_pairs:
+                        formatted_license_key = ",".join(key_pairs)
+            except Exception:
+                pass
+        
+        if not formatted_license_key:
+            formatted_license_key = "null:null"
+
         final_stream_url = raw_stream_line
         if raw_stream_line:
-            resolved = resolve_stream_url(raw_stream_line, session, user_agent)
+            # Hotstar links nu vi resolve karan do taaki playindia redirect hoke asli mpd link de de
+            resolved = resolve_stream_url(raw_stream_line, session, user_agent, is_hotstar, is_sliv)
             if resolved:
                 final_stream_url = resolved
 
-        # Cookie extract karo ya default rakho
-        cookie_str = ""
-        for check_line in [raw_stream_line] + lines[max(0, i-2):min(len(lines), i+3)]:
-            if "hdntl=" in check_line:
-                try:
-                    parts = check_line.split("hdntl=")
-                    for p in parts[1:]:
-                        candidate = p.split()[0].strip('"\'')
-                        if "exp=" in candidate:
-                            cookie_str = "hdntl=" + candidate.split("&")[0]
-                            break
-                except Exception:
-                    pass
-            if cookie_str:
-                break
-        
-        if not cookie_str:
-            cookie_str = "hdntl=exp=1791683205~acl=%2f*~id=8a0f084a08c7b8da69eaecf4ebdf7027~data=hdntl~hmac=dc8db40dbcee02223ba7cd875c04c40cf31f9991b6d262131edc6a94af00f063"
+        is_mpd_link = ".mpd" in final_stream_url.lower()
 
-        # Tusi jo format mangeya si, ohi exact lines add kar rahe haan:
-        channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
-        channel_lines.append("#EXTVLCOPT:http-referrer=https://www.hotstar.com/")
-        channel_lines.append("#EXTVLCOPT:http-extra-headers=Origin: https://www.hotstar.com")
-        channel_lines.append(f"#EXTVLCOPT:http-cookie={cookie_str}")
-        channel_lines.append(f'#EXTHTTP:{{"Origin":"https://www.hotstar.com","Referer":"https://www.hotstar.com/","Cookie":"{cookie_str}"}}')
-        
-        if "?" in final_stream_url:
-            final_stream_url = final_stream_url.split("?")[0]
+        channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
+        channel_lines.append(f"#KODIPROP:inputstream.adaptive.manifest_type={'mpd' if is_mpd_link else 'hls'}")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=buffered")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=1")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.live_delay=0")
+
+        if is_hotstar:
+            channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
+            channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
+            channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
+            channel_lines.append("#EXTVLCOPT:http-referrer=https://www.hotstar.com/")
+            channel_lines.append("#EXTVLCOPT:http-extra-headers=Origin: https://www.hotstar.com")
             
-        stream_with_params = f"{final_stream_url}?|cookie={cookie_str}&referer=https://www.hotstar.com/&origin=https://www.hotstar.com&user-agent={user_agent}"
-        channel_lines.append(stream_with_params)
+            cookie_str = ""
+            for check_line in [raw_stream_line] + lines[max(0, i-2):min(len(lines), i+3)]:
+                if "hdntl=" in check_line:
+                    try:
+                        parts = check_line.split("hdntl=")
+                        for p in parts[1:]:
+                            candidate = p.split()[0].strip('"\'')
+                            if "exp=" in candidate:
+                                cookie_str = "hdntl=" + candidate.split("&")[0]
+                                break
+                    except Exception:
+                        pass
+                if cookie_str:
+                    break
+            
+            if not cookie_str:
+                cookie_str = "hdntl=exp=1790846295~acl=%2f*~id=af9f2444dbd242ba96e15a82e9d5f668~data=hdntl~hmac=85fbbe3fd86f68e27d194b494a1eab8666d65bf230c58a4231acdbc50e3b2caa"
+
+            channel_lines.append(f"#EXTVLCOPT:http-cookie={cookie_str}")
+            channel_lines.append(f'#EXTHTTP:{{"User-Agent":"{user_agent}","Origin":"https://www.hotstar.com","Referer":"https://www.hotstar.com/","Cookie":"{cookie_str}","Accept-Encoding":"identity","Connection":"keep-alive"}}')
+            channel_lines.append(final_stream_url if final_stream_url else "http://dummy-link-to-prevent-break")
+
+        elif is_sliv:
+            if is_mpd_link:
+                channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
+                channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
+
+            channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
+            channel_lines.append("#EXTVLCOPT:http-referrer=https://www.sonyliv.com/")
+            channel_lines.append("#EXTVLCOPT:http-extra-headers=Origin: https://www.sonyliv.com")
+            channel_lines.append('#EXTHTTP:{"Origin":"https://www.sonyliv.com/","Referer":"https://www.sonyliv.com/","Connection":"keep-alive"}')
+            channel_lines.append(final_stream_url if final_stream_url else "http://dummy-link-to-prevent-break")
+
+        else:  
+            channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
+            channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
+            channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
+            
+            jio_cookie = ""
+            for check_line in [raw_stream_line] + lines[max(0, i-2):min(len(lines), i+3)]:
+                if "hdnea=" in check_line:
+                    try:
+                        parts = check_line.split("hdnea=")
+                        for p in parts[1:]:
+                            candidate = p.split()[0].strip('"\'')
+                            if "exp=" in candidate or "st=" in candidate:
+                                jio_cookie = "hdnea=" + candidate.split("&")[0]
+                                break
+                    except Exception:
+                        pass
+                if jio_cookie:
+                    break
+
+            if jio_cookie:
+                channel_lines.append(f"#EXTVLCOPT:http-cookie={jio_cookie}")
+                channel_lines.append(f'#EXTHTTP:{{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/","Cookie":"{jio_cookie}","Connection":"keep-alive"}}')
+            else:
+                channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/","Connection":"keep-alive"}')
+
+            channel_lines.append(final_stream_url if final_stream_url else "http://dummy-link-to-prevent-break")
 
     except Exception:
+        channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
+        channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
+        channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
         channel_lines.append(raw_stream_line if raw_stream_line else "http://dummy-link-to-prevent-break")
 
     return channel_lines
@@ -224,5 +340,4 @@ def generate_safe_playlist_1000():
         print(f"\n[-] Critical Error: {e}")
 
 if __name__ == "__main__":
-    generate_safe_playlist_1000()
-        
+    generate_safe_playlist_1000() jhs waleya ch oh format va4t
