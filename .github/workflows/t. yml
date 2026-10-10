@@ -1,0 +1,99 @@
+name: Update SonyLIV Channels 
+
+on:
+  schedule:
+    - cron: '0 */1 * * *'   # Har 4 ghante mein
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Fetch hdnea using curl (Browser Simulation)
+        id: fetch_hdnea
+        run: |
+          API_URL="https://apiv4.sonyliv.com/AGL/4.7/A/ENG/MWEB/IN/BR/CONTENT/VIDEOURL/VOD/1000051729"
+
+          echo "Fetching API with browser headers..."
+          RESPONSE=$(curl -s -L \
+            -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36' \
+            -H 'Accept: application/json, text/plain, */*' \
+            -H 'Accept-Language: en-US,en;q=0.9' \
+            -H 'Referer: https://www.sonyliv.com/' \
+            -H 'Origin: https://www.sonyliv.com' \
+            -H 'Connection: Orginal' \
+            "$API_URL")
+
+          # Save for debugging
+          echo "$RESPONSE" > api_response.json
+
+          # Extract videoURL
+          VIDEO_URL=$(echo "$RESPONSE" | grep -o '"videoURL":"[^"]*' | cut -d'"' -f4 | head -1)
+          if [ -z "$VIDEO_URL" ]; then
+            echo "videoURL not found!"
+            cat api_response.json
+            exit 1
+          fi
+
+          echo "Found videoURL: $VIDEO_URL"
+
+          # Download .mpd file
+          MPD_CONTENT=$(curl -s -L \
+            -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' \
+            -H 'Referer: https://www.sonyliv.com/' \
+            "$VIDEO_URL")
+
+          # Extract hdnea
+          HDNEA=$(echo "$MPD_CONTENT" | grep -o 'hdnea=[^&" ]*' | head -1)
+          if [ -z "$HDNEA" ]; then
+            # Fallback: extract from videoURL itself
+            HDNEA=$(echo \"$VIDEO_URL\" | grep -o 'hdnea=[^&" ]*')
+          fi
+
+          if [ -z "$HDNEA" ]; then
+            echo "hdnea not found!"
+            echo "MPD Sample:"
+            echo "$MPD_CONTENT" | head -20
+            exit 1
+          fi
+
+          echo "Extracted hdnea: $HDNEA"
+          echo "HDNEA=$HDNEA" >> $GITHUB_OUTPUT
+
+      - name: Update Slivtv.json
+        run: |
+          HDNEA="${{ steps.fetch_hdnea.outputs.HDNEA }}"
+          FILE="Slivtv.json"
+
+          if [ ! -f "$FILE" ]; then
+            echo "$FILE not found!"
+            exit 1
+          fi
+
+          # Backup
+          cp "$FILE" "$FILE.bak"
+
+          # Replace hdnea in all links
+          sed -i "s|hdnea=[^&\"' ]*|${HDNEA}|g" "$FILE"
+
+          echo "Updated $FILE with new hdnea"
+
+      - name: Commit & Push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Slivtv.json
+          if git diff --staged --quiet; then
+            echo "No changes"
+          else
+            git commit -m "Auto-update hdnea from SonyLIV (curl)"
+            git push
+            echo "Pushed!"
+          fi
+          
