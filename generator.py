@@ -5,17 +5,15 @@ import os
 from requests.adapters import HTTPAdapter
 import requests
 from urllib3.util.retry import Retry
+from urllib.parse import urljoin
 import threading
 from bs4 import BeautifulSoup
 
 PLAYLIST_URL = os.environ.get("PLAYLIST_URL")
 IP_MANAGER_URL = "https://game.playindia.fun/Jtv/IP.php?id=RiYlIZ"
 
-MAX_CHANNELS = 1000
+MAX_CHANNELS = 2000
 MAX_WORKERS = 40
-
-counter_lock = threading.Lock()
-processed_count = 0
 
 def clear_old_ips(session):
     print("[*] Checking and clearing old IPs from IP Manager...")
@@ -66,16 +64,50 @@ def b64_to_hex(b64_str):
     except Exception:
         return b64_str
 
+def resolve_stream_url(url, session, user_agent):
+    if not url:
+        return url
+    
+    headers = {
+        "User-Agent": user_agent,
+        "Origin": "https://www.hotstar.com",
+        "Referer": "https://www.hotstar.com/",
+        "Accept-Encoding": "identity"
+    }
+
+    try:
+        r = session.get(url, headers=headers, allow_redirects=True, timeout=7)
+        if r.status_code == 200:
+            res_text = r.text
+            lines = res_text.splitlines()
+            nested_links = []
+            for line in lines:
+                line = line.strip()
+                if "http" in line and ("m3u8" in line or "mpd" in line) and "playindia.fun" not in line:
+                    idx = line.find("http")
+                    clean_link = line[idx:].split()[0].strip('"' + "'")
+                    nested_links.append(clean_link)
+            
+            if nested_links:
+                chosen_link = nested_links[-1]
+                if not chosen_link.startswith("http"):
+                    chosen_link = urljoin(r.url, chosen_link)
+                return chosen_link
+                
+        if r.url and "playindia.fun" not in r.url:
+            resolved_final = r.url
+            if not resolved_final.startswith("http"):
+                resolved_final = urljoin(url, resolved_final)
+            return resolved_final
+            
+    except Exception:
+        pass
+        
+    return url
+
 def process_single_channel(i, lines, session):
     line = lines[i].strip()
     extinf_line = line
-
-    channel_id = ""
-    if 'tvg-id="' in extinf_line:
-        try:
-            channel_id = extinf_line.split('tvg-id="')[1].split('"')[0]
-        except Exception:
-            pass
 
     raw_stream_line = ""
     for f in range(i + 1, min(len(lines), i + 5)):
@@ -84,26 +116,9 @@ def process_single_channel(i, lines, session):
             if raw_stream_line.endswith("~"):
                 raw_stream_line = raw_stream_line[:-1]
             break
-            
-    if not channel_id and "id=" in extinf_line:
-        try:
-            channel_id = extinf_line.split('id="')[1].split('"')[0]
-        except Exception:
-            pass
 
-    if not channel_id and raw_stream_line:
-        if "id=" in raw_stream_line:
-            try:
-                channel_id = raw_stream_line.split("id=")[1].split("&")[0]
-            except Exception:
-                pass
-
-    is_hotstar = "hotstar" in extinf_line.lower() or "hotstar" in raw_stream_line.lower() or "jhs" in extinf_line.lower()
-    for b in range(max(0, i - 3), i + 4):
-        if "hotstar" in lines[b].lower() or "jhs" in lines[b].lower():
-            is_hotstar = True
-            break
-
+    user_agent = "Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)"
+    
     channel_lines = [extinf_line]
 
     try:
@@ -113,103 +128,69 @@ def process_single_channel(i, lines, session):
             if "inputstream.adaptive.license_key=" in sub_b:
                 key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
 
-        user_agent = "Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)" if is_hotstar else "Denver1769"
-        for f in range(i + 1, min(len(lines), i + 4)):
-            sub_f = lines[f].strip()
-            if sub_f.startswith("#EXTVLCOPT:http-user-agent="):
-                user_agent = sub_f.split("=")[1].strip()
-
         formatted_license_key = None
         if key_url:
-            try:
-                if '"' in key_url:
-                    key_url = key_url.replace('"', "")
-                key_res = session.get(key_url, headers={"User-Agent": user_agent}, timeout=3)
-                if key_res.status_code == 200:
-                    key_json = key_res.json()
-                    key_pairs = []
-                    keys_list = key_json.get("base64", {}).get("keys", [])
-                    for k_obj in keys_list:
-                        kid_b64 = k_obj.get("kid", "")
-                        k_b64 = k_obj.get("k", "")
-                        if kid_b64 and k_b64:
-                            kid_hex = b64_to_hex(kid_b64)
-                            k_hex = b64_to_hex(k_b64)
-                            key_pairs.append(f"{kid_hex}:{k_hex}")
-                    if key_pairs:
-                        formatted_license_key = ",".join(key_pairs)
-            except Exception:
-                pass
+            formatted_license_key = key_url
+        
+        final_stream_url = raw_stream_line
+        if raw_stream_line:
+            resolved = resolve_stream_url(raw_stream_line, session, user_agent)
+            if resolved:
+                final_stream_url = resolved
 
-        if is_hotstar:
-            channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
-            channel_lines.append("#KODIPROP:inputstream.adaptive.manifest_type=mpd")
+        is_mpd_link = ".mpd" in final_stream_url.lower()
+
+        channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
+        channel_lines.append(f"#KODIPROP:inputstream.adaptive.manifest_type={'mpd' if is_mpd_link else 'hls'}")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=buffered")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=1")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.live_delay=0")
+
+        if formatted_license_key:
             channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
-            
-            if formatted_license_key:
-                channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
-            elif key_url:
-                channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
+            channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
 
-            channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
-            channel_lines.append("#EXTVLCOPT:http-referrer=https://www.hotstar.com/")
-            channel_lines.append("#EXTVLCOPT:http-extra-headers=Origin: https://www.hotstar.com")
-            
-            cookie_str = "hdntl=exp=1790846295~acl=%2f*~id=af9f2444dbd242ba96e15a82e9d5f668~data=hdntl~hmac=85fbbe3fd86f68e27d194b494a1eab8666d65bf230c58a4231acdbc50e3b2caa"
-            if "|cookie=" in raw_stream_line:
+        cookie_str = ""
+        for check_line in [raw_stream_line] + lines[max(0, i-2):min(len(lines), i+3)]:
+            if "hdntl=" in check_line:
                 try:
-                    cookie_str = raw_stream_line.split("|cookie=")[1].split("&")[0]
+                    parts = check_line.split("hdntl=")
+                    for p in parts[1:]:
+                        candidate = p.split()[0].strip('"\'')
+                        if "exp=" in candidate:
+                            cookie_str = "hdntl=" + candidate.split("&")[0]
+                            break
                 except Exception:
                     pass
+            if cookie_str:
+                break
+        
+        if not cookie_str:
+            cookie_str = "hdntl=exp=1791683205~acl=%2f*~id=8a0f084a08c7b8da69eaecf4ebdf7027~data=hdntl~hmac=dc8db40dbcee02223ba7cd875c04c40cf31f9991b6d262131edc6a94af00f063"
 
-            channel_lines.append(f"#EXTVLCOPT:http-cookie={cookie_str}")
-            channel_lines.append(f'#EXTHTTP:{{"Origin":"https://www.hotstar.com","Referer":"https://www.hotstar.com/","Cookie":"{cookie_str}"}}')
-            
-            if raw_stream_line:
-                channel_lines.append(raw_stream_line)
-            else:
-                channel_lines.append("http://dummy-link-to-prevent-break")
-
+        channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
+        channel_lines.append("#EXTVLCOPT:http-referrer=https://www.hotstar.com/")
+        channel_lines.append("#EXTVLCOPT:http-extra-headers=Origin: https://www.hotstar.com")
+        channel_lines.append(f"#EXTVLCOPT:http-cookie={cookie_str}")
+        
+        ext_http_json = f'{{"User-Agent":"{user_agent}","Origin":"https://www.hotstar.com","Referer":"https://www.hotstar.com/","Cookie":"{cookie_str}","Accept-Encoding":"identity","Connection":"keep-alive"}}'
+        channel_lines.append(f"#EXTHTTP:{ext_http_json}")
+        
+        if "?" in final_stream_url:
+            base_url = final_stream_url.split("?")[0]
         else:
-            channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
-            if formatted_license_key:
-                channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
-            elif key_url:
-                channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={key_url}")
-
-            channel_lines.append("#EXTVLCOPT:http-user-agent=JioTV/6.0.0 (Linux; Android 11) ExoPlayerLib/2.11.8")
+            base_url = final_stream_url
             
-            final_stream_url = raw_stream_line
-            if raw_stream_line:
-                try:
-                    headers = {
-                        "User-Agent": "Denver1769",
-                        "Origin": "https://www.jiotv.com/",
-                        "Referer": "https://www.jiotv.com/"
-                    }
-                    r = session.get(raw_stream_line, headers=headers, allow_redirects=False, timeout=5)
-                    if r.status_code in [301, 302, 303, 307, 308] and "location" in r.headers:
-                        final_stream_url = r.headers["location"]
-                except Exception:
-                    pass
-
-            channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
-
-            if final_stream_url:
-                channel_lines.append(final_stream_url)
-            else:
-                channel_lines.append("http://dummy-link-to-prevent-break")
+        stream_with_params = f"{base_url}?|cookie={cookie_str}&referer=https://www.hotstar.com/&origin=https://www.hotstar.com&user-agent={user_agent}"
+        channel_lines.append(stream_with_params)
 
     except Exception:
-        channel_lines.append("#EXTVLCOPT:http-user-agent=JioTV/6.0.0 (Linux; Android 11) ExoPlayerLib/2.11.8")
-        channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}')
         channel_lines.append(raw_stream_line if raw_stream_line else "http://dummy-link-to-prevent-break")
 
     return channel_lines
 
 def generate_safe_playlist_1000():
-    global processed_count
-    processed_count = 0
     if not PLAYLIST_URL:
         return
 
@@ -231,7 +212,7 @@ def generate_safe_playlist_1000():
             return  
 
         target_indices = [item[0] for item in all_channels[:MAX_CHANNELS]]
-        print(f"[*] Processing {len(target_indices)} channels with Auto-Redirect resolution...")  
+        print(f"[*] Processing {len(target_indices)} channels cleanly...")  
 
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -242,7 +223,9 @@ def generate_safe_playlist_1000():
             for future in as_completed(futures):
                 idx = futures[future]
                 try:
-                    channel_results[idx] = future.result()
+                    res_lines = future.result()
+                    if res_lines:
+                        channel_results[idx] = res_lines
                 except Exception:
                     pass
 
@@ -262,4 +245,3 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-    
