@@ -14,6 +14,19 @@ IP_MANAGER_URL = "https://game.playindia.fun/Jtv/IP.php?id=RiYlIZ"
 MAX_CHANNELS = 2000
 MAX_WORKERS = 40
 
+def clean_val(val):
+    """
+    Utility function to strip trailing garbage characters like quotes, braces, and tildes from strings.
+    """
+    if not val:
+        return ""
+    # Strip whitespace first
+    val = val.strip()
+    # Loop to continuously strip unwanted trailing characters until clean
+    while val and val[-1] in ('"', "'", '}', ']', '}', '~', ','):
+        val = val[:-1].strip()
+    return val
+
 def clear_old_ips(session):
     print("[*] Checking and clearing old IPs from IP Manager...")
     headers = {
@@ -54,6 +67,7 @@ def get_robust_session():
     return session
 
 def b64_to_hex(b64_str):
+    b64_str = clean_val(b64_str)
     padding = 4 - (len(b64_str) % 4)
     if padding < 4:
         b64_str += '=' * padding
@@ -64,6 +78,7 @@ def b64_to_hex(b64_str):
         return b64_str
 
 def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
+    url = clean_val(url)
     if not url:
         return url
     
@@ -85,20 +100,20 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
             lines = res_text.splitlines()
             nested_links = []
             for line in lines:
-                line = line.strip()
+                line = clean_val(line)
                 if "http" in line and ("m3u8" in line or "mpd" in line) and "playindia.fun" not in line:
                     idx = line.find("http")
-                    clean_link = line[idx:].split()[0].strip('"' + "'")
+                    clean_link = clean_val(line[idx:].split()[0])
                     nested_links.append(clean_link)
             
             if nested_links:
-                chosen_link = nested_links[-1]
+                chosen_link = clean_val(nested_links[-1])
                 if not chosen_link.startswith("http"):
                     chosen_link = urljoin(r.url, chosen_link)
                 return chosen_link
                 
         if r.url and "playindia.fun" not in r.url:
-            resolved_final = r.url
+            resolved_final = clean_val(r.url)
             if not resolved_final.startswith("http"):
                 resolved_final = urljoin(url, resolved_final)
             return resolved_final
@@ -121,10 +136,10 @@ def process_single_channel(i, lines, session):
 
     raw_stream_line = ""
     for f in range(i + 1, min(len(lines), i + 5)):
-        if lines[f].strip().startswith("http"):
-            raw_stream_line = lines[f].strip().split()[0]
-            if raw_stream_line.endswith("~"):
-                raw_stream_line = raw_stream_line[:-1]
+        candidate_line = clean_val(lines[f])
+        if candidate_line.startswith("http"):
+            raw_stream_line = candidate_line.split()[0]
+            raw_stream_line = clean_val(raw_stream_line)
             break
             
     if not channel_id and "id=" in extinf_line:
@@ -152,9 +167,9 @@ def process_single_channel(i, lines, session):
     try:
         key_url = None
         for b in range(max(0, i - 3), i):
-            sub_b = lines[b].strip()
+            sub_b = clean_val(lines[b])
             if "inputstream.adaptive.license_key=" in sub_b:
-                key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
+                key_url = clean_val(sub_b.split("inputstream.adaptive.license_key=")[1])
 
         if is_hotstar:
             user_agent = "Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)"
@@ -166,16 +181,15 @@ def process_single_channel(i, lines, session):
         formatted_license_key = None
         if key_url:
             try:
-                if '"' in key_url:
-                    key_url = key_url.replace('"', "")
+                key_url = clean_val(key_url.replace('"', "").replace("'", ""))
                 key_res = session.get(key_url, headers={"User-Agent": user_agent}, timeout=3)
                 if key_res.status_code == 200:
                     key_json = key_res.json()
                     key_pairs = []
                     keys_list = key_json.get("base64", {}).get("keys", [])
                     for k_obj in keys_list:
-                        kid_b64 = k_obj.get("kid", "")
-                        k_b64 = k_obj.get("k", "")
+                        kid_b64 = clean_val(k_obj.get("kid", ""))
+                        k_b64 = clean_val(k_obj.get("k", ""))
                         if kid_b64 and k_b64:
                             kid_hex = b64_to_hex(kid_b64)
                             k_hex = b64_to_hex(k_b64)
@@ -192,7 +206,7 @@ def process_single_channel(i, lines, session):
         if raw_stream_line:
             resolved = resolve_stream_url(raw_stream_line, session, user_agent, is_hotstar, is_sliv)
             if resolved:
-                final_stream_url = resolved
+                final_stream_url = clean_val(resolved)
 
         is_mpd_link = ".mpd" in final_stream_url.lower()
 
@@ -209,13 +223,14 @@ def process_single_channel(i, lines, session):
             
             cookie_str = ""
             for check_line in [raw_stream_line] + lines[max(0, i-2):min(len(lines), i+3)]:
+                check_line = clean_val(check_line)
                 if "hdntl=" in check_line:
                     try:
                         parts = check_line.split("hdntl=")
                         for p in parts[1:]:
-                            candidate = p.split()[0].strip('"\'')
+                            candidate = clean_val(p.split()[0])
                             if "exp=" in candidate:
-                                cookie_str = "hdntl=" + candidate.split("&")[0]
+                                cookie_str = "hdntl=" + clean_val(candidate.split("&")[0])
                                 break
                     except Exception:
                         pass
@@ -225,9 +240,12 @@ def process_single_channel(i, lines, session):
             if not cookie_str:
                 cookie_str = "hdntl=exp=1791763208~acl=%2f*~id=ce6ecdabc53ea306cc7be95fa7a1b49c~data=hdntl~hmac=8a7405e9c3a1f2880ac44abb4e3fee31d750b5c4d6d4bfaa67bac50b175140a1"
 
-            base_url = final_stream_url.split("|")[0].strip() if final_stream_url else "http://dummy-link"
+            # Clean base URL using clean_val to strip any stray characters/braces
+            base_url = clean_val(final_stream_url.split("|")[0])
             pipe_headers = f"User-Agent={user_agent}&Accept-Encoding=identity&X-Denver-Secure=true&Host=livetv.hotstar.com&Connection=Keep-Alive&Cookie={cookie_str}"
-            final_pipe_url = f"{base_url}|{pipe_headers}"
+            
+            # Final guaranteed clean pipe formatted URL string
+            final_pipe_url = clean_val(f"{base_url}|{pipe_headers}")
 
             channel_lines.append(final_pipe_url)
 
@@ -240,7 +258,7 @@ def process_single_channel(i, lines, session):
             channel_lines.append("#EXTVLCOPT:http-referrer=https://www.sonyliv.com/")
             channel_lines.append("#EXTVLCOPT:http-extra-headers=Origin: https://www.sonyliv.com")
             channel_lines.append('#EXTHTTP:{"Origin":"https://www.sonyliv.com/","Referer":"https://www.sonyliv.com/","Connection":"keep-alive"}')
-            channel_lines.append(final_stream_url if final_stream_url else "http://dummy-link-to-prevent-break")
+            channel_lines.append(clean_val(final_stream_url) if final_stream_url else "http://dummy-link-to-prevent-break")
 
         else:  
             channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
@@ -249,13 +267,14 @@ def process_single_channel(i, lines, session):
             
             jio_cookie = ""
             for check_line in [raw_stream_line] + lines[max(0, i-2):min(len(lines), i+3)]:
+                check_line = clean_val(check_line)
                 if "hdnea=" in check_line:
                     try:
                         parts = check_line.split("hdnea=")
                         for p in parts[1:]:
-                            candidate = p.split()[0].strip('"\'')
+                            candidate = clean_val(p.split()[0])
                             if "exp=" in candidate or "st=" in candidate:
-                                jio_cookie = "hdnea=" + candidate.split("&")[0]
+                                jio_cookie = "hdnea=" + clean_val(candidate.split("&")[0])
                                 break
                     except Exception:
                         pass
@@ -268,13 +287,13 @@ def process_single_channel(i, lines, session):
             else:
                 channel_lines.append('#EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/","Connection":"keep-alive"}')
 
-            channel_lines.append(final_stream_url if final_stream_url else "http://dummy-link-to-prevent-break")
+            channel_lines.append(clean_val(final_stream_url) if final_stream_url else "http://dummy-link-to-prevent-break")
 
     except Exception:
         channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
         channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
         channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
-        channel_lines.append(raw_stream_line if raw_stream_line else "http://dummy-link-to-prevent-break")
+        channel_lines.append(clean_val(raw_stream_line) if raw_stream_line else "http://dummy-link-to-prevent-break")
 
     return channel_lines
 
@@ -333,4 +352,4 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-                
+    
