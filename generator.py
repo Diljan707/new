@@ -6,7 +6,6 @@ from requests.adapters import HTTPAdapter
 import requests
 from urllib3.util.retry import Retry
 from urllib.parse import urljoin
-import threading
 from bs4 import BeautifulSoup
 
 PLAYLIST_URL = os.environ.get("PLAYLIST_URL")
@@ -71,7 +70,7 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
     headers = {"User-Agent": user_agent}
     if is_hotstar:
         headers.update({
-            "User-Agent": "Hotstar;in.startv.hotstar/25.02.26.8.11169@Premium Plugx(Android/15)",
+            "User-Agent": "Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)",
             "Origin": "https://www.hotstar.com",
             "Referer": "https://www.hotstar.com/",
             "Accept-Encoding": "identity"
@@ -158,16 +157,11 @@ def process_single_channel(i, lines, session):
                 key_url = sub_b.split("inputstream.adaptive.license_key=")[1].strip()
 
         if is_hotstar:
-            user_agent = "Hotstar;in.startv.hotstar/25.02.26.8.11169@Premium Plugx(Android/15)"
+            user_agent = "Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)"
         elif is_sliv:
             user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         else:
             user_agent = "Denver1769"
-
-        for f in range(i + 1, min(len(lines), i + 4)):
-            sub_f = lines[f].strip()
-            if sub_f.startswith("#EXTVLCOPT:http-user-agent="):
-                user_agent = sub_f.split("=")[1].strip()
 
         formatted_license_key = None
         if key_url:
@@ -196,7 +190,6 @@ def process_single_channel(i, lines, session):
 
         final_stream_url = raw_stream_line
         if raw_stream_line:
-            # Hotstar links nu vi resolve karan do taaki playindia redirect hoke asli mpd link de de
             resolved = resolve_stream_url(raw_stream_line, session, user_agent, is_hotstar, is_sliv)
             if resolved:
                 final_stream_url = resolved
@@ -213,9 +206,6 @@ def process_single_channel(i, lines, session):
         if is_hotstar:
             channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
             channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
-            channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
-            channel_lines.append("#EXTVLCOPT:http-referrer=https://www.hotstar.com/")
-            channel_lines.append("#EXTVLCOPT:http-extra-headers=Origin: https://www.hotstar.com")
             
             cookie_str = ""
             for check_line in [raw_stream_line] + lines[max(0, i-2):min(len(lines), i+3)]:
@@ -233,11 +223,13 @@ def process_single_channel(i, lines, session):
                     break
             
             if not cookie_str:
-                cookie_str = "hdntl=exp=1790846295~acl=%2f*~id=af9f2444dbd242ba96e15a82e9d5f668~data=hdntl~hmac=85fbbe3fd86f68e27d194b494a1eab8666d65bf230c58a4231acdbc50e3b2caa"
+                cookie_str = "hdntl=exp=1791763208~acl=%2f*~id=ce6ecdabc53ea306cc7be95fa7a1b49c~data=hdntl~hmac=8a7405e9c3a1f2880ac44abb4e3fee31d750b5c4d6d4bfaa67bac50b175140a1"
 
-            channel_lines.append(f"#EXTVLCOPT:http-cookie={cookie_str}")
-            channel_lines.append(f'#EXTHTTP:{{"User-Agent":"{user_agent}","Origin":"https://www.hotstar.com","Referer":"https://www.hotstar.com/","Cookie":"{cookie_str}","Accept-Encoding":"identity","Connection":"keep-alive"}}')
-            channel_lines.append(final_stream_url if final_stream_url else "http://dummy-link-to-prevent-break")
+            base_url = final_stream_url.split("|")[0].strip() if final_stream_url else "http://dummy-link"
+            pipe_headers = f"User-Agent={user_agent}&Accept-Encoding=identity&X-Denver-Secure=true&Host=livetv.hotstar.com&Connection=Keep-Alive&Cookie={cookie_str}"
+            final_pipe_url = f"{base_url}|{pipe_headers}"
+
+            channel_lines.append(final_pipe_url)
 
         elif is_sliv:
             if is_mpd_link:
@@ -341,3 +333,4 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
+                
