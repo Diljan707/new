@@ -20,9 +20,7 @@ def clean_val(val):
     """
     if not val:
         return ""
-    # Strip whitespace first
     val = val.strip()
-    # Loop to continuously strip unwanted trailing characters until clean
     while val and val[-1] in ('"', "'", '}', ']', '}', '~', ','):
         val = val[:-1].strip()
     return val
@@ -139,7 +137,7 @@ def process_single_channel(i, lines, session):
         candidate_line = clean_val(lines[f])
         if candidate_line.startswith("http"):
             raw_stream_line = candidate_line.split()[0]
-            raw_stream_line = clean_val(raw_stream_line)
+            raw_stream_line = clean_val(raw_stream_line.split('"')[0].split(',')[0])
             break
             
     if not channel_id and "id=" in extinf_line:
@@ -169,7 +167,7 @@ def process_single_channel(i, lines, session):
         for b in range(max(0, i - 3), i):
             sub_b = clean_val(lines[b])
             if "inputstream.adaptive.license_key=" in sub_b:
-                key_url = clean_val(sub_b.split("inputstream.adaptive.license_key=")[1])
+                key_url = clean_val(sub_b.split("inputstream.adaptive.license_key=")[1].split('"')[0])
 
         if is_hotstar:
             user_agent = "Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)"
@@ -206,7 +204,7 @@ def process_single_channel(i, lines, session):
         if raw_stream_line:
             resolved = resolve_stream_url(raw_stream_line, session, user_agent, is_hotstar, is_sliv)
             if resolved:
-                final_stream_url = clean_val(resolved)
+                final_stream_url = clean_val(resolved.split('"')[0].split(',')[0])
 
         is_mpd_link = ".mpd" in final_stream_url.lower()
 
@@ -218,9 +216,6 @@ def process_single_channel(i, lines, session):
         channel_lines.append("#KODIPROP:inputstream.adaptive.live_delay=0")
 
         if is_hotstar:
-            channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
-            channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
-            
             cookie_str = ""
             for check_line in [raw_stream_line] + lines[max(0, i-2):min(len(lines), i+3)]:
                 check_line = clean_val(check_line)
@@ -228,7 +223,7 @@ def process_single_channel(i, lines, session):
                     try:
                         parts = check_line.split("hdntl=")
                         for p in parts[1:]:
-                            candidate = clean_val(p.split()[0])
+                            candidate = clean_val(p.split()[0].split('"')[0])
                             if "exp=" in candidate:
                                 cookie_str = "hdntl=" + clean_val(candidate.split("&")[0])
                                 break
@@ -240,13 +235,18 @@ def process_single_channel(i, lines, session):
             if not cookie_str:
                 cookie_str = "hdntl=exp=1791763208~acl=%2f*~id=ce6ecdabc53ea306cc7be95fa7a1b49c~data=hdntl~hmac=8a7405e9c3a1f2880ac44abb4e3fee31d750b5c4d6d4bfaa67bac50b175140a1"
 
-            # Clean base URL using clean_val to strip any stray characters/braces
-            base_url = clean_val(final_stream_url.split("|")[0])
-            pipe_headers = f"User-Agent={user_agent}&Accept-Encoding=identity&X-Denver-Secure=true&Host=livetv.hotstar.com&Connection=Keep-Alive&Cookie={cookie_str}"
-            
-            # Final guaranteed clean pipe formatted URL string
-            final_pipe_url = clean_val(f"{base_url}|{pipe_headers}")
+            base_url = clean_val(final_stream_url.split("|")[0].split('"')[0])
 
+            if is_mpd_link:
+                # MPD (Dash) streams layi ClearKey DRM keys te full headers
+                channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
+                channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
+                pipe_headers = f"User-Agent={user_agent}&Accept-Encoding=identity&X-Denver-Secure=true&Host=livetv.hotstar.com&Connection=Keep-Alive&Cookie={cookie_str}"
+            else:
+                # HLS (.m3u8) streams layi Origin, Referer, User-Agent te Cookie
+                pipe_headers = f"User-Agent={user_agent}&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie={cookie_str}"
+
+            final_pipe_url = clean_val(f"{base_url}|{pipe_headers}")
             channel_lines.append(final_pipe_url)
 
         elif is_sliv:
@@ -257,7 +257,6 @@ def process_single_channel(i, lines, session):
             channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
             channel_lines.append("#EXTVLCOPT:http-referrer=https://www.sonyliv.com/")
             channel_lines.append("#EXTVLCOPT:http-extra-headers=Origin: https://www.sonyliv.com")
-            channel_lines.append('#EXTHTTP:{"Origin":"https://www.sonyliv.com/","Referer":"https://www.sonyliv.com/","Connection":"keep-alive"}')
             channel_lines.append(clean_val(final_stream_url) if final_stream_url else "http://dummy-link-to-prevent-break")
 
         else:  
@@ -352,4 +351,3 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-    
