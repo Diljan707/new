@@ -211,7 +211,7 @@ def process_single_channel(i, lines, session):
         channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
         channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=automatic")
         channel_lines.append("#KODIPROP:inputstream.adaptive.max_buffer_time=300")
-        channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=10")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=1000")
         channel_lines.append("#KODIPROP:inputstream.adaptive.live_delay=0")
 
         if is_hotstar:
