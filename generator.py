@@ -15,9 +15,6 @@ MAX_CHANNELS = 2000
 MAX_WORKERS = 40
 
 def clean_val(val):
-    """
-    Utility function to strip trailing garbage characters like quotes, braces, and tildes from strings.
-    """
     if not val:
         return ""
     val = val.strip()
@@ -208,14 +205,14 @@ def process_single_channel(i, lines, session):
 
         is_mpd_link = ".mpd" in final_stream_url.lower()
 
-        # --- 5 Minute Buffer Settings Added Here ---
+        # --- Zero Latency Start + 5 Minute Background Buffer Settings ---
         channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
         channel_lines.append(f"#KODIPROP:inputstream.adaptive.manifest_type={'mpd' if is_mpd_link else 'hls'}")
         channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
-        channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=buffered")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=automatic")
         channel_lines.append("#KODIPROP:inputstream.adaptive.max_buffer_time=300")
         channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=10")
-        channel_lines.append("#KODIPROP:inputstream.adaptive.live_delay=3")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.live_delay=0")
 
         if is_hotstar:
             cookie_str = ""
@@ -351,4 +348,3 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-            
