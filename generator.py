@@ -208,12 +208,14 @@ def process_single_channel(i, lines, session):
 
         is_mpd_link = ".mpd" in final_stream_url.lower()
 
+        # --- 5 Minute Buffer Settings Added Here ---
         channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
         channel_lines.append(f"#KODIPROP:inputstream.adaptive.manifest_type={'mpd' if is_mpd_link else 'hls'}")
         channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
         channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=buffered")
-        channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=1")
-        channel_lines.append("#KODIPROP:inputstream.adaptive.live_delay=0")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.max_buffer_time=300")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=10")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.live_delay=3")
 
         if is_hotstar:
             cookie_str = ""
@@ -238,12 +240,10 @@ def process_single_channel(i, lines, session):
             base_url = clean_val(final_stream_url.split("|")[0].split('"')[0])
 
             if is_mpd_link:
-                # MPD (Dash) streams layi ClearKey DRM keys te full headers
                 channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
                 channel_lines.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
                 pipe_headers = f"User-Agent={user_agent}&Accept-Encoding=identity&X-Denver-Secure=true&Host=livetv.hotstar.com&Connection=Keep-Alive&Cookie={cookie_str}"
             else:
-                # HLS (.m3u8) streams layi Origin, Referer, User-Agent te Cookie
                 pipe_headers = f"User-Agent={user_agent}&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie={cookie_str}"
 
             final_pipe_url = clean_val(f"{base_url}|{pipe_headers}")
@@ -351,3 +351,4 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
+            
