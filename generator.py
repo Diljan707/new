@@ -122,6 +122,13 @@ def process_single_channel(i, lines, session):
     line = lines[i].strip()
     extinf_line = line
 
+    # --- Digital shabad sabhi vichon remove, Hindi sirf Star Sports nu chhad ke ---
+    extinf_line = extinf_line.replace(" Digital", "").replace("digital", "").replace("DIGITAL", "")
+    
+    if "star sports" not in extinf_line.lower():
+        extinf_line = extinf_line.replace(" Hindi", "").replace("hindi", "").replace("HINDI", "")
+    # ----------------------------------------------------
+
     channel_id = ""
     if 'tvg-id="' in extinf_line:
         try:
