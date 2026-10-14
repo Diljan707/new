@@ -122,12 +122,36 @@ def process_single_channel(i, lines, session):
     line = lines[i].strip()
     extinf_line = line
 
-    # --- Digital shabad sabhi vichon remove, Hindi sirf Star Sports nu chhad ke ---
-    extinf_line = extinf_line.replace(" Digital", "").replace("digital", "").replace("DIGITAL", "")
-    
-    if "star sports" not in extinf_line.lower():
-        extinf_line = extinf_line.replace(" Hindi", "").replace("hindi", "").replace("HINDI", "")
-    # ----------------------------------------------------
+    # --- Remove group-title (Category) from EXTINF line ---
+    if 'group-title="' in extinf_line:
+        try:
+            parts = extinf_line.split('group-title="')
+            prefix = parts[0]
+            suffix = parts[1].split('"', 1)[1]
+            extinf_line = prefix + suffix
+        except Exception:
+            pass
+    if "group-title='" in extinf_line:
+        try:
+            parts = extinf_line.split("group-title='")
+            prefix = parts[0]
+            suffix = parts[1].split("'", 1)[1]
+            extinf_line = prefix + suffix
+        except Exception:
+            pass
+
+    # --- Title cleaning logic (Digital remove, Hindi keep only for Star Sports) ---
+    if "," in extinf_line:
+        prefix, title = extinf_line.split(",", 1)
+        title = title.replace(" Digital", "").replace("digital", "").replace("DIGITAL", "")
+        if "star sports" not in title.lower():
+            title = title.replace(" Hindi", "").replace("hindi", "").replace("HINDI", "")
+        extinf_line = f"{prefix},{title}"
+    else:
+        extinf_line = extinf_line.replace(" Digital", "").replace("digital", "").replace("DIGITAL", "")
+        if "star sports" not in extinf_line.lower():
+            extinf_line = extinf_line.replace(" Hindi", "").replace("hindi", "").replace("HINDI", "")
+    # -------------------------------------------------------------------------
 
     channel_id = ""
     if 'tvg-id="' in extinf_line:
