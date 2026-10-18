@@ -10,9 +10,27 @@ from bs4 import BeautifulSoup
 
 PLAYLIST_URL = os.environ.get("PLAYLIST_URL")
 IP_MANAGER_URL = "https://game.playindia.fun/Jtv/IP.php?id=RiYlIZ"
+LCN_LIST_URL = "https://raw.githubusercontent.com/Diljan707/Automated-/refs/heads/main/dishtv_lcn_list.txt"
 
 MAX_CHANNELS = 2000
 MAX_WORKERS = 40
+
+def fetch_lcn_dict(session):
+    print("[*] Fetching DishTV LCN list...")
+    lcn_dict = {}
+    try:
+        res = session.get(LCN_LIST_URL, timeout=10)
+        if res.status_code == 200:
+            for line in res.text.splitlines():
+                if ":" in line:
+                    parts = line.split(":", 1)
+                    chno = parts[0].strip()
+                    chname = parts[1].strip().lower()
+                    lcn_dict[chname] = chno
+            print(f"[+] Loaded {len(lcn_dict)} LCN mappings successfully!\n")
+    except Exception as e:
+        print(f"[-] Error fetching LCN list: {e}")
+    return lcn_dict
 
 def clean_val(val):
     if not val:
@@ -118,7 +136,7 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
         
     return url
 
-def process_single_channel(i, lines, session):
+def process_single_channel(i, lines, session, lcn_dict):
     line = lines[i].strip()
     extinf_line = line
 
@@ -140,12 +158,22 @@ def process_single_channel(i, lines, session):
         except Exception:
             pass
 
-    # --- Title cleaning logic (Digital remove, Hindi keep only for Star Sports) ---
+    # --- Title cleaning logic & LCN Matching ---
+    channel_title_clean = ""
     if "," in extinf_line:
         prefix, title = extinf_line.split(",", 1)
         title = title.replace(" Digital", "").replace("digital", "").replace("DIGITAL", "")
         if "star sports" not in title.lower():
             title = title.replace(" Hindi", "").replace("hindi", "").replace("HINDI", "")
+        
+        channel_title_clean = title.strip().lower()
+        
+        # Match channel name with LCN dictionary and add tvg-chno metadata
+        chno = lcn_dict.get(channel_title_clean, "")
+        if chno:
+            if 'tvg-chno="' not in prefix:
+                prefix = prefix.rstrip() + f' tvg-chno="{chno}"'
+        
         extinf_line = f"{prefix},{title}"
     else:
         extinf_line = extinf_line.replace(" Digital", "").replace("digital", "").replace("DIGITAL", "")
@@ -330,6 +358,9 @@ def generate_safe_playlist_1000():
 
     session = get_robust_session()
     clear_old_ips(session)
+    
+    # Fetch LCN mapping dictionary before processing channels
+    lcn_dict = fetch_lcn_dict(session)
 
     try:
         res = session.get(PLAYLIST_URL, headers={"User-Agent": "Denver1769"})
@@ -351,7 +382,7 @@ def generate_safe_playlist_1000():
         channel_results = {}
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
             futures = {
-                executor.submit(process_single_channel, idx, lines, session): idx
+                executor.submit(process_single_channel, idx, lines, session, lcn_dict): idx
                 for idx in target_indices
             }
             for future in as_completed(futures):
@@ -379,3 +410,4 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
+            
