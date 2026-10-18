@@ -26,7 +26,12 @@ def fetch_lcn_dict(session):
                     parts = line.split(":", 1)
                     chno = parts[0].strip()
                     chname = parts[1].strip().lower()
-                    lcn_dict[chname] = chno
+                    # Spaces clean karo
+                    chname = " ".join(chname.split())
+                    
+                    # Pehli match hone wali value nu lock rakho (overwrite mat hone do)
+                    if chname and chname not in lcn_dict:
+                        lcn_dict[chname] = chno
             print(f"[+] Loaded {len(lcn_dict)} LCN mappings successfully!\n")
     except Exception as e:
         print(f"[-] Error fetching LCN list: {e}")
@@ -159,22 +164,29 @@ def process_single_channel(i, lines, session, lcn_dict):
             pass
 
     # --- Title cleaning logic & LCN Matching ---
-    channel_title_clean = ""
     if "," in extinf_line:
         prefix, title = extinf_line.split(",", 1)
         title = title.replace(" Digital", "").replace("digital", "").replace("DIGITAL", "")
         if "star sports" not in title.lower():
             title = title.replace(" Hindi", "").replace("hindi", "").replace("HINDI", "")
         
-        channel_title_clean = title.strip().lower()
+        channel_title_clean = " ".join(title.strip().lower().split())
         
-        # Match channel name with LCN dictionary and add tvg-chno metadata
+        # Match channel name with LCN dictionary
         chno = lcn_dict.get(channel_title_clean, "")
-        if chno:
-            if 'tvg-chno="' not in prefix:
-                prefix = prefix.rstrip() + f' tvg-chno="{chno}"'
         
-        extinf_line = f"{prefix},{title}"
+        # Prefix format clean rakho (#EXTINF:-1)
+        prefix = prefix.strip()
+        if not prefix.startswith("#EXTINF"):
+            prefix = "#EXTINF:-1"
+        elif ":" not in prefix:
+            prefix = "#EXTINF:-1"
+            
+        # tvg-chno ate ch-number dono tags add karo
+        if chno:
+            extinf_line = f'{prefix} tvg-chno="{chno}" ch-number="{chno}",{title}'
+        else:
+            extinf_line = f'{prefix},{title}'
     else:
         extinf_line = extinf_line.replace(" Digital", "").replace("digital", "").replace("DIGITAL", "")
         if "star sports" not in extinf_line.lower():
@@ -359,7 +371,7 @@ def generate_safe_playlist_1000():
     session = get_robust_session()
     clear_old_ips(session)
     
-    # Fetch LCN mapping dictionary before processing channels
+    # Fetch LCN dictionary
     lcn_dict = fetch_lcn_dict(session)
 
     try:
@@ -410,4 +422,4 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-            
+                    
