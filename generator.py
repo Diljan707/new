@@ -170,7 +170,8 @@ def process_single_channel(i, lines, session, lcn_dict):
         if "star sports" not in title.lower():
             title = title.replace(" Hindi", "").replace("hindi", "").replace("HINDI", "")
         
-        channel_title_clean = " ".join(title.strip().lower().split())
+        title = title.strip()
+        channel_title_clean = " ".join(title.lower().split())
         
         # Match channel name with LCN dictionary
         chno = lcn_dict.get(channel_title_clean, "")
@@ -182,8 +183,9 @@ def process_single_channel(i, lines, session, lcn_dict):
         elif ":" not in prefix:
             prefix = "#EXTINF:-1"
             
-        # tvg-chno ate ch-number dono tags add karo
+        # tvg-chno, ch-number tags ate channel name vich LCN add karna (e.g. Sony SAB (107))
         if chno:
+            title = f"{title} ({chno})"
             extinf_line = f'{prefix} tvg-chno="{chno}" ch-number="{chno}",{title}'
         else:
             extinf_line = f'{prefix},{title}'
@@ -422,4 +424,3 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
-                    
