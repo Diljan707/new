@@ -164,6 +164,7 @@ def process_single_channel(i, lines, session, lcn_dict):
             pass
 
     # --- Title cleaning logic & LCN Matching ---
+    chno = ""
     if "," in extinf_line:
         prefix, title = extinf_line.split(",", 1)
         title = title.replace(" Digital", "").replace("digital", "").replace("DIGITAL", "")
@@ -185,7 +186,9 @@ def process_single_channel(i, lines, session, lcn_dict):
             
         # tvg-chno, ch-number tags ate channel name vich LCN add karna (e.g. Sony SAB (107))
         if chno:
-            title = f"{title} ({chno})"
+            # Avoid adding parentheses again if already present
+            if f"({chno})" not in title:
+                title = f"{title} ({chno})"
             extinf_line = f'{prefix} tvg-chno="{chno}" ch-number="{chno}",{title}'
         else:
             extinf_line = f'{prefix},{title}'
@@ -364,7 +367,7 @@ def process_single_channel(i, lines, session, lcn_dict):
         channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
         channel_lines.append(clean_val(raw_stream_line) if raw_stream_line else "http://dummy-link-to-prevent-break")
 
-    return channel_lines
+    return chno, channel_lines
 
 def generate_safe_playlist_1000():
     if not PLAYLIST_URL:
@@ -393,31 +396,37 @@ def generate_safe_playlist_1000():
         target_indices = [item[0] for item in all_channels[:MAX_CHANNELS]]
         print(f"[*] Processing {len(target_indices)} channels cleanly...")  
 
-        channel_results = {}
+        processed_channels = []
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
             futures = {
                 executor.submit(process_single_channel, idx, lines, session, lcn_dict): idx
                 for idx in target_indices
             }
             for future in as_completed(futures):
-                idx = futures[future]
                 try:
-                    res_lines = future.result()
+                    chno, res_lines = future.result()
                     if res_lines:
-                        channel_results[idx] = res_lines
+                        # Numerical sorting key (je chno number hai taan int, nahi taan 99999 jo ki last vich javega)
+                        try:
+                            sort_key = int(chno)
+                        except (ValueError, TypeError):
+                            sort_key = 99999
+                        processed_channels.append((sort_key, res_lines))
                 except Exception:
                     pass
 
+        # Sort channels in ascending order based on LCN numbers
+        processed_channels.sort(key=lambda x: x[0])
+
         new_lines = ["#EXTM3U"]
-        for idx in target_indices:
-            if idx in channel_results:
-                new_lines.extend(channel_results[idx])
+        for sort_key, res_lines in processed_channels:
+            new_lines.extend(res_lines)
 
         output_file = ".m3u"  
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n[+] Success! Final playlist saved as '{output_file}'.")
+        print(f"\n[+] Success! Final playlist saved as '{output_file}' with sorted channels.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
