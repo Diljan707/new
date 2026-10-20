@@ -47,8 +47,8 @@ jobs:
       run: |
         git config --global user.name "GitHub Actions Bot"
         git config --global user.email "actions@github.com"
-        git add .m3u
-        git commit --allow-empty -m ".m3u [skip ci]"
+        git add *.m3u || git add .
+        git commit --allow-empty -m "Auto-update playlist [skip ci]"
         git pull --rebase origin main || git pull --rebase origin master || true
         git push origin HEAD:main || git push origin HEAD:master || true
         
