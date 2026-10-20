@@ -9,7 +9,7 @@ from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 
 PLAYLIST_URL = os.environ.get("PLAYLIST_URL")
-IP_MANAGER_URL = "https://game.playindia.fun/Jtv/IP.php?id=RiYlIZ"
+IP_MANAGER_URL = "https://game.playindia.fun/Jtv/IP.php?id=xP0xaG"
 LCN_LIST_URL = "https://raw.githubusercontent.com/Diljan707/Automated-/refs/heads/main/dishtv_lcn_list.txt"
 
 MAX_CHANNELS = 2000
