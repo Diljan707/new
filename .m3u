@@ -37,7 +37,7 @@ https://game.playindia.fun/Jtv/qwerty/Jtv.mpd?id=1116
 #KODIPROP:inputstream.adaptive.license_key=9f102b6ee4d361c74be513b648fd1b25:663fa8ee7126cf3a0f65da0eeaeef199,e53677eb99b29961b4499ce2cc6aef18:ee4bfbf23e1bf5d6c933b496a0b970bf,5eb4aa7befba897d9c1ddcc714bbbf43:29b4bbca07ac2832555e39108f45d9cf,7b3d2290787255ac9cdaf43ae31eacce:d0edfa8ebd655926c5e2932d8c59b3d1,a23b609b33e254a48e4fc6fa7af0fd8d:4064c52328bfe9e6008776b48a431e4b,b553a92b758259b88f48ad521f41cb54:5cb71d334e2f8600addd230370af0e8f,30523115d29e93bd6fc5e215623e0573:6c96f8226374e710ad478f4341aea9ce
 #EXTVLCOPT:http-user-agent=Denver1769
 #EXTHTTP:{"Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/","Connection":"keep-alive"}
-https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeTVHD_BTS/WDVLive/index.mpd?__hdnea__=st=1792474181~exp=1792477781~acl=/bpk-tv/ZeeTVHD_BTS/WDVLive/*~hmac=00295da325041c200566508dd9f34efb353564fbf0325fe4f09503409a5d33f4
+https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeTVHD_BTS/WDVLive/index.mpd?__hdnea__=st=1792474209~exp=1792495809~acl=/*~hmac=0ab1ff124bf4d7dc23bc735d5a2c47ea1fe194d93371ba7d325e112e0ee80788
 #EXTINF:-1 tvg-id="1351" tvg-language="Hindi" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/ZeeTV.png" CATCH-UP-FAILED="null" tvg-chno="103" ch-number="103",Zee TV (103)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
