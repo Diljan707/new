@@ -26,10 +26,8 @@ def fetch_lcn_dict(session):
                     parts = line.split(":", 1)
                     chno = parts[0].strip()
                     chname = parts[1].strip().lower()
-                    # Spaces clean karo
                     chname = " ".join(chname.split())
                     
-                    # Pehli match hone wali value nu lock rakho (overwrite mat hone do)
                     if chname and chname not in lcn_dict:
                         lcn_dict[chname] = chno
             print(f"[+] Loaded {len(lcn_dict)} LCN mappings successfully!\n")
@@ -145,58 +143,31 @@ def process_single_channel(i, lines, session, lcn_dict):
     line = lines[i].strip()
     extinf_line = line
 
-    # --- Remove group-title (Category) from EXTINF line ---
-    if 'group-title="' in extinf_line:
-        try:
-            parts = extinf_line.split('group-title="')
-            prefix = parts[0]
-            suffix = parts[1].split('"', 1)[1]
-            extinf_line = prefix + suffix
-        except Exception:
-            pass
-    if "group-title='" in extinf_line:
-        try:
-            parts = extinf_line.split("group-title='")
-            prefix = parts[0]
-            suffix = parts[1].split("'", 1)[1]
-            extinf_line = prefix + suffix
-        except Exception:
-            pass
+    # --- CATEGORY / GROUP-TITLE KO BILKUL TOUCH NAHI KIYA (RETAINED) ---
 
     # --- Title cleaning logic & LCN Matching ---
     chno = ""
     if "," in extinf_line:
-        prefix, title = extinf_line.split(",", 1)
-        title = title.replace(" Digital", "").replace("digital", "").replace("DIGITAL", "")
-        if "star sports" not in title.lower():
-            title = title.replace(" Hindi", "").replace("hindi", "").replace("HINDI", "")
+        prefix_part, title = extinf_line.split(",", 1)
+        title_clean = title.replace(" Digital", "").replace("digital", "").replace("DIGITAL", "")
+        if "star sports" not in title_clean.lower():
+            title_clean = title_clean.replace(" Hindi", "").replace("hindi", "").replace("HINDI", "")
         
-        title = title.strip()
-        channel_title_clean = " ".join(title.lower().split())
+        title_clean = title_clean.strip()
+        channel_title_clean = " ".join(title_clean.lower().split())
         
         # Match channel name with LCN dictionary
         chno = lcn_dict.get(channel_title_clean, "")
         
-        # Prefix format clean rakho (#EXTINF:-1)
-        prefix = prefix.strip()
-        if not prefix.startswith("#EXTINF"):
-            prefix = "#EXTINF:-1"
-        elif ":" not in prefix:
-            prefix = "#EXTINF:-1"
-            
-        # tvg-chno, ch-number tags ate channel name vich LCN add karna (e.g. Sony SAB (107))
         if chno:
-            # Avoid adding parentheses again if already present
             if f"({chno})" not in title:
-                title = f"{title} ({chno})"
-            extinf_line = f'{prefix} tvg-chno="{chno}" ch-number="{chno}",{title}'
-        else:
-            extinf_line = f'{prefix},{title}'
-    else:
-        extinf_line = extinf_line.replace(" Digital", "").replace("digital", "").replace("DIGITAL", "")
-        if "star sports" not in extinf_line.lower():
-            extinf_line = extinf_line.replace(" Hindi", "").replace("hindi", "").replace("HINDI", "")
-    # -------------------------------------------------------------------------
+                title = f"{title.strip()} ({chno})"
+            
+            # Add tvg-chno and ch-number to prefix part safely without deleting group-title
+            if 'tvg-chno=' not in prefix_part:
+                prefix_part = prefix_part.strip() + f' tvg-chno="{chno}" ch-number="{chno}"'
+        
+        extinf_line = f"{prefix_part},{title}"
 
     channel_id = ""
     if 'tvg-id="' in extinf_line:
@@ -281,7 +252,6 @@ def process_single_channel(i, lines, session, lcn_dict):
 
         is_mpd_link = ".mpd" in final_stream_url.lower()
 
-        # --- Zero Latency Start + 5 Minute Background Buffer Settings ---
         channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
         channel_lines.append(f"#KODIPROP:inputstream.adaptive.manifest_type={'mpd' if is_mpd_link else 'hls'}")
         channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
@@ -376,7 +346,6 @@ def generate_safe_playlist_1000():
     session = get_robust_session()
     clear_old_ips(session)
     
-    # Fetch LCN dictionary
     lcn_dict = fetch_lcn_dict(session)
 
     try:
@@ -406,7 +375,6 @@ def generate_safe_playlist_1000():
                 try:
                     chno, res_lines = future.result()
                     if res_lines:
-                        # Numerical sorting key (je chno number hai taan int, nahi taan 99999 jo ki last vich javega)
                         try:
                             sort_key = int(chno)
                         except (ValueError, TypeError):
@@ -415,7 +383,6 @@ def generate_safe_playlist_1000():
                 except Exception:
                     pass
 
-        # Sort channels in ascending order based on LCN numbers
         processed_channels.sort(key=lambda x: x[0])
 
         new_lines = ["#EXTM3U"]
@@ -426,7 +393,7 @@ def generate_safe_playlist_1000():
         with open(output_file, "w", encoding="utf-8") as f:  
             f.write("\n".join(new_lines))  
 
-        print(f"\n[+] Success! Final playlist saved as '{output_file}' with sorted channels.")
+        print(f"\n[+] Success! Final playlist saved as '{output_file}' with sorted channels keeping categories intact.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
