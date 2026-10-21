@@ -52,14 +52,9 @@ def remove_group_title(extinf):
     return extinf
 
 def clean_channel_title(title):
-    # Remove Digital/digital/DIGITAL
     cleaned = re.sub(r'\bdigital\b', '', title, flags=re.IGNORECASE)
-    
-    # Remove Hindi/hindi/HINDI unless it's Star Sports
     if "star sports" not in cleaned.lower():
         cleaned = re.sub(r'\bhindi\b', '', cleaned, flags=re.IGNORECASE)
-        
-    # Clean up extra whitespaces
     return " ".join(cleaned.split())
 
 def clear_old_ips(session):
@@ -191,19 +186,25 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
                 pass
     return url
 
-def process_single_channel(i, lines, session, lcn_dict):
+def process_single_channel(i, lines, session, lcn_dict, seen_lcn_cache):
     extinf_line = lines[i].strip()
     extinf_line = remove_group_title(extinf_line)
 
     chno = ""
     if "," in extinf_line:
         prefix_part, title = extinf_line.split(",", 1)
-        
-        # Clean title (removes Digital and unwanted Hindi)
         cleaned_title = clean_channel_title(title)
-        channel_title_clean = cleaned_title.lower()
+        channel_title_clean = cleaned_title.lower().strip()
         
+        # 1. Exact match check from lcn_dict
         chno = lcn_dict.get(channel_title_clean, "")
+        
+        # 2. If already processed/seen in playlist, reuse same LCN
+        if not chno and channel_title_clean in seen_lcn_cache:
+            chno = seen_lcn_cache[channel_title_clean]
+        elif chno:
+            seen_lcn_cache[channel_title_clean] = chno
+
         final_title = cleaned_title
         if chno:
             if f"({chno})" not in final_title:
@@ -217,9 +218,7 @@ def process_single_channel(i, lines, session, lcn_dict):
     channel_id = ""
     if 'tvg-id="' in extinf_line:
         try:
-            channel_id = (
-                extinf_line.split('tvg-id="')[1].split('"')[0]
-            )
+            channel_id = extinf_line.split('tvg-id="')[1].split('"')[0]
         except Exception:
             pass
 
@@ -232,20 +231,6 @@ def process_single_channel(i, lines, session, lcn_dict):
                 raw_stream_line.split('"')[0].split(",")[0]
             )
             break
-
-    if not channel_id and 'id="' in extinf_line:
-        try:
-            channel_id = extinf_line.split('id="')[1].split('"')[0]
-        except Exception:
-            pass
-
-    if not channel_id and raw_stream_line and "id=" in raw_stream_line:
-        try:
-            channel_id = (
-                raw_stream_line.split("id=")[1].split("&")[0]
-            )
-        except Exception:
-            pass
 
     lower_text = (extinf_line + raw_stream_line).lower()
     for b in range(max(0, i - 3), min(len(lines), i + 4)):
@@ -529,6 +514,7 @@ def generate_safe_playlist_1000():
     session = get_robust_session()
     clear_old_ips(session)
     lcn_dict = fetch_lcn_dict(session)
+    seen_lcn_cache = {}
 
     try:
         res = session.get(
@@ -554,7 +540,7 @@ def generate_safe_playlist_1000():
             futures = {}
             for idx in target_indices:
                 fut = executor.submit(
-                    process_single_channel, idx, lines, session, lcn_dict
+                    process_single_channel, idx, lines, session, lcn_dict, seen_lcn_cache
                 )
                 futures[fut] = idx
 
