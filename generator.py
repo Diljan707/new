@@ -1,6 +1,7 @@
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import base64
 import os
+import re
 import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
@@ -8,7 +9,7 @@ from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 
 PLAYLIST_URL = os.environ.get("PLAYLIST_URL")
-IP_MANAGER_URL = "https://game.playindia.fun/Jtv/IP.php?id=xP0xaG"
+IP_MANAGER_URL = "https://game.playindia.fun/Jtv/IP.php?id=qwerty"
 LCN_LIST_URL = (
     "https://raw.githubusercontent.com/Diljan707/"
     "Automated-/refs/heads/main/dishtv_lcn_list.txt"
@@ -140,8 +141,8 @@ def b64_to_hex(b64_str):
 
 
 # ==========================================================
-# STREAM RESOLUTION
-# Redirected URLs get priority; direct 200 handling is kept.
+# STREAM URL RESOLUTION
+# Redirected URLs get priority; direct 200 handling remains.
 # ==========================================================
 
 def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
@@ -180,14 +181,14 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
             stream=True
         )
 
-        # Redirect chain detected: use the final external URL.
+        # Redirect chain: use the final external URL.
         if response.history and response.url:
             if "playindia.fun" not in response.url.lower():
                 final_url = response.url
                 response.close()
                 return clean_val(final_url)
 
-        # Preserve the original 200-response nested-link logic.
+        # Preserve original nested-link handling for HTTP 200.
         if response.status_code == 200:
             try:
                 res_text = response.text
@@ -254,7 +255,15 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
 def process_single_channel(i, lines, session, lcn_dict):
     extinf_line = lines[i].strip()
 
-    # Preserve group-title and existing category information.
+    # Remove group-title attribute, preserving other EXTINF attributes.
+    extinf_line = re.sub(
+        r'\s+group-title="[^"]*"',
+        '',
+        extinf_line,
+        flags=re.IGNORECASE
+    )
+
+    # LCN matching
     chno = ""
 
     if "," in extinf_line:
@@ -333,6 +342,7 @@ def process_single_channel(i, lines, session, lcn_dict):
         lower_text += lines[b].lower()
 
     is_hotstar = "hotstar" in lower_text or "jhs" in lower_text
+
     is_sliv = (
         "sliv" in lower_text
         or "sony" in lower_text
@@ -340,6 +350,11 @@ def process_single_channel(i, lines, session, lcn_dict):
     )
 
     channel_lines = [extinf_line]
+
+    # Default values prevent exception fallback from using
+    # variables that were not initialized.
+    user_agent = "Denver1769"
+    formatted_license_key = "null:null"
 
     try:
         key_url = None
@@ -359,16 +374,13 @@ def process_single_channel(i, lines, session, lcn_dict):
                 "Hotstar;in.startv.hotstar/"
                 "25.02.24.8.11169 (Android/15)"
             )
+
         elif is_sliv:
             user_agent = (
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
                 "AppleWebKit/537.36 (KHTML, like Gecko) "
                 "Chrome/120.0.0.0 Safari/537.36"
             )
-        else:
-            user_agent = "Denver1769"
-
-        formatted_license_key = None
 
         if key_url:
             try:
@@ -405,9 +417,6 @@ def process_single_channel(i, lines, session, lcn_dict):
 
             except Exception:
                 pass
-
-        if not formatted_license_key:
-            formatted_license_key = "null:null"
 
         final_stream_url = raw_stream_line
 
@@ -608,6 +617,7 @@ def process_single_channel(i, lines, session, lcn_dict):
 
     except Exception as e:
         print(f"[-] Channel processing error at line {i}: {e}")
+
         channel_lines.append(
             "#KODIPROP:inputstream.adaptive.license_type=clearkey"
         )
@@ -633,6 +643,7 @@ def generate_safe_playlist_1000():
         return
 
     session = get_robust_session()
+
     clear_old_ips(session)
     lcn_dict = fetch_lcn_dict(session)
 
@@ -648,6 +659,7 @@ def generate_safe_playlist_1000():
             return
 
         lines = res.text.splitlines()
+
         all_channels = [
             (i, line)
             for i, line in enumerate(lines)
@@ -662,9 +674,7 @@ def generate_safe_playlist_1000():
             item[0] for item in all_channels[:MAX_CHANNELS]
         ]
 
-        print(
-            f"[*] Processing {len(target_indices)} channels..."
-        )
+        print(f"[*] Processing {len(target_indices)} channels...")
 
         processed_channels = []
 
@@ -677,43 +687,4 @@ def generate_safe_playlist_1000():
                     session,
                     lcn_dict
                 ): idx
-                for idx in target_indices
-            }
-
-            for future in as_completed(futures):
-                try:
-                    chno, res_lines = future.result()
-
-                    if res_lines:
-                        try:
-                            sort_key = int(chno)
-                        except (ValueError, TypeError):
-                            sort_key = 99999
-
-                        processed_channels.append((sort_key, res_lines))
-
-                except Exception as e:
-                    print(f"[-] Channel task failed: {e}")
-
-        processed_channels.sort(key=lambda x: x[0])
-
-        new_lines = ["#EXTM3U"]
-
-        for _, res_lines in processed_channels:
-            new_lines.extend(res_lines)
-
-        output_file = ".m3u"
-
-        with open(output_file, "w", encoding="utf-8") as f:
-            f.write("\n".join(new_lines))
-
-        print(
-            f"\n[+] Success! Playlist saved as '{output_file}'."
-        )
-
-    except Exception as e:
-        print(f"\n[-] Critical Error: {e}")
-
-
-if __name__ == "__main__":
-    generate_safe_playlist_1000()
+    
