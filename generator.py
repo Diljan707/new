@@ -28,7 +28,7 @@ def fetch_lcn_dict(session):
                 if ":" not in line:
                     continue
                 chno, chname = line.split(":", 1)
-                chno =chno.strip()
+                chno = chno.strip()
                 chname = " ".join(chname.strip().lower().split())
                 if chname and chname not in lcn_dict:
                     lcn_dict[chname] = chno
@@ -46,7 +46,6 @@ def clean_val(val):
     return val
 
 def remove_group_title(extinf):
-    # Removes group-title attribute from EXTINF line
     extinf = re.sub(r'\s*group-title="[^"]*"', '', extinf, flags=re.IGNORECASE)
     extinf = re.sub(r"\s*group-title='[^']*'", '', extinf, flags=re.IGNORECASE)
     extinf = re.sub(r'\s*group-title=[^\s,]+', '', extinf, flags=re.IGNORECASE)
@@ -179,13 +178,10 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
                 response.close()
             except Exception:
                 pass
-    # Fallback to original URL if any redirection/resolution error occurs
     return url
 
 def process_single_channel(i, lines, session, lcn_dict):
     extinf_line = lines[i].strip()
-    
-    # Remove group-title as requested
     extinf_line = remove_group_title(extinf_line)
 
     chno = ""
@@ -504,15 +500,15 @@ def process_single_channel(i, lines, session, lcn_dict):
 
     except Exception as e:
         print(f"[-] Channel processing error at line {i}: {e}")
-        # Fallback to original raw stream and data on any unexpected error
+        channel_lines = [extinf_line]
         channel_lines.append(
             "#KODIPROP:inputstream.adaptive.license_type=clearkey"
         )
         channel_lines.append(
-            "#KODIPROP:inputstream.adaptive.license_key=" + formatted_license_key
+            "#KODIPROP:inputstream.adaptive.license_key=null:null"
         )
         channel_lines.append(
-            f"#EXTVLCOPT:http-user-agent={user_agent}"
+            f"#EXTVLCOPT:http-user-agent=Denver1769"
         )
         channel_lines.append(
             clean_val(raw_stream_line)
@@ -552,8 +548,38 @@ def generate_safe_playlist_1000():
 
         processed_channels = []
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-            futures = {
-                executor.submit(
+            futures = {}
+            for idx in target_indices:
+                fut = executor.submit(
                     process_single_channel, idx, lines, session, lcn_dict
-                ): idx for idx in target_indices
-    
+                )
+                futures[fut] = idx
+
+            for future in as_completed(futures):
+                try:
+                    chno, res_lines = future.result()
+                    if res_lines:
+                        try:
+                            sort_key = int(chno)
+                        except (ValueError, TypeError):
+                            sort_key = 99999
+                        processed_channels.append((sort_key, res_lines))
+                except Exception as e:
+                    print(f"[-] Channel task failed: {e}")
+
+        processed_channels.sort(key=lambda x: x[0])
+        new_lines = ["#EXTM3U"]
+        for _, res_lines in processed_channels:
+            new_lines.extend(res_lines)
+
+        output_file = ".m3u"
+        with open(output_file, "w", encoding="utf-8") as f:
+            f.write("\n".join(new_lines))
+
+        print(f"\n[+] Success! Playlist saved as '{output_file}'.")
+
+    except Exception as e:
+        print(f"\n[-] Critical Error: {e}")
+
+if __name__ == "__main__":
+    generate_safe_playlist_1000()
