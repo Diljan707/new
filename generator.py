@@ -51,6 +51,17 @@ def remove_group_title(extinf):
     extinf = re.sub(r'\s*group-title=[^\s,]+', '', extinf, flags=re.IGNORECASE)
     return extinf
 
+def clean_channel_title(title):
+    # Remove Digital/digital/DIGITAL
+    cleaned = re.sub(r'\bdigital\b', '', title, flags=re.IGNORECASE)
+    
+    # Remove Hindi/hindi/HINDI unless it's Star Sports
+    if "star sports" not in cleaned.lower():
+        cleaned = re.sub(r'\bhindi\b', '', cleaned, flags=re.IGNORECASE)
+        
+    # Clean up extra whitespaces
+    return " ".join(cleaned.split())
+
 def clear_old_ips(session):
     print("[*] Checking IP Manager...")
     headers = {
@@ -187,29 +198,21 @@ def process_single_channel(i, lines, session, lcn_dict):
     chno = ""
     if "," in extinf_line:
         prefix_part, title = extinf_line.split(",", 1)
-        title_clean = (
-            title.replace(" Digital", "")
-            .replace("digital", "")
-            .replace("DIGITAL", "")
-        )
-        if "star sports" not in title_clean.lower():
-            title_clean = (
-                title_clean.replace(" Hindi", "")
-                .replace("hindi", "")
-                .replace("HINDI", "")
-            )
-        channel_title_clean = " ".join(
-            title_clean.strip().lower().split()
-        )
+        
+        # Clean title (removes Digital and unwanted Hindi)
+        cleaned_title = clean_channel_title(title)
+        channel_title_clean = cleaned_title.lower()
+        
         chno = lcn_dict.get(channel_title_clean, "")
+        final_title = cleaned_title
         if chno:
-            if f"({chno})" not in title:
-                title = f"{title.strip()} ({chno})"
+            if f"({chno})" not in final_title:
+                final_title = f"{final_title} ({chno})"
             if "tvg-chno=" not in prefix_part:
                 prefix_part = (
                     prefix_part.strip() + f' tvg-chno="{chno}" ch-number="{chno}"'
                 )
-            extinf_line = f"{prefix_part},{title}"
+        extinf_line = f"{prefix_part},{final_title}"
 
     channel_id = ""
     if 'tvg-id="' in extinf_line:
