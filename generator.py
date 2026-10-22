@@ -9,7 +9,7 @@ from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 
 PLAYLIST_URL = os.environ.get("PLAYLIST_URL")
-IP_MANAGER_URL = "https://game.playindia.fun/Jtv/IP.php?id=qwerty"
+IP_MANAGER_URL = "https://game.playindia.fun/Jtv/IP.php?id=xP0xaG"
 LCN_LIST_URL = (
     "https://raw.githubusercontent.com/Diljan707/"
     "Automated-/refs/heads/main/dishtv_lcn_list.txt"
@@ -271,7 +271,7 @@ def process_single_channel(i, lines, session, lcn_dict, seen_lcn_cache):
         if not formatted_license_key:
             formatted_license_key = "null:null"
 
-        final_stream_url = ""
+        final_stream_url = raw_stream_line
         if raw_stream_line:
             resolved = resolve_stream_url(
                 raw_stream_line, session, user_agent, is_hotstar, is_sliv
@@ -390,7 +390,7 @@ def process_single_channel(i, lines, session, lcn_dict, seen_lcn_cache):
                 channel_lines.append(
                     clean_val(final_stream_url)
                     if final_stream_url
-                    else "http://dummy-link-to-prevent-break"
+                    else clean_val(raw_stream_line)
                 )
             else:
                 channel_lines.append(
@@ -442,7 +442,7 @@ def process_single_channel(i, lines, session, lcn_dict, seen_lcn_cache):
                 channel_lines.append(
                     clean_val(final_stream_url)
                     if final_stream_url
-                    else "http://dummy-link-to-prevent-break"
+                    else clean_val(raw_stream_line)
                 )
         else:
             channel_lines.append(
@@ -458,7 +458,7 @@ def process_single_channel(i, lines, session, lcn_dict, seen_lcn_cache):
             channel_lines.append(
                 clean_val(final_stream_url)
                 if final_stream_url
-                else "http://dummy-link-to-prevent-break"
+                else clean_val(raw_stream_line)
             )
 
     except Exception as e:
@@ -474,9 +474,9 @@ def process_single_channel(i, lines, session, lcn_dict, seen_lcn_cache):
             f"#EXTVLCOPT:http-user-agent=Denver1769"
         )
         channel_lines.append(
-            clean_val(final_stream_url)
-            if final_stream_url
-            else "http://dummy-link-to-prevent-break"
+            clean_val(raw_stream_line)
+            if raw_stream_line
+            else ""
         )
 
     return chno, channel_lines
