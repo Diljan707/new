@@ -9,7 +9,7 @@ from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 
 PLAYLIST_URL = os.environ.get("PLAYLIST_URL")
-IP_MANAGER_URL = "https://game.playindia.fun/Jtv/IP.php?id=xP0xaG"
+IP_MANAGER_URL = "https://game.playindia.fun/Jtv/IP.php?id=qwerty"
 LCN_LIST_URL = (
     "https://raw.githubusercontent.com/Diljan707/"
     "Automated-/refs/heads/main/dishtv_lcn_list.txt"
@@ -118,7 +118,7 @@ def b64_to_hex(b64_str):
 def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
     url = clean_val(url)
     if not url:
-        return url
+        return ""
     headers = {"User-Agent": user_agent}
     if is_hotstar:
         headers.update({
@@ -135,56 +135,41 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
             "Origin": "https://www.sonyliv.com",
             "Referer": "https://www.sonyliv.com/"
         })
+    else:
+        headers.update({
+            "Origin": "https://www.jiotv.com",
+            "Referer": "https://www.jiotv.com/",
+            "Connection": "keep-alive"
+        })
     
-    response = None
     try:
-        response = session.get(
-            url, headers=headers, allow_redirects=True, timeout=7, stream=True
-        )
-        if response.history and response.url:
-            if "playindia.fun" not in response.url.lower():
-                final_url = response.url
-                response.close()
-                return clean_val(final_url)
-        
-        if response.status_code == 200:
-            try:
-                res_text = response.text
-                nested_links = []
-                for line in res_text.splitlines():
-                    line = clean_val(line)
-                    if (
-                        "http" in line
-                        and ("m3u8" in line.lower() or "mpd" in line.lower())
-                        and "playindia.fun" not in line.lower()
-                    ):
-                        idx = line.find("http")
-                        clean_link = clean_val(line[idx:].split()[0])
-                        nested_links.append(clean_link)
-                if nested_links:
-                    chosen_link = clean_val(nested_links[-1])
-                    if not chosen_link.startswith("http"):
-                        chosen_link = urljoin(response.url, chosen_link)
-                    response.close()
-                    return chosen_link
-            except Exception:
-                pass
-        
-        if response.url and "playindia.fun" not in response.url.lower():
-            final_url = clean_val(response.url)
-            if not final_url.startswith("http"):
-                final_url = urljoin(url, final_url)
-            response.close()
-            return final_url
+        res = session.head(url, headers=headers, allow_redirects=False, timeout=5)
+        if res.status_code in (301, 302, 303, 307, 308):
+            loc = res.headers.get("Location")
+            if loc:
+                if not loc.startswith("http"):
+                    loc = urljoin(url, loc)
+                return clean_val(loc)
+                
+        res = session.get(url, headers=headers, allow_redirects=False, timeout=5)
+        if res.status_code in (301, 302, 303, 307, 308):
+            loc = res.headers.get("Location")
+            if loc:
+                if not loc.startswith("http"):
+                    loc = urljoin(url, loc)
+                return clean_val(loc)
+                
+        res = session.get(url, headers=headers, allow_redirects=True, timeout=7)
+        if res.history and res.url:
+            if "playindia.fun" not in res.url.lower():
+                return clean_val(res.url)
+        if res.url and "playindia.fun" not in res.url.lower():
+            return clean_val(res.url)
+            
     except Exception as e:
         print(f"[-] Stream resolution error for {url}: {e}")
-    finally:
-        if response is not None:
-            try:
-                response.close()
-            except Exception:
-                pass
-    return url
+        
+    return ""
 
 def process_single_channel(i, lines, session, lcn_dict, seen_lcn_cache):
     extinf_line = lines[i].strip()
@@ -196,10 +181,7 @@ def process_single_channel(i, lines, session, lcn_dict, seen_lcn_cache):
         cleaned_title = clean_channel_title(title)
         channel_title_clean = cleaned_title.lower().strip()
         
-        # 1. Exact match check from lcn_dict
         chno = lcn_dict.get(channel_title_clean, "")
-        
-        # 2. If already processed/seen in playlist, reuse same LCN
         if not chno and channel_title_clean in seen_lcn_cache:
             chno = seen_lcn_cache[channel_title_clean]
         elif chno:
@@ -214,13 +196,6 @@ def process_single_channel(i, lines, session, lcn_dict, seen_lcn_cache):
                     prefix_part.strip() + f' tvg-chno="{chno}" ch-number="{chno}"'
                 )
         extinf_line = f"{prefix_part},{final_title}"
-
-    channel_id = ""
-    if 'tvg-id="' in extinf_line:
-        try:
-            channel_id = extinf_line.split('tvg-id="')[1].split('"')[0]
-        except Exception:
-            pass
 
     raw_stream_line = ""
     for f in range(i + 1, min(len(lines), i + 5)):
@@ -296,7 +271,7 @@ def process_single_channel(i, lines, session, lcn_dict, seen_lcn_cache):
         if not formatted_license_key:
             formatted_license_key = "null:null"
 
-        final_stream_url = raw_stream_line
+        final_stream_url = ""
         if raw_stream_line:
             resolved = resolve_stream_url(
                 raw_stream_line, session, user_agent, is_hotstar, is_sliv
@@ -481,8 +456,8 @@ def process_single_channel(i, lines, session, lcn_dict, seen_lcn_cache):
                 f"#EXTVLCOPT:http-user-agent={user_agent}"
             )
             channel_lines.append(
-                clean_val(raw_stream_line)
-                if raw_stream_line
+                clean_val(final_stream_url)
+                if final_stream_url
                 else "http://dummy-link-to-prevent-break"
             )
 
@@ -499,8 +474,8 @@ def process_single_channel(i, lines, session, lcn_dict, seen_lcn_cache):
             f"#EXTVLCOPT:http-user-agent=Denver1769"
         )
         channel_lines.append(
-            clean_val(raw_stream_line)
-            if raw_stream_line
+            clean_val(final_stream_url)
+            if final_stream_url
             else "http://dummy-link-to-prevent-break"
         )
 
