@@ -46,7 +46,6 @@ def clean_val(val):
     return val
 
 def remove_group_title(extinf):
-    # Keep group-title if it's Live Events
     if re.search(r'group-title="[^"]*live events[^"]*"', extinf, flags=re.IGNORECASE):
         return extinf
     
@@ -175,7 +174,7 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
         
     return ""
 
-def process_single_channel(i, lines, session, lcn_dict, seen_lcn_cache):
+def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn):
     extinf_line = lines[i].strip()
     extinf_line = remove_group_title(extinf_line)
 
@@ -186,10 +185,8 @@ def process_single_channel(i, lines, session, lcn_dict, seen_lcn_cache):
         channel_title_clean = cleaned_title.lower().strip()
         
         chno = lcn_dict.get(channel_title_clean, "")
-        if not chno and channel_title_clean in seen_lcn_cache:
-            chno = seen_lcn_cache[channel_title_clean]
-        elif chno:
-            seen_lcn_cache[channel_title_clean] = chno
+        if not chno and channel_title_clean in global_seen_lcn:
+            chno = global_seen_lcn[channel_title_clean]
 
         final_title = cleaned_title
         if chno:
@@ -493,7 +490,6 @@ def generate_safe_playlist_1000():
     session = get_robust_session()
     clear_old_ips(session)
     lcn_dict = fetch_lcn_dict(session)
-    seen_lcn_cache = {}
 
     try:
         res = session.get(
@@ -512,6 +508,18 @@ def generate_safe_playlist_1000():
             return
 
         target_indices = [item[0] for item in all_channels[:MAX_CHANNELS]]
+        
+        # Pre-pass: Build complete LCN cache for all channels sequentially
+        global_seen_lcn = {}
+        for idx in target_indices:
+            extinf_line = remove_group_title(lines[idx].strip())
+            if "," in extinf_line:
+                _, title = extinf_line.split(",", 1)
+                cleaned_title = clean_channel_title(title)
+                ch_key = cleaned_title.lower().strip()
+                if ch_key in lcn_dict and ch_key not in global_seen_lcn:
+                    global_seen_lcn[ch_key] = lcn_dict[ch_key]
+
         print(f"[*] Processing {len(target_indices)} channels...")
 
         processed_channels = []
@@ -519,7 +527,7 @@ def generate_safe_playlist_1000():
             futures = {}
             for idx in target_indices:
                 fut = executor.submit(
-                    process_single_channel, idx, lines, session, lcn_dict, seen_lcn_cache
+                    process_single_channel, idx, lines, session, lcn_dict, global_seen_lcn
                 )
                 futures[fut] = idx
 
