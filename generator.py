@@ -46,6 +46,10 @@ def clean_val(val):
     return val
 
 def remove_group_title(extinf):
+    # Keep group-title if it's Live Events
+    if re.search(r'group-title="[^"]*live events[^"]*"', extinf, flags=re.IGNORECASE):
+        return extinf
+    
     extinf = re.sub(r'\s*group-title="[^"]*"', '', extinf, flags=re.IGNORECASE)
     extinf = re.sub(r"\s*group-title='[^']*'", '', extinf, flags=re.IGNORECASE)
     extinf = re.sub(r'\s*group-title=[^\s,]+', '', extinf, flags=re.IGNORECASE)
