@@ -232,12 +232,6 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn):
                 "Hotstar;in.startv.hotstar/"
                 "25.02.24.8.11169 (Android/15)"
             )
-        elif is_sliv:
-            user_agent = (
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                "AppleWebKit/537.36 (KHTML, like Gecko) "
-                "Chrome/120.0.0.0 Safari/537.36"
-            )
         else:
             user_agent = "Denver1769"
 
