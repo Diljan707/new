@@ -182,7 +182,8 @@ def resolve_stream_url(url, session, user_agent, is_hotstar):
         headers.update({
             "Origin": "https://www.jiotv.com",
             "Referer": "https://www.jiotv.com/",
-            "Connection": "keep-alive"
+            "Connection": "Keep-Alive",
+            "Accept-Encoding": "gzip"
         })
     
     try:
@@ -271,7 +272,9 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
                 "Hotstar;in.startv.hotstar/"
                 "25.02.24.8.11169 (Android/15)"
             )
-        else:
+        
+        # Non-hotstar channels ke liye direct variable assignment (bina else ke)
+        if not is_hotstar:
             user_agent = "Denver1769"
 
         formatted_license_key = None
@@ -410,7 +413,8 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
                 clean_val(f"{base_url}|{pipe_headers}")
             )
 
-        else:
+        # Non-hotstar channels ke liye direct execution block (bina else ke)
+        if not is_hotstar:
             target_url = final_stream_url if final_stream_url else raw_stream_line
             jio_cookie = ""
             
@@ -453,10 +457,10 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
                 channel_lines.append(f"#EXTVLCOPT:http-cookie={jio_cookie}")
                 channel_lines.append(
                     '#EXTHTTP:{"User-Agent":"' + user_agent + '",'
-                    '"Origin":"https://www.jiotv.com/",'
-                    '"Referer":"https://www.jiotv.com/",'
-                    f'"Cookie":"{jio_cookie}",'
-                    '"Connection":"Keep-Alive"}'
+                    '"Accept-Encoding":"gzip",'
+                    '"Host":"jiotvmblive.cdn.jio.com",'
+                    '"Connection":"Keep-Alive",'
+                    '"Cookie":"' + jio_cookie + '"}'
                 )
 
             channel_lines.append(clean_val(target_url))
