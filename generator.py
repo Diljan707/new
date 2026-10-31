@@ -374,6 +374,9 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
             channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
 
             if jio_cookie:
+                # STRICT DEDUPLICATION: Remove any preexisting cookie/exthttp lines to avoid duplicates
+                channel_lines = [line for line in channel_lines if not line.startswith("#EXTVLCOPT:http-cookie") and not line.startswith("#EXTHTTP")]
+                
                 channel_lines.append(f"#EXTVLCOPT:http-cookie={jio_cookie}")
                 channel_lines.append(
                     '#EXTHTTP:{"User-Agent":"' + user_agent + '",'
