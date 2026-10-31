@@ -499,16 +499,13 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
                     else clean_val(raw_stream_line)
                 )
         else:
-            # JioTV standard channels handling (Cookie formatting)
             target_url = final_stream_url if final_stream_url else raw_stream_line
             jio_cookie = ""
             
-            # Extract token either from URL params or surrounding playlist lines
             if "__hdnea__=" in target_url or "hdnea=" in target_url:
                 try:
                     token_key = "__hdnea__=" if "__hdnea__=" in target_url else "hdnea="
                     jio_cookie = token_key + target_url.split(token_key)[1].split("&")[0].split('"')[0]
-                    # Clean base URL by removing query param if converting to Cookie header
                     target_url = target_url.split("?")[0]
                 except Exception:
                     pass
@@ -575,6 +572,7 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
             else ""
         )
 
+    # Clean newline separation check between blocks
     return chno, channel_lines
 
 def generate_safe_playlist_1000():
