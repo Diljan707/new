@@ -179,7 +179,6 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
             "Accept-Encoding": "identity"
         })
     else:
-        # Force JioTV CDN headers even for sliv if it points to jiotvmblive CDN
         headers.update({
             "Origin": "https://www.jiotv.com",
             "Referer": "https://www.jiotv.com/",
@@ -271,7 +270,6 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
         if is_hotstar:
             user_agent = "Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)"
         else:
-            # Force Denver1769 for all JioTV/Sony CDN links to prevent 403
             user_agent = "Denver1769"
 
         formatted_license_key = None
@@ -344,7 +342,6 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
             channel_lines.append(clean_val(f"{base_url}|{pipe_headers}"))
 
         else:
-            # Universal handling for JioTV / Sony / Zee CDN links using Denver1769 & Cookie formatting
             target_url = final_stream_url if final_stream_url else raw_stream_line
             jio_cookie = ""
             
