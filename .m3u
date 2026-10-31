@@ -10,7 +10,7 @@
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=88c62fafa0185ea7b7e2640ed74226af:c3a0dd3fe127ddc384eba4edd195d287,5f1b0d5ae90258458884915a5376b79a:eccbd7193a0038e8bfac0fd38bd806f6,d4841f2c7aff22b29882dcba1fea5a8f:10c12be544467968fbf55cd86aa4349d,66d6dad0fe6152bc4e5e662836bcc5e2:755eb7ea0564031e207a8d88d88d4ede,77bbb1733b38525a8f1bae3fd8f34bd0:ea0eeb5f72348e415ca6bf346a38bb52,b69340e1e1389642cdf180dcafc98f08:dc01d55773e369e584e338bde5121b55,8b7c7fdeb7595cf5a21a85684b457d9a:ec530053a25bdd83810397d751edfa4c,123708e239ee500a91889d6c2feff8a0:8efdb91794e41d7789930313deb196cd,ec9d77ec70a45f3dadabb80cb9d8be02:289e67b2cf664d297ec95cdb54bf4a26,39dfd155fc295525aa7fb5289ae2ba1b:aac48802999ce449dda63b613b5bb222
 #EXTVLCOPT:http-user-agent=Denver1769
-https://jiotvmblive.cdn.jio.com/bpk-tv/India_news_MOB/WDVLive/index.mpd?__hdnea__=st=1793430005~exp=1793451605~acl=/*~hmac=6ba1e3eeb51645a068639e7956b8f68424ac4392c126fe74b8193bca8c8e078f
+https://jiotvmblive.cdn.jio.com/bpk-tv/SonySab_MOB/WDVLive/index.mpd?__hdnea__=st=1793430005~exp=1793451605~acl=/*~hmac=6ba1e3eeb51645a068639e7956b8f68424ac4392c126fe74b8193bca8c8e078f
 #EXTINF:-1 tvg-id="1132" tvg-language="Hindi" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Star_Plus_HD.png" CATCH-UP-FAILED="null" tvg-chno="100" ch-number="100",Star Plus HD (100)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
