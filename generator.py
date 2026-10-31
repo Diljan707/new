@@ -133,7 +133,7 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
             "Referer": "https://www.hotstar.com/",
             "Accept-Encoding": "identity"
         })
-    elif is_sliv:
+    elif is_sliyv:
         headers.update({
             "Origin": "https://www.sonyliv.com",
             "Referer": "https://www.sonyliv.com/"
