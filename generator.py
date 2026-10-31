@@ -46,27 +46,28 @@ def load_old_playlist_cache():
     if not os.path.exists(output_file):
         return old_cache
     
-    print("[*] Loading old .m3u cache for fallback tokens...")
+    print("[*] Loading old .m3u cache safely...")
     try:
         with open(output_file, "r", encoding="utf-8") as f:
-            lines = f.read().splitlines()
-            i = 0
-            while i < len(lines):
-                line = lines[i].strip()
-                if line.startswith("#EXTINF"):
-                    extinf_line = line
-                    channel_lines = [extinf_line]
-                    i += 1
-                    while i < len(lines) and not lines[i].strip().startswith("#EXTINF") and not lines[i].strip().startswith("#EXTM3U"):
-                        channel_lines.append(lines[i].strip())
-                        i += 1
-                    
-                    cache_key = get_channel_unique_key(extinf_line)
-                    if cache_key:
-                        old_cache[cache_key] = channel_lines
+            content = f.read()
+            blocks = content.split("#EXTINF:")
+            for block in blocks:
+                if not block.strip():
                     continue
-                i += 1
-        print(f"[+] Loaded {len(old_cache)} channels from old cache!\n")
+                block_lines = block.splitlines()
+                extinf_line = "#EXTINF:" + block_lines[0].strip()
+                
+                channel_lines = [extinf_line]
+                for line in block_lines[1:]:
+                    line_str = line.strip()
+                    if line_str and not line_str.startswith("#EXTM3U"):
+                        channel_lines.append(line_str)
+                
+                cache_key = get_channel_unique_key(extinf_line)
+                if cache_key:
+                    old_cache[cache_key] = channel_lines
+                    
+        print(f"[+] Loaded {len(old_cache)} channels from old cache safely!\n")
     except Exception as e:
         print(f"[-] Error loading old cache: {e}")
     return old_cache
@@ -371,20 +372,18 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
 
             channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
             channel_lines.append("#KODIPROP:inputstream.adaptive.license_key=" + formatted_license_key)
-            channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
-
+            
             if jio_cookie:
-                # STRICT DEDUPLICATION: Remove any preexisting cookie/exthttp lines to avoid duplicates
-                channel_lines = [line for line in channel_lines if not line.startswith("#EXTVLCOPT:http-cookie") and not line.startswith("#EXTHTTP")]
+                # Clean up list to avoid any fragmented/duplicate entries
+                channel_lines = [l for l in channel_lines if not l.startswith("#EXTVLCOPT:") and not l.startswith("#EXTHTTP:")]
                 
+                channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
                 channel_lines.append(f"#EXTVLCOPT:http-cookie={jio_cookie}")
                 channel_lines.append(
-                    '#EXTHTTP:{"User-Agent":"' + user_agent + '",'
-                    '"Origin":"https://www.jiotv.com/",'
-                    '"Referer":"https://www.jiotv.com/",'
-                    f'"Cookie":"{jio_cookie}",'
-                    '"Connection":"keep-alive"}'
+                    f'#EXTHTTP:{{"User-Agent":"{user_agent}","Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/","Cookie":"{jio_cookie}","Connection":"keep-alive"}}'
                 )
+            else:
+                channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
 
             channel_lines.append(clean_val(target_url))
 
