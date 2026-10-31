@@ -118,7 +118,7 @@ def b64_to_hex(b64_str):
     except Exception:
         return b64_str
 
-def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
+def resolve_stream_url(url, session, user_agent, is_hotstar):
     url = clean_val(url)
     if not url:
         return ""
@@ -132,11 +132,6 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
             "Origin": "https://www.hotstar.com",
             "Referer": "https://www.hotstar.com/",
             "Accept-Encoding": "identity"
-        })
-    elif is_sliv:
-        headers.update({
-            "Origin": "https://www.sonyliv.com",
-            "Referer": "https://www.sonyliv.com/"
         })
     else:
         headers.update({
@@ -213,9 +208,6 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn):
         lower_text += lines[b].lower()
 
     is_hotstar = "hotstar" in lower_text or "jhs" in lower_text
-    is_sliv = (
-        "sliv" in lower_text or "sony" in lower_text or "ten" in lower_text
-    )
 
     channel_lines = [extinf_line]
     try:
@@ -269,7 +261,7 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn):
         final_stream_url = raw_stream_line
         if raw_stream_line:
             resolved = resolve_stream_url(
-                raw_stream_line, session, user_agent, is_hotstar, is_sliv
+                raw_stream_line, session, user_agent, is_hotstar
             )
             if resolved:
                 final_stream_url = clean_val(
@@ -363,82 +355,6 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn):
                 clean_val(f"{base_url}|{pipe_headers}")
             )
 
-        elif is_sliv:
-            if is_mpd_link:
-                channel_lines.append(
-                    "#KODIPROP:inputstream.adaptive.license_type=clearkey"
-                )
-                channel_lines.append(
-                    "#KODIPROP:inputstream.adaptive.license_key="
-                    + formatted_license_key
-                )
-                channel_lines.append(
-                    f"#EXTVLCOPT:http-user-agent={user_agent}"
-                )
-                channel_lines.append(
-                    "#EXTVLCOPT:http-referrer=https://www.sonyliv.com/"
-                )
-                channel_lines.append(
-                    "#EXTVLCOPT:http-extra-headers="
-                    "Origin: https://www.sonyliv.com"
-                )
-                channel_lines.append(
-                    clean_val(final_stream_url)
-                    if final_stream_url
-                    else clean_val(raw_stream_line)
-                )
-            else:
-                channel_lines.append(
-                    "#KODIPROP:inputstream.adaptive.license_type=clearkey"
-                )
-                channel_lines.append(
-                    "#KODIPROP:inputstream.adaptive.license_key="
-                    + formatted_license_key
-                )
-                channel_lines.append(
-                    f"#EXTVLCOPT:http-user-agent={user_agent}"
-                )
-                jio_cookie = ""
-                for check_line in (
-                    [raw_stream_line]
-                    + lines[max(0, i - 2):min(len(lines), i + 3)]
-                ):
-                    check_line = clean_val(check_line)
-                    if "hdnea=" in check_line:
-                        try:
-                            for part in check_line.split("hdnea=")[1:]:
-                                candidate = clean_val(part.split()[0])
-                                if "exp=" in candidate or "st=" in candidate:
-                                    jio_cookie = (
-                                        "hdnea=" + clean_val(candidate.split("&")[0])
-                                    )
-                                    break
-                        except Exception:
-                            pass
-                    if jio_cookie:
-                        break
-
-                if jio_cookie:
-                    channel_lines.append(
-                        f"#EXTVLCOPT:http-cookie={jio_cookie}"
-                    )
-                    channel_lines.append(
-                        '#EXTHTTP:{"Origin":"https://www.jiotv.com/",'
-                        '"Referer":"https://www.jiotv.com/",'
-                        f'"Cookie":"{jio_cookie}",'
-                        '"Connection":"keep-alive"}'
-                    )
-                else:
-                    channel_lines.append(
-                        '#EXTHTTP:{"Origin":"https://www.jiotv.com/",'
-                        '"Referer":"https://www.jiotv.com/",'
-                        '"Connection":"keep-alive"}'
-                    )
-                channel_lines.append(
-                    clean_val(final_stream_url)
-                    if final_stream_url
-                    else clean_val(raw_stream_line)
-                )
         else:
             channel_lines.append(
                 "#KODIPROP:inputstream.adaptive.license_type=clearkey"
@@ -553,3 +469,4 @@ def generate_safe_playlist_1000():
 
 if __name__ == "__main__":
     generate_safe_playlist_1000()
+                
