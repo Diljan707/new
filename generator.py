@@ -18,60 +18,6 @@ LCN_LIST_URL = (
 MAX_CHANNELS = 2000
 MAX_WORKERS = 40
 
-def get_channel_unique_key(extinf_line):
-    tvg_id = ""
-    if 'tvg-id="' in extinf_line:
-        try:
-            tvg_id = extinf_line.split('tvg-id="')[1].split('"')[0].lower().strip()
-        except Exception:
-            pass
-    
-    title = ""
-    if "," in extinf_line:
-        _, title = extinf_line.split(",", 1)
-    
-    clean_t = re.sub(r'\s*\(\d+\)\s*', '', title).lower().strip()
-    cleaned_title = re.sub(r'\bdigital\b', '', clean_t, flags=re.IGNORECASE)
-    if "star sports" not in cleaned_title:
-        cleaned_title = re.sub(r'\bhindi\b', '', cleaned_title, flags=re.IGNORECASE)
-    cleaned_title = " ".join(cleaned_title.split())
-    
-    if tvg_id:
-        return f"{tvg_id}_{cleaned_title}"
-    return cleaned_title
-
-def load_old_playlist_cache():
-    old_cache = {}
-    output_file = ".m3u"
-    if not os.path.exists(output_file):
-        return old_cache
-    
-    print("[*] Loading old .m3u cache safely...")
-    try:
-        with open(output_file, "r", encoding="utf-8") as f:
-            content = f.read()
-            blocks = content.split("#EXTINF:")
-            for block in blocks:
-                if not block.strip():
-                    continue
-                block_lines = block.splitlines()
-                extinf_line = "#EXTINF:" + block_lines[0].strip()
-                
-                channel_lines = [extinf_line]
-                for line in block_lines[1:]:
-                    line_str = line.strip()
-                    if line_str and not line_str.startswith("#EXTM3U"):
-                        channel_lines.append(line_str)
-                
-                cache_key = get_channel_unique_key(extinf_line)
-                if cache_key:
-                    old_cache[cache_key] = channel_lines
-                    
-        print(f"[+] Loaded {len(old_cache)} channels from old cache safely!\n")
-    except Exception as e:
-        print(f"[-] Error loading old cache: {e}")
-    return old_cache
-
 def fetch_lcn_dict(session):
     print("[*] Fetching DishTV LCN list...")
     lcn_dict = {}
@@ -95,7 +41,7 @@ def clean_val(val):
     if not val:
         return ""
     val = val.strip()
-    while val and val[-1] in ('"', "'", '}', ']', '}', '~', ','):
+    while val and val[-1] in ('"', "'", '}', ']', '~', ','):
         val = val[:-1].strip()
     return val
 
@@ -115,7 +61,7 @@ def clean_channel_title(title):
     return " ".join(cleaned.split())
 
 def clear_old_ips(session):
-    print("[*] Checking and clearing old IPs from IP Manager...")
+    print("[*] Checking IP Manager...")
     headers = {
         "User-Agent": "Denver1769",
         "Referer": "https://game.playindia.fun/"
@@ -124,34 +70,40 @@ def clear_old_ips(session):
         res = session.get(IP_MANAGER_URL, headers=headers, timeout=10)
         if res.status_code != 200:
             return
-        soup = BeautifulSoup(res.text, 'html.parser')
-        forms = soup.find_all('form')
+        soup = BeautifulSoup(res.text, "html.parser")
         ip_list = []
-        for form in forms:
-            action_input = form.find('input', {'name': 'action', 'value': 'delete_ip'})
-            ip_input = form.find('input', {'name': 'ip'})
-            if action_input and ip_input:
-                val = ip_input.get('value')
-                if val:
-                    ip_list.append(val)
+        for form in soup.find_all("form"):
+            action_input = form.find("input", {"name": "action", "value": "delete_ip"})
+            ip_input = form.find("input", {"name": "ip"})
+            if action_input and ip_input and ip_input.get("value"):
+                ip_list.append(ip_input["value"])
         if not ip_list:
-            print("[+] No old IPs to clear.\n")
             return
+
         def delete_single(ip_val):
-            data = {'action': 'delete_ip', 'ip': ip_val}
             try:
-                session.post(IP_MANAGER_URL, data=data, headers=headers, timeout=5)
+                session.post(
+                    IP_MANAGER_URL,
+                    data={"action": "delete_ip", "ip": ip_val},
+                    headers=headers,
+                    timeout=5
+                )
             except Exception:
                 pass
+
         with ThreadPoolExecutor(max_workers=15) as executor:
-            executor.map(delete_single, ip_list)
-        print("[+] All old IPs cleared successfully!\n")
+            list(executor.map(delete_single, ip_list))
+        print("[+] IP Manager cleanup completed.\n")
     except Exception as e:
-        print(f"[-] Error clearing IPs: {e}")
+        print(f"[-] Error checking IP Manager: {e}")
 
 def get_robust_session():
     session = requests.Session()
-    retries = Retry(total=3, backoff_factor=1, status_forcelist=[500, 502, 503, 504])
+    retries = Retry(
+        total=3,
+        backoff_factor=1,
+        status_forcelist=[500, 502, 503, 504]
+    )
     session.mount("https://", HTTPAdapter(max_retries=retries))
     session.mount("http://", HTTPAdapter(max_retries=retries))
     return session
@@ -160,10 +112,9 @@ def b64_to_hex(b64_str):
     b64_str = clean_val(b64_str)
     padding = 4 - (len(b64_str) % 4)
     if padding < 4:
-        b64_str += '=' * padding
+        b64_str += "=" * padding
     try:
-        decoded = base64.urlsafe_b64decode(b64_str)
-        return decoded.hex()
+        return base64.urlsafe_b64decode(b64_str).hex()
     except Exception:
         return b64_str
 
@@ -174,10 +125,18 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
     headers = {"User-Agent": user_agent}
     if is_hotstar:
         headers.update({
-            "User-Agent": "Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)",
+            "User-Agent": (
+                "Hotstar;in.startv.hotstar/"
+                "25.02.24.8.11169 (Android/15)"
+            ),
             "Origin": "https://www.hotstar.com",
             "Referer": "https://www.hotstar.com/",
             "Accept-Encoding": "identity"
+        })
+    elif is_sliv:
+        headers.update({
+            "Origin": "https://www.sonyliv.com",
+            "Referer": "https://www.sonyliv.com/"
         })
     else:
         headers.update({
@@ -215,13 +174,11 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
         
     return ""
 
-def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cache):
+def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn):
     extinf_line = lines[i].strip()
     extinf_line = remove_group_title(extinf_line)
 
     chno = ""
-    cache_key = get_channel_unique_key(extinf_line)
-    
     if "," in extinf_line:
         prefix_part, title = extinf_line.split(",", 1)
         cleaned_title = clean_channel_title(title)
@@ -256,7 +213,9 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
         lower_text += lines[b].lower()
 
     is_hotstar = "hotstar" in lower_text or "jhs" in lower_text
-    is_sliv = "sliv" in lower_text or "sony" in lower_text or "ten" in lower_text
+    is_sliv = (
+        "sliv" in lower_text or "sony" in lower_text or "ten" in lower_text
+    )
 
     channel_lines = [extinf_line]
     try:
@@ -269,24 +228,42 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
                 )
 
         if is_hotstar:
-            user_agent = "Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)"
+            user_agent = (
+                "Hotstar;in.startv.hotstar/"
+                "25.02.24.8.11169 (Android/15)"
+            )
+        elif is_sliv:
+            user_agent = (
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/120.0.0.0 Safari/537.36"
+            )
         else:
             user_agent = "Denver1769"
 
         formatted_license_key = None
         if key_url:
             try:
-                key_url = clean_val(key_url.replace('"', "").replace("'", ""))
-                key_res = session.get(key_url, headers={"User-Agent": user_agent}, timeout=3)
+                key_url = clean_val(
+                    key_url.replace('"', "").replace("'", "")
+                )
+                key_res = session.get(
+                    key_url, headers={"User-Agent": user_agent}, timeout=3
+                )
                 if key_res.status_code == 200:
                     key_json = key_res.json()
                     key_pairs = []
-                    keys_list = key_json.get("base64", {}).get("keys", [])
+                    keys_list = key_json.get(
+                        "base64", {}
+                    ).get("keys", [])
                     for k_obj in keys_list:
                         kid_b64 = clean_val(k_obj.get("kid", ""))
                         k_b64 = clean_val(k_obj.get("k", ""))
                         if kid_b64 and k_b64:
-                            key_pairs.append(f"{b64_to_hex(kid_b64)}:{b64_to_hex(k_b64)}")
+                            key_pairs.append(
+                                f"{b64_to_hex(kid_b64)}:"
+                                f"{b64_to_hex(k_b64)}"
+                            )
                     if key_pairs:
                         formatted_license_key = ",".join(key_pairs)
             except Exception:
@@ -297,38 +274,56 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
 
         final_stream_url = raw_stream_line
         if raw_stream_line:
-            resolved = resolve_stream_url(raw_stream_line, session, user_agent, is_hotstar, is_sliv)
+            resolved = resolve_stream_url(
+                raw_stream_line, session, user_agent, is_hotstar, is_sliv
+            )
             if resolved:
-                final_stream_url = clean_val(resolved.split('"')[0].split(",")[0])
-
-        is_failed_stream = (not final_stream_url or "playindia.fun" in final_stream_url.lower() or "api failed" in final_stream_url.lower())
-        is_missing_license = (".mpd" in final_stream_url.lower() and formatted_license_key == "null:null")
-        
-        if (is_failed_stream or is_missing_license) and cache_key in old_cache:
-            cached_block = list(old_cache[cache_key])
-            cached_block[0] = extinf_line
-            return chno, cached_block
+                final_stream_url = clean_val(
+                    resolved.split('"')[0].split(",")[0]
+                )
 
         is_mpd_link = ".mpd" in final_stream_url.lower()
 
-        channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
-        channel_lines.append("#KODIPROP:inputstream.adaptive.manifest_type=" + ("mpd" if is_mpd_link else "hls"))
-        channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
-        channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=automatic")
-        channel_lines.append("#KODIPROP:inputstream.adaptive.max_buffer_time=1")
-        channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=1")
-        channel_lines.append("#KODIPROP:inputstream.adaptive.live_delay=0")
+        channel_lines.append(
+            "#KODIPROP:inputstream=inputstream.adaptive"
+        )
+        channel_lines.append(
+            "#KODIPROP:inputstream.adaptive.manifest_type="
+            + ("mpd" if is_mpd_link else "hls")
+        )
+        channel_lines.append(
+            "#KODIPROP:inputstream.adaptive.max_bandwidth=0"
+        )
+        channel_lines.append(
+            "#KODIPROP:inputstream.adaptive.stream_selection_type=automatic"
+        )
+        channel_lines.append(
+            "#KODIPROP:inputstream.adaptive.max_buffer_time=300"
+        )
+        channel_lines.append(
+            "#KODIPROP:inputstream.adaptive.buffer_segment_size=1000"
+        )
+        channel_lines.append(
+            "#KODIPROP:inputstream.adaptive.live_delay=0"
+        )
 
         if is_hotstar:
             cookie_str = ""
-            for check_line in ([raw_stream_line] + lines[max(0, i - 2):min(len(lines), i + 3)]):
+            for check_line in (
+                [raw_stream_line]
+                + lines[max(0, i - 2):min(len(lines), i + 3)]
+            ):
                 check_line = clean_val(check_line)
                 if "hdntl=" in check_line:
                     try:
                         for part in check_line.split("hdntl=")[1:]:
-                            candidate = clean_val(part.split()[0].split('"')[0])
+                            candidate = clean_val(
+                                part.split()[0].split('"')[0]
+                            )
                             if "exp=" in candidate:
-                                cookie_str = "hdntl=" + clean_val(candidate.split("&")[0])
+                                cookie_str = (
+                                    "hdntl=" + clean_val(candidate.split("&")[0])
+                                )
                                 break
                     except Exception:
                         pass
@@ -336,69 +331,154 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
                     break
 
             if not cookie_str:
-                cookie_str = "hdntl=exp=1791763208~acl=%2f*~id=ce6ecdabc53ea306cc7be95fa7a1b49c~data=hdntl~hmac=8a7405e9c3a1f2880ac44abb4e3fee31d750b5c4d6d4bfaa67bac50b175140a1"
+                cookie_str = (
+                    "hdntl=exp=1791763208~acl=%2f*"
+                    "~id=ce6ecdabc53ea306cc7be95fa7a1b49c"
+                    "~data=hdntl"
+                    "~hmac=8a7405e9c3a1f2880ac44abb4e3fee31"
+                    "d750b5c4d6d4bfaa67bac50b175140a1"
+                )
 
-            base_url = clean_val(final_stream_url.split("|")[0].split('"')[0])
-            pipe_headers = f"User-Agent={user_agent}&Accept-Encoding=identity&X-Denver-Secure=true&Host=livetv.hotstar.com&Connection=Keep-Alive&Cookie={cookie_str}"
-            channel_lines.append(clean_val(f"{base_url}|{pipe_headers}"))
+            base_url = clean_val(
+                final_stream_url.split("|")[0].split('"')[0]
+            )
+            if is_mpd_link:
+                channel_lines.append(
+                    "#KODIPROP:inputstream.adaptive.license_type=clearkey"
+                )
+                channel_lines.append(
+                    "#KODIPROP:inputstream.adaptive.license_key="
+                    + formatted_license_key
+                )
+                pipe_headers = (
+                    f"User-Agent={user_agent}"
+                    "&Accept-Encoding=identity"
+                    "&X-Denver-Secure=true"
+                    "&Host=livetv.hotstar.com"
+                    "&Connection=Keep-Alive"
+                    f"&Cookie={cookie_str}"
+                )
+            else:
+                pipe_headers = (
+                    f"User-Agent={user_agent}"
+                    "&Origin=https://www.hotstar.com"
+                    "&Referer=https://www.hotstar.com/"
+                    f"&Cookie={cookie_str}"
+                )
+            channel_lines.append(
+                clean_val(f"{base_url}|{pipe_headers}")
+            )
 
-        else:
-            target_url = final_stream_url if final_stream_url else raw_stream_line
-            jio_cookie = ""
-            
-            if "__hdnea__=" in target_url or "hdnea=" in target_url:
-                try:
-                    token_key = "__hdnea__=" if "__hdnea__=" in target_url else "hdnea="
-                    jio_cookie = token_key + target_url.split(token_key)[1].split("&")[0].split('"')[0]
-                    target_url = target_url.split("?")[0]
-                except Exception:
-                    pass
-
-            if not jio_cookie:
-                for check_line in ([raw_stream_line] + lines[max(0, i - 2):min(len(lines), i + 3)]):
+        elif is_sliv:
+            if is_mpd_link:
+                channel_lines.append(
+                    "#KODIPROP:inputstream.adaptive.license_type=clearkey"
+                )
+                channel_lines.append(
+                    "#KODIPROP:inputstream.adaptive.license_key="
+                    + formatted_license_key
+                )
+                channel_lines.append(
+                    f"#EXTVLCOPT:http-user-agent={user_agent}"
+                )
+                channel_lines.append(
+                    "#EXTVLCOPT:http-referrer=https://www.sonyliv.com/"
+                )
+                channel_lines.append(
+                    "#EXTVLCOPT:http-extra-headers="
+                    "Origin: https://www.sonyliv.com"
+                )
+                channel_lines.append(
+                    clean_val(final_stream_url)
+                    if final_stream_url
+                    else clean_val(raw_stream_line)
+                )
+            else:
+                channel_lines.append(
+                    "#KODIPROP:inputstream.adaptive.license_type=clearkey"
+                )
+                channel_lines.append(
+                    "#KODIPROP:inputstream.adaptive.license_key="
+                    + formatted_license_key
+                )
+                channel_lines.append(
+                    f"#EXTVLCOPT:http-user-agent={user_agent}"
+                )
+                jio_cookie = ""
+                for check_line in (
+                    [raw_stream_line]
+                    + lines[max(0, i - 2):min(len(lines), i + 3)]
+                ):
                     check_line = clean_val(check_line)
-                    if "hdnea=" in check_line or "__hdnea__=" in check_line:
+                    if "hdnea=" in check_line:
                         try:
-                            token_key = "__hdnea__=" if "__hdnea__=" in check_line else "hdnea="
-                            for part in check_line.split(token_key)[1:]:
+                            for part in check_line.split("hdnea=")[1:]:
                                 candidate = clean_val(part.split()[0])
                                 if "exp=" in candidate or "st=" in candidate:
-                                    jio_cookie = token_key + clean_val(candidate.split("&")[0])
+                                    jio_cookie = (
+                                        "hdnea=" + clean_val(candidate.split("&")[0])
+                                    )
                                     break
                         except Exception:
                             pass
                     if jio_cookie:
                         break
 
-            channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
-            channel_lines.append("#KODIPROP:inputstream.adaptive.license_key=" + formatted_license_key)
-            
-            if jio_cookie:
-                # Clean up list to avoid any fragmented/duplicate entries
-                channel_lines = [l for l in channel_lines if not l.startswith("#EXTVLCOPT:") and not l.startswith("#EXTHTTP:")]
-                
-                channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
-                channel_lines.append(f"#EXTVLCOPT:http-cookie={jio_cookie}")
+                if jio_cookie:
+                    channel_lines.append(
+                        f"#EXTVLCOPT:http-cookie={jio_cookie}"
+                    )
+                    channel_lines.append(
+                        '#EXTHTTP:{"Origin":"https://www.jiotv.com/",'
+                        '"Referer":"https://www.jiotv.com/",'
+                        f'"Cookie":"{jio_cookie}",'
+                        '"Connection":"keep-alive"}'
+                    )
+                else:
+                    channel_lines.append(
+                        '#EXTHTTP:{"Origin":"https://www.jiotv.com/",'
+                        '"Referer":"https://www.jiotv.com/",'
+                        '"Connection":"keep-alive"}'
+                    )
                 channel_lines.append(
-                    f'#EXTHTTP:{{"User-Agent":"{user_agent}","Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/","Cookie":"{jio_cookie}","Connection":"keep-alive"}}'
+                    clean_val(final_stream_url)
+                    if final_stream_url
+                    else clean_val(raw_stream_line)
                 )
-            else:
-                channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
-
-            channel_lines.append(clean_val(target_url))
+        else:
+            channel_lines.append(
+                "#KODIPROP:inputstream.adaptive.license_type=clearkey"
+            )
+            channel_lines.append(
+                "#KODIPROP:inputstream.adaptive.license_key="
+                + formatted_license_key
+            )
+            channel_lines.append(
+                f"#EXTVLCOPT:http-user-agent={user_agent}"
+            )
+            channel_lines.append(
+                clean_val(final_stream_url)
+                if final_stream_url
+                else clean_val(raw_stream_line)
+            )
 
     except Exception as e:
         print(f"[-] Channel processing error at line {i}: {e}")
-        if cache_key in old_cache:
-            cached_block = list(old_cache[cache_key])
-            cached_block[0] = extinf_line
-            return chno, cached_block
-
         channel_lines = [extinf_line]
-        channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
-        channel_lines.append("#KODIPROP:inputstream.adaptive.license_key=null:null")
-        channel_lines.append(f"#EXTVLCOPT:http-user-agent=Denver1769")
-        channel_lines.append(clean_val(raw_stream_line) if raw_stream_line else "")
+        channel_lines.append(
+            "#KODIPROP:inputstream.adaptive.license_type=clearkey"
+        )
+        channel_lines.append(
+            "#KODIPROP:inputstream.adaptive.license_key=null:null"
+        )
+        channel_lines.append(
+            f"#EXTVLCOPT:http-user-agent=Denver1769"
+        )
+        channel_lines.append(
+            clean_val(raw_stream_line)
+            if raw_stream_line
+            else ""
+        )
 
     return chno, channel_lines
 
@@ -410,10 +490,11 @@ def generate_safe_playlist_1000():
     session = get_robust_session()
     clear_old_ips(session)
     lcn_dict = fetch_lcn_dict(session)
-    old_cache = load_old_playlist_cache()
 
     try:
-        res = session.get(PLAYLIST_URL, headers={"User-Agent": "Denver1769"}, timeout=30)
+        res = session.get(
+            PLAYLIST_URL, headers={"User-Agent": "Denver1769"}, timeout=30
+        )
         if res.status_code != 200:
             print(f"[-] Playlist HTTP status: {res.status_code}")
             return
@@ -428,6 +509,7 @@ def generate_safe_playlist_1000():
 
         target_indices = [item[0] for item in all_channels[:MAX_CHANNELS]]
         
+        # Pre-pass: Build complete LCN cache for all channels sequentially
         global_seen_lcn = {}
         for idx in target_indices:
             extinf_line = remove_group_title(lines[idx].strip())
@@ -445,7 +527,7 @@ def generate_safe_playlist_1000():
             futures = {}
             for idx in target_indices:
                 fut = executor.submit(
-                    process_single_channel, idx, lines, session, lcn_dict, global_seen_lcn, old_cache
+                    process_single_channel, idx, lines, session, lcn_dict, global_seen_lcn
                 )
                 futures[fut] = idx
 
