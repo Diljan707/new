@@ -94,7 +94,7 @@ def clean_val(val):
     if not val:
         return ""
     val = val.strip()
-    while val and val[-1] in ('"', "'", '}', ']', '}', '~', ','):
+    while val and val[-1] in ('"', "'", '}', ']', '~', ','):
         val = val[:-1].strip()
     return val
 
@@ -456,7 +456,7 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
                     '"Origin":"https://www.jiotv.com/",'
                     '"Referer":"https://www.jiotv.com/",'
                     f'"Cookie":"{jio_cookie}",'
-                    '"Connection":"keep-alive"}'
+                    '"Connection":"Keep-Alive"}'
                 )
 
             channel_lines.append(clean_val(target_url))
