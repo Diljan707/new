@@ -462,13 +462,14 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
                     + lines[max(0, i - 2):min(len(lines), i + 3)]
                 ):
                     check_line = clean_val(check_line)
-                    if "hdnea=" in check_line:
+                    if "hdnea=" in check_line or "__hdnea__=" in check_line:
                         try:
-                            for part in check_line.split("hdnea=")[1:]:
+                            token_part = "hdnea=" if "hdnea=" in check_line else "__hdnea__="
+                            for part in check_line.split(token_part)[1:]:
                                 candidate = clean_val(part.split()[0])
                                 if "exp=" in candidate or "st=" in candidate:
                                     jio_cookie = (
-                                        "hdnea=" + clean_val(candidate.split("&")[0])
+                                        token_part + clean_val(candidate.split("&")[0])
                                     )
                                     break
                         except Exception:
@@ -498,20 +499,35 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
                     else clean_val(raw_stream_line)
                 )
         else:
+            # JioTV standard channels handling (Cookie formatting)
+            target_url = final_stream_url if final_stream_url else raw_stream_line
             jio_cookie = ""
-            for check_line in ([raw_stream_line] + lines[max(0, i - 2):min(len(lines), i + 3)]):
-                check_line = clean_val(check_line)
-                if "hdnea=" in check_line:
-                    try:
-                        for part in check_line.split("hdnea=")[1:]:
-                            candidate = clean_val(part.split()[0])
-                            if "exp=" in candidate or "st=" in candidate:
-                                jio_cookie = "hdnea=" + clean_val(candidate.split("&")[0])
-                                break
-                    except Exception:
-                        pass
-                if jio_cookie:
-                    break
+            
+            # Extract token either from URL params or surrounding playlist lines
+            if "__hdnea__=" in target_url or "hdnea=" in target_url:
+                try:
+                    token_key = "__hdnea__=" if "__hdnea__=" in target_url else "hdnea="
+                    jio_cookie = token_key + target_url.split(token_key)[1].split("&")[0].split('"')[0]
+                    # Clean base URL by removing query param if converting to Cookie header
+                    target_url = target_url.split("?")[0]
+                except Exception:
+                    pass
+
+            if not jio_cookie:
+                for check_line in ([raw_stream_line] + lines[max(0, i - 2):min(len(lines), i + 3)]):
+                    check_line = clean_val(check_line)
+                    if "hdnea=" in check_line or "__hdnea__=" in check_line:
+                        try:
+                            token_key = "__hdnea__=" if "__hdnea__=" in check_line else "hdnea="
+                            for part in check_line.split(token_key)[1:]:
+                                candidate = clean_val(part.split()[0])
+                                if "exp=" in candidate or "st=" in candidate:
+                                    jio_cookie = token_key + clean_val(candidate.split("&")[0])
+                                    break
+                        except Exception:
+                            pass
+                    if jio_cookie:
+                        break
 
             channel_lines.append(
                 "#KODIPROP:inputstream.adaptive.license_type=clearkey"
@@ -523,14 +539,18 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
             channel_lines.append(
                 f"#EXTVLCOPT:http-user-agent={user_agent}"
             )
+
             if jio_cookie:
                 channel_lines.append(f"#EXTVLCOPT:http-cookie={jio_cookie}")
-            
-            channel_lines.append(
-                clean_val(final_stream_url)
-                if final_stream_url
-                else clean_val(raw_stream_line)
-            )
+                channel_lines.append(
+                    '#EXTHTTP:{"User-Agent":"' + user_agent + '",'
+                    '"Origin":"https://www.jiotv.com/",'
+                    '"Referer":"https://www.jiotv.com/",'
+                    f'"Cookie":"{jio_cookie}",'
+                    '"Connection":"keep-alive"}'
+                )
+
+            channel_lines.append(clean_val(target_url))
 
     except Exception as e:
         print(f"[-] Channel processing error at line {i}: {e}")
