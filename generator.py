@@ -178,9 +178,8 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
             "Referer": "https://www.hotstar.com/",
             "Accept-Encoding": "identity"
         })
-    elif is_sliv:
-        headers.update({"Origin": "https://www.sonyliv.com", "Referer": "https://www.sonyliv.com/"})
     else:
+        # Force JioTV CDN headers even for sliv if it points to jiotvmblive CDN
         headers.update({
             "Origin": "https://www.jiotv.com",
             "Referer": "https://www.jiotv.com/",
@@ -257,9 +256,7 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
         lower_text += lines[b].lower()
 
     is_hotstar = "hotstar" in lower_text or "jhs" in lower_text
-    is_sliv = (
-        "sliv" in lower_text or "sony" in lower_text or "ten" in lower_text
-    )
+    is_sliv = "sliv" in lower_text or "sony" in lower_text or "ten" in lower_text
 
     channel_lines = [extinf_line]
     try:
@@ -272,42 +269,25 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
                 )
 
         if is_hotstar:
-            user_agent = (
-                "Hotstar;in.startv.hotstar/"
-                "25.02.24.8.11169 (Android/15)"
-            )
-        elif is_sliv:
-            user_agent = (
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                "AppleWebKit/537.36 (KHTML, like Gecko) "
-                "Chrome/120.0.0.0 Safari/537.36"
-            )
+            user_agent = "Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)"
         else:
+            # Force Denver1769 for all JioTV/Sony CDN links to prevent 403
             user_agent = "Denver1769"
 
         formatted_license_key = None
         if key_url:
             try:
-                key_url = clean_val(
-                    key_url.replace('"', "").replace("'", "")
-                )
-                key_res = session.get(
-                    key_url, headers={"User-Agent": user_agent}, timeout=3
-                )
+                key_url = clean_val(key_url.replace('"', "").replace("'", ""))
+                key_res = session.get(key_url, headers={"User-Agent": user_agent}, timeout=3)
                 if key_res.status_code == 200:
                     key_json = key_res.json()
                     key_pairs = []
-                    keys_list = key_json.get(
-                        "base64", {}
-                    ).get("keys", [])
+                    keys_list = key_json.get("base64", {}).get("keys", [])
                     for k_obj in keys_list:
                         kid_b64 = clean_val(k_obj.get("kid", ""))
                         k_b64 = clean_val(k_obj.get("k", ""))
                         if kid_b64 and k_b64:
-                            key_pairs.append(
-                                f"{b64_to_hex(kid_b64)}:"
-                                f"{b64_to_hex(k_b64)}"
-                            )
+                            key_pairs.append(f"{b64_to_hex(kid_b64)}:{b64_to_hex(k_b64)}")
                     if key_pairs:
                         formatted_license_key = ",".join(key_pairs)
             except Exception:
@@ -318,13 +298,9 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
 
         final_stream_url = raw_stream_line
         if raw_stream_line:
-            resolved = resolve_stream_url(
-                raw_stream_line, session, user_agent, is_hotstar, is_sliv
-            )
+            resolved = resolve_stream_url(raw_stream_line, session, user_agent, is_hotstar, is_sliv)
             if resolved:
-                final_stream_url = clean_val(
-                    resolved.split('"')[0].split(",")[0]
-                )
+                final_stream_url = clean_val(resolved.split('"')[0].split(",")[0])
 
         is_failed_stream = (not final_stream_url or "playindia.fun" in final_stream_url.lower() or "api failed" in final_stream_url.lower())
         is_missing_license = (".mpd" in final_stream_url.lower() and formatted_license_key == "null:null")
@@ -336,46 +312,24 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
 
         is_mpd_link = ".mpd" in final_stream_url.lower()
 
-        channel_lines.append(
-            "#KODIPROP:inputstream=inputstream.adaptive"
-        )
-        channel_lines.append(
-            "#KODIPROP:inputstream.adaptive.manifest_type="
-            + ("mpd" if is_mpd_link else "hls")
-        )
-        channel_lines.append(
-            "#KODIPROP:inputstream.adaptive.max_bandwidth=0"
-        )
-        channel_lines.append(
-            "#KODIPROP:inputstream.adaptive.stream_selection_type=automatic"
-        )
-        channel_lines.append(
-            "#KODIPROP:inputstream.adaptive.max_buffer_time=1"
-        )
-        channel_lines.append(
-            "#KODIPROP:inputstream.adaptive.buffer_segment_size=1"
-        )
-        channel_lines.append(
-            "#KODIPROP:inputstream.adaptive.live_delay=0"
-        )
+        channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.manifest_type=" + ("mpd" if is_mpd_link else "hls"))
+        channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=automatic")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.max_buffer_time=1")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=1")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.live_delay=0")
 
         if is_hotstar:
             cookie_str = ""
-            for check_line in (
-                [raw_stream_line]
-                + lines[max(0, i - 2):min(len(lines), i + 3)]
-            ):
+            for check_line in ([raw_stream_line] + lines[max(0, i - 2):min(len(lines), i + 3)]):
                 check_line = clean_val(check_line)
                 if "hdntl=" in check_line:
                     try:
                         for part in check_line.split("hdntl=")[1:]:
-                            candidate = clean_val(
-                                part.split()[0].split('"')[0]
-                            )
+                            candidate = clean_val(part.split()[0].split('"')[0])
                             if "exp=" in candidate:
-                                cookie_str = (
-                                    "hdntl=" + clean_val(candidate.split("&")[0])
-                                )
+                                cookie_str = "hdntl=" + clean_val(candidate.split("&")[0])
                                 break
                     except Exception:
                         pass
@@ -383,122 +337,14 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
                     break
 
             if not cookie_str:
-                cookie_str = (
-                    "hdntl=exp=1791763208~acl=%2f*"
-                    "~id=ce6ecdabc53ea306cc7be95fa7a1b49c"
-                    "~data=hdntl"
-                    "~hmac=8a7405e9c3a1f2880ac44abb4e3fee31"
-                    "d750b5c4d6d4bfaa67bac50b175140a1"
-                )
+                cookie_str = "hdntl=exp=1791763208~acl=%2f*~id=ce6ecdabc53ea306cc7be95fa7a1b49c~data=hdntl~hmac=8a7405e9c3a1f2880ac44abb4e3fee31d750b5c4d6d4bfaa67bac50b175140a1"
 
-            base_url = clean_val(
-                final_stream_url.split("|")[0].split('"')[0]
-            )
-            if is_mpd_link:
-                channel_lines.append(
-                    "#KODIPROP:inputstream.adaptive.license_type=clearkey"
-                )
-                channel_lines.append(
-                    "#KODIPROP:inputstream.adaptive.license_key="
-                    + formatted_license_key
-                )
-                pipe_headers = (
-                    f"User-Agent={user_agent}"
-                    "&Accept-Encoding=identity"
-                    "&X-Denver-Secure=true"
-                    "&Host=livetv.hotstar.com"
-                    "&Connection=Keep-Alive"
-                    f"&Cookie={cookie_str}"
-                )
-            else:
-                pipe_headers = (
-                    f"User-Agent={user_agent}"
-                    "&Origin=https://www.hotstar.com"
-                    "&Referer=https://www.hotstar.com/"
-                    f"&Cookie={cookie_str}"
-                )
-            channel_lines.append(
-                clean_val(f"{base_url}|{pipe_headers}")
-            )
+            base_url = clean_val(final_stream_url.split("|")[0].split('"')[0])
+            pipe_headers = f"User-Agent={user_agent}&Accept-Encoding=identity&X-Denver-Secure=true&Host=livetv.hotstar.com&Connection=Keep-Alive&Cookie={cookie_str}"
+            channel_lines.append(clean_val(f"{base_url}|{pipe_headers}"))
 
-        elif is_sliv:
-            if is_mpd_link:
-                channel_lines.append(
-                    "#KODIPROP:inputstream.adaptive.license_type=clearkey"
-                )
-                channel_lines.append(
-                    "#KODIPROP:inputstream.adaptive.license_key="
-                    + formatted_license_key
-                )
-                channel_lines.append(
-                    f"#EXTVLCOPT:http-user-agent={user_agent}"
-                )
-                channel_lines.append(
-                    "#EXTVLCOPT:http-referrer=https://www.sonyliv.com/"
-                )
-                channel_lines.append(
-                    "#EXTVLCOPT:http-extra-headers="
-                    "Origin: https://www.sonyliv.com"
-                )
-                channel_lines.append(
-                    clean_val(final_stream_url)
-                    if final_stream_url
-                    else clean_val(raw_stream_line)
-                )
-            else:
-                channel_lines.append(
-                    "#KODIPROP:inputstream.adaptive.license_type=clearkey"
-                )
-                channel_lines.append(
-                    "#KODIPROP:inputstream.adaptive.license_key="
-                    + formatted_license_key
-                )
-                channel_lines.append(
-                    f"#EXTVLCOPT:http-user-agent={user_agent}"
-                )
-                jio_cookie = ""
-                for check_line in (
-                    [raw_stream_line]
-                    + lines[max(0, i - 2):min(len(lines), i + 3)]
-                ):
-                    check_line = clean_val(check_line)
-                    if "hdnea=" in check_line or "__hdnea__=" in check_line:
-                        try:
-                            token_part = "hdnea=" if "hdnea=" in check_line else "__hdnea__="
-                            for part in check_line.split(token_part)[1:]:
-                                candidate = clean_val(part.split()[0])
-                                if "exp=" in candidate or "st=" in candidate:
-                                    jio_cookie = (
-                                        token_part + clean_val(candidate.split("&")[0])
-                                    )
-                                    break
-                        except Exception:
-                            pass
-                    if jio_cookie:
-                        break
-
-                if jio_cookie:
-                    channel_lines.append(
-                        f"#EXTVLCOPT:http-cookie={jio_cookie}"
-                    )
-                    channel_lines.append(
-                        '#EXTHTTP:{"Origin":"https://www.jiotv.com/",'
-                        '"Referer":"https://www.jiotv.com/",'
-                        f'"Cookie":"{jio_cookie}",'
-                        '"Connection":"keep-alive"}'
-                    )
-                else:
-                    channel_lines.append(
-                        '#EXTHTTP:{"Origin":"https://www.jiotv.com/",'
-                        '"Referer":"https://www.jiotv.com/",'
-                        '"Connection":"keep-alive"}'
-                    )
-                channel_lines.append(
-                    clean_val(final_stream_url)
-                    if final_stream_url
-                    else clean_val(raw_stream_line)
-                )
         else:
+            # Universal handling for JioTV / Sony / Zee CDN links using Denver1769 & Cookie formatting
             target_url = final_stream_url if final_stream_url else raw_stream_line
             jio_cookie = ""
             
@@ -526,16 +372,9 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
                     if jio_cookie:
                         break
 
-            channel_lines.append(
-                "#KODIPROP:inputstream.adaptive.license_type=clearkey"
-            )
-            channel_lines.append(
-                "#KODIPROP:inputstream.adaptive.license_key="
-                + formatted_license_key
-            )
-            channel_lines.append(
-                f"#EXTVLCOPT:http-user-agent={user_agent}"
-            )
+            channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
+            channel_lines.append("#KODIPROP:inputstream.adaptive.license_key=" + formatted_license_key)
+            channel_lines.append(f"#EXTVLCOPT:http-user-agent={user_agent}")
 
             if jio_cookie:
                 channel_lines.append(f"#EXTVLCOPT:http-cookie={jio_cookie}")
@@ -557,22 +396,11 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
             return chno, cached_block
 
         channel_lines = [extinf_line]
-        channel_lines.append(
-            "#KODIPROP:inputstream.adaptive.license_type=clearkey"
-        )
-        channel_lines.append(
-            "#KODIPROP:inputstream.adaptive.license_key=null:null"
-        )
-        channel_lines.append(
-            f"#EXTVLCOPT:http-user-agent=Denver1769"
-        )
-        channel_lines.append(
-            clean_val(raw_stream_line)
-            if raw_stream_line
-            else ""
-        )
+        channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.license_key=null:null")
+        channel_lines.append(f"#EXTVLCOPT:http-user-agent=Denver1769")
+        channel_lines.append(clean_val(raw_stream_line) if raw_stream_line else "")
 
-    # Clean newline separation check between blocks
     return chno, channel_lines
 
 def generate_safe_playlist_1000():
@@ -586,9 +414,7 @@ def generate_safe_playlist_1000():
     old_cache = load_old_playlist_cache()
 
     try:
-        res = session.get(
-            PLAYLIST_URL, headers={"User-Agent": "Denver1769"}, timeout=30
-        )
+        res = session.get(PLAYLIST_URL, headers={"User-Agent": "Denver1769"}, timeout=30)
         if res.status_code != 200:
             print(f"[-] Playlist HTTP status: {res.status_code}")
             return
