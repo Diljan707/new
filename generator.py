@@ -326,12 +326,11 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
                     resolved.split('"')[0].split(",")[0]
                 )
 
-        # Issue 1 & 3 Fix: Comprehensive check for failed stream or missing license key/tokens, using unique cache key
         is_failed_stream = (not final_stream_url or "playindia.fun" in final_stream_url.lower() or "api failed" in final_stream_url.lower())
         is_missing_license = (".mpd" in final_stream_url.lower() and formatted_license_key == "null:null")
         
         if (is_failed_stream or is_missing_license) and cache_key in old_cache:
-            cached_block = list(old_cache[cache_key]) # Issue 2 Fix: Copy list to prevent mutating original cache reference
+            cached_block = list(old_cache[cache_key])
             cached_block[0] = extinf_line
             return chno, cached_block
 
@@ -499,6 +498,21 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
                     else clean_val(raw_stream_line)
                 )
         else:
+            jio_cookie = ""
+            for check_line in ([raw_stream_line] + lines[max(0, i - 2):min(len(lines), i + 3)]):
+                check_line = clean_val(check_line)
+                if "hdnea=" in check_line:
+                    try:
+                        for part in check_line.split("hdnea=")[1:]:
+                            candidate = clean_val(part.split()[0])
+                            if "exp=" in candidate or "st=" in candidate:
+                                jio_cookie = "hdnea=" + clean_val(candidate.split("&")[0])
+                                break
+                    except Exception:
+                        pass
+                if jio_cookie:
+                    break
+
             channel_lines.append(
                 "#KODIPROP:inputstream.adaptive.license_type=clearkey"
             )
@@ -509,6 +523,9 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
             channel_lines.append(
                 f"#EXTVLCOPT:http-user-agent={user_agent}"
             )
+            if jio_cookie:
+                channel_lines.append(f"#EXTVLCOPT:http-cookie={jio_cookie}")
+            
             channel_lines.append(
                 clean_val(final_stream_url)
                 if final_stream_url
