@@ -18,6 +18,28 @@ LCN_LIST_URL = (
 MAX_CHANNELS = 2000
 MAX_WORKERS = 40
 
+def get_channel_unique_key(extinf_line):
+    tvg_id = ""
+    if 'tvg-id="' in extinf_line:
+        try:
+            tvg_id = extinf_line.split('tvg-id="')[1].split('"')[0].lower().strip()
+        except Exception:
+            pass
+    
+    title = ""
+    if "," in extinf_line:
+        _, title = extinf_line.split(",", 1)
+    
+    clean_t = re.sub(r'\s*\(\d+\)\s*', '', title).lower().strip()
+    cleaned_title = re.sub(r'\bdigital\b', '', clean_t, flags=re.IGNORECASE)
+    if "star sports" not in cleaned_title:
+        cleaned_title = re.sub(r'\bhindi\b', '', cleaned_title, flags=re.IGNORECASE)
+    cleaned_title = " ".join(cleaned_title.split())
+    
+    if tvg_id:
+        return f"{tvg_id}_{cleaned_title}"
+    return cleaned_title
+
 def load_old_playlist_cache():
     old_cache = {}
     output_file = ".m3u"
@@ -39,10 +61,9 @@ def load_old_playlist_cache():
                         channel_lines.append(lines[i].strip())
                         i += 1
                     
-                    if "," in extinf_line:
-                        _, title = extinf_line.split(",", 1)
-                        clean_t = re.sub(r'\s*\(\d+\)\s*', '', title).lower().strip()
-                        old_cache[clean_t] = channel_lines
+                    cache_key = get_channel_unique_key(extinf_line)
+                    if cache_key:
+                        old_cache[cache_key] = channel_lines
                     continue
                 i += 1
         print(f"[+] Loaded {len(old_cache)} channels from old cache!\n")
@@ -200,7 +221,8 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
     extinf_line = remove_group_title(extinf_line)
 
     chno = ""
-    cleaned_title = ""
+    cache_key = get_channel_unique_key(extinf_line)
+    
     if "," in extinf_line:
         prefix_part, title = extinf_line.split(",", 1)
         cleaned_title = clean_channel_title(title)
@@ -304,11 +326,12 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
                     resolved.split('"')[0].split(",")[0]
                 )
 
-        cache_key = cleaned_title.lower().strip()
+        # Issue 1 & 3 Fix: Comprehensive check for failed stream or missing license key/tokens, using unique cache key
         is_failed_stream = (not final_stream_url or "playindia.fun" in final_stream_url.lower() or "api failed" in final_stream_url.lower())
+        is_missing_license = (".mpd" in final_stream_url.lower() and formatted_license_key == "null:null")
         
-        if is_failed_stream and cache_key in old_cache:
-            cached_block = old_cache[cache_key]
+        if (is_failed_stream or is_missing_license) and cache_key in old_cache:
+            cached_block = list(old_cache[cache_key]) # Issue 2 Fix: Copy list to prevent mutating original cache reference
             cached_block[0] = extinf_line
             return chno, cached_block
 
@@ -494,9 +517,8 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
 
     except Exception as e:
         print(f"[-] Channel processing error at line {i}: {e}")
-        cache_key = cleaned_title.lower().strip() if cleaned_title else ""
-        if cache_key and cache_key in old_cache:
-            cached_block = old_cache[cache_key]
+        if cache_key in old_cache:
+            cached_block = list(old_cache[cache_key])
             cached_block[0] = extinf_line
             return chno, cached_block
 
