@@ -40,6 +40,15 @@ def get_channel_unique_key(extinf_line):
         return f"{tvg_id}_{cleaned_title}"
     return cleaned_title
 
+def clean_cached_lines(lines_list):
+    cleaned = []
+    for line in lines_list:
+        l_lower = line.lower()
+        if "http-user-agent" in l_lower or "user-agent" in l_lower:
+            continue
+        cleaned.append(line)
+    return cleaned
+
 def load_old_playlist_cache():
     old_cache = {}
     output_file = "m3u"
@@ -63,7 +72,7 @@ def load_old_playlist_cache():
                     
                     cache_key = get_channel_unique_key(extinf_line)
                     if cache_key:
-                        old_cache[cache_key] = channel_lines
+                        old_cache[cache_key] = clean_cached_lines(channel_lines)
                     continue
                 i += 1
         print(f"[+] Loaded {len(old_cache)} channels from old cache!\n")
@@ -272,9 +281,7 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
                 key_url = clean_val(
                     key_url.replace('"', "").replace("'", "")
                 )
-                key_res = session.get(
-                    key_url, timeout=3
-                )
+                key_res = session.get(key_url, timeout=3)
                 if key_res.status_code == 200:
                     key_json = key_res.json()
                     key_pairs = []
@@ -480,9 +487,7 @@ def generate_safe_playlist_1000():
     old_cache = load_old_playlist_cache()
 
     try:
-        res = session.get(
-            PLAYLIST_URL, timeout=30
-        )
+        res = session.get(PLAYLIST_URL, timeout=30)
         if res.status_code != 200:
             print(f"[-] Playlist HTTP status: {res.status_code}")
             return
