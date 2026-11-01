@@ -42,11 +42,11 @@ def get_channel_unique_key(extinf_line):
 
 def load_old_playlist_cache():
     old_cache = {}
-    output_file = ".m3u"
+    output_file = "m3u"
     if not os.path.exists(output_file):
         return old_cache
     
-    print("[*] Loading old .m3u cache for fallback tokens...")
+    print("[*] Loading old m3u cache for fallback tokens...")
     try:
         with open(output_file, "r", encoding="utf-8") as f:
             lines = f.read().splitlines()
