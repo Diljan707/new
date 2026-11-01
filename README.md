@@ -1,143 +1,111 @@
 <div align="center">⚡ DILJAN707
 
-DEVELOPER • IPTV TECHNOLOGY • AUTOMATION • ANDROID
+DEVELOPER | TECHNOLOGY | IPTV | AUTOMATION
 
-<a href="https://github.com/diljan707">
-  <img src="https://img.shields.io/badge/GitHub-DILJAN707-181717?style=for-the-badge&logo=github" />
-</a>
-<a href="https://github.com/diljan707?tab=repositories">
-  <img src="https://img.shields.io/badge/Repositories-Explore-blue?style=for-the-badge&logo=github" />
-</a>
-<a href="https://diljan707.github.io/new/playlist.m3u">
-  <img src="https://img.shields.io/badge/Live-IPTV%20Playlist-orange?style=for-the-badge&logo=play" />
-</a><br />Building Digital Experiences Through Technology & Innovation
+""GitHub" (https://img.shields.io/badge/GitHub-Diljan707-181717?style=for-the-badge&logo=github)" (https://github.com/diljan707)
+""Repositories" (https://img.shields.io/badge/Explore-Projects-blue?style=for-the-badge&logo=github)" (https://github.com/diljan707?tab=repositories)
+""IPTV" (https://img.shields.io/badge/Live-IPTV-orange?style=for-the-badge&logo=play)" (https://diljan707.github.io/new/playlist.m3u)
 
-IPTV Solutions | Stream Automation | HLS Technology | Android Projects
+BUILDING • INNOVATING • DEVELOPING
+
+Welcome to the official Diljan707 Project Ecosystem.
 
 </div>---
 
-👨‍💻 About Diljan707
+👨‍💻 ABOUT
 
-Welcome to the official GitHub development hub of Diljan707.
+Diljan707 is an independent technology and development ecosystem focused on IPTV solutions, streaming technologies, automation, playlist management, and Android projects.
 
-This profile brings together projects focused on IPTV playlist management, streaming technologies, automation systems, HLS integration, and Android development.
+This hub connects four specialized repositories under one development identity.
 
-The goal is to build practical, organized, and accessible technology solutions through continuous development and experimentation.
+🚀 PROJECT ECOSYSTEM
 
-🚀 Featured Projects
+📺 01 — NEW | IPTV MASTER HUB
 
-Explore the four main repositories of the Diljan707 ecosystem.
+""VIEW REPOSITORY" (https://img.shields.io/badge/VIEW-REPOSITORY-181717?style=for-the-badge&logo=github)" (https://github.com/diljan707/new)
 
-01. 📺 NEW — All-in-One IPTV Hub
+Centralized IPTV playlist aggregation and streaming project.
 
-""Repository" (https://img.shields.io/badge/GitHub-Open%20Repository-181717?style=for-the-badge&logo=github)" (https://github.com/diljan707/new)
-
-A centralized IPTV playlist aggregation project designed to organize multiple streaming sources into one accessible M3U playlist.
-
-Features
-
-- Centralized M3U playlist.
+- Unified M3U playlist.
 - Multiple source integration.
-- GitHub Pages playlist hosting.
+- GitHub Pages hosting.
 - IPTV player compatibility.
 
-Direct Playlist:
+Live Playlist: "OPEN M3U8" (https://diljan707.github.io/new/playlist.m3u)
 
-"Open Live M3U Playlist" (https://diljan707.github.io/new/playlist.m3u)
+---
 
-02. ⚡ Automated — IPTV Stream Automation
+⚡ 02 — AUTOMATED | STREAM AUTOMATION
 
-""Repository" (https://img.shields.io/badge/GitHub-Open%20Repository-181717?style=for-the-badge&logo=github)" (https://github.com/diljan707/Automated-)
+""VIEW REPOSITORY" (https://img.shields.io/badge/VIEW-REPOSITORY-181717?style=for-the-badge&logo=github)" (https://github.com/diljan707/Automated-)
 
-An automation-focused project for managing IPTV stream information and playlist generation.
-
-Features
+Automation-focused IPTV stream and playlist management.
 
 - Automated playlist generation.
 - Stream URL management.
 - EPG integration.
-- Scheduled workflow support.
+- GitHub Actions workflows.
 
-03. 📡 Sony HLS — Streaming Project
+---
 
-""Repository" (https://img.shields.io/badge/GitHub-Open%20Repository-181717?style=for-the-badge&logo=github)" (https://github.com/diljan707/Sony-hls)
+📡 03 — SONY HLS | STREAMING PROJECT
 
-A dedicated project focused on Sony Network HLS stream organization and playlist management.
+""VIEW REPOSITORY" (https://img.shields.io/badge/VIEW-REPOSITORY-181717?style=for-the-badge&logo=github)" (https://github.com/diljan707/Sony-hls)
 
-Features
+Dedicated project for Sony Network HLS streaming organization.
 
-- HLS playlist organization.
-- Streaming URL management.
-- M3U compatibility.
-- Dedicated channel collection.
+- HLS stream management.
+- M3U playlist organization.
+- Channel collection.
+- Streaming compatibility.
 
-04. ▶️ YouTubePro — Android Project
+---
 
-""Repository" (https://img.shields.io/badge/GitHub-Open%20Repository-181717?style=for-the-badge&logo=github)" (https://github.com/diljan707/Youtubepro)
+▶️ 04 — YOUTUBEPRO | ANDROID PROJECT
 
-An Android-focused project related to YouTube application customization and development.
+""VIEW REPOSITORY" (https://img.shields.io/badge/VIEW-REPOSITORY-181717?style=for-the-badge&logo=github)" (https://github.com/diljan707/Youtubepro)
 
-Project Focus
+Android application customization and YouTube-related development project.
 
-- Android application development.
-- Interface customization.
+- Android development.
+- Application customization.
+- Interface experimentation.
 - YouTube-related tools.
-- Application experimentation.
 
 ---
 
-🌐 Live IPTV Access
+🛠️ TECHNOLOGY STACK
 
-Access the centralized playlist directly:
+"Python" (https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+"Android" (https://img.shields.io/badge/Android-3DDC84?style=flat-square&logo=android&logoColor=white)
+"GitHub Actions" (https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white)
+"HTML5" (https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
+"M3U" (https://img.shields.io/badge/M3U-Playlist-blue?style=flat-square)
+"HLS" (https://img.shields.io/badge/HLS-Streaming-orange?style=flat-square)
 
-Playlist URL:
+🌐 OFFICIAL LINKS
 
-"https://diljan707.github.io/new/playlist.m3u"
-
-Compatible players may include:
-
-- VLC Media Player
-- OTT Navigator
-- TiviMate
-
-Availability depends on the individual stream sources.
-
-🧰 Technology & Development Areas
-
-"Android" (https://img.shields.io/badge/Android-Development-3DDC84?style=flat-square&logo=android&logoColor=white)
-"Python" (https://img.shields.io/badge/Python-Automation-3776AB?style=flat-square&logo=python&logoColor=white)
-"GitHub Actions" (https://img.shields.io/badge/GitHub-Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white)
-"HLS" (https://img.shields.io/badge/Streaming-HLS-orange?style=flat-square)
-"M3U" (https://img.shields.io/badge/Playlist-M3U-blue?style=flat-square)
-"HTML" (https://img.shields.io/badge/Web-HTML-E34F26?style=flat-square&logo=html5&logoColor=white)
-
-🔗 Official Links
-
-Platform| Direct Access
+Platform| Link
 GitHub Profile| "Diljan707" (https://github.com/diljan707)
-All Repositories| "Explore Projects" (https://github.com/diljan707?tab=repositories)
-IPTV Master Playlist| "Open Playlist" (https://diljan707.github.io/new/playlist.m3u)
-NEW Repository| "Open Project" (https://github.com/diljan707/new)
-Automated Repository| "Open Project" (https://github.com/diljan707/Automated-)
-Sony HLS Repository| "Open Project" (https://github.com/diljan707/Sony-hls)
-YouTubePro Repository| "Open Project" (https://github.com/diljan707/Youtubepro)
+All Projects| "Repositories" (https://github.com/diljan707?tab=repositories)
+IPTV Playlist| "Live Playlist" (https://diljan707.github.io/new/playlist.m3u)
+NEW| "Repository" (https://github.com/diljan707/new)
+Automated| "Repository" (https://github.com/diljan707/Automated-)
+Sony HLS| "Repository" (https://github.com/diljan707/Sony-hls)
+YouTubePro| "Repository" (https://github.com/diljan707/Youtubepro)
 
-🎯 Our Vision
+🎯 OUR VISION
 
-To explore modern technologies, develop useful digital tools, improve streaming experiences, and build an interconnected ecosystem of practical software projects.
-
-Every project represents an opportunity to learn, experiment, and innovate.
+To develop practical digital solutions, explore modern technologies, improve streaming experiences, and continuously expand the Diljan707 ecosystem.
 
 ---
 
-<div align="center">⚡ POWERED BY DILJAN707
+<div align="center">⚡ DILJAN707
 
-Technology • Innovation • Development
+INDEPENDENT DEVELOPMENT • TECHNOLOGY • INNOVATION
 
-"![Visit GitHub](https://img.shields.io/badge/VISIT- DILJAN707-181717?style=for-the-badge&logo=github)" (https://github.com/diljan707)
+""GitHub" (https://img.shields.io/badge/EXPLORE-DILJAN707-181717?style=for-the-badge&logo=github)" (https://github.com/diljan707)
 
-Official GitHub: "github.com/diljan707" (https://github.com/diljan707)
-
-© 2026 Diljan707. All Rights Reserved.
+© 2026 Diljan707 | All Rights Reserved
 
 </div>
