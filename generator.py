@@ -116,7 +116,7 @@ def clean_channel_title(title):
 def clear_old_ips(session):
     print("[*] Checking and clearing old IPs from IP Manager...")
     headers = {
-        "User-Agent": "Denver1769",
+        "User-Agent": "Mozilla/5.0",
         "Referer": "https://game.playindia.fun/"
     }
     try:
@@ -166,14 +166,13 @@ def b64_to_hex(b64_str):
     except Exception:
         return b64_str
 
-def resolve_stream_url(url, session, user_agent, is_hotstar):
+def resolve_stream_url(url, session, is_hotstar):
     url = clean_val(url)
     if not url:
         return ""
-    headers = {"User-Agent": user_agent}
+    headers = {}
     if is_hotstar:
         headers.update({
-            "User-Agent": "Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)",
             "Origin": "https://www.hotstar.com",
             "Referer": "https://www.hotstar.com/",
             "Accept-Encoding": "identity"
@@ -267,16 +266,6 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
                     sub_b.split("inputstream.adaptive.license_key=")[1].split('"')[0]
                 )
 
-        if is_hotstar:
-            user_agent = (
-                "Hotstar;in.startv.hotstar/"
-                "25.02.24.8.11169 (Android/15)"
-            )
-        
-        # Non-hotstar channels ke liye direct variable assignment (bina else ke)
-        if not is_hotstar:
-            user_agent = "Denver1769"
-
         formatted_license_key = None
         if key_url:
             try:
@@ -284,7 +273,7 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
                     key_url.replace('"', "").replace("'", "")
                 )
                 key_res = session.get(
-                    key_url, headers={"User-Agent": user_agent}, timeout=3
+                    key_url, timeout=3
                 )
                 if key_res.status_code == 200:
                     key_json = key_res.json()
@@ -311,7 +300,7 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
         final_stream_url = raw_stream_line
         if raw_stream_line:
             resolved = resolve_stream_url(
-                raw_stream_line, session, user_agent, is_hotstar
+                raw_stream_line, session, is_hotstar
             )
             if resolved:
                 final_stream_url = clean_val(
@@ -395,8 +384,7 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
                     + formatted_license_key
                 )
                 pipe_headers = (
-                    f"User-Agent={user_agent}"
-                    "&Accept-Encoding=identity"
+                    f"Accept-Encoding=identity"
                     "&X-Denver-Secure=true"
                     "&Host=livetv.hotstar.com"
                     "&Connection=Keep-Alive"
@@ -404,8 +392,7 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
                 )
             else:
                 pipe_headers = (
-                    f"User-Agent={user_agent}"
-                    "&Origin=https://www.hotstar.com"
+                    "Origin=https://www.hotstar.com"
                     "&Referer=https://www.hotstar.com/"
                     f"&Cookie={cookie_str}"
                 )
@@ -413,7 +400,6 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
                 clean_val(f"{base_url}|{pipe_headers}")
             )
 
-        # Non-hotstar channels ke liye direct execution block (bina else ke)
         if not is_hotstar:
             target_url = final_stream_url if final_stream_url else raw_stream_line
             jio_cookie = ""
@@ -449,15 +435,11 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
                 "#KODIPROP:inputstream.adaptive.license_key="
                 + formatted_license_key
             )
-            channel_lines.append(
-                f"#EXTVLCOPT:http-user-agent={user_agent}"
-            )
 
             if jio_cookie:
                 channel_lines.append(f"#EXTVLCOPT:http-cookie={jio_cookie}")
                 channel_lines.append(
-                    '#EXTHTTP:{"User-Agent":"' + user_agent + '",'
-                    '"Accept-Encoding":"gzip",'
+                    '#EXTHTTP:{"Accept-Encoding":"gzip",'
                     '"Host":"jiotvmblive.cdn.jio.com",'
                     '"Connection":"Keep-Alive",'
                     '"Cookie":"' + jio_cookie + '"}'
@@ -480,9 +462,6 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
             "#KODIPROP:inputstream.adaptive.license_key=null:null"
         )
         channel_lines.append(
-            f"#EXTVLCOPT:http-user-agent=Denver1769"
-        )
-        channel_lines.append(
             clean_val(raw_stream_line)
             if raw_stream_line
             else ""
@@ -502,7 +481,7 @@ def generate_safe_playlist_1000():
 
     try:
         res = session.get(
-            PLAYLIST_URL, headers={"User-Agent": "Denver1769"}, timeout=30
+            PLAYLIST_URL, timeout=30
         )
         if res.status_code != 200:
             print(f"[-] Playlist HTTP status: {res.status_code}")
