@@ -17,7 +17,7 @@ Official IPTV Playlist Repository Aggregating All Streams in One Master File.
 🌐 Direct Playlist Stream URL
 To stream directly on any IPTV app (OTT Navigator, TViMate, VLC), use the active direct URL:
 
-https://diljan707.github.io/new/playlist.m3u
+https://diljan707.github.io/new/m3u
 ⚡ Key Highlights
 🎯 Single Stream Source: All channels consolidated directly into one single playlist.
 ⚡ Ultra-Fast Delivery: Optimized HLS streams for seamless and buffer-free playback.
@@ -31,7 +31,7 @@ Repository	Focus / Description	Direct Link
 🚀 Youtubepro	Premium YouTube Modded APKs with MicroG support.	View Repo
 📺 new (This Repo)	Master All-in-One Direct .m3u Stream Aggregator.	View Repo
 🛠️ Quick Setup Guide
-Copy the Direct URL: https://diljan707.github.io/new/playlist.m3u
+Copy the Direct URL: https://diljan707.github.io/new/m3u
 Open your IPTV application (e.g., OTT Navigator or VLC Media Player).
 Paste the link into the Playlist URL / M3U Stream option.
 Save and start playing!
