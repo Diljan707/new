@@ -556,7 +556,7 @@ def generate_safe_playlist_1000():
         for _, res_lines in processed_channels:
             new_lines.extend(res_lines)
 
-        output_file = ".m3u"
+        output_file = "m3u"
         with open(output_file, "w", encoding="utf-8") as f:
             f.write("\n".join(new_lines))
 
