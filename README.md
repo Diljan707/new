@@ -45,7 +45,19 @@ A centralized IPTV playlist aggregation project designed to organize multiple st
 
 **LIVE PLAYLIST**
 
-[![PLAYLIST](https://img.shields.io/badge/OPEN-LIVE_PLAYLIST-FF6600?style=for-the-badge&logo=play)](https://diljan707.github.io/new/playlist.m3u)
+[![OPEN LIVE PLAYLIST](https://img.shields.io/badge/OPEN-LIVE_PLAYLIST-FF6600?style=for-the-badge&logo=play)](https://diljan707.github.io/new/playlist.m3u)
+
+**📋 COPY LIVE PLAYLIST LINK**
+
+```text
+https://diljan707.github.io/new/playlist.m3u
+```
+
+**📋 COPY REPOSITORY LINK**
+
+```text
+https://github.com/diljan707/new
+```
 
 ---
 
@@ -62,6 +74,12 @@ An automation-focused project for IPTV stream management and playlist generation
 - GitHub Actions workflows.
 - Scheduled automation.
 
+**📋 COPY REPOSITORY LINK**
+
+```text
+https://github.com/diljan707/Automated-
+```
+
 ---
 
 ### 📡 03. SONY HLS — STREAMING PROJECT
@@ -77,6 +95,12 @@ A dedicated project focused on Sony Network HLS streaming and playlist organizat
 - Streaming URL management.
 - IPTV compatibility.
 
+**📋 COPY REPOSITORY LINK**
+
+```text
+https://github.com/diljan707/Sony-hls
+```
+
 ---
 
 ### ▶️ 04. YOUTUBEPRO — ANDROID PROJECT
@@ -90,6 +114,12 @@ An Android-focused project related to YouTube application development and custom
 - Interface customization.
 - Application experimentation.
 - YouTube-related tools.
+
+**📋 COPY REPOSITORY LINK**
+
+```text
+https://github.com/diljan707/Youtubepro
+```
 
 ---
 
