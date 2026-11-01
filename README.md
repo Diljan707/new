@@ -1,23 +1,31 @@
 <div align="center">
 
-# 📺 Diljan707 - All-In-One IPTV Master Hub
+​📺 Diljan707 - All-In-One IPTV Master Hub 
 
-[![GitHub Profile](https://img.shields.io/badge/GitHub-Diljan707-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/diljan707)
-[![Live M3U Stream](https://img.shields.io/badge/Playlist-Live%20M3U8-brightgreen?style=for-the-badge&logo=playstation)](https://diljan707.github.io/new/.m3u)
-[![Maintenance](https://img.shields.io/badge/Maintained-Yes-orange?style=for-the-badge&logo=githubactions)](https://github.com/diljan707/new)
+​<br />
 
-<img src="watermarked_img_13041114055310412900.png" width="100%" alt="Diljan707 IPTV Hub Banner">
+​<!-- Branding Banner with Provider Logos & Diljan707 Watermark -->
 
-</div>
+<img src="https://img.shields.io/badge/SOURCES-JioTV%20%7C%20JioTV%2B%20%7C%20VZY%20%7C%20Zee5%20%7C%20FanCode-blue?style=for-the-badge&logo=tv" alt="IPTV Sources Logos" width="100%" />
 
----
+​<br />
 
-## 🌐 Direct Playlist URL
+========================================================================
+             ⚡ POWERED & MAINTAINED BY DILJAN707 ⚡
+========================================================================
+Official IPTV Playlist Repository Aggregating All Streams in One Master File.
 
-```text
-[https://diljan707.github.io/new/.m3u](https://diljan707.github.io/new/.m3u)
+​</div>
 
-🔗 Diljan707 Repositories 
+​🌐 Direct Playlist Stream URL 
+
+​To stream directly on any IPTV app (OTT Navigator, TViMate, VLC), use the active direct URL:
+
+https://diljan707.github.io/new/.m3u
+
+⚡ Key Highlights ​🎯 Single Stream Source: All channels consolidated directly into one single .m3u file. ​⚡ Ultra-Fast Delivery: Optimized HLS streams for seamless and buffer-free playback. ​📱 Universal Compatibility: Fully functional across Android TV, FireStick, Smart TV, iOS, and PC. ​🔗 Diljan707 Repository Network 
+
+​Explore my other specialized IPTV & Android tool repositories:
 
 Repository
 
@@ -27,31 +35,38 @@ Direct Link
 
 ⚡ Automated-
 
-Automated JioTV stream URL generator & daily EPG script.
+Automated JioTV stream URL generator & daily script.
 
 View Repo
 
 📡 Sony hls
 
-Dedicated high-quality HLS streams for Sony Sports & Entertainment.
+Dedicated high-quality HLS streams for Sony Network.
 
 View Repo
 
 🚀 Youtubepro
 
-Premium YouTube Modded APKs with MicroG account login support.
+Premium YouTube Modded APKs with MicroG support.
 
 View Repo
 
 📺 new (This Repo)
 
-Central All-in-One Master IPTV .m3u aggregator.
+Master All-in-One Direct .m3u Stream Aggregator.
 
 View Repo
 
-<div align="center">
+🛠️ Quick Setup Guide ​Copy the Direct URL: https://diljan707.github.io/new/.m3u ​Open your IPTV application (e.g., OTT Navigator or VLC Media Player). ​Paste the link into the Playlist URL / M3U Stream option. ​Save and start playing! 
 
-<sub>Crafted & Maintained by Diljan Khehra (diljan707)</sub>
+​<div align="center">
 
-</div>
+------------------------------------------------------------------------
+       © Diljan707 Ecosystem | All Rights Reserved by Diljan Khehra
+------------------------------------------------------------------------
+
+<sub>Crafted with ❤️ by Diljan Khehra (diljan707)</sub>
+
+​</div>
+
 
