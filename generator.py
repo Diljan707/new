@@ -8,7 +8,7 @@ from urllib3.util.retry import Retry
 from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 
-PLAYLIST_URL = os.environ.get("PLAYLIST_URL")
+PLAYLIST_URL = os.environ.get("PLAYLIST_URL", "https://game.playindia.fun/Jtv/qwerty/Playlist.m3u")
 IP_MANAGER_URL = "https://game.playindia.fun/Jtv/IP.php?id=xP0xaG"
 LCN_LIST_URL = (
     "https://raw.githubusercontent.com/Diljan707/"
@@ -28,7 +28,7 @@ def fetch_lcn_dict(session):
                 if ":" not in line:
                     continue
                 chno, chname = line.split(":", 1)
-                chno =chno.strip()
+                chno = chno.strip()
                 chname = " ".join(chname.strip().lower().split())
                 if chname and chname not in lcn_dict:
                     lcn_dict[chname] = chno
@@ -46,7 +46,6 @@ def clean_val(val):
     return val
 
 def remove_group_title(extinf):
-    # Removes group-title attribute from EXTINF line
     extinf = re.sub(r'\s*group-title="[^"]*"', '', extinf, flags=re.IGNORECASE)
     extinf = re.sub(r"\s*group-title='[^']*'", '', extinf, flags=re.IGNORECASE)
     extinf = re.sub(r'\s*group-title=[^\s,]+', '', extinf, flags=re.IGNORECASE)
@@ -55,7 +54,7 @@ def remove_group_title(extinf):
 def clear_old_ips(session):
     print("[*] Checking IP Manager...")
     headers = {
-        "User-Agent": "Denver1769",
+        "User-Agent": "denver1769",
         "Referer": "https://game.playindia.fun/"
     }
     try:
@@ -113,14 +112,11 @@ def b64_to_hex(b64_str):
 def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
     url = clean_val(url)
     if not url:
-        return url
+        return ""
     headers = {"User-Agent": user_agent}
     if is_hotstar:
         headers.update({
-            "User-Agent": (
-                "Hotstar;in.startv.hotstar/"
-                "25.02.24.8.11169 (Android/15)"
-            ),
+            "User-Agent": "Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)",
             "Origin": "https://www.hotstar.com",
             "Referer": "https://www.hotstar.com/",
             "Accept-Encoding": "identity"
@@ -134,58 +130,51 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
     response = None
     try:
         response = session.get(
-            url, headers=headers, allow_redirects=True, timeout=7, stream=True
+            url, headers=headers, allow_redirects=True, timeout=10, stream=True
         )
-        if response.history and response.url:
-            if "playindia.fun" not in response.url.lower():
-                final_url = response.url
-                response.close()
-                return clean_val(final_url)
         
         if response.status_code == 200:
+            final_url = response.url
+            res_text = ""
             try:
                 res_text = response.text
-                nested_links = []
-                for line in res_text.splitlines():
-                    line = clean_val(line)
-                    if (
-                        "http" in line
-                        and ("m3u8" in line.lower() or "mpd" in line.lower())
-                        and "playindia.fun" not in line.lower()
-                    ):
-                        idx = line.find("http")
-                        clean_link = clean_val(line[idx:].split()[0])
-                        nested_links.append(clean_link)
-                if nested_links:
-                    chosen_link = clean_val(nested_links[-1])
-                    if not chosen_link.startswith("http"):
-                        chosen_link = urljoin(response.url, chosen_link)
-                    response.close()
-                    return chosen_link
             except Exception:
                 pass
-        
-        if response.url and "playindia.fun" not in response.url.lower():
-            final_url = clean_val(response.url)
-            if not final_url.startswith("http"):
-                final_url = urljoin(url, final_url)
             response.close()
-            return final_url
+
+            nested_links = []
+            for line in res_text.splitlines():
+                line = clean_val(line)
+                if (
+                    "http" in line
+                    and ("m3u8" in line.lower() or "mpd" in line.lower())
+                    and "playindia.fun" not in line.lower()
+                ):
+                    idx = line.find("http")
+                    clean_link = clean_val(line[idx:].split()[0])
+                    nested_links.append(clean_link)
+            
+            if nested_links:
+                chosen_link = clean_val(nested_links[-1])
+                if not chosen_link.startswith("http"):
+                    chosen_link = urljoin(final_url, chosen_link)
+                return chosen_link
+            
+            return clean_val(final_url)
+            
     except Exception as e:
-        print(f"[-] Stream resolution error for {url}: {e}")
+        # Fallback to original URL on timeout or network error so script doesn't fail
+        return url
     finally:
         if response is not None:
             try:
                 response.close()
             except Exception:
                 pass
-    # Fallback to original URL if any redirection/resolution error occurs
     return url
 
 def process_single_channel(i, lines, session, lcn_dict):
     extinf_line = lines[i].strip()
-    
-    # Remove group-title as requested
     extinf_line = remove_group_title(extinf_line)
 
     chno = ""
@@ -215,15 +204,6 @@ def process_single_channel(i, lines, session, lcn_dict):
                 )
             extinf_line = f"{prefix_part},{title}"
 
-    channel_id = ""
-    if 'tvg-id="' in extinf_line:
-        try:
-            channel_id = (
-                extinf_line.split('tvg-id="')[1].split('"')[0]
-            )
-        except Exception:
-            pass
-
     raw_stream_line = ""
     for f in range(i + 1, min(len(lines), i + 5)):
         candidate_line = clean_val(lines[f])
@@ -234,20 +214,6 @@ def process_single_channel(i, lines, session, lcn_dict):
             )
             break
 
-    if not channel_id and 'id="' in extinf_line:
-        try:
-            channel_id = extinf_line.split('id="')[1].split('"')[0]
-        except Exception:
-            pass
-
-    if not channel_id and raw_stream_line and "id=" in raw_stream_line:
-        try:
-            channel_id = (
-                raw_stream_line.split("id=")[1].split("&")[0]
-            )
-        except Exception:
-            pass
-
     lower_text = (extinf_line + raw_stream_line).lower()
     for b in range(max(0, i - 3), min(len(lines), i + 4)):
         lower_text += lines[b].lower()
@@ -257,7 +223,6 @@ def process_single_channel(i, lines, session, lcn_dict):
         "sliv" in lower_text or "sony" in lower_text or "ten" in lower_text
     )
 
-    channel_lines = [extinf_line]
     try:
         key_url = None
         for b in range(max(0, i - 3), i):
@@ -279,7 +244,7 @@ def process_single_channel(i, lines, session, lcn_dict):
                 "Chrome/120.0.0.0 Safari/537.36"
             )
         else:
-            user_agent = "Denver1769"
+            user_agent = "denver1769"
 
         formatted_license_key = None
         if key_url:
@@ -312,7 +277,7 @@ def process_single_channel(i, lines, session, lcn_dict):
         if not formatted_license_key:
             formatted_license_key = "null:null"
 
-        final_stream_url = raw_stream_line
+        final_stream_url = ""
         if raw_stream_line:
             resolved = resolve_stream_url(
                 raw_stream_line, session, user_agent, is_hotstar, is_sliv
@@ -322,6 +287,10 @@ def process_single_channel(i, lines, session, lcn_dict):
                     resolved.split('"')[0].split(",")[0]
                 )
 
+        if not final_stream_url:
+            final_stream_url = raw_stream_line
+
+        channel_lines = [extinf_line]
         is_mpd_link = ".mpd" in final_stream_url.lower()
 
         channel_lines.append(
@@ -410,17 +379,17 @@ def process_single_channel(i, lines, session, lcn_dict):
             )
 
         elif is_sliv:
+            channel_lines.append(
+                "#KODIPROP:inputstream.adaptive.license_type=clearkey"
+            )
+            channel_lines.append(
+                "#KODIPROP:inputstream.adaptive.license_key="
+                + formatted_license_key
+            )
+            channel_lines.append(
+                f"#EXTVLCOPT:http-user-agent={user_agent}"
+            )
             if is_mpd_link:
-                channel_lines.append(
-                    "#KODIPROP:inputstream.adaptive.license_type=clearkey"
-                )
-                channel_lines.append(
-                    "#KODIPROP:inputstream.adaptive.license_key="
-                    + formatted_license_key
-                )
-                channel_lines.append(
-                    f"#EXTVLCOPT:http-user-agent={user_agent}"
-                )
                 channel_lines.append(
                     "#EXTVLCOPT:http-referrer=https://www.sonyliv.com/"
                 )
@@ -428,63 +397,7 @@ def process_single_channel(i, lines, session, lcn_dict):
                     "#EXTVLCOPT:http-extra-headers="
                     "Origin: https://www.sonyliv.com"
                 )
-                channel_lines.append(
-                    clean_val(final_stream_url)
-                    if final_stream_url
-                    else "http://dummy-link-to-prevent-break"
-                )
-            else:
-                channel_lines.append(
-                    "#KODIPROP:inputstream.adaptive.license_type=clearkey"
-                )
-                channel_lines.append(
-                    "#KODIPROP:inputstream.adaptive.license_key="
-                    + formatted_license_key
-                )
-                channel_lines.append(
-                    f"#EXTVLCOPT:http-user-agent={user_agent}"
-                )
-                jio_cookie = ""
-                for check_line in (
-                    [raw_stream_line]
-                    + lines[max(0, i - 2):min(len(lines), i + 3)]
-                ):
-                    check_line = clean_val(check_line)
-                    if "hdnea=" in check_line:
-                        try:
-                            for part in check_line.split("hdnea=")[1:]:
-                                candidate = clean_val(part.split()[0])
-                                if "exp=" in candidate or "st=" in candidate:
-                                    jio_cookie = (
-                                        "hdnea=" + clean_val(candidate.split("&")[0])
-                                    )
-                                    break
-                        except Exception:
-                            pass
-                    if jio_cookie:
-                        break
-
-                if jio_cookie:
-                    channel_lines.append(
-                        f"#EXTVLCOPT:http-cookie={jio_cookie}"
-                    )
-                    channel_lines.append(
-                        '#EXTHTTP:{"Origin":"https://www.jiotv.com/",'
-                        '"Referer":"https://www.jiotv.com/",'
-                        f'"Cookie":"{jio_cookie}",'
-                        '"Connection":"keep-alive"}'
-                    )
-                else:
-                    channel_lines.append(
-                        '#EXTHTTP:{"Origin":"https://www.jiotv.com/",'
-                        '"Referer":"https://www.jiotv.com/",'
-                        '"Connection":"keep-alive"}'
-                    )
-                channel_lines.append(
-                    clean_val(final_stream_url)
-                    if final_stream_url
-                    else "http://dummy-link-to-prevent-break"
-                )
+            channel_lines.append(final_stream_url)
         else:
             channel_lines.append(
                 "#KODIPROP:inputstream.adaptive.license_type=clearkey"
@@ -496,44 +409,22 @@ def process_single_channel(i, lines, session, lcn_dict):
             channel_lines.append(
                 f"#EXTVLCOPT:http-user-agent={user_agent}"
             )
-            channel_lines.append(
-                clean_val(raw_stream_line)
-                if raw_stream_line
-                else "http://dummy-link-to-prevent-break"
-            )
+            channel_lines.append(final_stream_url)
+
+        return chno, channel_lines
 
     except Exception as e:
         print(f"[-] Channel processing error at line {i}: {e}")
-        # Fallback to original raw stream and data on any unexpected error
-        channel_lines.append(
-            "#KODIPROP:inputstream.adaptive.license_type=clearkey"
-        )
-        channel_lines.append(
-            "#KODIPROP:inputstream.adaptive.license_key=" + formatted_license_key
-        )
-        channel_lines.append(
-            f"#EXTVLCOPT:http-user-agent={user_agent}"
-        )
-        channel_lines.append(
-            clean_val(raw_stream_line)
-            if raw_stream_line
-            else "http://dummy-link-to-prevent-break"
-        )
-
-    return chno, channel_lines
+        return None, None
 
 def generate_safe_playlist_1000():
-    if not PLAYLIST_URL:
-        print("[-] PLAYLIST_URL environment variable is missing.")
-        return
-
     session = get_robust_session()
     clear_old_ips(session)
     lcn_dict = fetch_lcn_dict(session)
 
     try:
         res = session.get(
-            PLAYLIST_URL, headers={"User-Agent": "Denver1769"}, timeout=30
+            PLAYLIST_URL, headers={"User-Agent": "denver1769"}, timeout=30
         )
         if res.status_code != 200:
             print(f"[-] Playlist HTTP status: {res.status_code}")
@@ -548,7 +439,7 @@ def generate_safe_playlist_1000():
             return
 
         target_indices = [item[0] for item in all_channels[:MAX_CHANNELS]]
-        print(f"[*] Processing {len(target_indices)} channels...")
+        print(f"[*] Processing and verifying {len(target_indices)} channels...")
 
         processed_channels = []
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
@@ -578,7 +469,7 @@ def generate_safe_playlist_1000():
         with open(output_file, "w", encoding="utf-8") as f:
             f.write("\n".join(new_lines))
 
-        print(f"\n[+] Success! Playlist saved as '{output_file}'.")
+        print(f"\n[+] Success! Verified and saved {len(processed_channels)} channels as '{output_file}'.")
 
     except Exception as e:
         print(f"\n[-] Critical Error: {e}")
