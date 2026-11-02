@@ -54,7 +54,7 @@ def remove_group_title(extinf):
 def clear_old_ips(session):
     print("[*] Checking IP Manager...")
     headers = {
-        "User-Agent": "denver1769",
+        "User-Agent": "Denver1769",
         "Referer": "https://game.playindia.fun/"
     }
     try:
@@ -114,7 +114,6 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_vzy):
     if not url:
         return ""
     
-    # Exact capture headers ke mutabiq headers set kiye hain
     headers = {"User-Agent": user_agent, "Accept-Encoding": "gzip"}
     if is_hotstar:
         headers.update({
@@ -133,7 +132,6 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_vzy):
         })
     
     try:
-        # allow_redirects=False karke 302 Found response ka Location header pakda hai
         response = session.get(url, headers=headers, allow_redirects=False, timeout=10)
         if response.status_code in [301, 302, 303, 307, 308]:
             loc = response.headers.get("Location")
@@ -287,7 +285,18 @@ def process_single_channel(i, lines, session, lcn_dict):
             "#KODIPROP:inputstream.adaptive.live_delay=0"
         )
 
-        if is_hotstar:
+        if "jiotvmblive.cdn.jio.com" in final_stream_url:
+            base_url = clean_val(final_stream_url.split("|")[0].split('"')[0].split("?")[0])
+            token_query = ""
+            if "__hdnea__=" in final_stream_url:
+                token_query = final_stream_url.split("__hdnea__=")[1].split()[0].split('"')[0]
+            if token_query:
+                final_stream_url = f"{base_url}?__hdnea__={token_query}"
+            
+            pipe_headers = "User-Agent=Denver1769&Accept-Encoding=gzip"
+            channel_lines.append(clean_val(f"{final_stream_url}|{pipe_headers}"))
+
+        elif is_hotstar:
             cookie_str = ""
             for check_line in (
                 [raw_stream_line]
