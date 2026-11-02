@@ -117,11 +117,7 @@ def resolve_stream_url(url, session, is_hotstar):
     if not url:
         return ""
     
-    # Playindia URLs ke liye direct return karo taaki tokens/query params lose na hon
-    if "playindia.fun" in url.lower():
-        return url
-
-    headers = {}
+    headers = {"User-Agent": "denver1769"}
     if is_hotstar:
         headers.update({
             "Origin": "https://www.hotstar.com",
@@ -137,26 +133,16 @@ def resolve_stream_url(url, session, is_hotstar):
         })
     
     try:
-        res = session.head(url, headers=headers, allow_redirects=False, timeout=5)
-        if res.status_code in (301, 302, 303, 307, 308):
-            loc = res.headers.get("Location")
-            if loc:
-                if not loc.startswith("http"):
-                    loc = urljoin(url, loc)
-                return clean_val(loc)
-                
-        res = session.get(url, headers=headers, allow_redirects=False, timeout=5)
-        if res.status_code in (301, 302, 303, 307, 308):
-            loc = res.headers.get("Location")
-            if loc:
-                if not loc.startswith("http"):
-                    loc = urljoin(url, loc)
-                return clean_val(loc)
-                
-        res = session.get(url, headers=headers, allow_redirects=True, timeout=7)
-        if res.history and res.url:
-            return clean_val(res.url)
-        if res.url:
+        # Redirections ko follow karne ke liye allow_redirects=True aur user agent pass kiya hai
+        res = session.get(url, headers=headers, allow_redirects=True, timeout=10)
+        if res.history:
+            for resp in res.history:
+                loc = resp.headers.get("Location")
+                if loc:
+                    if not loc.startswith("http"):
+                        loc = urljoin(url, loc)
+                    return clean_val(loc)
+        if res.url and "playindia.fun" not in res.url.lower():
             return clean_val(res.url)
             
     except Exception as e:
@@ -223,7 +209,7 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn):
                 key_url = clean_val(
                     key_url.replace('"', "").replace("'", "")
                 )
-                key_res = session.get(key_url, timeout=3)
+                key_res = session.get(key_url, headers={"User-Agent": "denver1769"}, timeout=3)
                 if key_res.status_code == 200:
                     key_json = key_res.json()
                     key_pairs = []
