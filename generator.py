@@ -18,14 +18,16 @@ LCN_LIST_URL = (
 MAX_CHANNELS = 2000
 MAX_WORKERS = 40
 
-def get_channel_unique_key(extinf_line):
-    tvg_id = ""
+def extract_tvg_id(extinf_line):
     if 'tvg-id="' in extinf_line:
         try:
-            tvg_id = extinf_line.split('tvg-id="')[1].split('"')[0].lower().strip()
+            return extinf_line.split('tvg-id="')[1].split('"')[0].lower().strip()
         except Exception:
             pass
-    
+    return ""
+
+def get_channel_unique_key(extinf_line):
+    tvg_id = extract_tvg_id(extinf_line)
     title = ""
     if "," in extinf_line:
         _, title = extinf_line.split(",", 1)
@@ -42,11 +44,12 @@ def get_channel_unique_key(extinf_line):
 
 def load_old_playlist_cache():
     old_cache = {}
+    tvg_id_cache = {}
     output_file = "m3u"
     if not os.path.exists(output_file):
-        return old_cache
+        return old_cache, tvg_id_cache
     
-    print("[*] Loading old m3u cache for fallback tokens...")
+    print("[*] Loading old m3u cache with tvg-id mapping for smart fallback...")
     try:
         with open(output_file, "r", encoding="utf-8") as f:
             lines = f.read().splitlines()
@@ -61,15 +64,19 @@ def load_old_playlist_cache():
                         channel_lines.append(lines[i].strip())
                         i += 1
                     
+                    tvg_id = extract_tvg_id(extinf_line)
                     cache_key = get_channel_unique_key(extinf_line)
+                    
                     if cache_key:
                         old_cache[cache_key] = channel_lines
+                    if tvg_id:
+                        tvg_id_cache[tvg_id] = channel_lines
                     continue
                 i += 1
-        print(f"[+] Loaded {len(old_cache)} channels from old cache!\n")
+        print(f"[+] Loaded cache for {len(tvg_id_cache)} tvg-ids and {len(old_cache)} unique keys!\n")
     except Exception as e:
         print(f"[-] Error loading old cache: {e}")
-    return old_cache
+    return old_cache, tvg_id_cache
 
 def fetch_lcn_dict(session):
     print("[*] Fetching DishTV LCN list...")
@@ -213,11 +220,12 @@ def resolve_stream_url(url, session, is_hotstar):
         
     return ""
 
-def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cache):
+def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cache, tvg_id_cache):
     extinf_line = lines[i].strip()
     extinf_line = remove_group_title(extinf_line)
 
     chno = ""
+    tvg_id = extract_tvg_id(extinf_line)
     cache_key = get_channel_unique_key(extinf_line)
     
     if "," in extinf_line:
@@ -309,10 +317,18 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
         is_failed_stream = (not final_stream_url or "playindia.fun" in final_stream_url.lower() or "api failed" in final_stream_url.lower())
         is_missing_license = (".mpd" in final_stream_url.lower() and formatted_license_key == "null:null")
         
-        if (is_failed_stream or is_missing_license) and cache_key in old_cache:
-            cached_block = list(old_cache[cache_key])
-            cached_block[0] = extinf_line
-            return chno, cached_block
+        # --- Smart Cache Fallback via tvg-id or cache_key ---
+        if is_failed_stream or is_missing_license:
+            matched_cache_block = None
+            if tvg_id and tvg_id in tvg_id_cache:
+                matched_cache_block = tvg_id_cache[tvg_id]
+            elif cache_key in old_cache:
+                matched_cache_block = old_cache[cache_key]
+                
+            if matched_cache_block:
+                cached_block = list(matched_cache_block)
+                cached_block[0] = extinf_line
+                return chno, cached_block
 
         is_mpd_link = ".mpd" in final_stream_url.lower()
 
@@ -448,8 +464,14 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
 
     except Exception as e:
         print(f"[-] Channel processing error at line {i}: {e}")
-        if cache_key in old_cache:
-            cached_block = list(old_cache[cache_key])
+        matched_cache_block = None
+        if tvg_id and tvg_id in tvg_id_cache:
+            matched_cache_block = tvg_id_cache[tvg_id]
+        elif cache_key in old_cache:
+            matched_cache_block = old_cache[cache_key]
+
+        if matched_cache_block:
+            cached_block = list(matched_cache_block)
             cached_block[0] = extinf_line
             return chno, cached_block
 
@@ -476,7 +498,7 @@ def generate_safe_playlist_1000():
     session = get_robust_session()
     clear_old_ips(session)
     lcn_dict = fetch_lcn_dict(session)
-    old_cache = load_old_playlist_cache()
+    old_cache, tvg_id_cache = load_old_playlist_cache()
 
     try:
         res = session.get(PLAYLIST_URL, timeout=30)
@@ -515,7 +537,7 @@ def generate_safe_playlist_1000():
             futures = {}
             for idx in target_indices:
                 fut = executor.submit(
-                    process_single_channel, idx, lines, session, lcn_dict, global_seen_lcn, old_cache
+                    process_single_channel, idx, lines, session, lcn_dict, global_seen_lcn, old_cache, tvg_id_cache
                 )
                 futures[fut] = idx
 
