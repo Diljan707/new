@@ -109,12 +109,13 @@ def b64_to_hex(b64_str):
     except Exception:
         return b64_str
 
-def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
+def resolve_stream_url(url, session, user_agent, is_hotstar, is_vzy):
     url = clean_val(url)
     if not url:
         return ""
     
-    headers = {"User-Agent": user_agent}
+    # Exact capture headers ke mutabiq headers set kiye hain
+    headers = {"User-Agent": user_agent, "Accept-Encoding": "gzip"}
     if is_hotstar:
         headers.update({
             "User-Agent": "Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)",
@@ -122,14 +123,17 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
             "Referer": "https://www.hotstar.com/",
             "Accept-Encoding": "identity"
         })
-    elif is_sliv:
+    elif is_vzy:
         headers.update({
-            "Origin": "https://www.sonyliv.com",
-            "Referer": "https://www.sonyliv.com/"
+            "User-Agent": "OTT Navigator/1.7.5.1 (Linux;Android 11; 147es1c) ExoPlayerLib/2.15.1"
+        })
+    else:
+        headers.update({
+            "User-Agent": "Denver1769"
         })
     
     try:
-        # allow_redirects=False karke 302 Found response ka Location header seedha capture karenge
+        # allow_redirects=False karke 302 Found response ka Location header pakda hai
         response = session.get(url, headers=headers, allow_redirects=False, timeout=10)
         if response.status_code in [301, 302, 303, 307, 308]:
             loc = response.headers.get("Location")
@@ -192,9 +196,8 @@ def process_single_channel(i, lines, session, lcn_dict):
         lower_text += lines[b].lower()
 
     is_hotstar = "hotstar" in lower_text or "jhs" in lower_text
-    is_sliv = (
-        "sliv" in lower_text or "sony" in lower_text or "ten" in lower_text
-    )
+    is_vzy = "watcho" in lower_text or "vzy" in lower_text or "oops" in lower_text
+    is_sliv = "sliv" in lower_text or "sony" in lower_text or "ten" in lower_text
 
     try:
         key_url = None
@@ -206,18 +209,13 @@ def process_single_channel(i, lines, session, lcn_dict):
                 )
 
         if is_hotstar:
-            user_agent = (
-                "Hotstar;in.startv.hotstar/"
-                "25.02.24.8.11169 (Android/15)"
-            )
+            user_agent = "Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)"
+        elif is_vzy:
+            user_agent = "OTT Navigator/1.7.5.1 (Linux;Android 11; 147es1c) ExoPlayerLib/2.15.1"
         elif is_sliv:
-            user_agent = (
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                "AppleWebKit/537.36 (KHTML, like Gecko) "
-                "Chrome/120.0.0.0 Safari/537.36"
-            )
+            user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         else:
-            user_agent = "denver1769"
+            user_agent = "Denver1769"
 
         formatted_license_key = None
         if key_url:
@@ -253,7 +251,7 @@ def process_single_channel(i, lines, session, lcn_dict):
         final_stream_url = ""
         if raw_stream_line:
             resolved = resolve_stream_url(
-                raw_stream_line, session, user_agent, is_hotstar, is_sliv
+                raw_stream_line, session, user_agent, is_hotstar, is_vzy
             )
             if resolved:
                 final_stream_url = clean_val(
@@ -351,6 +349,19 @@ def process_single_channel(i, lines, session, lcn_dict):
                 clean_val(f"{base_url}|{pipe_headers}")
             )
 
+        elif is_vzy:
+            channel_lines.append(
+                "#KODIPROP:inputstream.adaptive.license_type=clearkey"
+            )
+            channel_lines.append(
+                "#KODIPROP:inputstream.adaptive.license_key="
+                + formatted_license_key
+            )
+            channel_lines.append(
+                f"#EXTVLCOPT:http-user-agent={user_agent}"
+            )
+            channel_lines.append(final_stream_url)
+
         elif is_sliv:
             channel_lines.append(
                 "#KODIPROP:inputstream.adaptive.license_type=clearkey"
@@ -363,16 +374,6 @@ def process_single_channel(i, lines, session, lcn_dict):
                 f"#EXTVLCOPT:http-user-agent={user_agent}"
             )
             if is_mpd_link:
-                channel_lines.append(
-                    "#KODIPROP:inputstream.adaptive.license_type=clearkey"
-                )
-                channel_lines.append(
-                    "#KODIPROP:inputstream.adaptive.license_key="
-                    + formatted_license_key
-                )
-                channel_lines.append(
-                    f"#EXTVLCOPT:http-user-agent={user_agent}"
-                )
                 channel_lines.append(
                     "#EXTVLCOPT:http-referrer=https://www.sonyliv.com/"
                 )
@@ -407,7 +408,7 @@ def generate_safe_playlist_1000():
 
     try:
         res = session.get(
-            PLAYLIST_URL, headers={"User-Agent": "denver1769"}, timeout=30
+            PLAYLIST_URL, headers={"User-Agent": "Denver1769"}, timeout=30
         )
         if res.status_code != 200:
             print(f"[-] Playlist HTTP status: {res.status_code}")
