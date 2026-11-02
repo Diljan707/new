@@ -114,9 +114,6 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
     if not url:
         return ""
     
-    if "yuppcdn.net" in url.lower() or "playindia.fun" in url.lower():
-        return url
-
     headers = {"User-Agent": user_agent}
     if is_hotstar:
         headers.update({
@@ -132,9 +129,18 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
         })
     
     try:
-        response = session.head(url, headers=headers, allow_redirects=True, timeout=5)
-        if response.status_code == 200 and response.url:
-            return clean_val(response.url)
+        # allow_redirects=False karke 302 Found response ka Location header seedha capture karenge
+        response = session.get(url, headers=headers, allow_redirects=False, timeout=10)
+        if response.status_code in [301, 302, 303, 307, 308]:
+            loc = response.headers.get("Location")
+            if loc:
+                loc = clean_val(loc)
+                if not loc.startswith("http"):
+                    loc = urljoin(url, loc)
+                return loc
+        elif response.status_code == 200:
+            if response.url and "playindia.fun" not in response.url.lower():
+                return clean_val(response.url)
     except Exception:
         pass
         
