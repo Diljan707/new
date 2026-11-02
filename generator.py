@@ -1,5 +1,6 @@
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import base64
+import json
 import os
 import re
 import requests
@@ -276,10 +277,10 @@ def process_single_channel(i, lines, session, lcn_dict):
             "#KODIPROP:inputstream.adaptive.stream_selection_type=automatic"
         )
         channel_lines.append(
-            "#KODIPROP:inputstream.adaptive.max_buffer_time=300"
+            "#KODIPROP:inputstream.adaptive.max_buffer_time=1"
         )
         channel_lines.append(
-            "#KODIPROP:inputstream.adaptive.buffer_segment_size=1000"
+            "#KODIPROP:inputstream.adaptive.buffer_segment_size=1"
         )
         channel_lines.append(
             "#KODIPROP:inputstream.adaptive.live_delay=0"
@@ -292,9 +293,34 @@ def process_single_channel(i, lines, session, lcn_dict):
                 token_query = final_stream_url.split("__hdnea__=")[1].split()[0].split('"')[0]
             if token_query:
                 final_stream_url = f"{base_url}?__hdnea__={token_query}"
-            
-            pipe_headers = "User-Agent=Denver1769&Accept-Encoding=gzip"
-            channel_lines.append(clean_val(f"{final_stream_url}|{pipe_headers}"))
+                cookie_val = f"__hdnea__={token_query}"
+            else:
+                cookie_val = "__hdnea__=st=1793521803~exp=1793543403~acl=/*~hmac=0477e05e385621b246214e528a40b717929c4571f5849061c12d1fb90c0d43e6"
+
+            channel_lines.append(
+                "#KODIPROP:inputstream.adaptive.license_type=clearkey"
+            )
+            channel_lines.append(
+                "#KODIPROP:inputstream.adaptive.license_key="
+                + formatted_license_key
+            )
+            channel_lines.append(
+                f"#EXTVLCOPT:http-user-agent=Denver1769"
+            )
+            channel_lines.append(
+                f"#EXTVLCOPT:http-cookie={cookie_val}"
+            )
+            ext_http_dict = {
+                "User-Agent": "Denver1769",
+                "Accept-Encoding": "gzip",
+                "Host": "jiotvmblive.cdn.jio.com",
+                "Connection": "Keep-Alive",
+                "Cookie": cookie_val
+            }
+            channel_lines.append(
+                f"#EXTHTTP:{json.dumps(ext_http_dict, separators=(',', ':'))}"
+            )
+            channel_lines.append(final_stream_url)
 
         elif is_hotstar:
             cookie_str = ""
