@@ -114,7 +114,6 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
     if not url:
         return ""
     
-    # External CDN ya playindia links par timeout se bachne ke liye direct safe return karenge
     if "yuppcdn.net" in url.lower() or "playindia.fun" in url.lower():
         return url
 
@@ -443,7 +442,7 @@ def generate_safe_playlist_1000():
         for _, res_lines in processed_channels:
             new_lines.extend(res_lines)
 
-        output_file = "playlist.m3u"
+        output_file = "m3u"
         with open(output_file, "w", encoding="utf-8") as f:
             f.write("\n".join(new_lines))
 
