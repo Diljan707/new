@@ -276,10 +276,10 @@ def process_single_channel(i, lines, session, lcn_dict):
             "#KODIPROP:inputstream.adaptive.stream_selection_type=automatic"
         )
         channel_lines.append(
-            "#KODIPROP:inputstream.adaptive.max_buffer_time=1"
+            "#KODIPROP:inputstream.adaptive.max_buffer_time=0"
         )
         channel_lines.append(
-            "#KODIPROP:inputstream.adaptive.buffer_segment_size=1"
+            "#KODIPROP:inputstream.adaptive.buffer_segment_size=0"
         )
         channel_lines.append(
             "#KODIPROP:inputstream.adaptive.live_delay=0"
