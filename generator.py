@@ -293,9 +293,6 @@ def process_single_channel(i, lines, session, lcn_dict):
                 token_query = final_stream_url.split("__hdnea__=")[1].split()[0].split('"')[0]
             if token_query:
                 final_stream_url = f"{base_url}?__hdnea__={token_query}"
-                cookie_val = f"__hdnea__={token_query}"
-            else:
-                cookie_val = "__hdnea__=st=1793521803~exp=1793543403~acl=/*~hmac=0477e05e385621b246214e528a40b717929c4571f5849061c12d1fb90c0d43e6"
 
             channel_lines.append(
                 "#KODIPROP:inputstream.adaptive.license_type=clearkey"
@@ -307,15 +304,12 @@ def process_single_channel(i, lines, session, lcn_dict):
             channel_lines.append(
                 f"#EXTVLCOPT:http-user-agent=Denver1769"
             )
-            channel_lines.append(
-                f"#EXTVLCOPT:http-cookie={cookie_val}"
-            )
+            
             ext_http_dict = {
                 "User-Agent": "Denver1769",
                 "Accept-Encoding": "gzip",
                 "Host": "jiotvmblive.cdn.jio.com",
-                "Connection": "Keep-Alive",
-                "Cookie": cookie_val
+                "Connection": "Keep-Alive"
             }
             channel_lines.append(
                 f"#EXTHTTP:{json.dumps(ext_http_dict, separators=(',', ':'))}"
