@@ -305,6 +305,7 @@ def process_single_channel(i, lines, session, lcn_dict):
                 f"#EXTVLCOPT:http-user-agent=Denver1769"
             )
             
+            # Clean EXTHTTP dictionary without any Cookie key to prevent 403 errors
             ext_http_dict = {
                 "User-Agent": "Denver1769",
                 "Accept-Encoding": "gzip",
