@@ -116,6 +116,11 @@ def resolve_stream_url(url, session, is_hotstar):
     url = clean_val(url)
     if not url:
         return ""
+    
+    # Playindia URLs ke liye direct return karo taaki tokens/query params lose na hon
+    if "playindia.fun" in url.lower():
+        return url
+
     headers = {}
     if is_hotstar:
         headers.update({
@@ -150,15 +155,14 @@ def resolve_stream_url(url, session, is_hotstar):
                 
         res = session.get(url, headers=headers, allow_redirects=True, timeout=7)
         if res.history and res.url:
-            if "playindia.fun" not in res.url.lower():
-                return clean_val(res.url)
-        if res.url and "playindia.fun" not in res.url.lower():
+            return clean_val(res.url)
+        if res.url:
             return clean_val(res.url)
             
     except Exception as e:
         print(f"[-] Stream resolution error for {url}: {e}")
         
-    return ""
+    return url
 
 def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn):
     extinf_line = lines[i].strip()
