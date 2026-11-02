@@ -315,10 +315,9 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
                 )
 
         is_failed_stream = (not final_stream_url or "playindia.fun" in final_stream_url.lower() or "api failed" in final_stream_url.lower())
-        is_missing_license = (".mpd" in final_stream_url.lower() and formatted_license_key == "null:null")
         
-        # --- Smart Cache Fallback via tvg-id or cache_key ---
-        if is_failed_stream or is_missing_license:
+        # Cache sirf tabhi use hovega jad stream URL hi missing ya broken hove
+        if is_failed_stream:
             matched_cache_block = None
             if tvg_id and tvg_id in tvg_id_cache:
                 matched_cache_block = tvg_id_cache[tvg_id]
