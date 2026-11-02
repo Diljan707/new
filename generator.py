@@ -18,16 +18,14 @@ LCN_LIST_URL = (
 MAX_CHANNELS = 2000
 MAX_WORKERS = 40
 
-def extract_tvg_id(extinf_line):
+def get_channel_unique_key(extinf_line):
+    tvg_id = ""
     if 'tvg-id="' in extinf_line:
         try:
-            return extinf_line.split('tvg-id="')[1].split('"')[0].lower().strip()
+            tvg_id = extinf_line.split('tvg-id="')[1].split('"')[0].lower().strip()
         except Exception:
             pass
-    return ""
-
-def get_channel_unique_key(extinf_line):
-    tvg_id = extract_tvg_id(extinf_line)
+    
     title = ""
     if "," in extinf_line:
         _, title = extinf_line.split(",", 1)
@@ -44,12 +42,11 @@ def get_channel_unique_key(extinf_line):
 
 def load_old_playlist_cache():
     old_cache = {}
-    tvg_id_cache = {}
     output_file = "m3u"
     if not os.path.exists(output_file):
-        return old_cache, tvg_id_cache
+        return old_cache
     
-    print("[*] Loading old m3u cache with tvg-id mapping for smart fallback...")
+    print("[*] Loading old m3u cache for fallback tokens...")
     try:
         with open(output_file, "r", encoding="utf-8") as f:
             lines = f.read().splitlines()
@@ -64,19 +61,15 @@ def load_old_playlist_cache():
                         channel_lines.append(lines[i].strip())
                         i += 1
                     
-                    tvg_id = extract_tvg_id(extinf_line)
                     cache_key = get_channel_unique_key(extinf_line)
-                    
                     if cache_key:
                         old_cache[cache_key] = channel_lines
-                    if tvg_id:
-                        tvg_id_cache[tvg_id] = channel_lines
                     continue
                 i += 1
-        print(f"[+] Loaded cache for {len(tvg_id_cache)} tvg-ids and {len(old_cache)} unique keys!\n")
+        print(f"[+] Loaded {len(old_cache)} channels from old cache!\n")
     except Exception as e:
         print(f"[-] Error loading old cache: {e}")
-    return old_cache, tvg_id_cache
+    return old_cache
 
 def fetch_lcn_dict(session):
     print("[*] Fetching DishTV LCN list...")
@@ -123,6 +116,7 @@ def clean_channel_title(title):
 def clear_old_ips(session):
     print("[*] Checking and clearing old IPs from IP Manager...")
     headers = {
+        "User-Agent": "Denver1769",
         "Referer": "https://game.playindia.fun/"
     }
     try:
@@ -172,13 +166,14 @@ def b64_to_hex(b64_str):
     except Exception:
         return b64_str
 
-def resolve_stream_url(url, session, is_hotstar):
+def resolve_stream_url(url, session, user_agent, is_hotstar):
     url = clean_val(url)
     if not url:
         return ""
-    headers = {}
+    headers = {"User-Agent": user_agent}
     if is_hotstar:
         headers.update({
+            "User-Agent": "Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)",
             "Origin": "https://www.hotstar.com",
             "Referer": "https://www.hotstar.com/",
             "Accept-Encoding": "identity"
@@ -220,12 +215,11 @@ def resolve_stream_url(url, session, is_hotstar):
         
     return ""
 
-def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cache, tvg_id_cache):
+def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cache):
     extinf_line = lines[i].strip()
     extinf_line = remove_group_title(extinf_line)
 
     chno = ""
-    tvg_id = extract_tvg_id(extinf_line)
     cache_key = get_channel_unique_key(extinf_line)
     
     if "," in extinf_line:
@@ -248,16 +242,14 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
         extinf_line = f"{prefix_part},{final_title}"
 
     raw_stream_line = ""
-    search_range = list(range(max(0, i - 3), i)) + list(range(i + 1, min(len(lines), i + 6)))
-    for f in search_range:
+    for f in range(i + 1, min(len(lines), i + 5)):
         candidate_line = clean_val(lines[f])
-        if "http://" in candidate_line or "https://" in candidate_line:
-            for part in candidate_line.split():
-                if part.startswith("http://") or part.startswith("https://"):
-                    raw_stream_line = clean_val(part.split('"')[0].split(",")[0])
-                    break
-            if raw_stream_line:
-                break
+        if candidate_line.startswith("http"):
+            raw_stream_line = candidate_line.split()[0]
+            raw_stream_line = clean_val(
+                raw_stream_line.split('"')[0].split(",")[0]
+            )
+            break
 
     lower_text = (extinf_line + raw_stream_line).lower()
     for b in range(max(0, i - 3), min(len(lines), i + 4)):
@@ -275,13 +267,25 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
                     sub_b.split("inputstream.adaptive.license_key=")[1].split('"')[0]
                 )
 
+        if is_hotstar:
+            user_agent = (
+                "Hotstar;in.startv.hotstar/"
+                "25.02.24.8.11169 (Android/15)"
+            )
+        
+        # Non-hotstar channels ke liye direct variable assignment (bina else ke)
+        if not is_hotstar:
+            user_agent = "Denver1769"
+
         formatted_license_key = None
         if key_url:
             try:
                 key_url = clean_val(
                     key_url.replace('"', "").replace("'", "")
                 )
-                key_res = session.get(key_url, timeout=3)
+                key_res = session.get(
+                    key_url, headers={"User-Agent": user_agent}, timeout=3
+                )
                 if key_res.status_code == 200:
                     key_json = key_res.json()
                     key_pairs = []
@@ -307,7 +311,7 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
         final_stream_url = raw_stream_line
         if raw_stream_line:
             resolved = resolve_stream_url(
-                raw_stream_line, session, is_hotstar
+                raw_stream_line, session, user_agent, is_hotstar
             )
             if resolved:
                 final_stream_url = clean_val(
@@ -315,19 +319,12 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
                 )
 
         is_failed_stream = (not final_stream_url or "playindia.fun" in final_stream_url.lower() or "api failed" in final_stream_url.lower())
+        is_missing_license = (".mpd" in final_stream_url.lower() and formatted_license_key == "null:null")
         
-        # Cache sirf tabhi use hovega jad stream URL hi missing ya broken hove
-        if is_failed_stream:
-            matched_cache_block = None
-            if tvg_id and tvg_id in tvg_id_cache:
-                matched_cache_block = tvg_id_cache[tvg_id]
-            elif cache_key in old_cache:
-                matched_cache_block = old_cache[cache_key]
-                
-            if matched_cache_block:
-                cached_block = list(matched_cache_block)
-                cached_block[0] = extinf_line
-                return chno, cached_block
+        if (is_failed_stream or is_missing_license) and cache_key in old_cache:
+            cached_block = list(old_cache[cache_key])
+            cached_block[0] = extinf_line
+            return chno, cached_block
 
         is_mpd_link = ".mpd" in final_stream_url.lower()
 
@@ -398,7 +395,8 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
                     + formatted_license_key
                 )
                 pipe_headers = (
-                    f"Accept-Encoding=identity"
+                    f"User-Agent={user_agent}"
+                    "&Accept-Encoding=identity"
                     "&X-Denver-Secure=true"
                     "&Host=livetv.hotstar.com"
                     "&Connection=Keep-Alive"
@@ -406,7 +404,8 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
                 )
             else:
                 pipe_headers = (
-                    "Origin=https://www.hotstar.com"
+                    f"User-Agent={user_agent}"
+                    "&Origin=https://www.hotstar.com"
                     "&Referer=https://www.hotstar.com/"
                     f"&Cookie={cookie_str}"
                 )
@@ -414,6 +413,7 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
                 clean_val(f"{base_url}|{pipe_headers}")
             )
 
+        # Non-hotstar channels ke liye direct execution block (bina else ke)
         if not is_hotstar:
             target_url = final_stream_url if final_stream_url else raw_stream_line
             jio_cookie = ""
@@ -449,11 +449,15 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
                 "#KODIPROP:inputstream.adaptive.license_key="
                 + formatted_license_key
             )
+            channel_lines.append(
+                f"#EXTVLCOPT:http-user-agent={user_agent}"
+            )
 
             if jio_cookie:
                 channel_lines.append(f"#EXTVLCOPT:http-cookie={jio_cookie}")
                 channel_lines.append(
-                    '#EXTHTTP:{"Accept-Encoding":"gzip",'
+                    '#EXTHTTP:{"User-Agent":"' + user_agent + '",'
+                    '"Accept-Encoding":"gzip",'
                     '"Host":"jiotvmblive.cdn.jio.com",'
                     '"Connection":"Keep-Alive",'
                     '"Cookie":"' + jio_cookie + '"}'
@@ -463,14 +467,8 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
 
     except Exception as e:
         print(f"[-] Channel processing error at line {i}: {e}")
-        matched_cache_block = None
-        if tvg_id and tvg_id in tvg_id_cache:
-            matched_cache_block = tvg_id_cache[tvg_id]
-        elif cache_key in old_cache:
-            matched_cache_block = old_cache[cache_key]
-
-        if matched_cache_block:
-            cached_block = list(matched_cache_block)
+        if cache_key in old_cache:
+            cached_block = list(old_cache[cache_key])
             cached_block[0] = extinf_line
             return chno, cached_block
 
@@ -480,6 +478,9 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
         )
         channel_lines.append(
             "#KODIPROP:inputstream.adaptive.license_key=null:null"
+        )
+        channel_lines.append(
+            f"#EXTVLCOPT:http-user-agent=Denver1769"
         )
         channel_lines.append(
             clean_val(raw_stream_line)
@@ -497,19 +498,17 @@ def generate_safe_playlist_1000():
     session = get_robust_session()
     clear_old_ips(session)
     lcn_dict = fetch_lcn_dict(session)
-    old_cache, tvg_id_cache = load_old_playlist_cache()
+    old_cache = load_old_playlist_cache()
 
     try:
-        res = session.get(PLAYLIST_URL, timeout=30)
+        res = session.get(
+            PLAYLIST_URL, headers={"User-Agent": "Denver1769"}, timeout=30
+        )
         if res.status_code != 200:
             print(f"[-] Playlist HTTP status: {res.status_code}")
             return
 
-        raw_text = res.text
-        for tag in ["#EXTINF", "#KODIPROP", "#EXTVLCOPT", "#EXTHTTP"]:
-            raw_text = raw_text.replace(tag, f"\n{tag}")
-        lines = raw_text.splitlines()
-
+        lines = res.text.splitlines()
         all_channels = [
             (i, line) for i, line in enumerate(lines) if line.strip().startswith("#EXTINF")
         ]
@@ -536,7 +535,7 @@ def generate_safe_playlist_1000():
             futures = {}
             for idx in target_indices:
                 fut = executor.submit(
-                    process_single_channel, idx, lines, session, lcn_dict, global_seen_lcn, old_cache, tvg_id_cache
+                    process_single_channel, idx, lines, session, lcn_dict, global_seen_lcn, old_cache
                 )
                 futures[fut] = idx
 
