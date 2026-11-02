@@ -113,6 +113,11 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
     url = clean_val(url)
     if not url:
         return ""
+    
+    # External CDN ya playindia links par timeout se bachne ke liye direct safe return karenge
+    if "yuppcdn.net" in url.lower() or "playindia.fun" in url.lower():
+        return url
+
     headers = {"User-Agent": user_agent}
     if is_hotstar:
         headers.update({
@@ -127,50 +132,13 @@ def resolve_stream_url(url, session, user_agent, is_hotstar, is_sliv):
             "Referer": "https://www.sonyliv.com/"
         })
     
-    response = None
     try:
-        response = session.get(
-            url, headers=headers, allow_redirects=True, timeout=10, stream=True
-        )
+        response = session.head(url, headers=headers, allow_redirects=True, timeout=5)
+        if response.status_code == 200 and response.url:
+            return clean_val(response.url)
+    except Exception:
+        pass
         
-        if response.status_code == 200:
-            final_url = response.url
-            res_text = ""
-            try:
-                res_text = response.text
-            except Exception:
-                pass
-            response.close()
-
-            nested_links = []
-            for line in res_text.splitlines():
-                line = clean_val(line)
-                if (
-                    "http" in line
-                    and ("m3u8" in line.lower() or "mpd" in line.lower())
-                    and "playindia.fun" not in line.lower()
-                ):
-                    idx = line.find("http")
-                    clean_link = clean_val(line[idx:].split()[0])
-                    nested_links.append(clean_link)
-            
-            if nested_links:
-                chosen_link = clean_val(nested_links[-1])
-                if not chosen_link.startswith("http"):
-                    chosen_link = urljoin(final_url, chosen_link)
-                return chosen_link
-            
-            return clean_val(final_url)
-            
-    except Exception as e:
-        # Fallback to original URL on timeout or network error so script doesn't fail
-        return url
-    finally:
-        if response is not None:
-            try:
-                response.close()
-            except Exception:
-                pass
     return url
 
 def process_single_channel(i, lines, session, lcn_dict):
@@ -390,6 +358,16 @@ def process_single_channel(i, lines, session, lcn_dict):
                 f"#EXTVLCOPT:http-user-agent={user_agent}"
             )
             if is_mpd_link:
+                channel_lines.append(
+                    "#KODIPROP:inputstream.adaptive.license_type=clearkey"
+                )
+                channel_lines.append(
+                    "#KODIPROP:inputstream.adaptive.license_key="
+                    + formatted_license_key
+                )
+                channel_lines.append(
+                    f"#EXTVLCOPT:http-user-agent={user_agent}"
+                )
                 channel_lines.append(
                     "#EXTVLCOPT:http-referrer=https://www.sonyliv.com/"
                 )
