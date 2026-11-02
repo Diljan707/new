@@ -40,15 +40,6 @@ def get_channel_unique_key(extinf_line):
         return f"{tvg_id}_{cleaned_title}"
     return cleaned_title
 
-def clean_cached_lines(lines_list):
-    cleaned = []
-    for line in lines_list:
-        l_lower = line.lower()
-        if "http-user-agent" in l_lower or "user-agent" in l_lower:
-            continue
-        cleaned.append(line)
-    return cleaned
-
 def load_old_playlist_cache():
     old_cache = {}
     output_file = "m3u"
@@ -72,7 +63,7 @@ def load_old_playlist_cache():
                     
                     cache_key = get_channel_unique_key(extinf_line)
                     if cache_key:
-                        old_cache[cache_key] = clean_cached_lines(channel_lines)
+                        old_cache[cache_key] = channel_lines
                     continue
                 i += 1
         print(f"[+] Loaded {len(old_cache)} channels from old cache!\n")
@@ -125,7 +116,6 @@ def clean_channel_title(title):
 def clear_old_ips(session):
     print("[*] Checking and clearing old IPs from IP Manager...")
     headers = {
-        "User-Agent": "Mozilla/5.0",
         "Referer": "https://game.playindia.fun/"
     }
     try:
@@ -250,14 +240,16 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
         extinf_line = f"{prefix_part},{final_title}"
 
     raw_stream_line = ""
-    for f in range(i + 1, min(len(lines), i + 5)):
+    search_range = list(range(max(0, i - 3), i)) + list(range(i + 1, min(len(lines), i + 6)))
+    for f in search_range:
         candidate_line = clean_val(lines[f])
-        if candidate_line.startswith("http"):
-            raw_stream_line = candidate_line.split()[0]
-            raw_stream_line = clean_val(
-                raw_stream_line.split('"')[0].split(",")[0]
-            )
-            break
+        if "http://" in candidate_line or "https://" in candidate_line:
+            for part in candidate_line.split():
+                if part.startswith("http://") or part.startswith("https://"):
+                    raw_stream_line = clean_val(part.split('"')[0].split(",")[0])
+                    break
+            if raw_stream_line:
+                break
 
     lower_text = (extinf_line + raw_stream_line).lower()
     for b in range(max(0, i - 3), min(len(lines), i + 4)):
@@ -492,7 +484,11 @@ def generate_safe_playlist_1000():
             print(f"[-] Playlist HTTP status: {res.status_code}")
             return
 
-        lines = res.text.splitlines()
+        raw_text = res.text
+        for tag in ["#EXTINF", "#KODIPROP", "#EXTVLCOPT", "#EXTHTTP"]:
+            raw_text = raw_text.replace(tag, f"\n{tag}")
+        lines = raw_text.splitlines()
+
         all_channels = [
             (i, line) for i, line in enumerate(lines) if line.strip().startswith("#EXTINF")
         ]
