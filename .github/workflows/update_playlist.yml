@@ -31,9 +31,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4
 
-      - name: Create generator script from secret
+      - name: Write generator.py safely from Secret
+        env:
+          SCRIPT_CONTENT: ${{ secrets.GENERATOR_SCRIPT }}
         run: |
-          echo "${{ secrets.GENERATOR_SCRIPT }}" | base64 -d > generator.py
+          python3 -c "import os; open('generator.py', 'w', encoding='utf-8').write(os.environ['SCRIPT_CONTENT'])"
 
       - name: Run script
         env:
