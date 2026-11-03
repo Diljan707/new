@@ -293,29 +293,14 @@ def process_single_channel(i, lines, session, lcn_dict):
             + formatted_license_key
         )
         
-        # Clean URL handling and Cookie injection for Hotstar / Jio channels
-        cookie_string = ""
-        if is_hotstar and "hdntl=" in final_stream_url:
-            # Extract hdntl cookie value from URL if present
-            try:
-                hdntl_part = final_stream_url.split("hdntl=")[1].split()[0].split('"')[0]
-                cookie_string = f"hdntl={hdntl_part}"
-                # Clean URL by stripping query parameters so the token is not attached directly to stream link
-                final_stream_url = final_stream_url.split("?")[0]
-            except Exception:
-                pass
-        elif "jiotvmblive.cdn.jio.com" in final_stream_url or "jiotvpllive.cdn.jio.com" in final_stream_url:
+        # Clean URL query token handling (leaving URL structure intact as required)
+        if "jiotvmblive.cdn.jio.com" in final_stream_url or "jiotvpllive.cdn.jio.com" in final_stream_url:
             base_url = clean_val(final_stream_url.split("|")[0].split('"')[0].split("?")[0])
             token_query = ""
             if "__hdnea__=" in final_stream_url:
                 token_query = final_stream_url.split("__hdnea__=")[1].split()[0].split('"')[0]
             if token_query:
-                # Keep clean token structure or attach via standard query
                 final_stream_url = f"{base_url}?__hdnea__={token_query}"
-
-        # If cookie is captured for hotstar, append it as a Kodi property header
-        if cookie_string:
-            channel_lines.append(f"#KODIPROP:inputstream.adaptive.stream_headers=Cookie={cookie_string}")
 
         channel_lines.append(final_stream_url)
 
