@@ -42,26 +42,30 @@ def get_channel_unique_key(extinf_line):
 
 def load_old_playlist_cache():
     old_cache = {}
-    output_file = "playlist.m3u"
-    if not os.path.exists(output_file):
-        output_file = ".m3u"
+    output_file = ".m3u"
     if not os.path.exists(output_file):
         return old_cache
     
-    print("[*] Loading old playlist cache for fallback tokens...")
+    print("[*] Loading old .m3u cache for fallback tokens...")
     try:
         with open(output_file, "r", encoding="utf-8") as f:
-            content = f.read()
-            entries = content.split("#EXTINF:")
-            for entry in entries:
-                if not entry.strip():
+            lines = f.read().splitlines()
+            i = 0
+            while i < len(lines):
+                line = lines[i].strip()
+                if line.startswith("#EXTINF"):
+                    extinf_line = line
+                    channel_lines = [extinf_line]
+                    i += 1
+                    while i < len(lines) and not lines[i].strip().startswith("#EXTINF") and not lines[i].strip().startswith("#EXTM3U"):
+                        channel_lines.append(lines[i].strip())
+                        i += 1
+                    
+                    cache_key = get_channel_unique_key(extinf_line)
+                    if cache_key:
+                        old_cache[cache_key] = channel_lines
                     continue
-                extinf_line = "#EXTINF:" + entry.split("\n")[0].strip()
-                sub_lines = [l.strip() for l in entry.split("\n") if l.strip()]
-                
-                cache_key = get_channel_unique_key(extinf_line)
-                if cache_key:
-                    old_cache[cache_key] = sub_lines
+                i += 1
         print(f"[+] Loaded {len(old_cache)} channels from old cache!\n")
     except Exception as e:
         print(f"[-] Error loading old cache: {e}")
@@ -257,6 +261,7 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
         "sliv" in lower_text or "sony" in lower_text or "ten" in lower_text
     )
 
+    channel_lines = [extinf_line]
     try:
         key_url = None
         for b in range(max(0, i - 3), i):
@@ -267,26 +272,42 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
                 )
 
         if is_hotstar:
-            user_agent = "Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)"
+            user_agent = (
+                "Hotstar;in.startv.hotstar/"
+                "25.02.24.8.11169 (Android/15)"
+            )
         elif is_sliv:
-            user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+            user_agent = (
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/120.0.0.0 Safari/537.36"
+            )
         else:
             user_agent = "Denver1769"
 
         formatted_license_key = None
         if key_url:
             try:
-                key_url = clean_val(key_url.replace('"', "").replace("'", ""))
-                key_res = session.get(key_url, headers={"User-Agent": user_agent}, timeout=3)
+                key_url = clean_val(
+                    key_url.replace('"', "").replace("'", "")
+                )
+                key_res = session.get(
+                    key_url, headers={"User-Agent": user_agent}, timeout=3
+                )
                 if key_res.status_code == 200:
                     key_json = key_res.json()
                     key_pairs = []
-                    keys_list = key_json.get("base64", {}).get("keys", [])
+                    keys_list = key_json.get(
+                        "base64", {}
+                    ).get("keys", [])
                     for k_obj in keys_list:
                         kid_b64 = clean_val(k_obj.get("kid", ""))
                         k_b64 = clean_val(k_obj.get("k", ""))
                         if kid_b64 and k_b64:
-                            key_pairs.append(f"{b64_to_hex(kid_b64)}:{b64_to_hex(k_b64)}")
+                            key_pairs.append(
+                                f"{b64_to_hex(kid_b64)}:"
+                                f"{b64_to_hex(k_b64)}"
+                            )
                     if key_pairs:
                         formatted_license_key = ",".join(key_pairs)
             except Exception:
@@ -297,9 +318,13 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
 
         final_stream_url = raw_stream_line
         if raw_stream_line:
-            resolved = resolve_stream_url(raw_stream_line, session, user_agent, is_hotstar, is_sliv)
+            resolved = resolve_stream_url(
+                raw_stream_line, session, user_agent, is_hotstar, is_sliv
+            )
             if resolved:
-                final_stream_url = clean_val(resolved.split('"')[0].split(",")[0])
+                final_stream_url = clean_val(
+                    resolved.split('"')[0].split(",")[0]
+                )
 
         is_failed_stream = (not final_stream_url or "playindia.fun" in final_stream_url.lower() or "api failed" in final_stream_url.lower())
         is_missing_license = (".mpd" in final_stream_url.lower() and formatted_license_key == "null:null")
@@ -311,30 +336,116 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
 
         is_mpd_link = ".mpd" in final_stream_url.lower()
 
-        # Extract cookie if present in stream URL (__hdnea__)
-        cookie_val = ""
-        if "__hdnea__=" in final_stream_url:
-            try:
-                cookie_val = "__hdnea__=" + final_stream_url.split("__hdnea__=")[1].split("&")[0]
-            except Exception:
-                pass
+        channel_lines.append(
+            "#KODIPROP:inputstream=inputstream.adaptive"
+        )
+        channel_lines.append(
+            "#KODIPROP:inputstream.adaptive.manifest_type="
+            + ("mpd" if is_mpd_link else "hls")
+        )
 
-        channel_props = [
-            extinf_line,
-            "#KODIPROP:inputstream=inputstream.adaptive",
-            f"#KODIPROP:inputstream.adaptive.manifest_type={'mpd' if is_mpd_link else 'hls'}"
-        ]
+        if is_hotstar:
+            cookie_str = ""
+            for check_line in (
+                [raw_stream_line]
+                + lines[max(0, i - 2):min(len(lines), i + 3)]
+            ):
+                check_line = clean_val(check_line)
+                if "hdntl=" in check_line:
+                    try:
+                        for part in check_line.split("hdntl=")[1:]:
+                            candidate = clean_val(
+                                part.split()[0].split('"')[0]
+                            )
+                            if "exp=" in candidate:
+                                cookie_str = (
+                                    "hdntl=" + clean_val(candidate.split("&")[0])
+                                )
+                                break
+                    except Exception:
+                        pass
+                if cookie_str:
+                    break
 
-        if is_mpd_link:
-            channel_props.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
-            channel_props.append(f"#KODIPROP:inputstream.adaptive.license_key={formatted_license_key}")
+            if not cookie_str:
+                cookie_str = (
+                    "hdntl=exp=1791763208~acl=%2f*"
+                    "~id=ce6ecdabc53ea306cc7be95fa7a1b49c"
+                    "~data=hdntl"
+                    "~hmac=8a7405e9c3a1f2880ac44abb4e3fee31"
+                    "d750b5c4d6d4bfaa67bac50b175140a1"
+                )
 
-        # Add separate #EXTHTTP header for cookies and referer if cookie exists
-        if cookie_val:
-            channel_props.append(f'#EXTHTTP:{{"cookie":"{cookie_val}","Origin":"https://www.jiotv.com/","Referer":"https://www.jiotv.com/"}}')
+            base_url = clean_val(
+                final_stream_url.split("|")[0].split('"')[0]
+            )
+            if is_mpd_link:
+                channel_lines.append(
+                    "#KODIPROP:inputstream.adaptive.license_type=clearkey"
+                )
+                channel_lines.append(
+                    "#KODIPROP:inputstream.adaptive.license_key="
+                    + formatted_license_key
+                )
+                pipe_headers = (
+                    f"User-Agent={user_agent}"
+                    "&Accept-Encoding=identity"
+                    "&X-Denver-Secure=true"
+                    "&Host=livetv.hotstar.com"
+                    "&Connection=Keep-Alive"
+                    f"&Cookie={cookie_str}"
+                )
+            else:
+                pipe_headers = (
+                    f"User-Agent={user_agent}"
+                    "&Origin=https://www.hotstar.com"
+                    "&Referer=https://www.hotstar.com/"
+                    f"&Cookie={cookie_str}"
+                )
+            channel_lines.append(
+                clean_val(f"{base_url}|{pipe_headers}")
+            )
 
-        # Clean simple stream link (strip out long query parameters if cookie is extracted or keep clean)
-        channel_props.append(clean_val(final_stream_url) if final_stream_url else clean_val(raw_stream_line))
+        elif is_sliv:
+            if is_mpd_link:
+                channel_lines.append(
+                    "#KODIPROP:inputstream.adaptive.license_type=clearkey"
+                )
+                channel_lines.append(
+                    "#KODIPROP:inputstream.adaptive.license_key="
+                    + formatted_license_key
+                )
+                channel_lines.append(
+                    clean_val(final_stream_url)
+                    if final_stream_url
+                    else clean_val(raw_stream_line)
+                )
+            else:
+                channel_lines.append(
+                    "#KODIPROP:inputstream.adaptive.license_type=clearkey"
+                )
+                channel_lines.append(
+                    "#KODIPROP:inputstream.adaptive.license_key="
+                    + formatted_license_key
+                )
+                channel_lines.append(
+                    clean_val(final_stream_url)
+                    if final_stream_url
+                    else clean_val(raw_stream_line)
+                )
+        else:
+            channel_lines.append(
+                "#KODIPROP:inputstream.adaptive.license_type=clearkey"
+            )
+            channel_lines.append(
+                "#KODIPROP:inputstream.adaptive.license_key="
+                + formatted_license_key
+            )
+            channel_lines.append(
+                clean_val(final_stream_url)
+                if final_stream_url
+                else clean_val(raw_stream_line)
+            )
 
     except Exception as e:
         print(f"[-] Channel processing error at line {i}: {e}")
@@ -343,16 +454,20 @@ def process_single_channel(i, lines, session, lcn_dict, global_seen_lcn, old_cac
             cached_block[0] = extinf_line
             return chno, cached_block
 
-        channel_props = [
-            extinf_line,
-            "#KODIPROP:inputstream=inputstream.adaptive",
-            "#KODIPROP:inputstream.adaptive.manifest_type=mpd",
-            "#KODIPROP:inputstream.adaptive.license_type=clearkey",
-            "#KODIPROP:inputstream.adaptive.license_key=null:null",
-            clean_val(raw_stream_line) if raw_stream_line else ""
-        ]
+        channel_lines = [extinf_line]
+        channel_lines.append(
+            "#KODIPROP:inputstream.adaptive.license_type=clearkey"
+        )
+        channel_lines.append(
+            "#KODIPROP:inputstream.adaptive.license_key=null:null"
+        )
+        channel_lines.append(
+            clean_val(raw_stream_line)
+            if raw_stream_line
+            else ""
+        )
 
-    return chno, channel_props
+    return chno, channel_lines
 
 def generate_safe_playlist_1000():
     if not PLAYLIST_URL:
@@ -365,7 +480,9 @@ def generate_safe_playlist_1000():
     old_cache = load_old_playlist_cache()
 
     try:
-        res = session.get(PLAYLIST_URL, headers={"User-Agent": "Denver1769"}, timeout=30)
+        res = session.get(
+            PLAYLIST_URL, headers={"User-Agent": "Denver1769"}, timeout=30
+        )
         if res.status_code != 200:
             print(f"[-] Playlist HTTP status: {res.status_code}")
             return
@@ -418,7 +535,7 @@ def generate_safe_playlist_1000():
         for _, res_lines in processed_channels:
             new_lines.extend(res_lines)
 
-        output_file = "playlist.m3u"
+        output_file = ".m3u"
         with open(output_file, "w", encoding="utf-8") as f:
             f.write("\n".join(new_lines))
 
