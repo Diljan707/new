@@ -33,7 +33,7 @@ jobs:
 
       - name: Create generator script from secret
         run: |
-          echo "${{ secrets.GENERATOR_SCRIPT }}" > generator.py
+          echo "${{ secrets.GENERATOR_SCRIPT }}" | base64 -d > generator.py
 
       - name: Run script
         env:
