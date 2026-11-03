@@ -179,15 +179,32 @@ def process_single_channel(i, lines, session, lcn_dict):
                 )
             extinf_line = f"{prefix_part},{title}"
 
+    # Scan channel block for original headers (#EXTHTTP, #EXTVLCOPT), Stream URL, and License Key
+    extra_lines = []
     raw_stream_line = ""
-    for f in range(i + 1, min(len(lines), i + 5)):
+    extracted_license_key = ""
+    manifest_type_line = ""
+
+    for f in range(i + 1, min(len(lines), i + 14)):
         candidate_line = clean_val(lines[f])
-        if candidate_line.startswith("http"):
+        if candidate_line.startswith("#EXTINF"):
+            break  # Stop if next channel starts
+            
+        if candidate_line.startswith("#EXTHTTP"):
+            extra_lines.append(candidate_line)
+        elif candidate_line.startswith("#EXTVLCOPT"):
+            extra_lines.append(candidate_line)
+        elif candidate_line.startswith("#KODIPROP:inputstream.adaptive.manifest_type="):
+            manifest_type_line = candidate_line
+        elif "inputstream.adaptive.license_key=" in candidate_line:
+            extracted_license_key = candidate_line
+        elif "key.php" in candidate_line and not extracted_license_key:
+            extracted_license_key = f"#KODIPROP:inputstream.adaptive.license_key={candidate_line}"
+        elif candidate_line.startswith("http") and not raw_stream_line and "key.php" not in candidate_line:
             raw_stream_line = candidate_line.split()[0]
             raw_stream_line = clean_val(
                 raw_stream_line.split('"')[0].split(",")[0]
             )
-            break
 
     lower_text = (extinf_line + raw_stream_line).lower()
     for b in range(max(0, i - 3), min(len(lines), i + 4)):
@@ -198,14 +215,6 @@ def process_single_channel(i, lines, session, lcn_dict):
     is_sliv = "sliv" in lower_text or "sony" in lower_text or "ten" in lower_text
 
     try:
-        key_url = None
-        for b in range(max(0, i - 3), i):
-            sub_b = clean_val(lines[b])
-            if "inputstream.adaptive.license_key=" in sub_b:
-                key_url = clean_val(
-                    sub_b.split("inputstream.adaptive.license_key=")[1].split('"')[0]
-                )
-
         if is_hotstar:
             user_agent = "Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)"
         elif is_vzy:
@@ -214,45 +223,6 @@ def process_single_channel(i, lines, session, lcn_dict):
             user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         else:
             user_agent = "Denver1769"
-
-        formatted_license_key = None
-        if key_url:
-            try:
-                key_url = clean_val(
-                    key_url.replace('"', "").replace("'", "")
-                )
-                key_res = session.get(
-                    key_url, headers={"User-Agent": user_agent}, timeout=3
-                )
-                if key_res.status_code == 200:
-                    try:
-                        key_json = key_res.json()
-                        key_pairs = []
-                        keys_list = key_json.get(
-                            "base64", {}
-                        ).get("keys", [])
-                        for k_obj in keys_list:
-                            kid_b64 = clean_val(k_obj.get("kid", ""))
-                            k_b64 = clean_val(k_obj.get("k", ""))
-                            if kid_b64 and k_b64:
-                                key_pairs.append(
-                                    f"{b64_to_hex(kid_b64)}:"
-                                    f"{b64_to_hex(k_b64)}"
-                                )
-                        if key_pairs:
-                            formatted_license_key = ",".join(key_pairs)
-                    except Exception:
-                        # Fallback if response is direct text/key URL
-                        if key_res.text:
-                            formatted_license_key = clean_val(key_res.text)
-            except Exception:
-                pass
-
-        if not formatted_license_key and key_url:
-            formatted_license_key = key_url
-
-        if not formatted_license_key:
-            formatted_license_key = "null:null"
 
         final_stream_url = ""
         if raw_stream_line:
@@ -268,49 +238,38 @@ def process_single_channel(i, lines, session, lcn_dict):
             final_stream_url = raw_stream_line
 
         channel_lines = [extinf_line]
-        is_mpd_link = ".mpd" in final_stream_url.lower()
-
-        channel_lines.append(
-            "#KODIPROP:inputstream=inputstream.adaptive"
-        )
-        channel_lines.append(
-            "#KODIPROP:inputstream.adaptive.manifest_type="
-            + ("mpd" if is_mpd_link else "hls")
-        )
-        channel_lines.append(
-            "#KODIPROP:inputstream.adaptive.max_bandwidth=0"
-        )
-        channel_lines.append(
-            "#KODIPROP:inputstream.adaptive.stream_selection_type=automatic"
-        )
-        channel_lines.append(
-            "#KODIPROP:inputstream.adaptive.max_buffer_time=0"
-        )
-        channel_lines.append(
-            "#KODIPROP:inputstream.adaptive.buffer_segment_size=0"
-        )
-        channel_lines.append(
-            "#KODIPROP:inputstream.adaptive.live_delay=0"
-        )
-
-        channel_lines.append(
-            "#KODIPROP:inputstream.adaptive.license_type=clearkey"
-        )
-        channel_lines.append(
-            "#KODIPROP:inputstream.adaptive.license_key="
-            + formatted_license_key
-        )
         
-        # Clean URL query token handling
-        if "jiotvmblive.cdn.jio.com" in final_stream_url or "jiotvpllive.cdn.jio.com" in final_stream_url:
-            base_url = clean_val(final_stream_url.split("|")[0].split('"')[0].split("?")[0])
-            token_query = ""
-            if "__hdnea__=" in final_stream_url:
-                token_query = final_stream_url.split("__hdnea__=")[1].split()[0].split('"')[0]
-            if token_query:
-                final_stream_url = f"{base_url}?__hdnea__={token_query}"
+        # Preserve original source headers (#EXTHTTP or #EXTVLCOPT)
+        for ex_line in extra_lines:
+            channel_lines.append(ex_line)
 
         channel_lines.append(final_stream_url)
+
+        # Standard Kodi Adaptive Properties
+        channel_lines.append("#KODIPROP:inputstream=inputstream.adaptive")
+        
+        if manifest_type_line:
+            channel_lines.append(manifest_type_line)
+        else:
+            is_mpd_link = ".mpd" in final_stream_url.lower()
+            channel_lines.append(
+                "#KODIPROP:inputstream.adaptive.manifest_type=" + ("mpd" if is_mpd_link else "hls")
+            )
+
+        channel_lines.append("#KODIPROP:inputstream.adaptive.max_bandwidth=0")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.stream_selection_type=automatic")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.max_buffer_time=0")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.buffer_segment_size=0")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.live_delay=0")
+        channel_lines.append("#KODIPROP:inputstream.adaptive.license_type=clearkey")
+
+        # Purana reliable key logic: using original extracted license key line directly
+        if extracted_license_key:
+            if not extracted_license_key.startswith("#KODIPROP:"):
+                extracted_license_key = f"#KODIPROP:inputstream.adaptive.license_key={extracted_license_key}"
+            channel_lines.append(extracted_license_key)
+        else:
+            channel_lines.append("#KODIPROP:inputstream.adaptive.license_key=null:null")
 
         return chno, channel_lines
 
