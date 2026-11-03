@@ -99,16 +99,6 @@ def get_robust_session():
     session.mount("http://", HTTPAdapter(max_retries=retries))
     return session
 
-def b64_to_hex(b64_str):
-    b64_str = clean_val(b64_str)
-    padding = 4 - (len(b64_str) % 4)
-    if padding < 4:
-        b64_str += "=" * padding
-    try:
-        return base64.urlsafe_b64decode(b64_str).hex()
-    except Exception:
-        return b64_str
-
 def resolve_stream_url(url, session, user_agent, is_hotstar, is_vzy):
     url = clean_val(url)
     if not url:
@@ -179,14 +169,16 @@ def process_single_channel(i, lines, session, lcn_dict):
                 )
             extinf_line = f"{prefix_part},{title}"
 
-    # Extract extra lines like #EXTHTTP or VLC options if present near the channel block
+    # Scan upcoming lines for EXTHTTP, EXTVLCOPT, Stream URL, and License Key
     extra_lines = []
     raw_stream_line = ""
     license_key_line = ""
     manifest_type_line = ""
 
-    for f in range(i + 1, min(len(lines), i + 7)):
+    for f in range(i + 1, min(len(lines), i + 10)):
         candidate_line = clean_val(lines[f])
+        if candidate_line.startswith("#EXTINF"):
+            break  # Stop if next channel starts
         if candidate_line.startswith("#EXTHTTP"):
             extra_lines.append(candidate_line)
         elif candidate_line.startswith("#EXTVLCOPT"):
@@ -195,12 +187,11 @@ def process_single_channel(i, lines, session, lcn_dict):
             manifest_type_line = candidate_line
         elif candidate_line.startswith("#KODIPROP:inputstream.adaptive.license_key="):
             license_key_line = candidate_line
-        elif candidate_line.startswith("http"):
+        elif candidate_line.startswith("http") and not raw_stream_line:
             raw_stream_line = candidate_line.split()[0]
             raw_stream_line = clean_val(
                 raw_stream_line.split('"')[0].split(",")[0]
             )
-            break
 
     lower_text = (extinf_line + raw_stream_line).lower()
     for b in range(max(0, i - 3), min(len(lines), i + 4)):
@@ -235,7 +226,7 @@ def process_single_channel(i, lines, session, lcn_dict):
 
         channel_lines = [extinf_line]
         
-        # Append any captured #EXTHTTP or #EXTVLCOPT lines if they belong to Hotstar/JHS/Jio blocks
+        # Append captured #EXTHTTP or #EXTVLCOPT lines
         for ex_line in extra_lines:
             channel_lines.append(ex_line)
 
