@@ -45,12 +45,12 @@ A centralized IPTV playlist aggregation project designed to organize multiple st
 
 **LIVE PLAYLIST**
 
-[![OPEN LIVE PLAYLIST](https://img.shields.io/badge/OPEN-LIVE_PLAYLIST-FF6600?style=for-the-badge&logo=play)](https://diljan707.github.io/new/m3u)
+[![OPEN LIVE PLAYLIST](https://img.shields.io/badge/OPEN-LIVE_PLAYLIST-FF6600?style=for-the-badge&logo=play)](https://diljan707.github.io/new/playlist.m3u)
 
 **📋 COPY LIVE PLAYLIST LINK**
 
 ```text
-https://diljan707.github.io/new/m3u
+https://diljan707.github.io/new/playlist.m3u
 ```
 
 **📋 COPY REPOSITORY LINK**
