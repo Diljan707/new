@@ -3,7 +3,7 @@
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=c6255706bca250079aeaf1fc4474d1b9:eab6217aac6f1feec103120e6218eb43,54123d9989bee0ec649fe3021dfecf75:c624561eb61b323931e5c971badb4492,67ec591936265328adf3c8aaa5a31e7d:f5d980dc94e4a933f320119491954fee,da9a745fa6cacd8a9f6feda0ebd0973d:68d692af5ab77cb4007c767ace96b88a,3791d4ebf5d85043a8062de89e35b94f:00b1d24d1149ee8a058c426e1e76c108,9eb8d21b70d249f50a4564c701fb49bd:77df26c95ae0d9dfb9063d4ce8d027d3,06cbabfbe5a8d8c783607094017b747d:8f68c6207bd9a424892831af64417c92
+#KODIPROP:inputstream.adaptive.license_key=https://streamflexsmm.in/license/1132
 https://jiotvmblive.cdn.jio.com/bpk-tv/Star_Plus_HD_MOB/WDVLive/index.mpd?__hdnea__=st=1794465012~exp=1794551412~acl=/*~hmac=2aaa6a6dbf410c6afb35e22b73447aa354755fb86879b271ea2f60db917a635d
 #EXTINF:-1 tvg-id="1116" tvg-language="Hindi" tvg-logo="https://img.media.jio.com/tvpimages/66/40/302084_1753189750742_l_medium.jpg" CATCH-UP-FAILED="null" tvg-chno="101" ch-number="101",Star Plus (101)
 #KODIPROP:inputstream=inputstream.adaptive
