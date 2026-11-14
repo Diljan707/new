@@ -7252,7 +7252,7 @@ https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2094589/Golf_Phi1411/ENG/std_mdh-800300010.m3u8?hdnea=st=1794625308~exp=1794625608~acl=*~id=abbecb59-3a3f-4586-974f-c67490802081~hmac=70b9c63a927b8a3a774ebf1b4257bf88f3a4b588168d77738c347827eb56cfcb&originpath=/linear/hls/pa/event/CNoyvSrFQdWpZ5veDRGeSA/stream/6a8af42a-99da-4f3f-85a0-503dd01d9ea1:DLS/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2094589/Golf_Phi1411/ENG/std_mdh-800300010.m3u8?hdnea=st=1794628401~exp=1794628701~acl=*~id=e50be929-21ad-48bc-84b0-a94b32f7cb7c~hmac=971f383f21d6692328fa5a16f119679e5945bd1a711aba9f09a8a6578c80f853&originpath=/linear/hls/pa/event/CNoyvSrFQdWpZ5veDRGeSA/stream/eb3825fa-cd3d-413b-a158-1a277574514b:CHS/master.m3u8
 #EXTINF:-1 tvg-id="718" tvg-language="Odia" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Kanak_TV.png" catchup-type="append" catchup-days="8" catchup-source="&begin={utc}&end={utcend}" tvg-chno="1359" ch-number="1359",Kanak News (1359)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
