@@ -7247,43 +7247,73 @@ https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
 #KODIPROP:inputstream.adaptive.license_key=null:null
 #EXTVLCOPT:http-user-agent=Denver1769
 
-#EXTINF:-1 tvg-id="1090553928_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000027302/1792887700360295_ASIANTOUR2026_Philippine_Open_Day3_landscape_thumb.jpg" tvg-chno="1358" ch-number="1358",Sony: Asian Tour [ENG] (1358)
+#EXTINF:-1 tvg-id="1090553929_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000028883/1794508714132577_ACC_U19_FINAL_PAK_vs_IND_live_landscape_thumb.jpg" tvg-chno="1358" ch-number="1358",Sony: ACC Men's U19 Asia Cup [ENG] (1358)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2094589/Golf_Phi1411/ENG/std_mdh-800300010.m3u8?hdnea=st=1794628401~exp=1794628701~acl=*~id=e50be929-21ad-48bc-84b0-a94b32f7cb7c~hmac=971f383f21d6692328fa5a16f119679e5945bd1a711aba9f09a8a6578c80f853&originpath=/linear/hls/pa/event/CNoyvSrFQdWpZ5veDRGeSA/stream/eb3825fa-cd3d-413b-a158-1a277574514b:CHS/master.m3u8
+https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_1411/ENG/std_mdd-600300010.m3u8?hdnea=exp=1794649602~acl=/*~id=92097840205827370485166423696874~hmac=0c3e4032642add221b4eb466331b8f3a9589498497bb00af8dedced5dbb835a5
 #EXTINF:-1 tvg-id="718" tvg-language="Odia" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Kanak_TV.png" catchup-type="append" catchup-days="8" catchup-source="&begin={utc}&end={utcend}" tvg-chno="1359" ch-number="1359",Kanak News (1359)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=4bc9236e724c8fe2feb95f55b926912e:4bb51a8fbce47d5b9534d63626fc0e36,5eaccecf21b3dd138b276cf9f4496306:e308f1d46e5f8a3bfbb40619485390cd,824f9a671cb6714b3c3c3a805934310c:7098c7b62946de3f12427174bb4e6a13,fe6b0db8a22d59939f29ec670107a451:a196cdb73299e81766a1a33db33eeddb,00000000000000000000000000000000:00000000000000000000000000000000,21b23c43955a52fd8102b335515c02f6:b7d94e83da0c9beda7d3d72a0aa632af,d3afd95d7d4153c6b2ed8bdcf66f2931:95159d2b1a1ff585f8aa7b48974c4681,95f051f15f66ae94fc139adbc6842269:59c3343df696ef95c0f778b6d6f56647,bf73300719ce5d61bf1fa7892f242ccb:040a30449053338e22a89a93dafc5cbc,d469ae90912d5115a9da7c53a19c317d:3bafe5e87942fee2302e7f0d8c5185d7
 https://jiotvmblive.cdn.jio.com/bpk-tv/Kanak_TV_MOB/WDVLive/index.mpd?__hdnea__=st=1794465012~exp=1794551412~acl=/*~hmac=2aaa6a6dbf410c6afb35e22b73447aa354755fb86879b271ea2f60db917a635d
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1360" ch-number="1360",TNT Sports 1 (1360)
+#EXTINF:-1 tvg-id="1090553929_HIN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000028883/1794508714132577_ACC_U19_FINAL_PAK_vs_IND_live_landscape_thumb.jpg" tvg-chno="1360" ch-number="1360",Sony: ACC Men's U19 Asia Cup [HIN] (1360)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=null:null
+https://liveakmt-p-md.slivcdn.com/hls/live/2119921/cricodi_1411/HIN/std_mdd-600300010.m3u8?hdnea=exp=1794649602~acl=/*~id=92097840205827370485166423696874~hmac=0c3e4032642add221b4eb466331b8f3a9589498497bb00af8dedced5dbb835a5
+#EXTINF:-1 tvg-id="1090553929_TAM" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000028883/1794508714132577_ACC_U19_FINAL_PAK_vs_IND_live_landscape_thumb.jpg" tvg-chno="1361" ch-number="1361",Sony: ACC Men's U19 Asia Cup [TAM] (1361)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=null:null
+https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_1411/ENG/std_mdd-600300010.m3u8?hdnea=exp=1794649602~acl=/*~id=92097840205827370485166423696874~hmac=0c3e4032642add221b4eb466331b8f3a9589498497bb00af8dedced5dbb835a5
+#EXTINF:-1 tvg-id="1090553929_TEL" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000028883/1794508714132577_ACC_U19_FINAL_PAK_vs_IND_live_landscape_thumb.jpg" tvg-chno="1362" ch-number="1362",Sony: ACC Men's U19 Asia Cup [TEL] (1362)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=null:null
+https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_1411/ENG/std_mdd-600300010.m3u8?hdnea=exp=1794649602~acl=/*~id=92097840205827370485166423696874~hmac=0c3e4032642add221b4eb466331b8f3a9589498497bb00af8dedced5dbb835a5
+#EXTINF:-1 tvg-id="1090553929_KAN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000028883/1794508714132577_ACC_U19_FINAL_PAK_vs_IND_live_landscape_thumb.jpg" tvg-chno="1364" ch-number="1364",Sony: ACC Men's U19 Asia Cup [KAN] (1364)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=null:null
+https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_1411/ENG/std_mdd-600300010.m3u8?hdnea=exp=1794649602~acl=/*~id=92097840205827370485166423696874~hmac=0c3e4032642add221b4eb466331b8f3a9589498497bb00af8dedced5dbb835a5
+#EXTINF:-1 tvg-id="1090553928_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000027302/1792887700360295_ASIANTOUR2026_Philippine_Open_Day3_landscape_thumb.jpg" tvg-chno="1366" ch-number="1366",Sony: Asian Tour [ENG] (1366)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=null:null
+https://sonydaimenew.akamaized.net/hls/live/2094589/Golf_Phi1411/ENG/std_mdh-800300010.m3u8?hdnea=st=1794636100~exp=1794636400~acl=*~id=906fde5b-da39-4c95-9caa-00cd452b87a4~hmac=08dc786adbe0e3169cb9e5a668db9fc0dd76b2780f655a11a08d9de898a2af7e&originpath=/linear/hls/pa/event/CNoyvSrFQdWpZ5veDRGeSA/stream/e23ed43c-7c11-4089-8dfb-e180122b2588:CHS/master.m3u8
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1367" ch-number="1367",TNT Sports 1 (1367)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=69a5aa835a061ce64a630d1046727e40:d02feac8a999bd06bf4059bf33411749
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/rhf2dwosdt/out/v1/ee550d2a68d846c797e6ce4de2e8b76d/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1361" ch-number="1361",TNT Sports 2 (1361)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1368" ch-number="1368",TNT Sports 2 (1368)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=f3df7843080ae743bf865dc5fdf64c68:567c863bc12eb74788ea74888c042e1b
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/puehlftk5j/out/v1/f7f0da1ee112481ca0024e6d4dd97f4a/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1362" ch-number="1362",TNT Sports 3 (1362)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1370" ch-number="1370",TNT Sports 3 (1370)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=cc91508324ce9dcaf425a43d58f1d9d4:643e5474d9edd87c7d9091c8c97994ca
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/dev1hjwzh9/out/v1/a5f0ee7ad7b24906b14f43bebbbe4678/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="1364" ch-number="1364",TNT Sports 4 (1364)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="1371" ch-number="1371",TNT Sports 4 (1371)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=fa34fa8c90336dd528c7a23871cad1fe:552a78d1aeb74f1650d68255c5749408
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/tdijwiga2k/out/v1/f5fde318678f4f7583bf27b7231bde1f/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="1366" ch-number="1366",TNT Sports 5 (1366)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="1372" ch-number="1372",TNT Sports 5 (1372)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.max_bandwidth=0
