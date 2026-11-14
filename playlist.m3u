@@ -7283,12 +7283,12 @@ https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_1411/ENG/std_mdd-6003
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_1411/ENG/std_mdd-600300010.m3u8?hdnea=exp=1794649602~acl=/*~id=92097840205827370485166423696874~hmac=0c3e4032642add221b4eb466331b8f3a9589498497bb00af8dedced5dbb835a5
-#EXTINF:-1 tvg-id="1090553928_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000027302/1792887700360295_ASIANTOUR2026_Philippine_Open_Day3_landscape_thumb.jpg" tvg-chno="1366" ch-number="1366",Sony: Asian Tour [ENG] (1366)
+#EXTINF:-1 tvg-id="1090553932_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000028796/1794398873589427_DP_World_Tour_Championship_Dubai_day3_landscape_thumb.jpg" tvg-chno="1366" ch-number="1366",Sony: DP World Tour [ENG] (1366)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2094589/Golf_Phi1411/ENG/std_mdh-800300010.m3u8?hdnea=st=1794636100~exp=1794636400~acl=*~id=906fde5b-da39-4c95-9caa-00cd452b87a4~hmac=08dc786adbe0e3169cb9e5a668db9fc0dd76b2780f655a11a08d9de898a2af7e&originpath=/linear/hls/pa/event/CNoyvSrFQdWpZ5veDRGeSA/stream/e23ed43c-7c11-4089-8dfb-e180122b2588:CHS/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2005444/Golf_DPW1411/ENG/std_mdh-800300010.m3u8?hdnea=st=1794646904~exp=1794647204~acl=*~id=b10b32e9-2d80-453c-86c8-a71aef82deca~hmac=47efb36de7076a6047c04001a2eef24191af115dd02ef69694911a3079d48fca&originpath=/linear/hls/pa/event/RW16dPdwQkaWLEnliVIIrw/stream/5c4763a0-86b0-4cec-9bc1-d5b2dc154630:TUL/master.m3u8
 #EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1367" ch-number="1367",TNT Sports 1 (1367)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
