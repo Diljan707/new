@@ -29,12 +29,6 @@ https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeTVHD_BTS/WDVLive/index.mpd?__hdnea__=s
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
-#EXTINF:-1 tvg-id="HE_E_10080" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/04bc627420754c2592f21bb6c37d7f41/version/0" tvg-chno="102" ch-number="102",ZEE TV HD (102)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
 #EXTINF:-1 tvg-id="1351" tvg-language="Hindi" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/ZeeTV.png" CATCH-UP-FAILED="null" tvg-chno="103" ch-number="103",Zee TV (103)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -95,12 +89,6 @@ https://game.playindia.fun/Sliv/sliv_471/index.m3u8
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=8049b057a4b65a79138d1e694c0c6d90:61fe69552e0211d998fcea47609aecd4,ba4d9b38517552de9654d3652d27933b:31e7cbf3d289d3116386457ed8bac3a2,c0da6140fcb9cad0a40e10acd6235a31:9ef9b64537a5ea0af95d222e558b82ef,9591eaddd7d88b719139cc8bbcfaf14d:0013f26513e9420b941604f3fe9f3e2f,ba4d9b38517552de9654d3652d27933b:31e7cbf3d289d3116386457ed8bac3a2,24ca8fac58c57c8ebf03d376f80deab7:3e09e44f95b4d1104be2f3c05668d1af
 https://jiotvmblive.cdn.jio.com/bpk-tv/Sony_SAB_MOB/WDVLive/index.mpd?__hdnea__=st=1794465012~exp=1794551412~acl=/*~hmac=2aaa6a6dbf410c6afb35e22b73447aa354755fb86879b271ea2f60db917a635d
-#EXTINF:-1 tvg-id="HE_E_10086" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/6ce923e690114400bcdc43ea7a3b27be/version/0" tvg-chno="108" ch-number="108",&Tv HD (108)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
 #EXTINF:-1 tvg-id="143" tvg-language="English" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/CNBCTV18Prime.png" catchup-type="append" catchup-days="8" catchup-source="&begin={utc}&end={utcend}" tvg-chno="110" ch-number="110",CNBC TV18 Prime (110)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -1275,12 +1263,6 @@ https://jiotvmblive.cdn.jio.com/bpk-tv/Ten3_HD_MOB/WDVLive/index.mpd?__hdnea__=s
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=42cc2090a796efd0a034d7a58fa5282c:81884e8642a7bb68f467b3329316275e,74499b098e4ee584b2714bfd395f2349:0f1a99043350be263bb0ec91effd1091,548c049108f95c3b81ea4befee5a3aae:5d3e71b422b7cc2f782c87f600e5a5b4,6da7dcc98a15132d6e215df6f9fde790:afb021a2f16d5a49a93dac7a8cc01273,e506f05b3b0010e372af4c91e6ce3dbe:8a5be4e887d64bea803727a0790d6cb2
 https://jiotvmblive.cdn.jio.com/bpk-tv/Gemini_Music_HD_MOB/WDVLive/index.mpd?__hdnea__=st=1794465012~exp=1794551412~acl=/*~hmac=2aaa6a6dbf410c6afb35e22b73447aa354755fb86879b271ea2f60db917a635d
-#EXTINF:-1 tvg-id="HE_E_10100" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/75364a7b9f09477b9ee80016a6440b6b/version/0" tvg-chno="304" ch-number="304",&Pictures HD (304)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
 #EXTINF:-1 tvg-id="watch_4" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/And_Pictures.png" tvg-chno="305" ch-number="305",&Pictures (305)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
@@ -1372,12 +1354,6 @@ https://jiotvmblive.cdn.jio.com/bpk-tv/Colors_Cineplex_MOB/WDVLive/index.mpd?__h
 #KODIPROP:inputstream.adaptive.license_key=0a18b0805c2bdf1a7108c40b43a75f97:a2e287a469b52cfdb142fb78de8f03a2,d0049ab307fd5a13b96e306b953d06dd:8057ff282237f0831dcdc4f8a9b2946f,089ab9c03d1ab9e78379cd927ab320a9:5321bb18dcb5169a7b375f850235458f,ff500799135d695aa19a6132260014ec:b862b7e0c948aa83687ea70ee64c0087,ae9a750f39ee523c88f71c47872029ce:ce973e45f923884cce42020da0fb6398,6cb922915759d38529e4677d7c6a3eee:1b5125b55886b94d48966ac9a08ab0eb,27eb79e6c8ef594ea8508011b606bb02:1dd808f8b8e367dd9205128bc0865dee
 https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeCinemaHD_BTS/WDVLive/index.mpd?__hdnea__=st=1794504967~exp=1794508567~acl=/bpk-tv/ZeeCinemaHD_BTS/WDVLive/*~hmac=d0da3d9ae5b7927b8c95513d2bf3f274af8efc34f611b82e592a747f00ad3193
 #EXTINF:-1 tvg-id="watch_6" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Zee_Cinema.png" tvg-chno="314" ch-number="314",Zee Cinema HD (314)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
-#EXTINF:-1 tvg-id="HE_E_10081" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/d2316f5734094e8486486d6911fe6560/version/0" tvg-chno="314" ch-number="314",Zee Cinema HD (314)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
@@ -3297,18 +3273,6 @@ https://jiotvmblive.cdn.jio.com/bpk-tv/Z10_News_MOB/WDVLive/index.mpd?__hdnea__=
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=4197a27f1c445f06a04a3616aa95b575:0345ef0f4815e7a99418c94c4adfcb52,b943d868e03291d14b545503c4dde78f:c191e6e172a2c8d54ebbcdac473c04cd,b2d117452829cd621aa4e46e415a2cb2:981ce2b9ca70c8ed8d7411e64a32d700,2e5e9ceb70e1c96810a10b6eadd1f4d2:5bb10c41274765392292a37d2ae8a13f,a17493406a15563ab13e0fbc5e559ada:958b6c534825a0dd318799f843ce4f67,1f14433d1388bab259983ae99245b05f:3c2b5b1ce9302c438eaab61e8a0c9130
 https://jiotvmblive.cdn.jio.com/bpk-tv/Dsports_MOB/WDVLive/index.mpd?__hdnea__=st=1794465012~exp=1794551412~acl=/*~hmac=2aaa6a6dbf410c6afb35e22b73447aa354755fb86879b271ea2f60db917a635d
-#EXTINF:-1 tvg-id="HE_E_10079" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/396cbd0f0e8d492db65b304859af478d/version/0" tvg-chno="631" ch-number="631",Unite8 Sports 1 HD (631)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
-#EXTINF:-1 tvg-id="HE_E_10078" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/03fc75c46d9a4b8daff3ef58d77c5bc7/version/0" tvg-chno="633" ch-number="633",Unite8 Sports 2 HD (633)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
 #EXTINF:-1 tvg-id="1853" tvg-language="Hindi" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/News11_Bharat.png" catchup-type="append" catchup-days="8" catchup-source="&begin={utc}&end={utcend}" tvg-chno="635" ch-number="635",News11 Bharat (635)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -4879,6 +4843,12 @@ https://jiotvmblive.cdn.jio.com/bpk-tv/DD_SATHEE_4_MOB/WDVLive/index.mpd?__hdnea
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=2455fca1b78737bbfdaa1a880ba0234d:52dabba1bdbcc49d57a60f8fb5b791da,9aaf005a2bb884d91c89c63f42cc0738:4a51a6595d08655aa403a36b6ac2c919,e05bb7fccc9c541ebc3d180fb3004d1a:fd8ff50906c9b384c894ec084f8b6aee,00000000000000000000000000000000:00000000000000000000000000000000,60b115b5125d51e0d9ee8815c7fd6352:9976b4d5b54fbe8221229c757e48dbc5,651ffea99ceb53f5b1dd5e8b2b8d1892:082eb2ec3ee80043c6f3aadd647c1a7e
 https://jiotvmblive.cdn.jio.com/bpk-tv/ET_Now_MOB/WDVLive/index.mpd?__hdnea__=st=1794465012~exp=1794551412~acl=/*~hmac=2aaa6a6dbf410c6afb35e22b73447aa354755fb86879b271ea2f60db917a635d
+#EXTINF:-1 tvg-id="HE_E_10058" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/81f431adc0714cff84be95b33d9b1b83/version/0" tvg-chno="933" ch-number="933",ET Now (933)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=null:null
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
 #EXTINF:-1 tvg-id="3140" tvg-language="English" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/DD_SATHEE_5.png" CATCH-UP-FAILED="null" tvg-chno="935" ch-number="935",DD Sathee 5 (935)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -6373,12 +6343,6 @@ https://jiotvmblive.cdn.jio.com/bpk-tv/RPlusGold_BTS/WDVLive/index.mpd?__hdnea__
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=0bf930e665a756bab62df644407e0877:42e5003f036f924d5095e0d6f315c9f6,2a876f210cd9cbe4f60b65bcaf729765:ef915bd9ad6a273d6a62a152ee5be254,9e0ef122783938612d93cc4fdd99d90d:df31cde613724c06d6de105770d089d1,7a20e6816ee94cf64ae4a83ff9c7b5e4:94b7dce2ef30209ee985ce4d11bfa6d2,30bd69379ac152328ec758dbe155f378:3da01c001e5752200c530c67b6b017ca,267b508bf212c0438b7e26f4fe1587e4:367654f9a1edd28720a52f2bf63b6334,31b154c4ccfc536e902666aca93f33df:af52b719f34fef693fee077cfa6d279e
 https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeMarathiHD_BTS/WDVLive/index.mpd?__hdnea__=st=1794504193~exp=1794507793~acl=/bpk-tv/ZeeMarathiHD_BTS/WDVLive/*~hmac=e5da695d608e6e1a41d6b96eb82525d816cfb76d56d20128e2a6ad903edb514b
-#EXTINF:-1 tvg-id="HE_E_10096" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/9d03463ae16544f2b87dd2e173b22685/version/0" tvg-chno="1201" ch-number="1201",Zee Marathi HD (1201)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
 #EXTINF:-1 tvg-id="445" tvg-language="Marathi" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/ZeeMarathi.png" CATCH-UP-FAILED="null" tvg-chno="1202" ch-number="1202",Zee Marathi (1202)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -6565,12 +6529,6 @@ https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=7d9bb51870c70155872f1f0ae4a2329b:116aba67d02f98f2d07e3db5ac705d85,f30d49a5b77a79fadcced9a072ee5f5e:b1966970bd4866a54882ce8c6d4271f0,4529f6388533f9bcd4cddf54271b1e30:281e93bc7538e785d40e6b69efe212e3,784d6511ea4d5941a3f9314bf3fa4b90:7e09f01537acdee0dad3ade6a6e0a31d,784cfecc212a5a8e94c18041bd895d87:b8e2a35b093029f203d11285ce07598a,33a9bc1dd42b75f1c45ab7a62b52ffd0:002f6910c70b2758fbfbb1e0998ffb5c,3da15a5b9a6d5b57a54c3a69342130d4:0168bebf1d0d8b8130c6d16ec7c1a7ec
 https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeTalkiesHD_BTS/WDVLive/index.mpd?__hdnea__=st=1794505692~exp=1794509292~acl=/bpk-tv/ZeeTalkiesHD_BTS/WDVLive/*~hmac=96d2157f2bf0b0c16de400c9c8dda48ebad831cac12e2aa739a20c474cb6854f
-#EXTINF:-1 tvg-id="HE_E_10098" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/8afbf5d35d83410e9ee9597d9645d3be/version/0" tvg-chno="1230" ch-number="1230",Zee Talkies HD (1230)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
 #EXTINF:-1 tvg-id="153" tvg-language="Marathi" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/ZeeTalkies.png" CATCH-UP-FAILED="null" tvg-chno="1231" ch-number="1231",Zee Talkies (1231)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -7229,7 +7187,7 @@ https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
-#EXTINF:-1 tvg-id="HE_F_10011" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/bab798478e714be3a5ae861fc04606f0/version/0" tvg-chno="1350" ch-number="1350",9X Jalwa (1350)
+#EXTINF:-1 tvg-id="HE_F_10007" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/9ac9516189654175bffc220b723e928d/version/0" tvg-chno="1350" ch-number="1350",DD Bharti (1350)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
@@ -7241,43 +7199,31 @@ https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=b16269fb827957bb8e776050dc0b142a:d91871c7d1cc9c4f336e3b6f3ad724de,798135b6d7ee1fe8e89fd50c31731a6a:b0bb0636113bbc63e6d502cafe3a81dd,27765041f1e85f669188f737a6017452:6b992a6248da09765ad1166a9ce15526,e80c69a0339b5aeb07499f5a9fb51cca:fb4f03254e76f55d37dc8cb0087855ae,6d5b3ea0f3e364cbba07d7ec7a21afa2:3167e6d6c53b56b04962ce1a4ea706aa,6c64cb1631645012a8836cee9a61bdf8:26ab0281d3fe1f7743fd33acf1aa47e3,9434c91f92a25dcbb1d7b7b5aa4aeb00:bf8b7816e1f7ece88a4c9555468c9889,add77bdee78e56babbbdccb151520f65:40761c93226504897bc87d7d219a100b,8f3592fc02d15b02837fa4f55fe83167:fa6424f5bf740aa45557b12876edafec,b35e3f05ff7ae38a2c4cf76eda66e263:87a4dd604326648fde83d0739d8dc627
 https://jiotvmblive.cdn.jio.com/bpk-tv/OTV_MOB/WDVLive/index.mpd?__hdnea__=st=1794465012~exp=1794551412~acl=/*~hmac=2aaa6a6dbf410c6afb35e22b73447aa354755fb86879b271ea2f60db917a635d
-#EXTINF:-1 tvg-id="HE_F_10007" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/9ac9516189654175bffc220b723e928d/version/0" tvg-chno="1352" ch-number="1352",DD Bharti (1352)
+#EXTINF:-1 tvg-id="HE_F_10010" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/28b8bef7e39548d0ab6ab86d4bbb5e88/version/0" tvg-chno="1352" ch-number="1352",DD National (1352)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
-#EXTINF:-1 tvg-id="HE_F_10010" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/28b8bef7e39548d0ab6ab86d4bbb5e88/version/0" tvg-chno="1353" ch-number="1353",DD National (1353)
+#EXTINF:-1 tvg-id="HE_F_10090" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/f6ace40e05bd435184b232ca5d67fc62/version/0" tvg-chno="1353" ch-number="1353",Sansad TV HD (1353)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
-#EXTINF:-1 tvg-id="HE_F_10053" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/9bc111a3d6f04e5bad9483462ed48e28/version/0" tvg-chno="1354" ch-number="1354",Music India (1354)
+#EXTINF:-1 tvg-id="HE_E_10022" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/bb424c74bfd54392a86b4a343996b6d5/version/0" tvg-chno="1354" ch-number="1354",Zee Biskope (1354)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
-#EXTINF:-1 tvg-id="HE_F_10090" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/f6ace40e05bd435184b232ca5d67fc62/version/0" tvg-chno="1355" ch-number="1355",Sansad TV HD (1355)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
-#EXTINF:-1 tvg-id="HE_E_10022" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/bb424c74bfd54392a86b4a343996b6d5/version/0" tvg-chno="1356" ch-number="1356",Zee Biskope (1356)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
-#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo9cZGt3VJujNhF5G4hLRy4LMC6LVznt8J_xVguOvDzw&s=10" group-title="Live events" tvg-chno="1357" ch-number="1357", (1357)
+#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo9cZGt3VJujNhF5G4hLRy4LMC6LVznt8J_xVguOvDzw&s=10" group-title="Live events" tvg-chno="1355" ch-number="1355", (1355)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 
-#EXTINF:-1 tvg-id="Doraemon" tvg-logo="https://www.freepnglogos.com/uploads/doraemon-png/doraemon-logo-movies-hindi-dubbed-download-34.png" tvg-chno="1358" ch-number="1358",Doraemon 24/7 (1358)
+#EXTINF:-1 tvg-id="Doraemon" tvg-logo="https://www.freepnglogos.com/uploads/doraemon-png/doraemon-logo-movies-hindi-dubbed-download-34.png" tvg-chno="1356" ch-number="1356",Doraemon 24/7 (1356)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.max_bandwidth=0
@@ -7289,49 +7235,55 @@ https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
 #KODIPROP:inputstream.adaptive.license_key=null:null
 #EXTVLCOPT:http-user-agent=Denver1769
 
+#EXTINF:-1 tvg-id="Shinchan" tvg-logo="https://static.wikia.nocookie.net/crayonshinchan/images/3/36/Logo_slogan.png" tvg-chno="1357" ch-number="1357",Shinchan 24/7 (1357)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.max_bandwidth=0
+#KODIPROP:inputstream.adaptive.stream_selection_type=automatic
+#KODIPROP:inputstream.adaptive.max_buffer_time=300
+#KODIPROP:inputstream.adaptive.buffer_segment_size=1000
+#KODIPROP:inputstream.adaptive.live_delay=0
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=null:null
+#EXTVLCOPT:http-user-agent=Denver1769
+
+#EXTINF:-1 tvg-id="1090553928_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000027302/1792887700360295_ASIANTOUR2026_Philippine_Open_Day3_landscape_thumb.jpg" tvg-chno="1358" ch-number="1358",Sony: Asian Tour [ENG] (1358)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=null:null
+https://sonydaimenew.akamaized.net/hls/live/2094589/Golf_Phi1411/ENG/std_mdh-800300010.m3u8?hdnea=st=1794625308~exp=1794625608~acl=*~id=abbecb59-3a3f-4586-974f-c67490802081~hmac=70b9c63a927b8a3a774ebf1b4257bf88f3a4b588168d77738c347827eb56cfcb&originpath=/linear/hls/pa/event/CNoyvSrFQdWpZ5veDRGeSA/stream/6a8af42a-99da-4f3f-85a0-503dd01d9ea1:DLS/master.m3u8
 #EXTINF:-1 tvg-id="718" tvg-language="Odia" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Kanak_TV.png" catchup-type="append" catchup-days="8" catchup-source="&begin={utc}&end={utcend}" tvg-chno="1359" ch-number="1359",Kanak News (1359)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=4bc9236e724c8fe2feb95f55b926912e:4bb51a8fbce47d5b9534d63626fc0e36,5eaccecf21b3dd138b276cf9f4496306:e308f1d46e5f8a3bfbb40619485390cd,824f9a671cb6714b3c3c3a805934310c:7098c7b62946de3f12427174bb4e6a13,fe6b0db8a22d59939f29ec670107a451:a196cdb73299e81766a1a33db33eeddb,00000000000000000000000000000000:00000000000000000000000000000000,21b23c43955a52fd8102b335515c02f6:b7d94e83da0c9beda7d3d72a0aa632af,d3afd95d7d4153c6b2ed8bdcf66f2931:95159d2b1a1ff585f8aa7b48974c4681,95f051f15f66ae94fc139adbc6842269:59c3343df696ef95c0f778b6d6f56647,bf73300719ce5d61bf1fa7892f242ccb:040a30449053338e22a89a93dafc5cbc,d469ae90912d5115a9da7c53a19c317d:3bafe5e87942fee2302e7f0d8c5185d7
 https://jiotvmblive.cdn.jio.com/bpk-tv/Kanak_TV_MOB/WDVLive/index.mpd?__hdnea__=st=1794465012~exp=1794551412~acl=/*~hmac=2aaa6a6dbf410c6afb35e22b73447aa354755fb86879b271ea2f60db917a635d
-#EXTINF:-1 tvg-id="Shinchan" tvg-logo="https://static.wikia.nocookie.net/crayonshinchan/images/3/36/Logo_slogan.png" tvg-chno="1360" ch-number="1360",Shinchan 24/7 (1360)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.max_bandwidth=0
-#KODIPROP:inputstream.adaptive.stream_selection_type=automatic
-#KODIPROP:inputstream.adaptive.max_buffer_time=300
-#KODIPROP:inputstream.adaptive.buffer_segment_size=1000
-#KODIPROP:inputstream.adaptive.live_delay=0
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-#EXTVLCOPT:http-user-agent=Denver1769
-
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1361" ch-number="1361",TNT Sports 1 (1361)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1360" ch-number="1360",TNT Sports 1 (1360)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=69a5aa835a061ce64a630d1046727e40:d02feac8a999bd06bf4059bf33411749
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/rhf2dwosdt/out/v1/ee550d2a68d846c797e6ce4de2e8b76d/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1362" ch-number="1362",TNT Sports 2 (1362)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1361" ch-number="1361",TNT Sports 2 (1361)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=f3df7843080ae743bf865dc5fdf64c68:567c863bc12eb74788ea74888c042e1b
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/puehlftk5j/out/v1/f7f0da1ee112481ca0024e6d4dd97f4a/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1364" ch-number="1364",TNT Sports 3 (1364)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1362" ch-number="1362",TNT Sports 3 (1362)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=cc91508324ce9dcaf425a43d58f1d9d4:643e5474d9edd87c7d9091c8c97994ca
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/dev1hjwzh9/out/v1/a5f0ee7ad7b24906b14f43bebbbe4678/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="1366" ch-number="1366",TNT Sports 4 (1366)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="1364" ch-number="1364",TNT Sports 4 (1364)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=fa34fa8c90336dd528c7a23871cad1fe:552a78d1aeb74f1650d68255c5749408
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/tdijwiga2k/out/v1/f5fde318678f4f7583bf27b7231bde1f/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="1367" ch-number="1367",TNT Sports 5 (1367)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="1366" ch-number="1366",TNT Sports 5 (1366)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.max_bandwidth=0
@@ -7384,12 +7336,6 @@ https://game.playindia.fun/Sliv/sliv_697/index.m3u8
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=7d42a785dd012f916e97b4dbeaeaf7ee:3d4a5b5df134d6945abf22834cce686f,ff6a6ae8f25b58119b88baf9d570e6dc:5697c5473e797eb2532cfa60c8ced02f,54340851fe88557b920364c6d08260ae:c31197975c873ec72618c64da0f60623,d870d9ee7904ccae30236463662e050d:acc6b306596d787114ce3bb9933acd61,7966a083736c5ff6b449767da10897bc:a11dff4dfcc5ebaff4640b8a5b2bd71e,e89830bee895288b2215989bb1bbac9f:213179094b0ea9e7b348711af17871b0,3720a8b6260315d0cba5130ec6963357:b3715fd7b854a6c9bc5cf50656a1d230
 https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeBanglaHD_BTS/WDVLive/index.mpd?__hdnea__=st=1794498626~exp=1794520226~acl=/bpk-tv/ZeeBanglaHD_BTS/WDVLive/*~hmac=6c64e1589bee1e41c74419421500a409c80384f5ca08996b327a57d17a44b083
-#EXTINF:-1 tvg-id="HE_E_10093" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/dd74c3cd17ff4baca804bce74b811384/version/0" tvg-chno="1408" ch-number="1408",Zee Bangla HD (1408)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
 #EXTINF:-1 tvg-id="756" tvg-language="Bengali" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Colors_Bengali_HD.png" catchup-type="append" catchup-days="8" catchup-source="&begin={utc}&end={utcend}" tvg-chno="1410" ch-number="1410",Colors Bangla HD (1410)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -7420,12 +7366,6 @@ https://jiotvmblive.cdn.jio.com/bpk-tv/Jalsa_Movies_HD_MOB/WDVLive/index.mpd?__h
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=195a71696171dbe9606dcad5d7d87398:f4d61aced7192a87597f7087cf107b3e,8553e022a5e0ad42e85b64c20334c5e5:06a7fe1d10952a2b75efe917bc8d00ae,57033d16a300b71c742d5b621fcb762c:807bbe14d259809c865928e276fdf5b9,05dcf4433e055e2f960e8ac859afbec4:75a1ab16efc8145bea71a71f39c8eb04,3453051b8c70930c3cdf7572b7b603f5:22d957d0b890bc8182d5fc4719d910dd
 https://jiotvmblive.cdn.jio.com/bpk-tv/ZeeBanglaSonar_MOB/WDVLive/index.mpd?__hdnea__=st=1794465012~exp=1794551412~acl=/*~hmac=2aaa6a6dbf410c6afb35e22b73447aa354755fb86879b271ea2f60db917a635d
-#EXTINF:-1 tvg-id="HE_E_10021" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/f508a6918aac461382774c4a34f50c30/version/0" tvg-chno="1433" ch-number="1433",Zee Bangla Sonar (1433)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
 #EXTINF:-1 tvg-id="1657" tvg-language="Bengali" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Colors_Bangla_Cinema.png" CATCH-UP-FAILED="null" tvg-chno="1439" ch-number="1439",Colors Bangla Cinema (1439)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -7540,12 +7480,6 @@ https://jiotvmblive.cdn.jio.com/bpk-tv/DD_Bihar_MOB/WDVLive/index.mpd?__hdnea__=
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=ce2be445fb9c50abab9da09c1cefbc5e:3a288c3757bc764a0a81a6b616b31821,fda88e90ceb053a4a2d8a8232e03c333:cfb08c3d2c36aa9ca099840295f11691,b1d834cd98eb544eb63f3b6096cb2166:99791e7ea423d460af071dbb4bbd6005,ff7766b25b44abf00746b4e43a2b73c0:313697503215e70bb45ac60bc4899551,a03a3a046e3058faa4fbe44faf7a45f2:8806f7eea9ea9a6d790471cb9d80aa5a,5e5db05c66fc7d5a684fbe6531587888:8b4e6c389b0cc7b6b48f0d383731a00f,adc18552ae715eb4816db1ffc57aef76:8c9bc52efff557b0cdd7ef17eeb9cb63,1744589625b757bcf56475a42ac5e50e:ebaf64d87abab7259314893eb23fa925,77ac3922e3ae5597b2bb0a52afb88d0f:35030fa506bf92866f369da6d6e917fa,89b87b06c14ece677a34b2ef54250630:e0557e1341f1e9860c4e93547ccc73c1
 https://jiotvmblive.cdn.jio.com/bpk-tv/Sangeet_Bhojpuri_MOB/WDVLive/index.mpd?__hdnea__=st=1794465012~exp=1794551412~acl=/*~hmac=2aaa6a6dbf410c6afb35e22b73447aa354755fb86879b271ea2f60db917a635d
-#EXTINF:-1 tvg-id="HE_F_10054" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/032d38ed29b54e51a6e0575bd9e0d837/version/0" tvg-chno="1573" ch-number="1573",Sangeet Bhojpuri (1573)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
 #EXTINF:-1 tvg-id="1516" tvg-language="English" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/DD_Yadagiri.png" CATCH-UP-FAILED="null" tvg-chno="1627" ch-number="1627",DD Yadagiri (1627)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -7666,12 +7600,6 @@ https://jiotvmblive.cdn.jio.com/bpk-tv/ETV_Telugu_MOB/WDVLive/index.mpd?__hdnea_
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=3ef3b9cfc241d101c03708042080e364:980a6bb4ec14b452ca234d57018544be,817e28c7f03456f1ae7383f244853b2b:7c03f916ec20cfd68f0a6a5735c6aaca,17aee0907a195cc619aa1e21ff8d3061:bd4fe658e788d9179788c36b8c711a0a,3d544ac601a376dc46920680a29f070c:6f2d8434b16aed34e25d1071614992fd,4bf09b156b2d5d06832bfe213a1999dd:0043f9a1a38a4c6c9a1df40262d43040,636b8010d88159449396b941b69d4807:d8aaacb65859b777b3b677e9d3443e7c,5645c9f0acf663bada7a6caa76e66f01:feb01c6cc8c85d0b5ae32bf05b166fb1
 https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeTeluguHD_BTS/WDVLive/index.mpd?__hdnea__=st=1794503592~exp=1794507192~acl=/bpk-tv/ZeeTeluguHD_BTS/WDVLive/*~hmac=7d62b86c05cefc26b8fd5cfbbb33266bb639d2353e4bd0146dc94d78d9ba7cfa
-#EXTINF:-1 tvg-id="HE_E_10077" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/3e8e7c08dedc48ee9ed67fc0bc4ecf76/version/0" tvg-chno="2362" ch-number="2362",Zee Telugu HD (2362)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
 #EXTINF:-1 tvg-id="638" tvg-language="Telugu" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/ZeeTelugu.png" CATCH-UP-FAILED="null" tvg-chno="2363" ch-number="2363",Zee Telugu (2363)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -7732,12 +7660,6 @@ https://jiotvpllive.cdn.jio.com/bpk-tv/Maa_Movies_BTS/WDVLive/index.mpd?__hdnea_
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=eef2842de0e15f42a6c4fb1a738e1d57:2919274f6d2e46938389bbddf3773efb,33f9306a82fb00c06ddaaf2860e52b68:136464384e1ad5c3acb63a69068c94b3,730ed5cd30895628a4db7ef0a49db01a:518d8c106dfae40459b231119ecd80d7,0533a0c06eb3e518b324a8d06d547dec:72267d2f5dbbff3ce775ef7fafa60527,58bc225f365d52888d7111730012cdf1:53d0170af91407ae36b808860f2035d0,b71f9a5cb8325078bb6b59528b553cc2:fa2c33f8a7d9933a347562bf092a90fe,f52f9f214dc66bdb72fc6ab844ef6664:0d6674886f666d7f7a805642c2ee4216
 https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeCinemaluHD_BTS/WDVLive/index.mpd?__hdnea__=st=1794503292~exp=1794506892~acl=/bpk-tv/ZeeCinemaluHD_BTS/WDVLive/*~hmac=b5309e68a776ced6fb0b078ed252195962d645ae80300dffb07336274703929f
-#EXTINF:-1 tvg-id="HE_E_10097" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/a33211ad359a4cba8b23144e4081ff68/version/0" tvg-chno="2404" ch-number="2404",Zee Cinemalu HD (2404)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
 #EXTINF:-1 tvg-id="413" tvg-language="Telugu" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/ZeeCinemalu.png" CATCH-UP-FAILED="null" tvg-chno="2405" ch-number="2405",Zee Cinemalu (2405)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -7870,12 +7792,6 @@ https://jiotvmblive.cdn.jio.com/bpk-tv/Udaya_HD_MOB/WDVLive/index.mpd?__hdnea__=
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=822fbb0a3a3750ccb8e43fc2fa4f921a:f085f07591daeab2cebd4a7377c2f6e1,71231ba4fb8b30198c38b3eac6b78b3f:703fcc58e5f7aa45b49fa44c1f4d7002,8d59bf7037996ca66e06768f311cf20a:2daae224847711c580eea7e25819c686,4b8b647e2c5d61a6a8e9d57db62ff875:3daade8575224797dd751c79ac270244,02f4cfad19cf547da40f77c29bd303b2:a3ba2f7a824f232d7162f7452fe97a60,71f7552ac5165685aca67fa33ce03cb5:5b682b8f29a03314a2ab430287dca540,584f20fab8f54055ea54d498d8f049bc:10ee494525b8de0ab09f1e1c8f4b856e
 https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeKannadaHD_BTS/WDVLive/index.mpd?__hdnea__=st=1794503298~exp=1794506898~acl=/bpk-tv/ZeeKannadaHD_BTS/WDVLive/*~hmac=b83cb8ba306d6c26bfd4b0e99dd791f4881dd87445cf09df34dbdff67671bb06
-#EXTINF:-1 tvg-id="HE_E_10091" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/37b5fbe79db34171a1873cf889458149/version/0" tvg-chno="2608" ch-number="2608",Zee Kannada HD (2608)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
 #EXTINF:-1 tvg-id="689" tvg-language="Kannada" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/ZeeKannada.png" CATCH-UP-FAILED="null" tvg-chno="2609" ch-number="2609",Zee Kannada (2609)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -8116,7 +8032,7 @@ https://jiotvmblive.cdn.jio.com/bpk-tv/Kalaignar_TV_MOB/WDVLive/index.mpd?__hdne
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=6842813150d1b92d8531636bff39afbc:51628c0ffea8114be7ce33a189a9b999,319eb72b84b7de20bc62035b03ee968e:f543848d00c8e0069461453f9d71cf44,678f41eec837db3d0ad12dcb8681b6ef:c2dc4fe20401a07e02646a8a8b4356f5,b7d2d1228b275e219c9cdb282038d4c3:d75d95afc4a181803d2188456a052477,422c841fcad66de6ef6030123fcda0c4:7a65b103c1f8ab58337dc3e44fbb6235
 https://jiotvmblive.cdn.jio.com/bpk-tv/Adithya_TV_MOB/WDVLive/index.mpd?__hdnea__=st=1794465012~exp=1794551412~acl=/*~hmac=2aaa6a6dbf410c6afb35e22b73447aa354755fb86879b271ea2f60db917a635d
-#EXTINF:-1 tvg-id="HE_E_10009" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/cef53bf4b0cd4d79913452f6f645c13f/version/0" tvg-chno="2911" ch-number="2911",Zee Thirai (2911)
+#EXTINF:-1 tvg-id="HE_E_10009" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/52a61ca3a8d0466492b16fe324dfe66c/version/0" tvg-chno="2911" ch-number="2911",Zee Thirai (2911)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
@@ -8254,12 +8170,6 @@ https://jiotvmblive.cdn.jio.com/bpk-tv/Asianet_HD_MOB/WDVLive/index.mpd?__hdnea_
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=06d74a5cfd6b9bae48314beb906ecf4b:1af0414b279587eb41cb24e29a247663,4594e26a648aeb0af7496637574aabec:6fd8ec88c77c85dab21c3cbc81817abe,ffdefd48f89013bf1db2b1056efdaf70:fca2b26d1fcc8aa13fdb153f2d98be49,d7ef4c20ac365150b4773544faa07587:f8ff141b8e1cd71159b17f58487cf2e5,9c06a50b226fdbfa508bfd6daaf02768:37d69078f424a0599f2a310b2ddeea2f,ca03fd99cf33533caecf065085c4dd69:2f6eeefb9d65dffabde6d7c1e15966a7,a2c8b5715edd55bc8e36ab716d159140:0ea9f97a39ecdb94d701ddbf56cb6893
 https://jiotvpllive.cdn.jio.com/bpk-tv/ZeeKeralamHD_BTS/WDVLive/index.mpd?__hdnea__=st=1794505336~exp=1794508936~acl=/bpk-tv/ZeeKeralamHD_BTS/WDVLive/*~hmac=3e1246c4dcaa17fc37cccf0a4f7c756ab4357548ca6f63437a938320ec38d7cc
-#EXTINF:-1 tvg-id="HE_E_10092" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/cb2d529482614186a8ba29d47346902b/version/0" tvg-chno="3110" ch-number="3110",Zee Keralam HD (3110)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
 #EXTINF:-1 tvg-id="844" tvg-language="Malayalam" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Mazavali_Manorama_HD.png" catchup-type="append" catchup-days="8" catchup-source="&begin={utc}&end={utcend}" tvg-chno="3112" ch-number="3112",Mazhavil Manorama HD (3112)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
