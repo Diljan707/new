@@ -5,30 +5,30 @@
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 
-#EXTINF:-1 tvg-id="1090553933_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000027677/1793268731743871_UNL26_MD5_Kosovo-vs-Israel_live_landscape_thumb.jpg" tvg-chno="1686" ch-number="1686",Sony: UEFA Nations League [ENG] (1686)
+#EXTINF:-1 tvg-id="4250002" group-title="Live events" tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/Mini_Match_Card-2.png" tvg-chno="1686" ch-number="1686",FC: Fleetwood Town vs Tranmere Rovers (League Two 2026-27) (1686)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2094588/Footlive1411/ENG/std_mdh-800300010.m3u8?hdnea=st=1794672126~exp=1794672426~acl=*~id=8b1ba64d-5bd8-4703-bb4f-a5395529b387~hmac=83657947966dc6f8c71d1c9c2e7d5aafbb4c166656e0cee4df986d31cce7f2fe&originpath=/linear/hls/pa/event/AmQPWgDqQUWpYQBuiuFZhw/stream/5b3ecbf5-da5d-4d93-a345-fa10f1150880:ATL/master.m3u8
-#EXTINF:-1 tvg-id="Amz.6695431922808742860722836" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.904507c1-17ab-40ca-bb74-220df1e3d76e/3/BOXART-16X9/en-US._UR1920 tvg-chno="1687" ch-number="1687",1080_.jpeg", Willow: ACC Mens U19 Asia Cup 2026 - Final - Pakistan U19 vs India U19 (1687)
+https://in-mc-flive.fancode.com/mumbai/4250002_english_hls_bfd758714b45006_1ta-di_h264/1080p.m3u8?hdntl=Expires=1794763491~_GO=Generated~acl=/mumbai/4250002_english_hls_bfd758714b45006_1ta-di_h264/*~SessionID=280795718__d5afccfa-9f4e-41~Signature=AbO9BjiWK9VAXr2GOp5karFHM9WMIy0sQe4JCf61L1jhk77l4__34c9Ls1yrSRu4ol82isuZKf-grXmChdV-T39F_1wM
+#EXTINF:-1 tvg-id="1090553935_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000027688/1793269515520450_UNL26_MD5_Norway-vs-Wales_live_landscape_thumb.jpg" tvg-chno="1687" ch-number="1687",Sony: UEFA Nations League [ENG] (1687)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=null:null
+https://sonydaimenew.akamaized.net/hls/live/2094587/Footlive1411/ENG/std_mdh-800300010.m3u8?hdnea=st=1794679313~exp=1794679613~acl=*~id=61ff6034-e223-4171-9301-e78df0dd87bb~hmac=da1bb8786d91d6cfab70c6d9fa461691783251197916fb66159335fcd290dced&originpath=/linear/hls/pa/event/uoNIln5xQjyMUSzM-CpPuw/stream/0d674ffc-cd45-4046-a586-dfc0d9650ace:DLS/master.m3u8
+#EXTINF:-1 tvg-id="1090553936_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000027688/1793269264284450_UNL26_MD5_Georgia-vs-Hungary_live_landscape_thumb.jpg" tvg-chno="1688" ch-number="1688",Sony: UEFA Nations League [ENG] (1688)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=null:null
+https://sonydaimenew.akamaized.net/hls/live/2018457/Footlive1411/ENG/std_mdh-800300010.m3u8?hdnea=st=1794679314~exp=1794679614~acl=*~id=8743fe7b-29cf-4bcb-aed5-cb225a510d33~hmac=2104408d7e25c34388fd87f3528379828d1a753c8d4ad61d57df9e86b3d31ff1&originpath=/linear/hls/pa/event/baS0o0i_QLiYmhye6b6_FQ/stream/652cf760-08c1-4bf1-b34a-6f358b58bb17:MRN2/master.m3u8
+#EXTINF:-1 tvg-id="Amz.3218897119563549738038348" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.b2815926-0840-49ba-b2e5-7b08229525a0/1/BOXART-16X9/en-US._UR1920 tvg-chno="1689" ch-number="1689",1080_.jpeg", Willow: Abu Dhabi T10 League 2026 - 18th Match - Yas Lions vs UAE Bulls (1689)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=6d9898b922c715df238b810032f99e04:24ce2fd66d77c73540f129ae83c967d7
-https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/jqiewsbcdo/out/v1/c61fbf5480da4d94a2cd238d8be4b227/cenc.mpd
-#EXTINF:-1 tvg-id="Amz.1750271844272541016711239" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.c946453d-7025-4e95-9564-d2a336954242/5/BOXART-16X9/en-US._UR1920 tvg-chno="1688" ch-number="1688",1080_.jpeg", Willow: Afghanistan vs Zimbabwe in UAE 2026 - 2nd Test - Afghanistan vs Zimbabwe (1688)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=9373c3f08c6578544e0ea1999e95418b:10a7f6e8177486dfca9bb5696779dd02
-https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/kyet9ip63b/out/v1/5442e2d930ff4dd18be5ba46198ac3f8/cenc.mpd
-#EXTINF:-1 tvg-id="Amz.3229320942648146376036364" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.417431d9-7f93-46ad-af9b-5a497c500e8c/2/BOXART-16X9/en-US._UR1920 tvg-chno="1689" ch-number="1689",1080_.jpeg", Willow: Womens Big Bash League 2026 - 22nd Match - Perth Scorchers Women vs Adelaide Strikers Women (1689)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=fc4968fb4dec837fa5be62f9c463cf04:0b7d70bbf114543bc92193021ccc0b23
-https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/2f9zqcry51/out/v1/163efa3f1c454662865b51b74c98ebac/cenc.mpd
+#KODIPROP:inputstream.adaptive.license_key=ab5b5cecc72d2468a6bb0cb095549adf:498bea5d3276c0fdbb38e8b10703c44c
+https://otte.live.fly.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/0py89u35kf/out/v1/f438820f38824212b6107dfd880773e6/cenc.mpd
 #EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1690" ch-number="1690",TNT Sports 1 (1690)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
