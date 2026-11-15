@@ -40,44 +40,50 @@ https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_1411/ENG/std_mdd-6003
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120301/UFC_UFC31411/ENG/std_mdh-800300010.m3u8?hdnea=st=1794713698~exp=1794713998~acl=*~id=3b76ff4c-cf28-4d7d-b8bf-823bafc9df92~hmac=eb89c910b6eccae42d823aa6dadf57e8c76d7100e9737ef6f659f56d14183be1&originpath=/linear/hls/pa/event/y0MKvdhXTFu4Wch-TT5taQ/stream/96337a2d-cb3e-4ede-aa35-2dfb979d3ce5:DLS/master.m3u8
-#EXTINF:-1 tvg-id="1090554158_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000027302/1792887707419295_ASIANTOUR2026_Philippine_Open_Day4_landscape_thumb.jpg" tvg-chno="1693" ch-number="1693",Sony: Asian Tour [ENG] (1693)
+https://sonydaimenew.akamaized.net/hls/live/2120301/UFC_UFC31411/ENG/std_mdh-800300010.m3u8?hdnea=st=1794722510~exp=1794722810~acl=*~id=9dff3de7-d6da-4911-bb1a-9518038b85e7~hmac=dcba542676f6cca236c88a774761f594c764a4461a8a0a7605cb96f4f1e66245&originpath=/linear/hls/pa/event/y0MKvdhXTFu4Wch-TT5taQ/stream/7fa6d99e-efe9-48d7-9d78-02b8c713e48e:ATL/master.m3u8
+#EXTINF:-1 tvg-id="1090554163_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000028796/1794398880189427_DP_World_Tour_Championship_Dubai_day4_landscape_thumb.jpg" tvg-chno="1693" ch-number="1693",Sony: DP World Tour [ENG] (1693)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120299/Golf_Phi1511/ENG/std_mdh-800300010.m3u8?hdnea=st=1794713698~exp=1794713998~acl=*~id=7588023f-ee6b-4dff-9bb7-010c84c2112b~hmac=de3ac49b63aa2463ea7a4b9014a928b8941c894d3c832b8a52500b7c24ab63cd&originpath=/linear/hls/pa/event/_wNibTTjRKGbTJkQbT7_mQ/stream/fb187369-0a6f-4001-8928-6327a83fd81a:ATL/master.m3u8
-#EXTINF:-1 tvg-id="Amz.3473241451379505358574386" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.efd1e539-311e-4d71-a615-1e744d8c8d68/3/BOXART-16X9/en-US._UR1920 tvg-chno="1694" ch-number="1694",1080_.jpeg", Willow: Womens Big Bash League 2026 - 23rd Match -Sydney Sixers Women vs Melbourne Renegades Women (1694)
+https://sonydaimenew.akamaized.net/hls/live/2120300/Golf_DPW1511/ENG/std_mdh-800300010.m3u8?hdnea=st=1794722510~exp=1794722810~acl=*~id=2bec29ec-d69b-4c87-a41a-f4b94a52fa4f~hmac=7ab14650848aa745083f4b1058307a14b0615565dc58096fdfab46e0621a62f2&originpath=/linear/hls/pa/event/ZGqpKljKQFau0vp8fmia4A/stream/2fd246c1-ea6f-4b80-8aa2-0b172e501584:ATL/master.m3u8
+#EXTINF:-1 tvg-id="1090554158_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000027302/1792887707419295_ASIANTOUR2026_Philippine_Open_Day4_landscape_thumb.jpg" tvg-chno="1694" ch-number="1694",Sony: Asian Tour [ENG] (1694)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=null:null
+https://sonydaimenew.akamaized.net/hls/live/2120299/Golf_Phi1511/ENG/std_mdh-800300010.m3u8?hdnea=st=1794722510~exp=1794722810~acl=*~id=f1cdd6cc-fe8a-42a0-a3a8-d974f3a38e5d~hmac=15104763c08cc423d1afdeb6c3c90b87879112bed6e2639ee707f2ea6d357b25&originpath=/linear/hls/pa/event/_wNibTTjRKGbTJkQbT7_mQ/stream/bb7d88cc-1b4b-472e-8826-0574d2146635:DLS/master.m3u8
+#EXTINF:-1 tvg-id="Amz.3473241451379505358574386" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.efd1e539-311e-4d71-a615-1e744d8c8d68/3/BOXART-16X9/en-US._UR1920 tvg-chno="1695" ch-number="1695",1080_.jpeg", Willow: Womens Big Bash League 2026 - 23rd Match -Sydney Sixers Women vs Melbourne Renegades Women (1695)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=b1f8a6b81514e5243cc85d00effcf384:697893a5e9dbc7916aedd1ac857737b2
 https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/mysvg9964s/out/v1/b7761cc505e84787832b2b55e90bbbf0/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1695" ch-number="1695",TNT Sports 1 (1695)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1696" ch-number="1696",TNT Sports 1 (1696)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=69a5aa835a061ce64a630d1046727e40:d02feac8a999bd06bf4059bf33411749
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/rhf2dwosdt/out/v1/ee550d2a68d846c797e6ce4de2e8b76d/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1696" ch-number="1696",TNT Sports 2 (1696)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1697" ch-number="1697",TNT Sports 2 (1697)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=f3df7843080ae743bf865dc5fdf64c68:567c863bc12eb74788ea74888c042e1b
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/puehlftk5j/out/v1/f7f0da1ee112481ca0024e6d4dd97f4a/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1697" ch-number="1697",TNT Sports 3 (1697)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1698" ch-number="1698",TNT Sports 3 (1698)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=cc91508324ce9dcaf425a43d58f1d9d4:643e5474d9edd87c7d9091c8c97994ca
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/dev1hjwzh9/out/v1/a5f0ee7ad7b24906b14f43bebbbe4678/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="1698" ch-number="1698",TNT Sports 4 (1698)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="1699" ch-number="1699",TNT Sports 4 (1699)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=fa34fa8c90336dd528c7a23871cad1fe:552a78d1aeb74f1650d68255c5749408
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/tdijwiga2k/out/v1/f5fde318678f4f7583bf27b7231bde1f/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="1699" ch-number="1699",TNT Sports 5 (1699)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="1700" ch-number="1700",TNT Sports 5 (1700)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.max_bandwidth=0
