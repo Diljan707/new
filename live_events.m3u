@@ -40,13 +40,13 @@ https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_1411/ENG/std_mdd-6003
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120301/UFC_UFC31411/ENG/std_mdh-800300010.m3u8?hdnea=st=1794711717~exp=1794712017~acl=*~id=157b2446-1301-4205-bda2-51f9d9d327de~hmac=295b4db332f6e943c6a0187dc8b6e0f3ce9592f34177b4514c6ae401a7708c58&originpath=/linear/hls/pa/event/y0MKvdhXTFu4Wch-TT5taQ/stream/61bcb67d-8c89-44e7-8f49-bb6c60eb87a2:DLS/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2120301/UFC_UFC31411/ENG/std_mdh-800300010.m3u8?hdnea=st=1794713698~exp=1794713998~acl=*~id=3b76ff4c-cf28-4d7d-b8bf-823bafc9df92~hmac=eb89c910b6eccae42d823aa6dadf57e8c76d7100e9737ef6f659f56d14183be1&originpath=/linear/hls/pa/event/y0MKvdhXTFu4Wch-TT5taQ/stream/96337a2d-cb3e-4ede-aa35-2dfb979d3ce5:DLS/master.m3u8
 #EXTINF:-1 tvg-id="1090554158_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000027302/1792887707419295_ASIANTOUR2026_Philippine_Open_Day4_landscape_thumb.jpg" tvg-chno="1693" ch-number="1693",Sony: Asian Tour [ENG] (1693)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120299/Golf_Phi1511/ENG/std_mdh-800300010.m3u8?hdnea=st=1794711716~exp=1794712016~acl=*~id=73cbc3e6-8718-48fc-820d-eacc659c22df~hmac=74c8021658812845aceb67e95eba12dfb948fe22a0f0c0cf51b35c3268985838&originpath=/linear/hls/pa/event/_wNibTTjRKGbTJkQbT7_mQ/stream/0dc6b46e-d023-4920-9b92-a14d9ba2bc9a:ATL/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2120299/Golf_Phi1511/ENG/std_mdh-800300010.m3u8?hdnea=st=1794713698~exp=1794713998~acl=*~id=7588023f-ee6b-4dff-9bb7-010c84c2112b~hmac=de3ac49b63aa2463ea7a4b9014a928b8941c894d3c832b8a52500b7c24ab63cd&originpath=/linear/hls/pa/event/_wNibTTjRKGbTJkQbT7_mQ/stream/fb187369-0a6f-4001-8928-6327a83fd81a:ATL/master.m3u8
 #EXTINF:-1 tvg-id="Amz.3473241451379505358574386" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.efd1e539-311e-4d71-a615-1e744d8c8d68/3/BOXART-16X9/en-US._UR1920 tvg-chno="1694" ch-number="1694",1080_.jpeg", Willow: Womens Big Bash League 2026 - 23rd Match -Sydney Sixers Women vs Melbourne Renegades Women (1694)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
