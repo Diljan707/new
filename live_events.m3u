@@ -5,91 +5,61 @@
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 
-#EXTINF:-1 tvg-id="1090554160_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029027/1794655981421358_NZvsIND_5th_ODI_landscape_thumb.jpg" tvg-chno="1464" ch-number="1464",Sony: India vs New Zealand [ENG] (1464)
+#EXTINF:-1 tvg-id="1090554163_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000028796/1794398880189427_DP_World_Tour_Championship_Dubai_day4_landscape_thumb.jpg" tvg-chno="1464" ch-number="1464",Sony: DP World Tour [ENG] (1464)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_1411/ENG/std_mdd-600300010.m3u8?hdnea=exp=1794780009~acl=/*~id=36767635292684547017770490755008~hmac=b2dfb5b7123c8bd7673ff0de5586c4ccb67de15bde3721b5dd4be97754ad85bb
-#EXTINF:-1 tvg-id="1090554160_HIN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029027/1794655981421358_NZvsIND_5th_ODI_landscape_thumb.jpg" tvg-chno="1465" ch-number="1465",Sony: India vs New Zealand [HIN] (1465)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://liveakmt-p-md.slivcdn.com/hls/live/2119921/cricodi_1411/HIN/std_mdd-600300010.m3u8?hdnea=exp=1794780009~acl=/*~id=36767635292684547017770490755008~hmac=b2dfb5b7123c8bd7673ff0de5586c4ccb67de15bde3721b5dd4be97754ad85bb
-#EXTINF:-1 tvg-id="1090554160_TAM" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029027/1794655981421358_NZvsIND_5th_ODI_landscape_thumb.jpg" tvg-chno="1466" ch-number="1466",Sony: India vs New Zealand [TAM] (1466)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_1411/ENG/std_mdd-600300010.m3u8?hdnea=exp=1794780009~acl=/*~id=36767635292684547017770490755008~hmac=b2dfb5b7123c8bd7673ff0de5586c4ccb67de15bde3721b5dd4be97754ad85bb
-#EXTINF:-1 tvg-id="1090554160_TEL" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029027/1794655981421358_NZvsIND_5th_ODI_landscape_thumb.jpg" tvg-chno="1467" ch-number="1467",Sony: India vs New Zealand [TEL] (1467)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_1411/ENG/std_mdd-600300010.m3u8?hdnea=exp=1794780009~acl=/*~id=36767635292684547017770490755008~hmac=b2dfb5b7123c8bd7673ff0de5586c4ccb67de15bde3721b5dd4be97754ad85bb
-#EXTINF:-1 tvg-id="1090554160_KAN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029027/1794655981421358_NZvsIND_5th_ODI_landscape_thumb.jpg" tvg-chno="1468" ch-number="1468",Sony: India vs New Zealand [KAN] (1468)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_1411/ENG/std_mdd-600300010.m3u8?hdnea=exp=1794780009~acl=/*~id=82898082047147090472504323664704~hmac=61f40705a1a0fcdd9750401714f0677340d5e091595fae51d99c767814978b23
-#EXTINF:-1 tvg-id="1090554163_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000028796/1794398880189427_DP_World_Tour_Championship_Dubai_day4_landscape_thumb.jpg" tvg-chno="1469" ch-number="1469",Sony: DP World Tour [ENG] (1469)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120300/Golf_DPW1511/ENG/std_mdh-800300010.m3u8?hdnea=st=1794739952~exp=1794740252~acl=*~id=9ac7f770-4610-4e5e-afc9-84d6f27b8a03~hmac=97b66cfe4b5cd15deee13b03ba903235c12bd722225d0d84a0514f2aaabc819c&originpath=/linear/hls/pa/event/ZGqpKljKQFau0vp8fmia4A/stream/c33fd21f-3567-4641-8ce9-45d1fbb71764:DLS/master.m3u8
-#EXTINF:-1 tvg-id="Amz.5202535813929278371846488" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.2d150b96-e992-43cb-96a8-e4e4b5c08847/4/BOXART-16X9/en-US._UR1920 tvg-chno="1470" ch-number="1470",1080_.jpeg", Willow: India tour of New Zealand 2026 - 5th ODI - New Zealand vs India (1470)
+https://sonydaimenew.akamaized.net/hls/live/2120300/Golf_DPW1511/ENG/std_mdh-800300010.m3u8?hdnea=st=1794741824~exp=1794742124~acl=*~id=c1a5b4bb-b4dc-4c15-8fe6-92efd71b4014~hmac=12ade61aa05aae882fb590e2acfaeef7ee5df06d0f3647cd71e49cd4336731c0&originpath=/linear/hls/pa/event/ZGqpKljKQFau0vp8fmia4A/stream/022ad90a-415e-4c0a-9967-298afface814:TUL/master.m3u8
+#EXTINF:-1 tvg-id="Amz.5202535813929278371846488" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.2d150b96-e992-43cb-96a8-e4e4b5c08847/4/BOXART-16X9/en-US._UR1920 tvg-chno="1465" ch-number="1465",1080_.jpeg", Willow: India tour of New Zealand 2026 - 5th ODI - New Zealand vs India (1465)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=3a4e1c0452e8620aa47a64c82b81f90d:f11223850b04db47d8815871e6b77d05
 https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/azerlw3rnq/out/v1/d8655060ec4447548120f9322101963b/cenc.mpd
-#EXTINF:-1 tvg-id="Amz.6281988796158515844038344" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.654da556-d9a1-48e3-8199-a9b381ad6019/3/BOXART-16X9/en-US._UR1920 tvg-chno="1472" ch-number="1472",1080_.jpeg", Willow: Australia vs. England (1472)
+#EXTINF:-1 tvg-id="Amz.6281988796158515844038344" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.654da556-d9a1-48e3-8199-a9b381ad6019/3/BOXART-16X9/en-US._UR1920 tvg-chno="1466" ch-number="1466",1080_.jpeg", Willow: Australia vs. England (1466)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=ec7e146b29b33caca854620c0fb05bea:e895d427078bb109a0f6b8fd690dd105
 https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/dyjtuwdyxi/out/v1/283922b4b56f4887976f2b53ac7aacdc/cenc.mpd
-#EXTINF:-1 tvg-id="Amz.4164976880019714892638773" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.c946453d-7025-4e95-9564-d2a336954242/5/BOXART-16X9/en-US._UR1920 tvg-chno="1473" ch-number="1473",1080_.jpeg", Willow: Afghanistan vs Zimbabwe in UAE 2026 - 2nd Test - Afghanistan vs Zimbabwe (1473)
+#EXTINF:-1 tvg-id="Amz.4164976880019714892638773" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.c946453d-7025-4e95-9564-d2a336954242/5/BOXART-16X9/en-US._UR1920 tvg-chno="1467" ch-number="1467",1080_.jpeg", Willow: Afghanistan vs Zimbabwe in UAE 2026 - 2nd Test - Afghanistan vs Zimbabwe (1467)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=5c58e89e55b6ca6b7155cc78c8e2300d:949c2c45b7bbfab1d09f7c9bb96e2e4c
 https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/uhxc7ciui9/out/v1/3ecf1adf2ffc4f60a298027158f0d283/cenc.mpd
-#EXTINF:-1 tvg-id="Amz.2695785813053501650124424" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.3d3a187e-ae33-416b-bc6b-02cd63444282/4/BOXART-16X9/en-US._UR1920 tvg-chno="1474" ch-number="1474",1080_.jpeg", Willow: Bangladesh tour of South Africa 2026 - 1st Test - South Africa vs Bangladesh (1474)
+#EXTINF:-1 tvg-id="Amz.2695785813053501650124424" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.3d3a187e-ae33-416b-bc6b-02cd63444282/4/BOXART-16X9/en-US._UR1920 tvg-chno="1468" ch-number="1468",1080_.jpeg", Willow: Bangladesh tour of South Africa 2026 - 1st Test - South Africa vs Bangladesh (1468)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=3d872367d3ff927c4abf0198dfeb01d2:47945393588cf479b728df327f3bef53
 https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/vmsojksiyc/out/v1/5d915e7f388946c09ed9d07fd40f9f96/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1476" ch-number="1476",TNT Sports 1 (1476)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1469" ch-number="1469",TNT Sports 1 (1469)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=69a5aa835a061ce64a630d1046727e40:d02feac8a999bd06bf4059bf33411749
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/rhf2dwosdt/out/v1/ee550d2a68d846c797e6ce4de2e8b76d/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1478" ch-number="1478",TNT Sports 2 (1478)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1470" ch-number="1470",TNT Sports 2 (1470)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=f3df7843080ae743bf865dc5fdf64c68:567c863bc12eb74788ea74888c042e1b
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/puehlftk5j/out/v1/f7f0da1ee112481ca0024e6d4dd97f4a/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1480" ch-number="1480",TNT Sports 3 (1480)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1472" ch-number="1472",TNT Sports 3 (1472)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=cc91508324ce9dcaf425a43d58f1d9d4:643e5474d9edd87c7d9091c8c97994ca
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/dev1hjwzh9/out/v1/a5f0ee7ad7b24906b14f43bebbbe4678/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="1481" ch-number="1481",TNT Sports 4 (1481)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="1473" ch-number="1473",TNT Sports 4 (1473)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=fa34fa8c90336dd528c7a23871cad1fe:552a78d1aeb74f1650d68255c5749408
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/tdijwiga2k/out/v1/f5fde318678f4f7583bf27b7231bde1f/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="1482" ch-number="1482",TNT Sports 5 (1482)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="1474" ch-number="1474",TNT Sports 5 (1474)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
