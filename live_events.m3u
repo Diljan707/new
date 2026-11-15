@@ -10,13 +10,13 @@
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120303/Footlive1511/ENG/std_mdh-800300010.m3u8?hdnea=st=1794755072~exp=1794755372~acl=*~id=82e86b48-a825-4cbf-aa08-ac2ad25be1d3~hmac=a7592b0d0c5410200f8c77b7bfcaf35efc47b1bfc736a1ba33d49049a39de609&originpath=/linear/hls/pa/event/OYu66B-PRtG9VX-BLWUj7w/stream/c461f374-392c-4523-8b61-f2f0c37e02aa:DLS/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2120303/Footlive1511/ENG/std_mdh-800300010.m3u8?hdnea=st=1794758202~exp=1794758502~acl=*~id=20be2226-6b6e-4339-bfdd-ff74d5e25db6~hmac=8692298a4ded0edeb00031181c30e74c6855e70c836a1c53ea7f14aa0104f19a&originpath=/linear/hls/pa/event/OYu66B-PRtG9VX-BLWUj7w/stream/d3768f09-c72d-41b8-87bc-1de8a0a263c4:DLS/master.m3u8
 #EXTINF:-1 tvg-id="1090554016_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000027754/1793248801127967_UNL26_MD6_Cyprus_vs_Montenegro_landscape_thumb.jpg" tvg-chno="1688" ch-number="1688",Sony: UEFA Nations League [ENG] (1688)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120302/Footlive1511/ENG/std_mdh-800300010.m3u8?hdnea=st=1794755073~exp=1794755373~acl=*~id=7bf5f8cf-fd51-4f86-9c0b-0ad417dd9ebf~hmac=6632cca204601c6be87ff4baf8cceebe3f4116d774875e7c0773263446c6e7e0&originpath=/linear/hls/pa/event/Dgl3FMfCS6mHdHu8tjUB-w/stream/b1a587af-1944-4dbf-961a-459959ce611f:ATL/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2120302/Footlive1511/ENG/std_mdh-800300010.m3u8?hdnea=st=1794758202~exp=1794758502~acl=*~id=761e55fe-8ff1-44e6-a763-2f97eb316ad8~hmac=25e12f667d2bc9c367a0a238245a0635942d29a6385f9d2109f14b829105fe86&originpath=/linear/hls/pa/event/Dgl3FMfCS6mHdHu8tjUB-w/stream/f85bf050-3682-457d-8cbf-3af2c3400c8b:DLS/master.m3u8
 #EXTINF:-1 tvg-id="Amz.2695785813053501650124424" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.3d3a187e-ae33-416b-bc6b-02cd63444282/4/BOXART-16X9/en-US._UR1920 tvg-chno="1689" ch-number="1689",1080_.jpeg", Willow: Bangladesh tour of South Africa 2026 - 1st Test - South Africa vs Bangladesh (1689)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
