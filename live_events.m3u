@@ -40,7 +40,7 @@ https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_1411/ENG/std_mdd-6003
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120300/Golf_DPW1511/ENG/std_mdh-800300010.m3u8?hdnea=st=1794731646~exp=1794731946~acl=*~id=fab43321-2eea-4e6b-9ed3-815322416b13~hmac=32b68285253b1a501d5d62b5b63dd24171c934afd53c8848ff385aea9a5f3d5b&originpath=/linear/hls/pa/event/ZGqpKljKQFau0vp8fmia4A/stream/9ac0f073-1ca2-4aae-86fa-43aee04e9c77:DLS/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2120300/Golf_DPW1511/ENG/std_mdh-800300010.m3u8?hdnea=st=1794733307~exp=1794733607~acl=*~id=be36cc52-3375-40e7-9a90-4529e9d5b6dc~hmac=a28386e2dca4f6186ccb54b70c0d5f7e3a38619ad854178c08ca2904669a0a20&originpath=/linear/hls/pa/event/ZGqpKljKQFau0vp8fmia4A/stream/42dd895a-5d4b-423d-a268-0e2e2355b1b0:TUL/master.m3u8
 #EXTINF:-1 tvg-id="Amz.5202535813929278371846488" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.2d150b96-e992-43cb-96a8-e4e4b5c08847/4/BOXART-16X9/en-US._UR1920 tvg-chno="1693" ch-number="1693",1080_.jpeg", Willow: India tour of New Zealand 2026 - 5th ODI - New Zealand vs India (1693)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
