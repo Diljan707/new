@@ -5251,13 +5251,13 @@ https://denverisalive.github.io/Intro/manifest/token/token_expired.mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://denverisalive.github.io/Intro/manifest/token/token_expired.mpd
-#EXTINF:-1 tvg-id="578" tvg-language="Hindi" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/History_18_Hindi.png" catchup-type="append" catchup-days="8" catchup-source="&begin={utc}&end={utcend}" tvg-chno="956" ch-number="956",History TV18 HD (956)
+#EXTINF:-1 tvg-id="146" tvg-language="English" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/History_HD.png" catchup-type="append" catchup-days="8" catchup-source="&begin={utc}&end={utcend}" tvg-chno="956" ch-number="956",History TV18 HD (956)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://denverisalive.github.io/Intro/manifest/token/token_expired.mpd
-#EXTINF:-1 tvg-id="146" tvg-language="English" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/History_HD.png" catchup-type="append" catchup-days="8" catchup-source="&begin={utc}&end={utcend}" tvg-chno="956" ch-number="956",History TV18 HD (956)
+#EXTINF:-1 tvg-id="578" tvg-language="Hindi" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/History_18_Hindi.png" catchup-type="append" catchup-days="8" catchup-source="&begin={utc}&end={utcend}" tvg-chno="956" ch-number="956",History TV18 HD (956)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
@@ -9562,31 +9562,31 @@ https://game.playindia.fun/Jtv/oops.mpd?id=HE_E_10022&token=e6nL4T&type=watcho
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120299/footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794848697~exp=1794848997~acl=*~id=c67722c0-e2bf-4f70-9412-0c7296f18d75~hmac=4b2f666fa0c563256c7ee1469de01f136015d70f7cae39ace8333be764d19d43&originpath=/linear/hls/pa/event/ik9hvNsSRdW1q6su6Tysyg/stream/c692f5c8-2cab-47fb-a5ef-cd2d3b1cbf3a:ATL/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2120299/footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794849762~exp=1794850062~acl=*~id=b6d82209-4242-43fd-a968-f4ca6b3953f8~hmac=3e612b4cb6b67ad1b4acb1851126ac1e784b1d17f366b0ea582f683bee24d2c1&originpath=/linear/hls/pa/event/ik9hvNsSRdW1q6su6Tysyg/stream/3bddf7bc-8ec0-47ed-8c6c-b965853bcc5e:CHS/master.m3u8
 #EXTINF:-1 tvg-id="1090554453_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000027833/179325832303640_UNL26_MD6_Kazakhstan_vs_Slovakia_landscape_thumb.jpg" tvg-chno="1688" ch-number="1688",Sony: UEFA Nations League [ENG] (1688)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120301/Footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794848697~exp=1794848997~acl=*~id=3b39cf85-a8c7-41e3-b100-dc5a257a0e09~hmac=b28ce7a0fc5e9ccd677834078fa24fa22935b3232f654f2f09454530986e469d&originpath=/linear/hls/pa/event/wdO8mORMRqi8l7ztwLnBiw/stream/2fc67157-9b70-4a1f-a145-e7eebfc0481e:TUL/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2120301/Footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794849762~exp=1794850062~acl=*~id=a1e586cf-424d-4363-bda5-039732590b1c~hmac=954cd2255097d126667b0575770daf27930c2a7e732f9ba20cc7de9d05a5a474&originpath=/linear/hls/pa/event/wdO8mORMRqi8l7ztwLnBiw/stream/ad659edf-19f3-4af8-ae11-48c3cc6007aa:DLS/master.m3u8
 #EXTINF:-1 tvg-id="1090554490_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000027787/1793259677394700_UNL26_MD6_Iceland_vs_Luxembourg_landscape_thumb.jpg" tvg-chno="1689" ch-number="1689",Sony: UEFA Nations League [ENG] (1689)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2005444/Footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794848697~exp=1794848997~acl=*~id=3258de03-7f8c-4b4f-98db-2dd77b8683bf~hmac=5b42d3cef90c86b7586b89c491823582e658d77eef7e823b2c64dbac204fa201&originpath=/linear/hls/pa/event/RyLJ_PwXTFWClUI4uHJjwA/stream/fab6a3e9-9d97-419c-ae75-236c68c61a29:ATL/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2005444/Footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794849762~exp=1794850062~acl=*~id=d9cf626b-6586-44c9-a506-10d9609c9895~hmac=bba7a2326151102c133a11f0022d8859855d5c122a08adacbede1a79255b51fd&originpath=/linear/hls/pa/event/RyLJ_PwXTFWClUI4uHJjwA/stream/6a959a74-d371-4b6e-941f-502b65352653:TUL/master.m3u8
 #EXTINF:-1 tvg-id="1090554494_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000027761/179326116564755_UNL26_MD6_Estonia_vs_Bulgaria_landscape_thumb.jpg" tvg-chno="1690" ch-number="1690",Sony: UEFA Nations League [ENG] (1690)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2018457/Footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794848697~exp=1794848997~acl=*~id=f7d34810-76ed-45fe-87e7-662436763f06~hmac=c312380deaa5c4ac96a36bcffa0e1a9dc43221c087e6efca0eec84251da99d2d&originpath=/linear/hls/pa/event/1YqiUmA4R4-LmpAzBeHabQ/stream/e8a07f84-4df2-4c31-a3fc-49e0230f03dd:MRN2/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2018457/Footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794849762~exp=1794850062~acl=*~id=30468b75-307c-42f7-a1fc-5fcd0c1060f0~hmac=e7f3e465bf972056dc08a96ce5f4f2e1522b46b18f9f9cb2f8525b0beb8efd00&originpath=/linear/hls/pa/event/1YqiUmA4R4-LmpAzBeHabQ/stream/1af8b3e3-7b66-42a4-b02e-339450f63acc:ATL/master.m3u8
 #EXTINF:-1 tvg-id="1090554495_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000027835/1793267180605986_UNL26_MD6_Lithuania_vs_Liechtenstein_landscape_thumb.jpg" tvg-chno="1691" ch-number="1691",Sony: UEFA Nations League [ENG] (1691)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2094589/Footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794848697~exp=1794848997~acl=*~id=49d15340-3b25-4af3-9bf0-1509111a4118~hmac=1a35e3064462865fa3e2a6de1b50736659869e7513ab8231ffd389ab7a202eae&originpath=/linear/hls/pa/event/1Yv9ab9ERU6Y6mOms8elgQ/stream/6883a7dd-b464-4749-8b83-bb1dc2e21a33:DLS/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2094589/Footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794849762~exp=1794850062~acl=*~id=698f933e-2b63-4e2e-9f5d-3d22ec138b9a~hmac=599e8e2c7c910749e46e13c7f8c0cdee5083d3e42eb36aadda7f2ac29e6d0ac3&originpath=/linear/hls/pa/event/1Yv9ab9ERU6Y6mOms8elgQ/stream/a6c9fab3-b16a-4f25-8bee-951cb2f8f8a9:DLS/master.m3u8
 #EXTINF:-1 tvg-id="Amz.1640630797085051423540119" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.3d3a187e-ae33-416b-bc6b-02cd63444282/4/BOXART-16X9/en-US._UR1920 tvg-chno="1692" ch-number="1692",1080_.jpeg", Willow: Bangladesh tour of South Africa 2026 - 1st Test - South Africa vs Bangladesh (1692)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -9891,18 +9891,18 @@ https://denverisalive.github.io/Intro/manifest/token/token_expired.mpd|User-Agen
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://denverisalive.github.io/Intro/manifest/token/token_expired.mpd
-#EXTINF:-1 tvg-id="1773" tvg-language="Telugu" tvg-logo="https://img.media.jio.com/tvpimages/69/98/301739_1758886924465_l_medium.jpg" CATCH-UP-FAILED="null" tvg-chno="2439" ch-number="2439",Sony Sports Ten 4 Telugu (2439)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://denverisalive.github.io/Intro/manifest/token/token_expired.mpd
 #EXTINF:-1 tvg-id="sliv_1773" tvg-language="Telugu" tvg-logo="https://d2ljy97uzhlwv2.cloudfront.net/sonypicturesnetworksindia/logo/39_277.png" tvg-chno="2439" ch-number="2439",Sony Sports Ten 4 Telugu (2439)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://game.playindia.fun/Sliv/sliv_1773/index.m3u8
+#EXTINF:-1 tvg-id="1773" tvg-language="Telugu" tvg-logo="https://img.media.jio.com/tvpimages/69/98/301739_1758886924465_l_medium.jpg" CATCH-UP-FAILED="null" tvg-chno="2439" ch-number="2439",Sony Sports Ten 4 Telugu (2439)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=null:null
+https://denverisalive.github.io/Intro/manifest/token/token_expired.mpd
 #EXTINF:-1 tvg-id="614" tvg-language="Telugu" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/ETV_Andhra_pradesh.png" catchup-type="append" catchup-days="8" catchup-source="&begin={utc}&end={utcend}" tvg-chno="2445" ch-number="2445",ETV Andhra pradesh (2445)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
