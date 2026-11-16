@@ -5,79 +5,73 @@
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 
-#EXTINF:-1 tvg-id="1090554435_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000027772/1793257474667102_UNL26_MD6_Faroe_Islands_vs_Moldova_landscape_thumb.jpg" tvg-chno="1687" ch-number="1687",Sony: UEFA Nations League [ENG] (1687)
+#EXTINF:-1 tvg-id="1090554490_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000027787/1793259677394700_UNL26_MD6_Iceland_vs_Luxembourg_landscape_thumb.jpg" tvg-chno="1687" ch-number="1687",Sony: UEFA Nations League [ENG] (1687)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120299/footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794849762~exp=1794850062~acl=*~id=b6d82209-4242-43fd-a968-f4ca6b3953f8~hmac=3e612b4cb6b67ad1b4acb1851126ac1e784b1d17f366b0ea582f683bee24d2c1&originpath=/linear/hls/pa/event/ik9hvNsSRdW1q6su6Tysyg/stream/3bddf7bc-8ec0-47ed-8c6c-b965853bcc5e:CHS/master.m3u8
-#EXTINF:-1 tvg-id="1090554453_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000027833/179325832303640_UNL26_MD6_Kazakhstan_vs_Slovakia_landscape_thumb.jpg" tvg-chno="1688" ch-number="1688",Sony: UEFA Nations League [ENG] (1688)
+https://sonydaimenew.akamaized.net/hls/live/2005444/Footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794850030~exp=1794850330~acl=*~id=9ee587c5-2f5b-407a-9f0c-3ec79977cfb8~hmac=42342ad37217669f4faa6a18d08f1b90dea694bd6754bc4116bc7d035c75d664&originpath=/linear/hls/pa/event/RyLJ_PwXTFWClUI4uHJjwA/stream/5d868bf8-2112-4abe-b7c3-281ae11f804e:DLS/master.m3u8
+#EXTINF:-1 tvg-id="1090554494_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000027761/179326116564755_UNL26_MD6_Estonia_vs_Bulgaria_landscape_thumb.jpg" tvg-chno="1688" ch-number="1688",Sony: UEFA Nations League [ENG] (1688)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120301/Footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794849762~exp=1794850062~acl=*~id=a1e586cf-424d-4363-bda5-039732590b1c~hmac=954cd2255097d126667b0575770daf27930c2a7e732f9ba20cc7de9d05a5a474&originpath=/linear/hls/pa/event/wdO8mORMRqi8l7ztwLnBiw/stream/ad659edf-19f3-4af8-ae11-48c3cc6007aa:DLS/master.m3u8
-#EXTINF:-1 tvg-id="1090554490_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000027787/1793259677394700_UNL26_MD6_Iceland_vs_Luxembourg_landscape_thumb.jpg" tvg-chno="1689" ch-number="1689",Sony: UEFA Nations League [ENG] (1689)
+https://sonydaimenew.akamaized.net/hls/live/2018457/Footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794850030~exp=1794850330~acl=*~id=01dc27ef-1186-4b71-84c4-9d7b20a7d4f7~hmac=0670c636ba592a78cc8162c37b1a2ac3318494424119001df922a6fabcdcb0fb&originpath=/linear/hls/pa/event/1YqiUmA4R4-LmpAzBeHabQ/stream/af1267b3-44f3-4318-a1f0-6a7904fee34d:MRN2/master.m3u8
+#EXTINF:-1 tvg-id="1090554495_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000027835/1793267180605986_UNL26_MD6_Lithuania_vs_Liechtenstein_landscape_thumb.jpg" tvg-chno="1689" ch-number="1689",Sony: UEFA Nations League [ENG] (1689)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2005444/Footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794849762~exp=1794850062~acl=*~id=d9cf626b-6586-44c9-a506-10d9609c9895~hmac=bba7a2326151102c133a11f0022d8859855d5c122a08adacbede1a79255b51fd&originpath=/linear/hls/pa/event/RyLJ_PwXTFWClUI4uHJjwA/stream/6a959a74-d371-4b6e-941f-502b65352653:TUL/master.m3u8
-#EXTINF:-1 tvg-id="1090554494_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000027761/179326116564755_UNL26_MD6_Estonia_vs_Bulgaria_landscape_thumb.jpg" tvg-chno="1690" ch-number="1690",Sony: UEFA Nations League [ENG] (1690)
+https://sonydaimenew.akamaized.net/hls/live/2094589/Footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794850030~exp=1794850330~acl=*~id=015cba11-2dfb-4e87-a3af-814164cf57ae~hmac=cdee128991017348f3b80645f0e936210585434cd1ca2a81dcff748f3378b402&originpath=/linear/hls/pa/event/1Yv9ab9ERU6Y6mOms8elgQ/stream/ed12b365-4f54-4386-b1b9-3b99386fc7a4:CHS/master.m3u8
+#EXTINF:-1 tvg-id="1090554514_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029081/1794699615115191_INT_Friendlies26_Andorra_vs_Azerbaijan_live_landscape_thumb.jpg" tvg-chno="1690" ch-number="1690",Sony: UEFA International Friendlies [ENG] (1690)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2018457/Footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794849762~exp=1794850062~acl=*~id=30468b75-307c-42f7-a1fc-5fcd0c1060f0~hmac=e7f3e465bf972056dc08a96ce5f4f2e1522b46b18f9f9cb2f8525b0beb8efd00&originpath=/linear/hls/pa/event/1YqiUmA4R4-LmpAzBeHabQ/stream/1af8b3e3-7b66-42a4-b02e-339450f63acc:ATL/master.m3u8
-#EXTINF:-1 tvg-id="1090554495_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000027835/1793267180605986_UNL26_MD6_Lithuania_vs_Liechtenstein_landscape_thumb.jpg" tvg-chno="1691" ch-number="1691",Sony: UEFA Nations League [ENG] (1691)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2094589/Footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794849762~exp=1794850062~acl=*~id=698f933e-2b63-4e2e-9f5d-3d22ec138b9a~hmac=599e8e2c7c910749e46e13c7f8c0cdee5083d3e42eb36aadda7f2ac29e6d0ac3&originpath=/linear/hls/pa/event/1Yv9ab9ERU6Y6mOms8elgQ/stream/a6c9fab3-b16a-4f25-8bee-951cb2f8f8a9:DLS/master.m3u8
-#EXTINF:-1 tvg-id="Amz.1640630797085051423540119" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.3d3a187e-ae33-416b-bc6b-02cd63444282/4/BOXART-16X9/en-US._UR1920 tvg-chno="1692" ch-number="1692",1080_.jpeg", Willow: Bangladesh tour of South Africa 2026 - 1st Test - South Africa vs Bangladesh (1692)
+https://sonydaimenew.akamaized.net/hls/live/2120300/Footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794850031~exp=1794850331~acl=*~id=4f69b802-0f19-45e8-9f64-59f213e323d5~hmac=eb974e73eba6b58e9251c35031cb45a77903d9581d742e540aa6b6536050eb82&originpath=/linear/hls/pa/event/ahLdkaRoSWavrsFLPU8THA/stream/cff3766a-f0f7-4c6b-aa29-2b91eaa9978d:CHS/master.m3u8
+#EXTINF:-1 tvg-id="Amz.1640630797085051423540119" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.3d3a187e-ae33-416b-bc6b-02cd63444282/4/BOXART-16X9/en-US._UR1920 tvg-chno="1691" ch-number="1691",1080_.jpeg", Willow: Bangladesh tour of South Africa 2026 - 1st Test - South Africa vs Bangladesh (1691)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=6597902f04582f5e30cf281d4d86cecb:85d06b34717eae4d10f7a52abdeafe97
 https://otte.live.fly.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/wuqectjbqg/out/v1/55f113daf3c1409eb2623e1f921d421c/cenc.mpd
-#EXTINF:-1 tvg-id="Amz.6998818849446977501704682" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.6b13f3c3-fa67-4adc-b372-1bb215603e05/2/BOXART-16X9/en-US._UR1920 tvg-chno="1693" ch-number="1693",1080_.jpeg", Willow: Abu Dhabi T10 League 2026 - 22nd Match - Arabian Aces vs United Tigers (1693)
+#EXTINF:-1 tvg-id="Amz.6998818849446977501704682" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.6b13f3c3-fa67-4adc-b372-1bb215603e05/2/BOXART-16X9/en-US._UR1920 tvg-chno="1692" ch-number="1692",1080_.jpeg", Willow: Abu Dhabi T10 League 2026 - 22nd Match - Arabian Aces vs United Tigers (1692)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=8f6af65e6fd5fe9b2fa7510de69e492a:61921d1e73c2f0870d3f3e7d09f8bbb6
 https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/a80vkhambt/out/v1/6e7ce96f23d14ebba16e2f54aac8323d/cenc.mpd
-#EXTINF:-1 tvg-id="Amz.8588102495043968530678345" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.e2e954f3-3151-4583-a435-dac57c0925d1/1/BOXART-16X9/en-US._UR1920 tvg-chno="1694" ch-number="1694",1080_.jpeg", Willow: Abu Dhabi T10 League 2026 - 23rd Match - Emirates Eagles vs Royal Desert Champions (1694)
+#EXTINF:-1 tvg-id="Amz.8588102495043968530678345" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.e2e954f3-3151-4583-a435-dac57c0925d1/1/BOXART-16X9/en-US._UR1920 tvg-chno="1693" ch-number="1693",1080_.jpeg", Willow: Abu Dhabi T10 League 2026 - 23rd Match - Emirates Eagles vs Royal Desert Champions (1693)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=eee1d2e4356d92d478fe04f24d3f34f7:b5d5b65cfc1e342bbfb30101b46fc531
 https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/d3jglp2mqj/out/v1/fe574848f09044c3af297388c40efcac/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1695" ch-number="1695",TNT Sports 1 (1695)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1694" ch-number="1694",TNT Sports 1 (1694)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=69a5aa835a061ce64a630d1046727e40:d02feac8a999bd06bf4059bf33411749
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/rhf2dwosdt/out/v1/ee550d2a68d846c797e6ce4de2e8b76d/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1696" ch-number="1696",TNT Sports 2 (1696)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1695" ch-number="1695",TNT Sports 2 (1695)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=f3df7843080ae743bf865dc5fdf64c68:567c863bc12eb74788ea74888c042e1b
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/puehlftk5j/out/v1/f7f0da1ee112481ca0024e6d4dd97f4a/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1697" ch-number="1697",TNT Sports 3 (1697)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1696" ch-number="1696",TNT Sports 3 (1696)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=cc91508324ce9dcaf425a43d58f1d9d4:643e5474d9edd87c7d9091c8c97994ca
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/dev1hjwzh9/out/v1/a5f0ee7ad7b24906b14f43bebbbe4678/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="1698" ch-number="1698",TNT Sports 4 (1698)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="1697" ch-number="1697",TNT Sports 4 (1697)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=fa34fa8c90336dd528c7a23871cad1fe:552a78d1aeb74f1650d68255c5749408
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/tdijwiga2k/out/v1/f5fde318678f4f7583bf27b7231bde1f/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="1699" ch-number="1699",TNT Sports 5 (1699)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="1698" ch-number="1698",TNT Sports 5 (1698)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
