@@ -10,31 +10,31 @@
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120299/footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794847983~exp=1794848283~acl=*~id=e1f10d9f-dff9-4131-8ad2-8b874801b3c1~hmac=977e5b78907c21cb52dc1b8ce60773dd18a3ea134bd66f5a82e5968a26b6fa1e&originpath=/linear/hls/pa/event/ik9hvNsSRdW1q6su6Tysyg/stream/42289e87-60b9-4782-98e6-5036b95961d4:DLS/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2120299/footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794848697~exp=1794848997~acl=*~id=c67722c0-e2bf-4f70-9412-0c7296f18d75~hmac=4b2f666fa0c563256c7ee1469de01f136015d70f7cae39ace8333be764d19d43&originpath=/linear/hls/pa/event/ik9hvNsSRdW1q6su6Tysyg/stream/c692f5c8-2cab-47fb-a5ef-cd2d3b1cbf3a:ATL/master.m3u8
 #EXTINF:-1 tvg-id="1090554453_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000027833/179325832303640_UNL26_MD6_Kazakhstan_vs_Slovakia_landscape_thumb.jpg" tvg-chno="1688" ch-number="1688",Sony: UEFA Nations League [ENG] (1688)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120301/Footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794847983~exp=1794848283~acl=*~id=cd38a897-8686-430c-953b-c9951eb56a3d~hmac=091daa6cfbca842a930d786c20fa83e81d2f3170104a5b76c19eac6a0d123d2a&originpath=/linear/hls/pa/event/wdO8mORMRqi8l7ztwLnBiw/stream/26786193-bc5e-4345-b902-449cad1cf703:CHS/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2120301/Footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794848697~exp=1794848997~acl=*~id=3b39cf85-a8c7-41e3-b100-dc5a257a0e09~hmac=b28ce7a0fc5e9ccd677834078fa24fa22935b3232f654f2f09454530986e469d&originpath=/linear/hls/pa/event/wdO8mORMRqi8l7ztwLnBiw/stream/2fc67157-9b70-4a1f-a145-e7eebfc0481e:TUL/master.m3u8
 #EXTINF:-1 tvg-id="1090554490_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000027787/1793259677394700_UNL26_MD6_Iceland_vs_Luxembourg_landscape_thumb.jpg" tvg-chno="1689" ch-number="1689",Sony: UEFA Nations League [ENG] (1689)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2005444/Footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794847983~exp=1794848283~acl=*~id=f7b49e22-bb96-4383-8446-ad3375b5f294~hmac=fc91917a13eb7fd7a3398b9bcbae4a456ef1454447dd889bfdaff7cf0c179b1c&originpath=/linear/hls/pa/event/RyLJ_PwXTFWClUI4uHJjwA/stream/6c8eeb29-d7ec-4bd3-9331-ac0d72660acc:CHS/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2005444/Footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794848697~exp=1794848997~acl=*~id=3258de03-7f8c-4b4f-98db-2dd77b8683bf~hmac=5b42d3cef90c86b7586b89c491823582e658d77eef7e823b2c64dbac204fa201&originpath=/linear/hls/pa/event/RyLJ_PwXTFWClUI4uHJjwA/stream/fab6a3e9-9d97-419c-ae75-236c68c61a29:ATL/master.m3u8
 #EXTINF:-1 tvg-id="1090554494_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000027761/179326116564755_UNL26_MD6_Estonia_vs_Bulgaria_landscape_thumb.jpg" tvg-chno="1690" ch-number="1690",Sony: UEFA Nations League [ENG] (1690)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2018457/Footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794847983~exp=1794848283~acl=*~id=a817afe3-0956-47ea-bf22-ef0f8344f010~hmac=fd304cad594c420a8a2a542ed8421118e47c340931de40c1bb6ceeb301ab0850&originpath=/linear/hls/pa/event/1YqiUmA4R4-LmpAzBeHabQ/stream/9e8fe777-a128-4ab2-b3d4-f2d575f30e23:MRN2/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2018457/Footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794848697~exp=1794848997~acl=*~id=f7d34810-76ed-45fe-87e7-662436763f06~hmac=c312380deaa5c4ac96a36bcffa0e1a9dc43221c087e6efca0eec84251da99d2d&originpath=/linear/hls/pa/event/1YqiUmA4R4-LmpAzBeHabQ/stream/e8a07f84-4df2-4c31-a3fc-49e0230f03dd:MRN2/master.m3u8
 #EXTINF:-1 tvg-id="1090554495_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000027835/1793267180605986_UNL26_MD6_Lithuania_vs_Liechtenstein_landscape_thumb.jpg" tvg-chno="1691" ch-number="1691",Sony: UEFA Nations League [ENG] (1691)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2094589/Footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794847983~exp=1794848283~acl=*~id=c7545049-4f7d-45cc-8a7b-407b8f0a7fe8~hmac=b6d5167fe51516433627d5d6da397b76f42a964f335c1bd931039e61dedcfb08&originpath=/linear/hls/pa/event/1Yv9ab9ERU6Y6mOms8elgQ/stream/f946c71a-25c5-4b59-9ca4-4e05c93626a2:MRN2/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2094589/Footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794848697~exp=1794848997~acl=*~id=49d15340-3b25-4af3-9bf0-1509111a4118~hmac=1a35e3064462865fa3e2a6de1b50736659869e7513ab8231ffd389ab7a202eae&originpath=/linear/hls/pa/event/1Yv9ab9ERU6Y6mOms8elgQ/stream/6883a7dd-b464-4749-8b83-bb1dc2e21a33:DLS/master.m3u8
 #EXTINF:-1 tvg-id="Amz.1640630797085051423540119" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.3d3a187e-ae33-416b-bc6b-02cd63444282/4/BOXART-16X9/en-US._UR1920 tvg-chno="1692" ch-number="1692",1080_.jpeg", Willow: Bangladesh tour of South Africa 2026 - 1st Test - South Africa vs Bangladesh (1692)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
