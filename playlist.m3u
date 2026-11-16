@@ -9562,25 +9562,25 @@ https://game.playindia.fun/Jtv/oops.mpd?id=HE_E_10022&token=e6nL4T&type=watcho
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2005444/Footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794850608~exp=1794850908~acl=*~id=a368bd18-43ed-42a3-9f56-37b0c197283f~hmac=ed677f14c22ad49ec79093c39edacd1bd4411db6b8d8731a3c2f273278bc88a8&originpath=/linear/hls/pa/event/RyLJ_PwXTFWClUI4uHJjwA/stream/43ac3334-ce86-44a9-a157-0fae7495ee00:DLS/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2005444/Footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794852295~exp=1794852595~acl=*~id=d0d10a84-8f91-4479-88fb-d265d18c6584~hmac=d8b0aaa7b4c7008fd29ed763a17b5e80024a2712f4f173529dcf532155d18112&originpath=/linear/hls/pa/event/RyLJ_PwXTFWClUI4uHJjwA/stream/a2e4c6c3-f25b-4039-80be-6c7487f5deb5:ATL/master.m3u8
 #EXTINF:-1 tvg-id="1090554494_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000027761/179326116564755_UNL26_MD6_Estonia_vs_Bulgaria_landscape_thumb.jpg" tvg-chno="1688" ch-number="1688",Sony: UEFA Nations League [ENG] (1688)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2018457/Footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794850609~exp=1794850909~acl=*~id=e8d4387f-b942-4a2f-8f29-621c3772d643~hmac=6225266ce354fabfda997ba4a3370a414942954b274d24c48de6207ce7fb8a1f&originpath=/linear/hls/pa/event/1YqiUmA4R4-LmpAzBeHabQ/stream/43e0eaf7-fc43-444f-a71e-04eedd7b6d1a:CHS/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2018457/Footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794852295~exp=1794852595~acl=*~id=37a120a9-0331-4886-a3d5-afc6f1a79b8a~hmac=372d274138c4122ca52d4f3d2a586ba00f420c2a4cccb7baaad455968e3beb8d&originpath=/linear/hls/pa/event/1YqiUmA4R4-LmpAzBeHabQ/stream/da3f1fba-d286-4b70-a266-d7bb9116b0fe:DLS/master.m3u8
 #EXTINF:-1 tvg-id="1090554495_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000027835/1793267180605986_UNL26_MD6_Lithuania_vs_Liechtenstein_landscape_thumb.jpg" tvg-chno="1689" ch-number="1689",Sony: UEFA Nations League [ENG] (1689)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2094589/Footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794850609~exp=1794850909~acl=*~id=030f3304-1a22-4fac-8149-3b8fcfd2cf09~hmac=5e0bfeb05d284a13bf2bcce6913a73c548b662e73ae23a8747f4156f192c82b6&originpath=/linear/hls/pa/event/1Yv9ab9ERU6Y6mOms8elgQ/stream/2b8fe612-66ef-481f-a438-0540412ac007:TUL/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2094589/Footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794852295~exp=1794852595~acl=*~id=fc3722bc-990a-4680-9676-dd229fe24f1d~hmac=1282c0757298bd2b06b9ab579f79fafe54fc7eb6c84e302832de9c6d41a303e3&originpath=/linear/hls/pa/event/1Yv9ab9ERU6Y6mOms8elgQ/stream/aad7b084-a8ad-41f2-9e0e-c010e9d71e01:DLS/master.m3u8
 #EXTINF:-1 tvg-id="1090554514_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029081/1794699615115191_INT_Friendlies26_Andorra_vs_Azerbaijan_live_landscape_thumb.jpg" tvg-chno="1690" ch-number="1690",Sony: UEFA International Friendlies [ENG] (1690)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120300/Footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794850609~exp=1794850909~acl=*~id=88e749f0-ffc7-41ce-8814-834a37771ead~hmac=311edd93f802e64a9681336211073e4d1e0a8972df538e715d37502effa8894f&originpath=/linear/hls/pa/event/ahLdkaRoSWavrsFLPU8THA/stream/570a5f5a-1254-40c1-899b-d9d998d20fd6:TUL/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2120300/Footlive1611/ENG/std_mdh-800300010.m3u8?hdnea=st=1794852296~exp=1794852596~acl=*~id=33b7feec-4a45-47c5-8589-962faa7dced6~hmac=a7446e0627d8787cd0bf926d4daf7a6ba85f1b08cca98f4b1614305be8b35e53&originpath=/linear/hls/pa/event/ahLdkaRoSWavrsFLPU8THA/stream/a0738f72-14d1-4fb7-a3f0-4473899db4dc:DLS/master.m3u8
 #EXTINF:-1 tvg-id="Amz.1640630797085051423540119" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.3d3a187e-ae33-416b-bc6b-02cd63444282/4/BOXART-16X9/en-US._UR1920 tvg-chno="1691" ch-number="1691",1080_.jpeg", Willow: Bangladesh tour of South Africa 2026 - 1st Test - South Africa vs Bangladesh (1691)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
