@@ -83,7 +83,7 @@ https://game.playindia.fun/Sliv/sliv_471/index.m3u8
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://denverisalive.github.io/Intro/manifest/token/token_expired.mpd
-#EXTINF:-1 tvg-id="HE_E_11413" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/f05baad90c574947a462902b8c80881c/version/1" tvg-chno="108" ch-number="108",&Tv HD (108)
+#EXTINF:-1 tvg-id="HE_E_11413" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/6ce923e690114400bcdc43ea7a3b27be/version/0" tvg-chno="108" ch-number="108",&Tv HD (108)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
@@ -1631,7 +1631,7 @@ https://denverisalive.github.io/Intro/manifest/token/token_expired.mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://denverisalive.github.io/Intro/manifest/token/token_expired.mpd
-#EXTINF:-1 tvg-id="HE_E_11729" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/dcf4c8f28821488c8974932036e10394/version/0" tvg-chno="354" ch-number="354",Anmol Cinema 2 (354)
+#EXTINF:-1 tvg-id="HE_E_11729" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/74146d693d6640009a5ed2db2e0c9643/version/0" tvg-chno="354" ch-number="354",Anmol Cinema 2 (354)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
@@ -2243,12 +2243,6 @@ https://denverisalive.github.io/Intro/manifest/token/token_expired.mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://game.playindia.fun/Jtv/oops.mpd?id=watch_11&token=e6nL4T&type=watcho
-#EXTINF:-1 tvg-id="HE_E_11428" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/8ec419e798e644fca91ae4e11f182a1c/version/0" tvg-chno="451" ch-number="451",Zing (451)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://game.playindia.fun/Jtv/oops.mpd?id=HE_E_11428&token=e6nL4T&type=watcho
 #EXTINF:-1 tvg-id="1124" tvg-language="Tamil" tvg-logo="https://img.media.jio.com/tvpimages/69/73/301995_1749664384503_l_medium.jpg" CATCH-UP-FAILED="null" tvg-chno="452" ch-number="452",Star Sports 1 Tamil (452)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -3483,7 +3477,7 @@ https://dt3lrqnyx3dks.cloudfront.net/index.m3u8?
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://amg02481-amg02481c3-lg-in-5171.playouts.now.amagi.tv/playlist/amg02481-indiadotcomdigitalprivatelimitedfast-zeenews-lgin/playlist.m3u8?
-#EXTINF:-1 tvg-id="HE_E_11632" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/128fce7a4db546efa5ba4eae006e0816/version/0" tvg-chno="651" ch-number="651",Zee News (651)
+#EXTINF:-1 tvg-id="HE_E_11632" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/087a098c826c480796c1e9ac0ade0d82/version/0" tvg-chno="651" ch-number="651",Zee News (651)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
@@ -4143,7 +4137,7 @@ https://denverisalive.github.io/Intro/manifest/token/token_expired.mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://denverisalive.github.io/Intro/manifest/token/token_expired.mpd
-#EXTINF:-1 tvg-id="HE_E_11732" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/11d3678b209d426688a88adc01830f1d/version/0" tvg-chno="765" ch-number="765",Wion (765)
+#EXTINF:-1 tvg-id="HE_E_11732" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/938610751fea47dbbaa97beae47fdc12/version/0" tvg-chno="765" ch-number="765",Wion (765)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
@@ -8135,7 +8129,7 @@ https://denverisalive.github.io/Intro/manifest/token/token_expired.mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://denverisalive.github.io/Intro/manifest/token/token_expired.mpd
-#EXTINF:-1 tvg-id="HE_E_11629" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/5a37469b20ac47179678eac641e4bf74/version/0" tvg-chno="1433" ch-number="1433",Zee Bangla Sonar (1433)
+#EXTINF:-1 tvg-id="HE_E_11629" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/f508a6918aac461382774c4a34f50c30/version/0" tvg-chno="1433" ch-number="1433",Zee Bangla Sonar (1433)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
@@ -8975,7 +8969,7 @@ https://denverisalive.github.io/Intro/manifest/token/token_expired.mpd|User-Agen
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://denverisalive.github.io/Intro/manifest/token/token_expired.mpd
-#EXTINF:-1 tvg-id="HE_F_11823" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/8a99957d3eda4cc5a308ad0a90d92c1e/version/0" tvg-chno="1573" ch-number="1573",Sangeet Bhojpuri (1573)
+#EXTINF:-1 tvg-id="HE_F_11823" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/032d38ed29b54e51a6e0575bd9e0d837/version/0" tvg-chno="1573" ch-number="1573",Sangeet Bhojpuri (1573)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
@@ -9521,7 +9515,7 @@ https://game.playindia.fun/Jtv/oops.mpd?id=HE_E_11622&token=e6nL4T&type=watcho
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://game.playindia.fun/Jtv/oops.mpd?id=HE_E_11623&token=e6nL4T&type=watcho
-#EXTINF:-1 tvg-id="HE_E_11726" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/4ec3fd623663486c91b92d5b2c7cc9b8/version/0" tvg-chno="1681" ch-number="1681",Zee Anmol (1681)
+#EXTINF:-1 tvg-id="HE_E_11726" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/fa440859759342b48006f01bf79df2b6/version/0" tvg-chno="1681" ch-number="1681",Zee Anmol (1681)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
@@ -10017,7 +10011,7 @@ https://d2lk5u59tns74c.cloudfront.net/out/v1/0c980455d2fb4b69bcc6235745ee6039/in
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://denverisalive.github.io/Intro/manifest/token/token_expired.mpd
-#EXTINF:-1 tvg-id="HE_E_11627" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/c3166a46bb1945638c6c62bd2aa8bff5/version/0" tvg-chno="2641" ch-number="2641",Zee Power (2641)
+#EXTINF:-1 tvg-id="HE_E_11627" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/d048d81770964b929d4dc3b32a2cc903/version/0" tvg-chno="2641" ch-number="2641",Zee Power (2641)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
