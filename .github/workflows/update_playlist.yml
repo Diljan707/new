@@ -1,4 +1,4 @@
-Name: Generate Safe Playlist
+name: Generate Safe Playlist
 
 on:
   workflow_dispatch:
