@@ -1,4 +1,4 @@
-name: Generate Safe Playlist
+Name: Generate Safe Playlist
 
 on:
   workflow_dispatch:
@@ -39,7 +39,9 @@ jobs:
 
       - name: Run script
         env:
-          PLAYLIST_URL: ${{ secrets.PLAYLIST_URL }}
+          PLAYLIST_URL_1: ${{ secrets.PLAYLIST_URL_1 }}
+          PLAYLIST_URL_2: ${{ secrets.PLAYLIST_URL_2 }}
+          PLAYLIST_URL_3: ${{ secrets.PLAYLIST_URL_3 }}
         run: |
           python3 generator.py
 
