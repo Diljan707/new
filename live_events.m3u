@@ -5,18 +5,18 @@
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 
-#EXTINF:-1 tvg-id="Amz.6543160142481430863086724" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.0b14e4df-575d-41da-b093-5d743d359eac/2/BOXART-16X9/en-US._UR1920 tvg-chno="3426" ch-number="3426",1080_.jpeg", Willow: Australia vs. England (3426)
+#EXTINF:-1 tvg-id="Amz.0089787421896059521480693" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.3d3a187e-ae33-416b-bc6b-02cd63444282/4/BOXART-16X9/en-US._UR1920 tvg-chno="3426" ch-number="3426",1080_.jpeg", Willow: Bangladesh tour of South Africa 2026 - 1st Test - South Africa vs Bangladesh (3426)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=205451a6cd81dce284519a33dd57a1db:2dcfd1bbf6616d09b01d969efa0658a6
-https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/aywqinj3vc/out/v1/49441817748348bf8b20205da90af5fa/cenc.mpd
-#EXTINF:-1 tvg-id="Amz.4974574905230150943324667" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.5d1b6f08-0201-4db4-96bd-f867f7348b30/6/BOXART-16X9/en-US._UR1920 tvg-chno="3427" ch-number="3427",1080_.jpeg", Willow: Sri Lanka tour of Pakistan 2026 - 2nd Test - Pakistan vs Sri Lanka (3427)
+#KODIPROP:inputstream.adaptive.license_key=6de0d161884e8b45e47f4edc5e9db94d:bfaccd3662dfb1d046887ecc050a576e
+https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/o4wthc9din/out/v1/dc45941651d84183a56e699e697fd33c/cenc.mpd
+#EXTINF:-1 tvg-id="Amz.5129751747454721716679669" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.6b967b4c-2193-476e-a71b-1c1f84f4d357/2/BOXART-16X9/en-US._UR1920 tvg-chno="3427" ch-number="3427",1080_.jpeg", Willow: Abu Dhabi T10 League 2026 - 26th Match - UAE Bulls vs United Tigers (3427)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=a368bc0596cc6975605701aa79d01f3c:d514a032036589c2a3e4ea2d958793a3
-https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/w6dgdlcx03/out/v1/04ed50f3a2eb429b87ed5d70b737dd46/cenc.mpd
+#KODIPROP:inputstream.adaptive.license_key=4d847b9651a3ac01b953fbfc68752074:c989999872b1859ca9609d9ee6552ec5
+https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/o5raaf1w01/out/v1/5327ed7dbb71426fb7d1ab8f15df4abc/cenc.mpd
 #EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="3428" ch-number="3428",TNT Sports 1 (3428)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
