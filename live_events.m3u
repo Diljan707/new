@@ -1,59 +1,53 @@
 #EXTM3U
-#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo9cZGt3VJujNhF5G4hLRy4LMC6LVznt8J_xVguOvDzw&s=10" group-title="Live events" tvg-chno="3423" ch-number="3423", (3423)
+#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo9cZGt3VJujNhF5G4hLRy4LMC6LVznt8J_xVguOvDzw&s=10" group-title="Live events" tvg-chno="2099" ch-number="2099", (2099)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 
-#EXTINF:-1 tvg-id="1090554810_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029388/1795079673412862_ACRS26_SLvsAFG_landscape_thumb.jpg" tvg-chno="3426" ch-number="3426",Sony: ACC Men's Asia Cup Rising Stars [ENG] (3426)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120301/criclive1911/ENG/std_mdh-800300010.m3u8?hdnea=st=1795100895~exp=1795101195~acl=*~id=587637ea-812c-4e03-8417-07773498c734~hmac=b71d022d4a571cfdfa245eacc6ac6d3ebc1765f4a0adf9a2e40efd28e6bb6e97&originpath=/linear/hls/pa/event/7P6fceT3R0Oq4e50eUvybA/stream/c157378f-337b-4177-8348-4a44661fafa8:CHS/master.m3u8
-#EXTINF:-1 tvg-id="Amz.4527534396837852377853964" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.58b82f3e-300b-483c-bb42-0e829e195694/4/BOXART-16X9/en-US._UR1920 tvg-chno="3427" ch-number="3427",1080_.jpeg", Willow: Womens Big Bash League 2026 - 27th Match - Brisbane Heat Women vs Sydney Thunder Women (3427)
+#EXTINF:-1 tvg-id="Amz.4527534396837852377853964" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.58b82f3e-300b-483c-bb42-0e829e195694/4/BOXART-16X9/en-US._UR1920 tvg-chno="2102" ch-number="2102",1080_.jpeg", Willow: Womens Big Bash League 2026 - 27th Match - Brisbane Heat Women vs Sydney Thunder Women (2102)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=b06dc5848ef623a1ed1bc7c2900007d9:d62ffeb4061bb0bd7f11164761ea694a
 https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/ayg6j8yw1b/out/v1/e02856592bc44834b4edda32878b485a/cenc.mpd
-#EXTINF:-1 tvg-id="Amz.5635765301716755862698596" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.8109aef6-9965-41fd-8dd0-3c2289b8cda8/4/BOXART-16X9/en-US._UR1920 tvg-chno="3428" ch-number="3428",1080_.jpeg", Willow: ACC Mens Asia Cup Rising Stars 2026 - 2nd Match - Sri Lanka A vs Afghanistan A (3428)
+#EXTINF:-1 tvg-id="Amz.5635765301716755862698596" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.8109aef6-9965-41fd-8dd0-3c2289b8cda8/4/BOXART-16X9/en-US._UR1920 tvg-chno="2103" ch-number="2103",1080_.jpeg", Willow: ACC Mens Asia Cup Rising Stars 2026 - 2nd Match - Sri Lanka A vs Afghanistan A (2103)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=964c4b09d34aec26004af58468df3f63:33241077e9b7604e876d6b23c1fcf8ac
 https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/cix65j0fhp/out/v1/40e83e3831354f46aa6c4f7f33b22606/cenc.mpd
-#EXTINF:-1 tvg-id="Amz.7420822548440862661719556" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.69a230be-4b99-4376-aeb2-5bcb4a081c3f/2/BOXART-16X9/en-US._UR1920 tvg-chno="3429" ch-number="3429",1080_.jpeg", Willow: Abu Dhabi T10 League 2026 - 28th Match - UAE Bulls vs Arabian Aces (3429)
+#EXTINF:-1 tvg-id="Amz.7420822548440862661719556" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.69a230be-4b99-4376-aeb2-5bcb4a081c3f/2/BOXART-16X9/en-US._UR1920 tvg-chno="2104" ch-number="2104",1080_.jpeg", Willow: Abu Dhabi T10 League 2026 - 28th Match - UAE Bulls vs Arabian Aces (2104)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=b51f981b4a44e1b874a7958276b765d6:bc42638f3ec4d015524143a6d40ebfd5
 https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/oxdfwbm9bd/out/v1/58ee6ff8cf414cd0ac3bf08b8859d811/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="3430" ch-number="3430",TNT Sports 1 (3430)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="2105" ch-number="2105",TNT Sports 1 (2105)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=69a5aa835a061ce64a630d1046727e40:d02feac8a999bd06bf4059bf33411749
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/rhf2dwosdt/out/v1/ee550d2a68d846c797e6ce4de2e8b76d/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="3431" ch-number="3431",TNT Sports 2 (3431)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="2106" ch-number="2106",TNT Sports 2 (2106)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=f3df7843080ae743bf865dc5fdf64c68:567c863bc12eb74788ea74888c042e1b
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/puehlftk5j/out/v1/f7f0da1ee112481ca0024e6d4dd97f4a/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="3432" ch-number="3432",TNT Sports 3 (3432)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="2107" ch-number="2107",TNT Sports 3 (2107)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=cc91508324ce9dcaf425a43d58f1d9d4:643e5474d9edd87c7d9091c8c97994ca
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/dev1hjwzh9/out/v1/a5f0ee7ad7b24906b14f43bebbbe4678/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="3433" ch-number="3433",TNT Sports 4 (3433)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="2108" ch-number="2108",TNT Sports 4 (2108)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=fa34fa8c90336dd528c7a23871cad1fe:552a78d1aeb74f1650d68255c5749408
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/tdijwiga2k/out/v1/f5fde318678f4f7583bf27b7231bde1f/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="3434" ch-number="3434",TNT Sports 5 (3434)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="2109" ch-number="2109",TNT Sports 5 (2109)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
