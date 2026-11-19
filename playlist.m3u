@@ -200,7 +200,7 @@ https://livetv.hotstar.com/mp1/gec-india-1540068295/5a4eb3ac6e424eef8a30962d2232
 #EXTINF:-1 tvg-id="1271407200" tvg-language="English" tvg-name="Star Sports 2 Hindi HD" tvg-logo="https://dvdh7g0f0hwck.cloudfront.net/assets/images/channel/StarSports2HindiHD_Transparent_c72d6289-27aa-422d-8420-40135329a5b6.png" CATCH-UP-FAILED="null" tvg-chno="604" ch-number="604",Star Sports 2 Hindi HD (604)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1540068298" tvg-language="Hindi" tvg-name="Star Sports 2 Hindi" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/6371/1783000736371-h" catchup-type="append" catchup-days="14" catchup-source="&start={utc}&end={utcend}" tvg-chno="605" ch-number="605",Star Sports 2 Hindi (605)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -210,7 +210,7 @@ https://livetv.hotstar.com/mp2/gec-india-1540068298/9f99e1af0bdc465b8a3015e3a1a6
 #EXTINF:-1 tvg-id="1271407093" tvg-language="Hindi" tvg-name="Star Sports 2 Hindi" tvg-logo="https://dvdh7g0f0hwck.cloudfront.net/assets/images/channel/StarSports2Hindi_Transparent_e2c035d5-8451-4c1e-930f-4cb4449d1901.png" CATCH-UP-FAILED="null" tvg-chno="605" ch-number="605",Star Sports 2 Hindi (605)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1540068247" tvg-language="English" tvg-name="Star Sports 1" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/7482/1782284567482-h" catchup-type="append" catchup-days="14" catchup-source="&start={utc}&end={utcend}" tvg-chno="607" ch-number="607",Star Sports 1 (607)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -250,7 +250,7 @@ https://livetv.hotstar.com/mp1/gec-india-1540068283/9fdb797729344658957bd7382590
 #EXTINF:-1 tvg-id="1271407108" tvg-language="Telugu" tvg-name="Star Sports 2 Telugu" tvg-logo="https://dvdh7g0f0hwck.cloudfront.net/assets/images/channel/StarSports2Telugu_Transparent_5f794134-ddc1-457f-af2d-d4101d9f6711.png" CATCH-UP-FAILED="null" tvg-chno="641" ch-number="641",Star Sports 2 Telugu (641)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1540068337" tvg-language="Tamil" tvg-name="Star Sports 2 Tamil" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/6676/1783000836676-h" catchup-type="append" catchup-days="14" catchup-source="&start={utc}&end={utcend}" tvg-chno="642" ch-number="642",Star Sports 2 Tamil (642)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -260,7 +260,7 @@ https://livetv.hotstar.com/mp2/gec-india-1540068337/9e957d4aa8054fdfa75a02de6c38
 #EXTINF:-1 tvg-id="1271407106" tvg-language="Tamil" tvg-name="Star Sports 2 Tamil" tvg-logo="https://dvdh7g0f0hwck.cloudfront.net/assets/images/channel/StarSports2Tamil_Transparent_495e7bfa-b0b9-4055-a22e-56f3507ca469.png" CATCH-UP-FAILED="null" tvg-chno="642" ch-number="642",Star Sports 2 Tamil (642)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1540068723" tvg-language="English" tvg-name="Star Sports Select 1" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/1176/1783001141176-h" catchup-type="append" catchup-days="14" catchup-source="&start={utc}&end={utcend}" tvg-chno="646" ch-number="646",Star Sports Select 1 (646)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -396,7 +396,7 @@ https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
 #EXTINF:-1 tvg-id="1271387915" tvg-language="English" tvg-name="CNN NEWS 18" tvg-logo="https://img10.hotstar.com/image/upload/f_auto/sources/r1/cms/prod/6107/1783573536107-h" CATCH-UP-FAILED="null" tvg-chno="769" ch-number="769",CNN NEWS 18 (769)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="Add_CNBC-Awaaz" tvg-language="Hindi" tvg-logo="https://d2mxb63djushzm.cloudfront.net/Images/CNBC-All-Logos-White_AWAAZ-400-x-200.png" tvg-chno="871" ch-number="871",CNBC Awaaz (871)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
@@ -418,7 +418,7 @@ https://amg00866-amg00866c9-lg-in-4409.playouts.now.amagi.tv/playlist/amg00866-t
 #EXTINF:-1 tvg-id="1540082531" tvg-language="English" tvg-name="History TV18 HD" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/3143/1790757733143-h" CATCH-UP-FAILED="null" tvg-chno="956" ch-number="956",History TV18 HD (956)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1540068791" tvg-language="Hindi" tvg-name="Sonic" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/6294/1782290926294-h" catchup-type="append" catchup-days="14" catchup-source="&start={utc}&end={utcend}" tvg-chno="958" ch-number="958",Sonic (958)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -728,7 +728,7 @@ https://d2lk5u59tns74c.cloudfront.net/out/v1/26e915d6d12b4a06822c5e33c088ed56/in
 #EXTINF:-1 tvg-id="1271387931" tvg-language="Odia" tvg-name="News18 Oriya" tvg-logo="https://img10.hotstar.com/image/upload/f_auto/sources/r1/cms/prod/3133/1751015493133-h" CATCH-UP-FAILED="null" tvg-chno="1765" ch-number="1765",News18 Oriya (1765)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1540068274" tvg-language="Bengali" tvg-name="Jalsha Movies" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/1445/1782291521445-h" catchup-type="append" catchup-days="14" catchup-source="&start={utc}&end={utcend}" tvg-chno="1835" ch-number="1835",Jalsha Movies (1835)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -2838,203 +2838,203 @@ https://livetv.hotstar.com/mp2/gec-india-1540075730/d4acfd4b06c24abe9dfad81671da
 #EXTINF:-1 tvg-id="3694429" tvg-language="Hindi" tvg-name="Colors HD" tvg-logo="https://v3img.voot.com/resizeMedium tvg-chno="3360" ch-number="3360",w_1090,h_613/v3Storage/assets/colors---16x9-1714557869344.jpg" CATCH-UP-FAILED="null", Colors HD (3360)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271387951" tvg-language="Hindi" tvg-name="Rishtey" tvg-logo="https://v3img.voot.com/resizeMedium tvg-chno="3361" ch-number="3361",w_450,h_253/v3Storage/assets/collors-rishtey-live-channels-16x9-3-1642676080416-1674198105431-1697532377978.jpg" CATCH-UP-FAILED="null", Rishtey (3361)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="3774158" tvg-language="Bengali" tvg-name="Colors Bengla HD" tvg-logo="https://v3img.voot.com/resizeMedium tvg-chno="3362" ch-number="3362",w_450,h_253/v3Storage/assets/colors-bangla-new-16x9-4-1649659533344.jpg" CATCH-UP-FAILED="null", Colors Bengla HD (3362)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="3774156" tvg-language="Kannada" tvg-name="Colors Kannada HD" tvg-logo="https://v3img.voot.com/resizeMedium tvg-chno="3363" ch-number="3363",w_450,h_253/v3Storage/assets/colors-kannada-16x9-1677754085834.jpg" CATCH-UP-FAILED="null", Colors Kannada HD (3363)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271387948" tvg-language="Marathi" tvg-name="Colors Marathi HD" tvg-logo="https://v3img.voot.com/resizeMedium tvg-chno="3364" ch-number="3364",w_450,h_253/v3Storage/assets/colors-marathi-live-channels-16x9-4-6-apr-1649257093359.jpg" CATCH-UP-FAILED="null", Colors Marathi HD (3364)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="3774146" tvg-language="Tamil" tvg-name="Colors Tamil HD" tvg-logo="https://v3img.voot.com/resizeMedium tvg-chno="3365" ch-number="3365",w_450,h_253/v3Storage/assets/ct-1644165913136.jpg" CATCH-UP-FAILED="null", Colors Tamil HD (3365)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="3774144" tvg-language="Gujarati" tvg-name="Colors Gujarati" tvg-logo="https://v3img.voot.com/resizeMedium tvg-chno="3366" ch-number="3366",w_450,h_253/v3Storage/assets/colors-gujarati-16x9-1713269620328.jpg" CATCH-UP-FAILED="null", Colors Gujarati (3366)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271387942" tvg-language="English" tvg-name="Colors Infinity HD" tvg-logo="https://v3img.voot.com/resizeMedium tvg-chno="3367" ch-number="3367",w_450,h_253/v3Storage/assets/colors-infinity-live-channels-16x9-1642496946057.jpg" CATCH-UP-FAILED="null", Colors Infinity HD (3367)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271387947" tvg-language="Kannada" tvg-name="Colors Super" tvg-logo="https://v3img.voot.com/resizeMedium tvg-chno="3368" ch-number="3368",w_450,h_253/v3Storage/assets/colors-super-live-channels-16x9-4-1642744939924.jpg" CATCH-UP-FAILED="null", Colors Super (3368)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="3774155" tvg-language="Hindi" tvg-name="Colors Cineplex HD" tvg-logo="https://v3img.voot.com/resizeMedium tvg-chno="3369" ch-number="3369",w_450,h_253/v3Storage/assets/Live-Tv-Channels-colors-cineplex-1607514413063.jpg" CATCH-UP-FAILED="null", Colors Cineplex HD (3369)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="3479683" tvg-language="Hindi" tvg-name="Colors Cineplex Superhit" tvg-logo="https://v3img.voot.com/resizeMedium tvg-chno="3370" ch-number="3370",w_960,h_540/v3Storage/assets/colors-cineplex-superhit%2016x9-1648793655358.jpg" CATCH-UP-FAILED="null", Colors Cineplex Superhit (3370)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271387925" tvg-language="Hindi" tvg-name="Colors Cineplex Bollywood" tvg-logo="https://v3img.voot.com/resizeMedium tvg-chno="3371" ch-number="3371",w_450,h_253/v3Storage/assets/cineplex-1713963820848.jpeg" CATCH-UP-FAILED="null", Colors Cineplex Bollywood (3371)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271387927" tvg-language="Kannada" tvg-name="Colors Kannada Cinema" tvg-logo="https://v3img.voot.com/resizeMedium tvg-chno="3372" ch-number="3372",w_450,h_253/v3Storage/assets/colors-kannada-cinema-16x9-1713963481807.jpg" CATCH-UP-FAILED="null", Colors Kannada Cinema (3372)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271387949" tvg-language="Hindi" tvg-name="MTV HD" tvg-logo="https://v3img.voot.com/resizeMedium tvg-chno="3373" ch-number="3373",w_450,h_253/v3Storage/assets/mtv-16x9-1714316345624.jpg" CATCH-UP-FAILED="null", MTV HD (3373)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271387950" tvg-language="Hindi" tvg-name="Nick Junior" tvg-logo="https://v3img.voot.com/resizeMedium tvg-chno="3374" ch-number="3374",w_450,h_253/v3Storage/assets/nick-jr-16x9-2-1626708077243.jpg" CATCH-UP-FAILED="null", Nick Junior (3374)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1540072843" tvg-language="Hindi" tvg-name="TATA IPL TV" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/1057/1782285911057-b" CATCH-UP-FAILED="null" tvg-chno="3375" ch-number="3375",TATA IPL TV (3375)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1540040052" tvg-language="Hindi" tvg-name="Star Sports Cricket Classics" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/7739/1782284837739-b" CATCH-UP-FAILED="null" tvg-chno="3376" ch-number="3376",Star Sports Cricket Classics (3376)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271387911" tvg-language="Hindi" tvg-name="CNBC Awaaz" tvg-logo="https://v3img.voot.com/resizeMedium tvg-chno="3377" ch-number="3377",w_1090,h_613/v3Storage/assets/cnbc-awaaz-16x9-1702387934761.jpg" CATCH-UP-FAILED="null", CNBC Awaaz (3377)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271387914" tvg-language="Gujarati" tvg-name="CNBC Bazaar" tvg-logo="https://v3img.voot.com/resizeMedium tvg-chno="3378" ch-number="3378",w_1090,h_613/v3Storage/assets/whatsapp16x9-1693491956187.jpg" CATCH-UP-FAILED="null", CNBC Bazaar (3378)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271387909" tvg-language="English" tvg-name="CNBC Tv 18" tvg-logo="https://v3img.voot.com/resizeMedium tvg-chno="3379" ch-number="3379",w_1090,h_613/v3Storage/assets/cnbc18-shereen-bhan-16x9-2-1693479472079.jpg" CATCH-UP-FAILED="null", CNBC Tv 18 (3379)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271387918" tvg-language="Hindi" tvg-name="News18 India" tvg-logo="https://img10.hotstar.com/image/upload/f_auto tvg-chno="3380" ch-number="3380",q_90,w_640/sources/r1/cms/prod/1851/1783572601851-h" CATCH-UP-FAILED="null", News18 India (3380)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271379107" tvg-language="Tamil" tvg-name="News18 Tamilnadu" tvg-logo="https://img10.hotstar.com/image/upload/f_auto tvg-chno="3381" ch-number="3381",q_90,w_640/sources/r1/cms/prod/7084/1738559697084-h" CATCH-UP-FAILED="null", News18 Tamilnadu (3381)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271387928" tvg-language="Marathi" tvg-name="News18 Marathi" tvg-logo="https://img10.hotstar.com/image/upload/f_auto tvg-chno="3382" ch-number="3382",q_90,w_640/sources/r1/cms/prod/5405/1768991915405-h" CATCH-UP-FAILED="null", News18 Marathi (3382)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271379096" tvg-language="Bengali" tvg-name="News18 Bangla News" tvg-logo="https://img10.hotstar.com/image/upload/f_auto tvg-chno="3383" ch-number="3383",q_90,w_640/sources/r1/cms/prod/5939/1778521105939-h" CATCH-UP-FAILED="null", News18 Bangla News (3383)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271379105" tvg-language="Kannada" tvg-name="News18 Kannada News" tvg-logo="https://img10.hotstar.com/image/upload/f_auto tvg-chno="3384" ch-number="3384",q_90,w_640/sources/r1/cms/prod/5186/1738559995186-h" CATCH-UP-FAILED="null", News18 Kannada News (3384)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271379094" tvg-language="Gujarati" tvg-name="News18 Gujarati" tvg-logo="https://img10.hotstar.com/image/upload/f_auto tvg-chno="3385" ch-number="3385",q_90,w_640/sources/r1/cms/prod/8382/1751015278382-h" CATCH-UP-FAILED="null", News18 Gujarati (3385)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271387920" tvg-language="Hindi" tvg-name="News18 Punjab Haryana" tvg-logo="https://img10.hotstar.com/image/upload/f_auto tvg-chno="3386" ch-number="3386",q_90,w_640/sources/r1/cms/prod/5567/1738559735567-h" CATCH-UP-FAILED="null", News18 Punjab Haryana (3386)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271387934" tvg-language="Assamese" tvg-name="News18 Assam" tvg-logo="https://img10.hotstar.com/image/upload/f_auto tvg-chno="3387" ch-number="3387",q_90,w_640/sources/r1/cms/prod/3164/1738560353164-h" CATCH-UP-FAILED="null", News18 Assam (3387)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271387933" tvg-language="Malayalam" tvg-name="News 18 Kerala" tvg-logo="https://img10.hotstar.com/image/upload/f_auto tvg-chno="3388" ch-number="3388",q_90,w_640/sources/r1/cms/prod/5180/1738559945180-h" CATCH-UP-FAILED="null", News 18 Kerala (3388)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271387926" tvg-language="Hindi" tvg-name="News18 RAJASTHAN" tvg-logo="https://img10.hotstar.com/image/upload/f_auto tvg-chno="3389" ch-number="3389",q_90,w_640/sources/r1/cms/prod/4398/1753788894398-h" CATCH-UP-FAILED="null", News18 RAJASTHAN (3389)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271387924" tvg-language="Bhojpuri" tvg-name="News18 BIHAR JHARKHAND" tvg-logo="https://img10.hotstar.com/image/upload/f_auto tvg-chno="3390" ch-number="3390",q_90,w_640/sources/r1/cms/prod/9448/1756922919448-h" CATCH-UP-FAILED="null", News18 BIHAR JHARKHAND (3390)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271387921" tvg-language="Hindi" tvg-name="News18 MP Chhattisgarh" tvg-logo="https://img10.hotstar.com/image/upload/f_auto tvg-chno="3391" ch-number="3391",q_90,w_640/sources/r1/cms/prod/8001/1753788608001-h" CATCH-UP-FAILED="null", News18 MP Chhattisgarh (3391)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271387922" tvg-language="Hindi" tvg-name="News18 UP Uttarakhand" tvg-logo="https://img10.hotstar.com/image/upload/f_auto tvg-chno="3392" ch-number="3392",q_90,w_640/sources/r1/cms/prod/8516/1753789138516-h" CATCH-UP-FAILED="null", News18 UP Uttarakhand (3392)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271387919" tvg-language="Urdu" tvg-name="News18 DELHI NCR" tvg-logo="https://img10.hotstar.com/image/upload/f_auto/sources/r1/cms/prod/5046/1776159665046-h" CATCH-UP-FAILED="null" tvg-chno="3393" ch-number="3393",News18 DELHI NCR (3393)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1260009749" tvg-language="English" tvg-name="Fit India Campaign Launch" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/1357/551357-h" CATCH-UP-FAILED="null" tvg-chno="3394" ch-number="3394",Fit India Campaign Launch (3394)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1540072704" tvg-language="Hindi" tvg-name="ICC Champions TV" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/8651/1782285268651-b" CATCH-UP-FAILED="null" tvg-chno="3395" ch-number="3395",ICC Champions TV (3395)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1540031361" tvg-language="Hindi" tvg-name="MI vs CSK" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/4921/1787510934921-b" CATCH-UP-FAILED="null" tvg-chno="3396" ch-number="3396",MI vs CSK (3396)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271698275" tvg-language="Hindi" tvg-name="BBS20: 24 HRS Channel [Deferred] FHD" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/8464/1788708838464-b" CATCH-UP-FAILED="null" tvg-chno="3397" ch-number="3397",BBS20: 24 HRS Channel [Deferred] FHD (3397)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271698275" tvg-language="Hindi" tvg-name="BBS20: 24 HRS Channel [Deferred] HD" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/8464/1788708838464-b" CATCH-UP-FAILED="null" tvg-chno="3398" ch-number="3398",BBS20: 24 HRS Channel [Deferred] HD (3398)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271698275" tvg-language="Hindi" tvg-name="BBS20: 24 HRS Channel [Deferred] SD" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/8464/1788708838464-b" CATCH-UP-FAILED="null" tvg-chno="3399" ch-number="3399",BBS20: 24 HRS Channel [Deferred] SD (3399)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271698294" tvg-language="Kannada" tvg-name="BBS13 - 24X7 Kannada Stream [Deferred]" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/7246/1788706787246-b" CATCH-UP-FAILED="null" tvg-chno="3400" ch-number="3400",BBS13 - 24X7 Kannada Stream [Deferred] (3400)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271698284" tvg-language="Malayalam" tvg-name="BBS08 - 24X7 Malayalam Stream [Deferred] FHD" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/5425/1788707405425-b" CATCH-UP-FAILED="null" tvg-chno="3401" ch-number="3401",BBS08 - 24X7 Malayalam Stream [Deferred] FHD (3401)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271698289" tvg-language="Tamil" tvg-name="BBS10 - 24X7 Tamil Stream [Deferred] FHD" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/3548/1788686883548-b" CATCH-UP-FAILED="null" tvg-chno="3402" ch-number="3402",BBS10 - 24X7 Tamil Stream [Deferred] FHD (3402)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271698292" tvg-language="Telugu" tvg-name="BBS10 - 24X7 Telugu Stream [Deferred] FHD" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/3541/1788705493541-b" CATCH-UP-FAILED="null" tvg-chno="3403" ch-number="3403",BBS10 - 24X7 Telugu Stream [Deferred] FHD (3403)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1271693777" tvg-language="Bengali" tvg-name="BB: 24X7 Bengali Stream [Deferred] FHD" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/4230/1788186834230-b" CATCH-UP-FAILED="null" tvg-chno="3404" ch-number="3404",BB: 24X7 Bengali Stream [Deferred] FHD (3404)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1540073134" tvg-language="Tamil" tvg-name="Star Vijay Classics" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/9026/1783431949026-h" CATCH-UP-FAILED="null" tvg-chno="3405" ch-number="3405",Star Vijay Classics (3405)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1540074032" tvg-language="Tamil" tvg-name="Star Vijay Fun Games" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/1469/1783430931469-h" CATCH-UP-FAILED="null" tvg-chno="3406" ch-number="3406",Star Vijay Fun Games (3406)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1540074035" tvg-language="Tamil" tvg-name="Star Vijay Kalakkal Comedy" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/8806/1783431318806-h" CATCH-UP-FAILED="null" tvg-chno="3407" ch-number="3407",Star Vijay Kalakkal Comedy (3407)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1540074038" tvg-language="Tamil" tvg-name="Star Vijay Movie Time" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/551/1783431460551-h" CATCH-UP-FAILED="null" tvg-chno="3408" ch-number="3408",Star Vijay Movie Time (3408)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="1540074041" tvg-language="Tamil" tvg-name="Star Vijay Super Singer" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/9408/1783431839408-h" CATCH-UP-FAILED="null" tvg-chno="3409" ch-number="3409",Star Vijay Super Singer (3409)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795132860~acl=%2f*~id=b459ae0167a6bb0153e3e23ee9a2f5da~data=hdntl~hmac=dde43067b7886ef3dcbf4be82bebe000f974fd53b4c5c0d2c3b8ca62589a4c21
+https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Origin=https://www.hotstar.com&Referer=https://www.hotstar.com/&Cookie=hdntl=exp=1795176061~acl=%2f*~id=f4e832cdabf6ce8769b0268641b8a16b~data=hdntl~hmac=66787d13ad73c22107ed7d22df7ffb6a71b4b25db6fa11e55c8144d37f92134d
 #EXTINF:-1 tvg-id="watch_34" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Zee_Action.png" tvg-chno="3410" ch-number="3410",Zee Action (3410)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
@@ -3131,43 +3131,49 @@ https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 
-#EXTINF:-1 tvg-id="1090554805_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029365/1795067857037235_ACRS26_BANvsHKC_landscape_thumb.jpg" tvg-chno="3426" ch-number="3426",Sony: ACC Men's Asia Cup Rising Stars [ENG] (3426)
+#EXTINF:-1 tvg-id="1090554810_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029388/1795079673412862_ACRS26_SLvsAFG_landscape_thumb.jpg" tvg-chno="3426" ch-number="3426",Sony: ACC Men's Asia Cup Rising Stars [ENG] (3426)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120300/criclive1911/ENG/std_mdh-800300010.m3u8?hdnea=st=1795079214~exp=1795079514~acl=*~id=8c71fb7d-31e6-4d44-a5b6-93aad2f4816b~hmac=6ae3e7910957ec3d41f6f2b05075ef189a2932ce3eab748520a276e1564bc8c2&originpath=/linear/hls/pa/event/7cIN-VbvRemT_Gc-OWNing/stream/01e52084-6fbd-46e4-8aed-47b3aa68c920:ATL/master.m3u8
-#EXTINF:-1 tvg-id="Amz.9779259527792034949850560" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.04f62072-bc1e-42be-b0f9-2370ad69f513/6/BOXART-16X9/en-US._UR1920 tvg-chno="3427" ch-number="3427",1080_.jpeg", Willow: India tour of New Zealand 2026 - 1st Test - New Zealand vs India (3427)
+https://sonydaimenew.akamaized.net/hls/live/2120301/criclive1911/ENG/std_mdh-800300010.m3u8?hdnea=st=1795090035~exp=1795090335~acl=*~id=44b1fcab-4928-494a-9ce4-48fe52d4fcdc~hmac=c660c06cd3c5fe3302e14bbb9efe9ccf33e1720f01c6ba82d8941c70d93599b4&originpath=/linear/hls/pa/event/7P6fceT3R0Oq4e50eUvybA/stream/992b4c22-942e-493b-b20d-3d78a711ee89:CHS/master.m3u8
+#EXTINF:-1 tvg-id="1090554805_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029365/1795067857037235_ACRS26_BANvsHKC_landscape_thumb.jpg" tvg-chno="3427" ch-number="3427",Sony: ACC Men's Asia Cup Rising Stars [ENG] (3427)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=null:null
+https://sonydaimenew.akamaized.net/hls/live/2120300/criclive1911/ENG/std_mdh-800300010.m3u8?hdnea=st=1795090036~exp=1795090336~acl=*~id=3b291404-bfad-4787-b27a-cbcc9c30c5ff~hmac=e97194ddf4eb5e649836cf4eb9b44250388f5e7577ed41980350a2d1adbb97e7&originpath=/linear/hls/pa/event/7cIN-VbvRemT_Gc-OWNing/stream/b066758d-6d71-4eed-98d0-49f7e0744935:CHS/master.m3u8
+#EXTINF:-1 tvg-id="Amz.9779259527792034949850560" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.04f62072-bc1e-42be-b0f9-2370ad69f513/6/BOXART-16X9/en-US._UR1920 tvg-chno="3428" ch-number="3428",1080_.jpeg", Willow: India tour of New Zealand 2026 - 1st Test - New Zealand vs India (3428)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=52a0f31918f2a6f97809d3586aa6c41e:a108a050dfc5cf2065c23370efa58b09
 https://otte.live.fly.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/mvmval8dm6/out/v1/bad69dbadd144f5ba75a2e9b948a5e0d/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="3428" ch-number="3428",TNT Sports 1 (3428)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="3429" ch-number="3429",TNT Sports 1 (3429)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=69a5aa835a061ce64a630d1046727e40:d02feac8a999bd06bf4059bf33411749
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/rhf2dwosdt/out/v1/ee550d2a68d846c797e6ce4de2e8b76d/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="3429" ch-number="3429",TNT Sports 2 (3429)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="3430" ch-number="3430",TNT Sports 2 (3430)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=f3df7843080ae743bf865dc5fdf64c68:567c863bc12eb74788ea74888c042e1b
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/puehlftk5j/out/v1/f7f0da1ee112481ca0024e6d4dd97f4a/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="3430" ch-number="3430",TNT Sports 3 (3430)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="3431" ch-number="3431",TNT Sports 3 (3431)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=cc91508324ce9dcaf425a43d58f1d9d4:643e5474d9edd87c7d9091c8c97994ca
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/dev1hjwzh9/out/v1/a5f0ee7ad7b24906b14f43bebbbe4678/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="3431" ch-number="3431",TNT Sports 4 (3431)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="3432" ch-number="3432",TNT Sports 4 (3432)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=fa34fa8c90336dd528c7a23871cad1fe:552a78d1aeb74f1650d68255c5749408
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/tdijwiga2k/out/v1/f5fde318678f4f7583bf27b7231bde1f/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="3432" ch-number="3432",TNT Sports 5 (3432)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="3433" ch-number="3433",TNT Sports 5 (3433)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
