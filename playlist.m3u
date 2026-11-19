@@ -3166,7 +3166,7 @@ https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_1811/ENG/std_mdd-6003
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120300/criclive1911/ENG/std_mdh-800300010.m3u8?hdnea=st=1795068451~exp=1795068751~acl=*~id=76523c9d-7d68-4700-b994-ce00a220961d~hmac=bdb640dd1108e91ed06dc97d9bfb4372359da1b7f0b9610c1fd01eaef2154454&originpath=/linear/hls/pa/event/7cIN-VbvRemT_Gc-OWNing/stream/13e4f9b1-3b62-4127-a184-45d6fc1d4fae:TUL/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2120300/criclive1911/ENG/std_mdh-800300010.m3u8?hdnea=st=1795070068~exp=1795070368~acl=*~id=1b536683-2e2f-4896-bf06-fe87f90be4d7~hmac=5d56c9059afda0c9b986c2f9cb99c4c1c9f34bfe128c2fb86ad50526da396781&originpath=/linear/hls/pa/event/7cIN-VbvRemT_Gc-OWNing/stream/18762bac-2437-43ca-aec0-3bace7f44727:TUL/master.m3u8
 #EXTINF:-1 tvg-id="Amz.9779259527792034949850560" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.04f62072-bc1e-42be-b0f9-2370ad69f513/6/BOXART-16X9/en-US._UR1920 tvg-chno="3432" ch-number="3432",1080_.jpeg", Willow: India tour of New Zealand 2026 - 1st Test - New Zealand vs India (3432)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
