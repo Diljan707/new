@@ -47,12 +47,6 @@ https://livetv.hotstar.com/mp1/gec-india-1540068693/b584e228e7d94a318177b28e7b03
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=1a144ade8f5357dd81862285cd921c5b:b0c84f4255ba4f8082c9b13089ddb9cc,6998ce8589754e853b2d6ce418bf4f36:40041e17c824c97e74edbc24ff786493,b9d4acedc66c5660a1e06197a55bccd2:dd53bab1a42f41ae8f0a5c8fd286f456,23dc7bf9ee694bdf00bc1e34ccd0c356:ec7abdf90c625714af81db5bd2c3b5cf,65ce5fdf6b71254123573a818cdb4051:71f73dfeb3ce6763992558040b607847,c128e0ceddd0a35ae83a09648b93cf43:8a467926ea40d785178c0d7ca3f32116
 https://jiotvmblive.cdn.jio.com/bpk-tv/Zoom_MOB/WDVLive/index.mpd?__hdnea__=st=1794996206~exp=1795082606~acl=/*~hmac=5e22326641ab5cbeef7d2bc4de9bba2d10b11bf4c52451ea30fea6c76ba9b190
-#EXTINF:-1 tvg-id="HE_E_10095" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/f84de3464c0a4609ac222605bd3b3bfe/version/0" tvg-chno="147" ch-number="147",Zoom (147)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
 #EXTINF:-1 tvg-id="Add_10574" tvg-language="Hindi" tvg-logo="https://prodcdn1.wavespb.com/shows/thumbnail/2101175623577172936ImportedPhoto_1728501517286.webp" tvg-chno="178" ch-number="178",DD National HD (178)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
@@ -399,12 +393,6 @@ https://amg00644-tvtoday-amg00644c1-lg-in-3506.playouts.now.amagi.tv/playlist/am
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
-#EXTINF:-1 tvg-id="HE_E_10087" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/ff9991eb1ad44ddca1df937a771c583d/version/0" tvg-chno="767" ch-number="767",Times Now (767)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
 #EXTINF:-1 tvg-id="1271387915" tvg-language="English" tvg-name="CNN NEWS 18" tvg-logo="https://img10.hotstar.com/image/upload/f_auto/sources/r1/cms/prod/6107/1783573536107-h" CATCH-UP-FAILED="null" tvg-chno="769" ch-number="769",CNN NEWS 18 (769)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
@@ -427,12 +415,6 @@ https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://amg00866-amg00866c9-lg-in-4409.playouts.now.amagi.tv/playlist/amg00866-tv18broadcastlimitedfast-cnbctv18-lgin/playlist.m3u8?
-#EXTINF:-1 tvg-id="HE_E_10058" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/81f431adc0714cff84be95b33d9b1b83/version/0" tvg-chno="933" ch-number="933",ET Now (933)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
 #EXTINF:-1 tvg-id="1540082531" tvg-language="English" tvg-name="History TV18 HD" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/3143/1790757733143-h" CATCH-UP-FAILED="null" tvg-chno="956" ch-number="956",History TV18 HD (956)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
@@ -629,7 +611,7 @@ https://amg01043-abpnewsnetwork-amg01043c5-lg-in-2041.playouts.now.amagi.tv/play
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://cdn-uw2-prod.tsv2.amagi.tv/linear/amg01106-associatedbroad-tv9gujrati-lgin/playlist.m3u8?
-#EXTINF:-1 tvg-id="HE_E_11722" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/9e787a13afa1447abde693bf57f7f9db/version/0" tvg-chno="1302" ch-number="1302",Zee Sarthak (1302)
+#EXTINF:-1 tvg-id="HE_E_11722" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/c86007cd6db744eeb8b6f8431e4f363a/version/0" tvg-chno="1302" ch-number="1302",Zee Sarthak (1302)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
@@ -3071,7 +3053,7 @@ https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://denverisalive.github.io/Intro/Denver/ip_blocked.m3u8
-#EXTINF:-1 tvg-id="HE_F_10007" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/aa28f872001347398405b24f3bd4f634/version/0" tvg-chno="3413" ch-number="3413",DD Bharti (3413)
+#EXTINF:-1 tvg-id="HE_F_10007" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/9ac9516189654175bffc220b723e928d/version/0" tvg-chno="3413" ch-number="3413",DD Bharti (3413)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
