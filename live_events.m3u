@@ -1,40 +1,46 @@
 #EXTM3U
-#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo9cZGt3VJujNhF5G4hLRy4LMC6LVznt8J_xVguOvDzw&s=10" group-title="Live events" tvg-chno="2413" ch-number="2413", (2413)
+#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo9cZGt3VJujNhF5G4hLRy4LMC6LVznt8J_xVguOvDzw&s=10" group-title="Live events" tvg-chno="2412" ch-number="2412", (2412)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 
-#EXTINF:-1 tvg-id="1090554803_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029396/1795085973106996_NZvsIND_1st_Test_Day2_landscape_thumb.jpg" tvg-chno="2416" ch-number="2416",Sony: India vs New Zealand [ENG] (2416)
+#EXTINF:-1 tvg-id="1090554803_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029396/1795085973106996_NZvsIND_1st_Test_Day2_landscape_thumb.jpg" tvg-chno="2415" ch-number="2415",Sony: India vs New Zealand [ENG] (2415)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_1911/ENG/std_mdd-600300010.m3u8?hdnea=exp=1795170662~acl=/*~id=61866158467781135294957331592034~hmac=8c4b457a9d4d0510c7bedee5ed41623552cbca4271a6178d3f522e67b92644e6
-#EXTINF:-1 tvg-id="1090554803_HIN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029396/1795085973106996_NZvsIND_1st_Test_Day2_landscape_thumb.jpg" tvg-chno="2418" ch-number="2418",Sony: India vs New Zealand [HIN] (2418)
+#EXTINF:-1 tvg-id="1090554803_HIN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029396/1795085973106996_NZvsIND_1st_Test_Day2_landscape_thumb.jpg" tvg-chno="2416" ch-number="2416",Sony: India vs New Zealand [HIN] (2416)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://liveakmt-p-md.slivcdn.com/hls/live/2119921/cricodi_1911/HIN/std_mdd-600300010.m3u8?hdnea=exp=1795170662~acl=/*~id=61866158467781135294957331592034~hmac=8c4b457a9d4d0510c7bedee5ed41623552cbca4271a6178d3f522e67b92644e6
-#EXTINF:-1 tvg-id="1090554803_TAM" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029396/1795085973106996_NZvsIND_1st_Test_Day2_landscape_thumb.jpg" tvg-chno="2420" ch-number="2420",Sony: India vs New Zealand [TAM] (2420)
+#EXTINF:-1 tvg-id="1090554803_TAM" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029396/1795085973106996_NZvsIND_1st_Test_Day2_landscape_thumb.jpg" tvg-chno="2418" ch-number="2418",Sony: India vs New Zealand [TAM] (2418)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_1911/ENG/std_mdd-600300010.m3u8?hdnea=exp=1795170662~acl=/*~id=61866158467781135294957331592034~hmac=8c4b457a9d4d0510c7bedee5ed41623552cbca4271a6178d3f522e67b92644e6
-#EXTINF:-1 tvg-id="1090554803_TEL" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029396/1795085973106996_NZvsIND_1st_Test_Day2_landscape_thumb.jpg" tvg-chno="2422" ch-number="2422",Sony: India vs New Zealand [TEL] (2422)
+#EXTINF:-1 tvg-id="1090554803_TEL" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029396/1795085973106996_NZvsIND_1st_Test_Day2_landscape_thumb.jpg" tvg-chno="2420" ch-number="2420",Sony: India vs New Zealand [TEL] (2420)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_1911/ENG/std_mdd-600300010.m3u8?hdnea=exp=1795170662~acl=/*~id=61866158467781135294957331592034~hmac=8c4b457a9d4d0510c7bedee5ed41623552cbca4271a6178d3f522e67b92644e6
-#EXTINF:-1 tvg-id="1090554803_KAN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029396/1795085973106996_NZvsIND_1st_Test_Day2_landscape_thumb.jpg" tvg-chno="2424" ch-number="2424",Sony: India vs New Zealand [KAN] (2424)
+#EXTINF:-1 tvg-id="1090554803_KAN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029396/1795085973106996_NZvsIND_1st_Test_Day2_landscape_thumb.jpg" tvg-chno="2422" ch-number="2422",Sony: India vs New Zealand [KAN] (2422)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_1911/ENG/std_mdd-600300010.m3u8?hdnea=exp=1795170662~acl=/*~id=61866158467781135294957331592034~hmac=8c4b457a9d4d0510c7bedee5ed41623552cbca4271a6178d3f522e67b92644e6
+#EXTINF:-1 tvg-id="1090555008_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029419/1795110984337206_ACRS_PAK_vs_UAE_live_landscape_thumb.jpg" tvg-chno="2424" ch-number="2424",Sony: ACC Men's Asia Cup Rising Stars [ENG] (2424)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=null:null
+https://sonydaimenew.akamaized.net/hls/live/2120306/Criclive2011/ENG/std_mdh-800300010.m3u8?hdnea=st=1795154525~exp=1795154825~acl=*~id=f81ce08c-56a2-40f8-b655-9b28dec284d6~hmac=3526a1c140b29ed2e50c9f87bf0b5233e32960da99c6324c4241413b1cffe2cf&originpath=/linear/hls/pa/event/6dEZMiaVRcGRWf7lwwBO7Q/stream/334f12fc-e941-4574-b57c-b4400a2668d6:DLS/master.m3u8
 #EXTINF:-1 tvg-id="Amz.8996926324937810183023012" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.04f62072-bc1e-42be-b0f9-2370ad69f513/7/BOXART-16X9/en-US._UR1920 tvg-chno="2425" ch-number="2425",1080_.jpeg", Willow: India tour of New Zealand 2026 - 1st Test - New Zealand vs India (2425)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
