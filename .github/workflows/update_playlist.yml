@@ -3,9 +3,6 @@ name: Generate Safe Playlist
 on:
   workflow_dispatch:
 
-  schedule:
-    - cron: '0 */6 * * *'
-
   repository_dispatch:
     types: [run-playlist]
 
