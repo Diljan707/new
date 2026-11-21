@@ -10,31 +10,31 @@
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795284098~exp=1795284398~acl=*~id=5e901e3c-ec01-4225-8449-ecc4b82bf2e6~hmac=703857d57822294d27dbec56de3e3a5517a5695e9c768199e95673689119f136&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/5806f9b1-e9e0-499b-80e3-e55487634d81:MRN2/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795285230~exp=1795285530~acl=*~id=2c7fb505-8eb7-4e0c-8d4f-e204b5909176~hmac=1e5bfe89a603510e5a1d277783b17cf5915d342a9005acdc5f85acabad0ce882&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/93e7f978-3f73-4567-b9b7-3001cdfddbd0:CHS/master.m3u8
 #EXTINF:-1 tvg-id="1090555610_HIN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="1398" ch-number="1398",Sony: UFC Fight Night - Prochazka vs Stirling [HIN] (1398)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795284098~exp=1795284398~acl=*~id=97a0c713-877f-4a5d-a297-757a6f7bcb65~hmac=517484b6290036f556122dee073da9c5d402d1bb91221370a1e2e3ed0b960ff5&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/cbd39d40-b7be-4711-91c5-1763e46705b4:TUL/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795285230~exp=1795285530~acl=*~id=8407726a-8e29-441c-9c82-1ab9a85853c6~hmac=0edbcf86f36dcfbfb2061fbe943ecb99d59cc33df19faea41d601fc5445f0fe6&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/d4398ba3-111f-4e98-b5b2-e0936d3e61d8:MRN2/master.m3u8
 #EXTINF:-1 tvg-id="1090555610_TAM" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="1399" ch-number="1399",Sony: UFC Fight Night - Prochazka vs Stirling [TAM] (1399)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795284098~exp=1795284398~acl=*~id=b13c5ad4-9c29-4ebe-beeb-9ad61fa22d34~hmac=24cdc7d68008ea0d53fe84cd2b01e304d98ae6483c2e5d0b260404ac3934ec99&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/59939f76-8fcc-460c-bd9f-6bacc0fe13d9:DLS/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795285230~exp=1795285530~acl=*~id=e5d9909c-ce7d-4c3c-9209-9ed438562e7c~hmac=524d3cf2e9a4f3605d20eb86b842d6df235a39f5c2dbb064d279f4fdc770b190&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/1ed720da-a8ae-4949-8b76-f16b1776fcd7:MRN2/master.m3u8
 #EXTINF:-1 tvg-id="1090555610_TEL" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="1400" ch-number="1400",Sony: UFC Fight Night - Prochazka vs Stirling [TEL] (1400)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795284098~exp=1795284398~acl=*~id=1d979587-0bae-48ff-9940-3ee3be834864~hmac=e6685f1d81c57209e805c4e96096acbe576b250c2ea4f1fe84fba2d0c769d160&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/c5a1ab88-ecf5-4f3a-aff7-145eb1f0def9:MRN2/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795285230~exp=1795285530~acl=*~id=3fb06ea7-dc84-4cc0-bb31-72ffb2370037~hmac=33301b3cdba9b3c6804121225f3350fde9861e39333af1b811f6e58922779333&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/986298b8-5ecf-45c7-bd81-2d5fa973a2a4:ATL/master.m3u8
 #EXTINF:-1 tvg-id="1090555610_KAN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="1401" ch-number="1401",Sony: UFC Fight Night - Prochazka vs Stirling [KAN] (1401)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=46bbf645122de0df0cd0b19d4487e2ce:45e84957268ce56d53ae6d0fadec5964
-https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795284098~exp=1795284398~acl=*~id=c4acc962-90c9-4d98-bc10-4984710564ea~hmac=91f14de0b5a19dd744b006ec4301a96138dd51cc7a71ef4fbca6287d0144fc09&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/b29dc143-209a-4939-8a28-c33cf0dd6947:MRN2/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795285230~exp=1795285530~acl=*~id=68fcffbf-7f0a-427c-a4cb-4d4119e317d8~hmac=d7b8b572215acb89bcdb549899342dbdc17d43c53bc0c116f82a8311f9442480&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/8bc77b2e-5082-45de-9e71-c25adf99f698:MRN2/master.m3u8
 #EXTINF:-1 tvg-id="Amz.0016137737778918942779853" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.5a28093f-2e23-4bdb-8aaa-ca038715ae16/2/BOXART-16X9/en-US._UR1920 tvg-chno="1402" ch-number="1402",1080_.jpeg", Willow: ACC Mens Asia Cup Rising Stars 2026 - 6th Match - Bangladesh A vs Afghanistan A (1402)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -77,79 +77,79 @@ https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/tdijwiga2k/out/v1
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=60c0d9b41475e01db4ffb91ed557fbcc:36ee40e58948ca15e3caba8d47b8f34b
 
-#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo9cZGt3VJujNhF5G4hLRy4LMC6LVznt8J_xVguOvDzw&s=10" group-title="Live events" tvg-chno="1920" ch-number="1920", (1920)
+#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo9cZGt3VJujNhF5G4hLRy4LMC6LVznt8J_xVguOvDzw&s=10" group-title="Live events" tvg-chno="1926" ch-number="1926", (1926)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 
-#EXTINF:-1 tvg-id="1090555610_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="1923" ch-number="1923",Sony: UFC Fight Night - Prochazka vs Stirling [ENG] (1923)
+#EXTINF:-1 tvg-id="1090555610_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="1929" ch-number="1929",Sony: UFC Fight Night - Prochazka vs Stirling [ENG] (1929)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795284117~exp=1795284417~acl=*~id=57ef0ed1-692d-4448-8cbe-758dce386010~hmac=848593cd877da982614bf0d8ac7c3ad9584b32e5516a3065faf6518801e5dfeb&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/b3e00caa-d25f-4748-abeb-3060b84c27b5:MRN2/master.m3u8
-#EXTINF:-1 tvg-id="1090555610_HIN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="1924" ch-number="1924",Sony: UFC Fight Night - Prochazka vs Stirling [HIN] (1924)
+https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795285243~exp=1795285543~acl=*~id=3a5a465e-d258-4454-9e1d-ce4c2a70aa3e~hmac=978b9ad8d1950135e26b26088192839802ca4a070eb797286742835b6f796ad4&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/10608e0b-1cd3-4c9f-b991-60c794ea4d3b:MRN2/master.m3u8
+#EXTINF:-1 tvg-id="1090555610_HIN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="1930" ch-number="1930",Sony: UFC Fight Night - Prochazka vs Stirling [HIN] (1930)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795284117~exp=1795284417~acl=*~id=a8450388-baa0-4205-9487-1da96e1e3a29~hmac=d45e1e363a37dcd4d2df55ba2c8d2f976e3fbe9ecc44d09462dcca569c1861fe&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/11994d2d-0503-4c7e-bbcc-837145ed3517:MRN2/master.m3u8
-#EXTINF:-1 tvg-id="1090555610_TAM" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="1925" ch-number="1925",Sony: UFC Fight Night - Prochazka vs Stirling [TAM] (1925)
+https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795285243~exp=1795285543~acl=*~id=b5ba406a-570a-40d8-b178-d0058ffcc41c~hmac=7fb3195ca1e1184ce323472dc7b54b1f5f4ca0096ab7e87b4abeb00a49e2b198&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/79d5db0e-11de-4733-b2a3-b3827075bc4f:MRN2/master.m3u8
+#EXTINF:-1 tvg-id="1090555610_TAM" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="1931" ch-number="1931",Sony: UFC Fight Night - Prochazka vs Stirling [TAM] (1931)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795284117~exp=1795284417~acl=*~id=f077dfdb-48d5-4bfb-9957-c404f9bc383e~hmac=2345fbffb73146bffc46abd8e123366fe36539c70612617d04c0501c084eb777&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/d108d49b-ce80-47e0-9c86-e0c7fcc040f6:MRN2/master.m3u8
-#EXTINF:-1 tvg-id="1090555610_TEL" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="1926" ch-number="1926",Sony: UFC Fight Night - Prochazka vs Stirling [TEL] (1926)
+https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795285243~exp=1795285543~acl=*~id=d0c43bee-f060-42e3-aade-8e8c41f0972c~hmac=dfd5ce010d45fc33da670218c2ca1d4d10ac563ae2ddaa0a1ffa3dd39112d137&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/1aa515d6-af40-44af-b976-dfa50575bd7e:MRN2/master.m3u8
+#EXTINF:-1 tvg-id="1090555610_TEL" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="1932" ch-number="1932",Sony: UFC Fight Night - Prochazka vs Stirling [TEL] (1932)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795284117~exp=1795284417~acl=*~id=a4f7d377-8a7a-4360-a1c3-4ca22aec6869~hmac=6cfe4fd49f41824622b5c35ff2de51d0fe2e34abdc7f3b86165acc5d4e65efe2&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/0ed175a3-cbe2-4b0f-b520-0e4c537b3701:DLS/master.m3u8
-#EXTINF:-1 tvg-id="1090555610_KAN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="1927" ch-number="1927",Sony: UFC Fight Night - Prochazka vs Stirling [KAN] (1927)
+https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795285243~exp=1795285543~acl=*~id=57acd7c3-0a9d-4fa9-8797-29fecdd4fd4c~hmac=1f260cd68687027d3d0087538a070e376152a023da850f3c1aff71a2db1166fa&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/69678319-8e47-4582-8612-27ee8fb82845:ATL/master.m3u8
+#EXTINF:-1 tvg-id="1090555610_KAN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="1933" ch-number="1933",Sony: UFC Fight Night - Prochazka vs Stirling [KAN] (1933)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=46bbf645122de0df0cd0b19d4487e2ce:45e84957268ce56d53ae6d0fadec5964
-https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795284117~exp=1795284417~acl=*~id=ccbd0a35-96b2-47d0-b75b-ce9fc115faf2~hmac=03b349922b5555000cfbe39ca16c93bfaa34e0e785be8947e0930951a560b73a&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/b7eef53e-5226-4a37-b15e-e9fc7900f6ac:TUL/master.m3u8
-#EXTINF:-1 tvg-id="Amz.0016137737778918942779853" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.5a28093f-2e23-4bdb-8aaa-ca038715ae16/2/BOXART-16X9/en-US._UR1920 tvg-chno="1928" ch-number="1928",1080_.jpeg", Willow: ACC Mens Asia Cup Rising Stars 2026 - 6th Match - Bangladesh A vs Afghanistan A (1928)
+https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795285243~exp=1795285543~acl=*~id=67ee5751-b64f-4727-988a-39582ce3a85f~hmac=f4e27834e9bf451c91c862b4c40e7bc1c18b694d716848070ca719f06475482b&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/a9470bce-6b49-4741-a2f1-46a177e2b92d:CHS/master.m3u8
+#EXTINF:-1 tvg-id="Amz.0016137737778918942779853" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.5a28093f-2e23-4bdb-8aaa-ca038715ae16/2/BOXART-16X9/en-US._UR1920 tvg-chno="1934" ch-number="1934",1080_.jpeg", Willow: ACC Mens Asia Cup Rising Stars 2026 - 6th Match - Bangladesh A vs Afghanistan A (1934)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=61403ba13e0032108b86ec3078314ec9:ec2ac53d37954d51dd4d9eb11ecf322b
 https://otte.live.fly.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/fceyqwjpo4/out/v1/3d62c2d3722b4801b8c7dce78217ff87/cenc.mpd
-#EXTINF:-1 tvg-id="Amz.7719746169481732007985937" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.f5566761-b72f-45ad-89b5-d9febee8e5f4/2/BOXART-16X9/en-US._UR1920 tvg-chno="1929" ch-number="1929",1080_.jpeg", Willow: International League T20 2026 - 1st Match - Desert Vipers vs Mi Emirates (1929)
+#EXTINF:-1 tvg-id="Amz.7719746169481732007985937" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.f5566761-b72f-45ad-89b5-d9febee8e5f4/2/BOXART-16X9/en-US._UR1920 tvg-chno="1935" ch-number="1935",1080_.jpeg", Willow: International League T20 2026 - 1st Match - Desert Vipers vs Mi Emirates (1935)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=69a5aa835a061ce64a630d1046727e40:d02feac8a999bd06bf4059bf33411749
 https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/u7thf3dqfv/out/v1/b6a0f070688648ac849771947211a8fb/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1930" ch-number="1930",TNT Sports 1 (1930)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1936" ch-number="1936",TNT Sports 1 (1936)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=f3df7843080ae743bf865dc5fdf64c68:567c863bc12eb74788ea74888c042e1b
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/rhf2dwosdt/out/v1/ee550d2a68d846c797e6ce4de2e8b76d/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1931" ch-number="1931",TNT Sports 2 (1931)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1937" ch-number="1937",TNT Sports 2 (1937)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=cc91508324ce9dcaf425a43d58f1d9d4:643e5474d9edd87c7d9091c8c97994ca
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/puehlftk5j/out/v1/f7f0da1ee112481ca0024e6d4dd97f4a/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1932" ch-number="1932",TNT Sports 3 (1932)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1938" ch-number="1938",TNT Sports 3 (1938)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=fa34fa8c90336dd528c7a23871cad1fe:552a78d1aeb74f1650d68255c5749408
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/dev1hjwzh9/out/v1/a5f0ee7ad7b24906b14f43bebbbe4678/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="1933" ch-number="1933",TNT Sports 4 (1933)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="1939" ch-number="1939",TNT Sports 4 (1939)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=60c0d9b41475e01db4ffb91ed557fbcc:36ee40e58948ca15e3caba8d47b8f34b
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/tdijwiga2k/out/v1/f5fde318678f4f7583bf27b7231bde1f/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="1934" ch-number="1934",TNT Sports 5 (1934)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="1940" ch-number="1940",TNT Sports 5 (1940)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
@@ -166,31 +166,31 @@ https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/tdijwiga2k/out/v1
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795284132~exp=1795284432~acl=*~id=94c704f2-5232-4815-8f39-645c06a9623a~hmac=7a6ce46d62f5f408c1573a0d417cd8a93381b016b7ffe533cf15909ed20b5c18&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/b2e0138c-4b6c-4445-96e1-9990791f9375:DLS/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795285254~exp=1795285554~acl=*~id=a1fff5ec-3a20-43f3-b8b3-b0311cab9a5a~hmac=92fc117e4b35bd640d8b7ad52e0ba74aea438456cb6b7f6f3ff26f6a2592aeef&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/ec92e426-c07d-450b-a5d4-c95a0c636f14:CHS/master.m3u8
 #EXTINF:-1 tvg-id="1090555610_HIN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="2425" ch-number="2425",Sony: UFC Fight Night - Prochazka vs Stirling [HIN] (2425)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795284132~exp=1795284432~acl=*~id=9f78c99d-5062-444c-a949-641798b1de23~hmac=636b7ff689060036666c8213dc6cc4bb3ac2a53327867dfa18b891f9fda5fd13&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/e5321a6a-0a12-4e50-b70a-27a0c14ee93d:MRN2/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795285254~exp=1795285554~acl=*~id=0698580c-2db6-4ff6-a98a-f8eb52866a05~hmac=417b1f6224d0edaf3eadf5169a10436e4ec9d117b8cd510747ad6d8fe28a6e05&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/cfb7cfbc-1bdf-4f28-9887-aaec8a97a169:MRN2/master.m3u8
 #EXTINF:-1 tvg-id="1090555610_TAM" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="2426" ch-number="2426",Sony: UFC Fight Night - Prochazka vs Stirling [TAM] (2426)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795284132~exp=1795284432~acl=*~id=081cc709-2bb5-4d71-a630-70374cfb5dbf~hmac=88deb4d7574908a3ee005e2b8fb1673e011ccadf4c845fd415581e92e87cbce4&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/4dd53f09-f4bc-4948-a0b6-63d096d4e1e8:MRN2/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795285254~exp=1795285554~acl=*~id=718fdeb0-8de1-49f5-92ad-4b02dffefacd~hmac=944bf74c99424cbfb2a80e1bb66f3e3f2f73b45bf5cecbbcb899eeb6425f08c3&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/1017a35a-708f-4934-bd65-b4c82a734a44:ATL/master.m3u8
 #EXTINF:-1 tvg-id="1090555610_TEL" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="2427" ch-number="2427",Sony: UFC Fight Night - Prochazka vs Stirling [TEL] (2427)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795284132~exp=1795284432~acl=*~id=6d9c2153-ac51-4240-b5e6-eca69295afe8~hmac=8b94ca060616de93e477202d6b2f2f1757af718e72b414d6906addf2c0c64c33&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/6d53607c-c841-4f71-b890-3939a6619963:MRN2/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795285254~exp=1795285554~acl=*~id=586ed91e-bf6c-49a5-a13d-d319b04e1751~hmac=f8021fbd6a907580923bf74750ce12f6d7bc9c47e2b14459f5853fef0fd8361b&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/d1ae87f3-9431-4876-9a0b-66e5a457d1e9:MRN2/master.m3u8
 #EXTINF:-1 tvg-id="1090555610_KAN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="2428" ch-number="2428",Sony: UFC Fight Night - Prochazka vs Stirling [KAN] (2428)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=46bbf645122de0df0cd0b19d4487e2ce:45e84957268ce56d53ae6d0fadec5964
-https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795284132~exp=1795284432~acl=*~id=69ff7ee8-4124-4585-a61e-663e434ba8c9~hmac=f5407e7b596cd407741cef3e6740662a78b5686b3c01925374db15d38bd951cf&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/21f4c41d-31af-49e4-9060-58b13d4574ae:TUL/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795285254~exp=1795285554~acl=*~id=b3c8d23a-00a8-4260-926b-b61b57554f62~hmac=0f12609f3f33bcf12e4c8e5f45faf596e40a6a50eafe3bab3ed5d989a9d921f3&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/6929ca4a-607d-45b8-a286-fb3be16881fd:MRN2/master.m3u8
 #EXTINF:-1 tvg-id="Amz.0016137737778918942779853" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.5a28093f-2e23-4bdb-8aaa-ca038715ae16/2/BOXART-16X9/en-US._UR1920 tvg-chno="2429" ch-number="2429",1080_.jpeg", Willow: ACC Mens Asia Cup Rising Stars 2026 - 6th Match - Bangladesh A vs Afghanistan A (2429)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
