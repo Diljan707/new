@@ -4,7 +4,6 @@
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=59709ac792b4abee6b44ba227eab3dae:901d5c39f0ad1de751e4cdf60c4cf6c7,d6465131aa215f3ab237827f21659928:d68995d8ba9a4e237d094f8e05070612,5c4f38f647fa590f9904947fd5d1afb9:80c7058468bfea90d7ba55f550792ec3,25c3dca19fed535db5233e3859d4f582:1e8cac37bd2965ee2994e34621b84d91,2702abec609a3cc6cd7d3d2a3dfd20ea:6b5280a1cca055b5fa0eac4d45ef633a,41f99bf792396140543eedfe535063dc:8f05294007dd45eb2b78d5a65e9a4095,4ec699d1ee4e1bb28e5aee32f3bf472c:8503b40d74b527f82ec598216ebb5120
-#EXTVLCOPT:http-cookie=__hdnea__=st=1795222809~exp=1795309209~acl=/*~hmac=fee85893e66ad6c48a22ce4f88bdb9537b9df75c8c8223d1772efd8036b64b4a
 https://jiotvmblive.cdn.jio.com/bpk-tv/Star_Plus_HD_MOB/WDVLive/index.mpd?__hdnea__=st=1795222809~exp=1795309209~acl=/*~hmac=fee85893e66ad6c48a22ce4f88bdb9537b9df75c8c8223d1772efd8036b64b4a
 #EXTINF:-1 tvg-id="1540068289" tvg-language="Hindi" tvg-name="Star Plus" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/2384/1782291852384-h" catchup-type="append" catchup-days="14" catchup-source="&start={utc}&end={utcend}" tvg-chno="101" ch-number="101",Star Plus (101)
 #KODIPROP:inputstream=inputstream.adaptive
@@ -23,7 +22,6 @@ https://d1iwj24qiokrul.cloudfront.net/live/media/ZEE_TV_HD/dash/ZEE_TV_HD.mpd
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=e109173bd0695526a3c1c97aeb4d5449:9642f7c04a74e93fa85b10ce9fd1c50c,1ed6c2831ce3500049c6c4d40911790e:42f0f9e46c2053bfa39c113076ff2d39,7efcc797c24317b19d61a0feeb8692a3:fd6bbb684a5c2507bd19032a4c46d564,c380a03b71ed5a4d98298cd11e143ba4:cc37b021133c3b9e2d4d6391edc4bff5,3cea9e7556b67d52acb968af964e8d6d:1385aedde1aff92b6e7f3b2447e389c0,d1b6a4beb9f65c315b282b58781ed5cb:c442ac78c33bc6f2ad1c0e2eddacbec9,4b35e987730e55528cf07a0ef12b10e1:3fcc6d95fc399ff2814024d337cfa116
-#EXTVLCOPT:http-cookie=__hdnea__=st=1795222809~exp=1795309209~acl=/*~hmac=fee85893e66ad6c48a22ce4f88bdb9537b9df75c8c8223d1772efd8036b64b4a
 https://jiotvmblive.cdn.jio.com/bpk-tv/Sony_HD_MOB/WDVLive/index.mpd?__hdnea__=st=1795222809~exp=1795309209~acl=/*~hmac=fee85893e66ad6c48a22ce4f88bdb9537b9df75c8c8223d1772efd8036b64b4a
 #EXTINF:-1 tvg-id="sliv_291" tvg-language="Hindi" tvg-logo="http://jiotv.catchup.cdn.jio.com/dare_images/images/Sony_HD.png" tvg-chno="104" ch-number="104",SET HD (104)
 #KODIPROP:inputstream=inputstream.adaptive
