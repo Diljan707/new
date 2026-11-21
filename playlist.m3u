@@ -5,6 +5,7 @@
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=59709ac792b4abee6b44ba227eab3dae:901d5c39f0ad1de751e4cdf60c4cf6c7,d6465131aa215f3ab237827f21659928:d68995d8ba9a4e237d094f8e05070612,5c4f38f647fa590f9904947fd5d1afb9:80c7058468bfea90d7ba55f550792ec3,25c3dca19fed535db5233e3859d4f582:1e8cac37bd2965ee2994e34621b84d91,2702abec609a3cc6cd7d3d2a3dfd20ea:6b5280a1cca055b5fa0eac4d45ef633a,41f99bf792396140543eedfe535063dc:8f05294007dd45eb2b78d5a65e9a4095,4ec699d1ee4e1bb28e5aee32f3bf472c:8503b40d74b527f82ec598216ebb5120
 https://jiotvmblive.cdn.jio.com/bpk-tv/Star_Plus_HD_MOB/WDVLive/index.mpd?__hdnea__=st=1795222809~exp=1795309209~acl=/*~hmac=fee85893e66ad6c48a22ce4f88bdb9537b9df75c8c8223d1772efd8036b64b4a
+
 #EXTINF:-1 tvg-id="1540068289" tvg-language="Hindi" tvg-name="Star Plus" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/2384/1782291852384-h" catchup-type="append" catchup-days="14" catchup-source="&start={utc}&end={utcend}" tvg-chno="101" ch-number="101",Star Plus (101)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
