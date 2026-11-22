@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diljan Live TV - Shaka Player</title>
+  <script src="https://cdn.jsdelivr.net/npm/shaka-player@4.11.2/dist/shaka-player.compiled.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #0d1117;
+      color: #e6edf3;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    header {
+      background: #161b22;
+      padding: 10px 16px;
+      border-bottom: 1px solid #30363d;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand {
+      font-weight: 700;
+      font-size: 18px;
+      color: #58a6ff;
+    }
+    .controls {
+      display: flex;
+      gap: 8px;
+      flex: 1;
+      max-width: 720px;
+    }
+    input {
+      background: #0d1117;
+      border: 1px solid #30363d;
+      color: #e6edf3;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      width: 100%;
+    }
+    button {
+      background: #238636;
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    button:hover { background: #2ea043; }
+    .main {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+    .player-section {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      background: #000;
+      position: relative;
+    }
+    video {
+      width: 100%;
+      height: 100%;
+      max-height: calc(100vh - 105px);
+      background: #000;
+    }
+    .now-playing {
+      background: #161b22;
+      padding: 10px 16px;
+      border-top: 1px solid #30363d;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+    }
+    .status-badge {
+      font-size: 12px;
+      padding: 3px 8px;
+      border-radius: 12px;
+      background: #21262d;
+      color: #8b949e;
+    }
+    .sidebar {
+      flex: 1;
+      max-width: 400px;
+      background: #161b22;
+      border-left: 1px solid #30363d;
+      display: flex;
+      flex-direction: column;
+    }
+    .search-box {
+      padding: 10px;
+      border-bottom: 1px solid #30363d;
+    }
+    .channel-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 6px;
+    }
+    .channel-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .channel-item:hover { background: #21262d; }
+    .channel-item.active {
+      background: #1f6feb33;
+      border: 1px solid #388bfd;
+    }
+    .channel-logo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      background: #0d1117;
+      border-radius: 6px;
+      padding: 3px;
+      flex-shrink: 0;
+    }
+    .channel-info {
+      overflow: hidden;
+      flex: 1;
+    }
+    .channel-title {
+      font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .channel-meta {
+      font-size: 12px;
+      color: #8b949e;
+    }
+    @media (max-width: 820px) {
+      .main { flex-direction: column; }
+      .player-section { flex: none; height: 42vh; }
+      video { max-height: calc(42vh - 40px); }
+      .sidebar { max-width: 100%; border-left: none; border-top: 1px solid #30363d; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">Diljan Live TV</div>
+    <div class="controls">
+      <input
+        type="text"
+        id="playlistUrl"
+        value="https://raw.githubusercontent.com/Diljan707/new/main/playlist.m3u"
+        placeholder="Enter M3U Playlist URL..."
+      />
+      <button onclick="loadPlaylist()">Load</button>
+    </div>
+  </header>
+
+  <div class="main">
+    <div class="player-section">
+      <video id="video" controls autoplay playsinline></video>
+      <div class="now-playing">
+        <span id="currentTitle">Select a channel to play</span>
+        <span id="statusText" class="status-badge">Ready</span>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <div class="search-box">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search channel name or number..."
+          oninput="filterChannels()"
+        />
+      </div>
+      <div id="channelList" class="channel-list"></div>
+    </div>
+  </div>
+
+  <script>
+    let player = null;
+    let allChannels = [];
+    let currentChannel = null;
+
+    async function initPlayer() {
+      shaka.polyfill.installAll();
+      if (!shaka.Player.isBrowserSupported()) {
+        setStatus("Browser not supported");
+        return;
+      }
+
+      const video = document.getElementById("video");
+      player = new shaka.Player();
+      await player.attach(video);
+
+      player.addEventListener("error", (event) => {
+        console.error("Shaka Error:", event.detail);
+        setStatus("Error: " + event.detail.code);
+      });
+
+      // Forward __hdnea__ token and custom pipe headers on requests
+      player.getNetworkingEngine().registerRequestFilter((type, request) => {
+        if (!currentChannel) return;
+
+        if (currentChannel.headers) {
+          for (const [k, v] of Object.entries(currentChannel.headers)) {
+            if (k.toLowerCase() !== "host" && k.toLowerCase() !== "connection" && k.toLowerCase() !== "user-agent" && k.toLowerCase() !== "cookie") {
+              request.headers[k] = v;
+            }
+          }
+        }
+
+        if (currentChannel.hdneaToken && request.uris && request.uris.length > 0) {
+          request.uris = request.uris.map((uri) => {
+            if (!uri.includes("__hdnea__=") && uri.includes("jio.com")) {
+              const sep = uri.includes("?") ? "&" : "?";
+              return uri + sep + currentChannel.hdneaToken;
+            }
+            return uri;
+          });
+        }
+      });
+
+      loadPlaylist();
+    }
+
+    function setStatus(msg) {
+      document.getElementById("statusText").textContent = msg;
+    }
+
+    function parseM3U(text) {
+      const lines = text.split(/\r?\n/);
+      const channels = [];
+      let current = null;
+
+      for (let rawLine of lines) {
+        const line = rawLine.trim();
+        if (!line || line === "#EXTM3U") continue;
+
+        if (line.startsWith("#EXTINF")) {
+          if (current && current.url) channels.push(current);
+
+          const commaIdx = line.indexOf(",");
+          const metaPart = commaIdx !== -1 ? line.slice(0, commaIdx) : line;
+          const title = commaIdx !== -1 ? line.slice(commaIdx + 1).trim() : "Unknown";
+
+          const logoMatch = metaPart.match(/tvg-logo="([^"]*)"/i);
+          const chnoMatch = metaPart.match(/tvg-chno="([^"]*)"/i);
+          const langMatch = metaPart.match(/tvg-language="([^"]*)"/i);
+
+          current = {
+            title,
+            logo: logoMatch ? logoMatch[1] : "",
+            chno: chnoMatch ? chnoMatch[1] : "",
+            language: langMatch ? langMatch[1] : "",
+            manifestType: "",
+            licenseType: "",
+            clearKeys: {},
+            url: "",
+            headers: {},
+            hdneaToken: ""
+          };
+        } else if (current && line.startsWith("#KODIPROP:")) {
+          const prop = line.slice("#KODIPROP:".length);
+          const eqIdx = prop.indexOf("=");
+          if (eqIdx !== -1) {
+            const key = prop.slice(0, eqIdx).trim().toLowerCase();
+            const val = prop.slice(eqIdx + 1).trim();
+
+            if (key === "inputstream.adaptive.manifest_type") {
+              current.manifestType = val.toLowerCase();
+            } else if (key === "inputstream.adaptive.license_type") {
+              current.licenseType = val.toLowerCase();
+            } else if (key === "inputstream.adaptive.license_key") {
+              if (val && val !== "null:null") {
+                const pairs = val.split(",");
+                for (const pair of pairs) {
+                  const [kid, k] = pair.split(":");
+                  if (kid && k && kid.length === 32 && k.length === 32) {
+                    current.clearKeys[kid.toLowerCase()] = k.toLowerCase();
+                  }
+                }
+              }
+            }
+          }
+        } else if (current && line.startsWith("http")) {
+          const pipeIdx = line.indexOf("|");
+          if (pipeIdx !== -1) {
+            current.url = line.slice(0, pipeIdx).trim();
+            const paramStr = line.slice(pipeIdx + 1);
+            paramStr.split("&").forEach((kv) => {
+              const eq = kv.indexOf("=");
+              if (eq !== -1) {
+                current.headers[kv.slice(0, eq)] = kv.slice(eq + 1);
+              }
+            });
+          } else {
+            current.url = line;
+          }
+
+          const tokenMatch = current.url.match(/(__hdnea__=[^&]+)/i);
+          if (tokenMatch) {
+            current.hdneaToken = tokenMatch[1];
+          }
+
+          channels.push(current);
+          current = null;
+        }
+      }
+
+      if (current && current.url) channels.push(current);
+      return channels;
+    }
+
+    async function loadPlaylist() {
+      const url = document.getElementById("playlistUrl").value.trim();
+      if (!url) return;
+
+      setStatus("Loading playlist...");
+      try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        const text = await res.text();
+        allChannels = parseM3U(text);
+        renderChannels(allChannels);
+        setStatus(`Loaded ${allChannels.length} channels`);
+      } catch (err) {
+        console.error(err);
+        setStatus("Failed to load M3U");
+      }
+    }
+
+    function renderChannels(list) {
+      const container = document.getElementById("channelList");
+      container.innerHTML = "";
+
+      list.forEach((ch) => {
+        const div = document.createElement("div");
+        div.className = "channel-item" + (currentChannel === ch ? " active" : "");
+        div.onclick = () => playChannel(ch, div);
+
+        const img = document.createElement("img");
+        img.className = "channel-logo";
+        img.src = ch.logo || "https://via.placeholder.com/42?text=TV";
+        img.onerror = () => { img.src = "https://via.placeholder.com/42?text=TV"; };
+
+        const info = document.createElement("div");
+        info.className = "channel-info";
+
+        const title = document.createElement("div");
+        title.className = "channel-title";
+        title.textContent = ch.title;
+
+        const meta = document.createElement("div");
+        meta.className = "channel-meta";
+        const typeLabel = ch.url.includes(".mpd") ? "DASH / ClearKey" : "HLS";
+        meta.textContent = `${ch.chno ? "Ch " + ch.chno + " • " : ""}${ch.language || "Live"} • ${typeLabel}`;
+
+        info.appendChild(title);
+        info.appendChild(meta);
+        div.appendChild(img);
+        div.appendChild(info);
+        container.appendChild(div);
+      });
+    }
+
+    function filterChannels() {
+      const q = document.getElementById("searchInput").value.toLowerCase().trim();
+      if (!q) {
+        renderChannels(allChannels);
+        return;
+      }
+      const filtered = allChannels.filter(
+        (ch) =>
+          ch.title.toLowerCase().includes(q) ||
+          (ch.chno && ch.chno.includes(q)) ||
+          (ch.language && ch.language.toLowerCase().includes(q))
+      );
+      renderChannels(filtered);
+    }
+
+    async function playChannel(ch, element) {
+      currentChannel = ch;
+      document.querySelectorAll(".channel-item").forEach((el) => el.classList.remove("active"));
+      if (element) element.classList.add("active");
+
+      document.getElementById("currentTitle").textContent = ch.title;
+      setStatus("Loading stream...");
+
+      try {
+        await player.unload();
+
+        const config = {
+          drm: {
+            clearKeys: Object.keys(ch.clearKeys).length > 0 ? ch.clearKeys : {}
+          }
+        };
+        player.configure(config);
+
+        await player.load(ch.url);
+        setStatus("Playing");
+      } catch (err) {
+        console.error("Playback error:", err);
+        setStatus("Playback Error (" + (err.code || "Failed") + ")");
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", initPlayer);
+  </script>
+</body>
+</html>
