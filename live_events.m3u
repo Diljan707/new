@@ -1,233 +1,215 @@
 #EXTM3U
-#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo9cZGt3VJujNhF5G4hLRy4LMC6LVznt8J_xVguOvDzw&s=10" group-title="Live events" tvg-chno="1392" ch-number="1392", (1392)
+#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo9cZGt3VJujNhF5G4hLRy4LMC6LVznt8J_xVguOvDzw&s=10" group-title="Live events" tvg-chno="1587" ch-number="1587", (1587)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 
-#EXTINF:-1 tvg-id="1090555610_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="1396" ch-number="1396",Sony: UFC Fight Night - Prochazka vs Stirling [ENG] (1396)
+#EXTINF:-1 tvg-id="1090555669_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029396/1795086806204996_NZvsIND_1st_Test_Day4_landscape_thumb.jpg" tvg-chno="1590" ch-number="1590",Sony: India vs New Zealand [ENG] (1590)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795285784~exp=1795286084~acl=*~id=b3e9dab1-1687-423f-9ad7-33c0725c1790~hmac=e03258130a083615767b6f14102a0b0fe4e9d76760b67e66a42c4ee806b3a301&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/cb7050f3-8d5f-4562-86dd-ce12d8dadc57:TUL/master.m3u8
-#EXTINF:-1 tvg-id="1090555610_HIN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="1398" ch-number="1398",Sony: UFC Fight Night - Prochazka vs Stirling [HIN] (1398)
+https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2111/ENG/master.m3u8?hdnea=exp=1795343451~acl=/*~id=39373787222647160200375626961340~hmac=4cf0dd2be039b54613412ab424fa1fc1199504c73f30f55cbfd28563761b6d2c
+#EXTINF:-1 tvg-id="1090555669_HIN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029396/1795086806204996_NZvsIND_1st_Test_Day4_landscape_thumb.jpg" tvg-chno="1591" ch-number="1591",Sony: India vs New Zealand [HIN] (1591)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795285784~exp=1795286084~acl=*~id=b3a7ec1e-97de-441f-8a55-3fca65934714~hmac=49a346164145b4254a8523d7f060784390ead86eaf716a0afaad94932ad48fd5&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/8b6f6424-d320-4669-936e-bb25489a8436:TUL/master.m3u8
-#EXTINF:-1 tvg-id="1090555610_TAM" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="1399" ch-number="1399",Sony: UFC Fight Night - Prochazka vs Stirling [TAM] (1399)
+https://liveakmt-p-md.slivcdn.com/hls/live/2119921/cricodi_2111/HIN/master.m3u8?hdnea=exp=1795343451~acl=/*~id=39373787222647160200375626961340~hmac=4cf0dd2be039b54613412ab424fa1fc1199504c73f30f55cbfd28563761b6d2c
+#EXTINF:-1 tvg-id="1090555669_TAM" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029396/1795086806204996_NZvsIND_1st_Test_Day4_landscape_thumb.jpg" tvg-chno="1592" ch-number="1592",Sony: India vs New Zealand [TAM] (1592)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795285784~exp=1795286084~acl=*~id=6fabdabb-ee7e-485e-a371-891fadd11fd1~hmac=20727aa8d927c3ce13dddd2805c2c2af9fc63d97684e91fafc5c1b6399f27fe9&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/e0a6c315-9790-4781-a79f-1289ab08b195:TUL/master.m3u8
-#EXTINF:-1 tvg-id="1090555610_TEL" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="1400" ch-number="1400",Sony: UFC Fight Night - Prochazka vs Stirling [TEL] (1400)
+https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2111/ENG/master.m3u8?hdnea=exp=1795343451~acl=/*~id=39373787222647160200375626961340~hmac=4cf0dd2be039b54613412ab424fa1fc1199504c73f30f55cbfd28563761b6d2c
+#EXTINF:-1 tvg-id="1090555669_TEL" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029396/1795086806204996_NZvsIND_1st_Test_Day4_landscape_thumb.jpg" tvg-chno="1593" ch-number="1593",Sony: India vs New Zealand [TEL] (1593)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795285784~exp=1795286084~acl=*~id=2fbc9894-71ff-408a-9967-ba606544d00a~hmac=e9bcc309c8061cd089514cb1d5a63011b339b9336c141ca9f003883d18164d40&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/2932ec8e-25f9-4713-aa34-21b619c85f62:TUL/master.m3u8
-#EXTINF:-1 tvg-id="1090555610_KAN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="1401" ch-number="1401",Sony: UFC Fight Night - Prochazka vs Stirling [KAN] (1401)
+https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2111/ENG/master.m3u8?hdnea=exp=1795343451~acl=/*~id=39373787222647160200375626961340~hmac=4cf0dd2be039b54613412ab424fa1fc1199504c73f30f55cbfd28563761b6d2c
+#EXTINF:-1 tvg-id="1090555669_KAN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029396/1795086806204996_NZvsIND_1st_Test_Day4_landscape_thumb.jpg" tvg-chno="1594" ch-number="1594",Sony: India vs New Zealand [KAN] (1594)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=46bbf645122de0df0cd0b19d4487e2ce:45e84957268ce56d53ae6d0fadec5964
-https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795285784~exp=1795286084~acl=*~id=d417840f-4327-4767-8157-c27ac6983b06~hmac=bb151ab2c5e062917d70e1782fbc7ef2a547e2e7aa55f4e16dd14d0f39847a91&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/be2ffbb1-2795-4a59-8e53-f2bf60da6952:CHS/master.m3u8
-#EXTINF:-1 tvg-id="Amz.0016137737778918942779853" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.5a28093f-2e23-4bdb-8aaa-ca038715ae16/2/BOXART-16X9/en-US._UR1920 tvg-chno="1402" ch-number="1402",1080_.jpeg", Willow: ACC Mens Asia Cup Rising Stars 2026 - 6th Match - Bangladesh A vs Afghanistan A (1402)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=61403ba13e0032108b86ec3078314ec9:ec2ac53d37954d51dd4d9eb11ecf322b
-https://otte.live.fly.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/fceyqwjpo4/out/v1/3d62c2d3722b4801b8c7dce78217ff87/cenc.mpd
-#EXTINF:-1 tvg-id="Amz.7719746169481732007985937" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.f5566761-b72f-45ad-89b5-d9febee8e5f4/2/BOXART-16X9/en-US._UR1920 tvg-chno="1405" ch-number="1405",1080_.jpeg", Willow: International League T20 2026 - 1st Match - Desert Vipers vs Mi Emirates (1405)
+#KODIPROP:inputstream.adaptive.license_key=9a79865ad099bcc92fc555a1014310a6:0f79fed08b0fa0db9c08989d40f7ba73
+https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2111/ENG/master.m3u8?hdnea=exp=1795343451~acl=/*~id=39373787222647160200375626961340~hmac=4cf0dd2be039b54613412ab424fa1fc1199504c73f30f55cbfd28563761b6d2c
+#EXTINF:-1 tvg-id="Amz.0150595149221015012124704" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.04f62072-bc1e-42be-b0f9-2370ad69f513/11/BOXART-16X9/en-US._UR1920 tvg-chno="1595" ch-number="1595",1080_.jpeg", Willow: India tour of New Zealand 2026 - 1st Test - New Zealand vs India (1595)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=69a5aa835a061ce64a630d1046727e40:d02feac8a999bd06bf4059bf33411749
-https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/u7thf3dqfv/out/v1/b6a0f070688648ac849771947211a8fb/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1406" ch-number="1406",TNT Sports 1 (1406)
+https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/fkipghexfw/out/v1/b9c7bdeeb3324a67829355fbadde5f64/cenc.mpd
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1596" ch-number="1596",TNT Sports 1 (1596)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=f3df7843080ae743bf865dc5fdf64c68:567c863bc12eb74788ea74888c042e1b
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/rhf2dwosdt/out/v1/ee550d2a68d846c797e6ce4de2e8b76d/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1409" ch-number="1409",TNT Sports 2 (1409)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1597" ch-number="1597",TNT Sports 2 (1597)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=cc91508324ce9dcaf425a43d58f1d9d4:643e5474d9edd87c7d9091c8c97994ca
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/puehlftk5j/out/v1/f7f0da1ee112481ca0024e6d4dd97f4a/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1411" ch-number="1411",TNT Sports 3 (1411)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1598" ch-number="1598",TNT Sports 3 (1598)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=fa34fa8c90336dd528c7a23871cad1fe:552a78d1aeb74f1650d68255c5749408
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/dev1hjwzh9/out/v1/a5f0ee7ad7b24906b14f43bebbbe4678/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="1412" ch-number="1412",TNT Sports 4 (1412)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="1599" ch-number="1599",TNT Sports 4 (1599)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=60c0d9b41475e01db4ffb91ed557fbcc:36ee40e58948ca15e3caba8d47b8f34b
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/tdijwiga2k/out/v1/f5fde318678f4f7583bf27b7231bde1f/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="1413" ch-number="1413",TNT Sports 5 (1413)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="1600" ch-number="1600",TNT Sports 5 (1600)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=60c0d9b41475e01db4ffb91ed557fbcc:36ee40e58948ca15e3caba8d47b8f34b
 
-#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo9cZGt3VJujNhF5G4hLRy4LMC6LVznt8J_xVguOvDzw&s=10" group-title="Live events" tvg-chno="1920" ch-number="1920", (1920)
+#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo9cZGt3VJujNhF5G4hLRy4LMC6LVznt8J_xVguOvDzw&s=10" group-title="Live events" tvg-chno="2072" ch-number="2072", (2072)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 
-#EXTINF:-1 tvg-id="1090555610_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="1923" ch-number="1923",Sony: UFC Fight Night - Prochazka vs Stirling [ENG] (1923)
+#EXTINF:-1 tvg-id="1090555669_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029396/1795086806204996_NZvsIND_1st_Test_Day4_landscape_thumb.jpg" tvg-chno="2075" ch-number="2075",Sony: India vs New Zealand [ENG] (2075)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795285796~exp=1795286096~acl=*~id=beb185bd-e5e2-4765-a7e4-7d9efc25b0c0~hmac=632b306c299dc27d50ea62c9c04407b97c96dfa2bfda526b733dbd283405b59e&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/7aa36f9b-9d2c-4a9a-8afe-9ed64dc9b410:CHS/master.m3u8
-#EXTINF:-1 tvg-id="1090555610_HIN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="1924" ch-number="1924",Sony: UFC Fight Night - Prochazka vs Stirling [HIN] (1924)
+https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2111/ENG/master.m3u8?hdnea=exp=1795343451~acl=/*~id=39373787222647160200375626961340~hmac=4cf0dd2be039b54613412ab424fa1fc1199504c73f30f55cbfd28563761b6d2c
+#EXTINF:-1 tvg-id="1090555669_HIN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029396/1795086806204996_NZvsIND_1st_Test_Day4_landscape_thumb.jpg" tvg-chno="2076" ch-number="2076",Sony: India vs New Zealand [HIN] (2076)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795285795~exp=1795286095~acl=*~id=6ef36cc2-807b-49e1-91c7-1d818b52bcfd~hmac=f3a74ec3561c5c03948cb68a4518cc8b2adf7853a7b3a909037315e08bab5f62&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/7c236f91-ee6e-4668-9c51-ad1e08f9c725:TUL/master.m3u8
-#EXTINF:-1 tvg-id="1090555610_TAM" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="1925" ch-number="1925",Sony: UFC Fight Night - Prochazka vs Stirling [TAM] (1925)
+https://liveakmt-p-md.slivcdn.com/hls/live/2119921/cricodi_2111/HIN/master.m3u8?hdnea=exp=1795343451~acl=/*~id=39373787222647160200375626961340~hmac=4cf0dd2be039b54613412ab424fa1fc1199504c73f30f55cbfd28563761b6d2c
+#EXTINF:-1 tvg-id="1090555669_TAM" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029396/1795086806204996_NZvsIND_1st_Test_Day4_landscape_thumb.jpg" tvg-chno="2077" ch-number="2077",Sony: India vs New Zealand [TAM] (2077)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795285795~exp=1795286095~acl=*~id=7a16ea05-83dd-4a14-99c4-51a14ef89c1e~hmac=9bf3ba90075f2a3843dd162c0cc495acfc92da52fe8cba28f15d595188ae7699&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/fbe845ce-f4c0-4a78-abc9-49f697ba1faa:TUL/master.m3u8
-#EXTINF:-1 tvg-id="1090555610_TEL" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="1926" ch-number="1926",Sony: UFC Fight Night - Prochazka vs Stirling [TEL] (1926)
+https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2111/ENG/master.m3u8?hdnea=exp=1795343451~acl=/*~id=39373787222647160200375626961340~hmac=4cf0dd2be039b54613412ab424fa1fc1199504c73f30f55cbfd28563761b6d2c
+#EXTINF:-1 tvg-id="1090555669_TEL" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029396/1795086806204996_NZvsIND_1st_Test_Day4_landscape_thumb.jpg" tvg-chno="2078" ch-number="2078",Sony: India vs New Zealand [TEL] (2078)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795285795~exp=1795286095~acl=*~id=d5bc4853-1a45-4f62-94c8-4efa3778993d~hmac=a3fe395763ff48602252a07029b6f3eeca00b2c6c96af910f9d49f2c1e2fe6b8&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/39731b5a-6f30-4e9e-83c0-a4f66b7d6ca4:TUL/master.m3u8
-#EXTINF:-1 tvg-id="1090555610_KAN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="1927" ch-number="1927",Sony: UFC Fight Night - Prochazka vs Stirling [KAN] (1927)
+https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2111/ENG/master.m3u8?hdnea=exp=1795343451~acl=/*~id=39373787222647160200375626961340~hmac=4cf0dd2be039b54613412ab424fa1fc1199504c73f30f55cbfd28563761b6d2c
+#EXTINF:-1 tvg-id="1090555669_KAN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029396/1795086806204996_NZvsIND_1st_Test_Day4_landscape_thumb.jpg" tvg-chno="2079" ch-number="2079",Sony: India vs New Zealand [KAN] (2079)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=46bbf645122de0df0cd0b19d4487e2ce:45e84957268ce56d53ae6d0fadec5964
-https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795285795~exp=1795286095~acl=*~id=dc47a559-244a-4f3c-a14a-5defde023508~hmac=faae9465c3a6c43968e8028e70bafa40e48fd43e63ff06b390c5c89c51ea534e&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/2cc8c7bb-ae6b-4e49-ba7b-3abda7bcfdf4:TUL/master.m3u8
-#EXTINF:-1 tvg-id="Amz.0016137737778918942779853" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.5a28093f-2e23-4bdb-8aaa-ca038715ae16/2/BOXART-16X9/en-US._UR1920 tvg-chno="1928" ch-number="1928",1080_.jpeg", Willow: ACC Mens Asia Cup Rising Stars 2026 - 6th Match - Bangladesh A vs Afghanistan A (1928)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=61403ba13e0032108b86ec3078314ec9:ec2ac53d37954d51dd4d9eb11ecf322b
-https://otte.live.fly.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/fceyqwjpo4/out/v1/3d62c2d3722b4801b8c7dce78217ff87/cenc.mpd
-#EXTINF:-1 tvg-id="Amz.7719746169481732007985937" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.f5566761-b72f-45ad-89b5-d9febee8e5f4/2/BOXART-16X9/en-US._UR1920 tvg-chno="1929" ch-number="1929",1080_.jpeg", Willow: International League T20 2026 - 1st Match - Desert Vipers vs Mi Emirates (1929)
+#KODIPROP:inputstream.adaptive.license_key=9a79865ad099bcc92fc555a1014310a6:0f79fed08b0fa0db9c08989d40f7ba73
+https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2111/ENG/master.m3u8?hdnea=exp=1795343451~acl=/*~id=39373787222647160200375626961340~hmac=4cf0dd2be039b54613412ab424fa1fc1199504c73f30f55cbfd28563761b6d2c
+#EXTINF:-1 tvg-id="Amz.0150595149221015012124704" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.04f62072-bc1e-42be-b0f9-2370ad69f513/11/BOXART-16X9/en-US._UR1920 tvg-chno="2080" ch-number="2080",1080_.jpeg", Willow: India tour of New Zealand 2026 - 1st Test - New Zealand vs India (2080)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=69a5aa835a061ce64a630d1046727e40:d02feac8a999bd06bf4059bf33411749
-https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/u7thf3dqfv/out/v1/b6a0f070688648ac849771947211a8fb/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1930" ch-number="1930",TNT Sports 1 (1930)
+https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/fkipghexfw/out/v1/b9c7bdeeb3324a67829355fbadde5f64/cenc.mpd
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="2081" ch-number="2081",TNT Sports 1 (2081)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=f3df7843080ae743bf865dc5fdf64c68:567c863bc12eb74788ea74888c042e1b
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/rhf2dwosdt/out/v1/ee550d2a68d846c797e6ce4de2e8b76d/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1931" ch-number="1931",TNT Sports 2 (1931)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="2082" ch-number="2082",TNT Sports 2 (2082)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=cc91508324ce9dcaf425a43d58f1d9d4:643e5474d9edd87c7d9091c8c97994ca
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/puehlftk5j/out/v1/f7f0da1ee112481ca0024e6d4dd97f4a/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1932" ch-number="1932",TNT Sports 3 (1932)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="2083" ch-number="2083",TNT Sports 3 (2083)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=fa34fa8c90336dd528c7a23871cad1fe:552a78d1aeb74f1650d68255c5749408
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/dev1hjwzh9/out/v1/a5f0ee7ad7b24906b14f43bebbbe4678/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="1933" ch-number="1933",TNT Sports 4 (1933)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="2084" ch-number="2084",TNT Sports 4 (2084)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=60c0d9b41475e01db4ffb91ed557fbcc:36ee40e58948ca15e3caba8d47b8f34b
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/tdijwiga2k/out/v1/f5fde318678f4f7583bf27b7231bde1f/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="1934" ch-number="1934",TNT Sports 5 (1934)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="2085" ch-number="2085",TNT Sports 5 (2085)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=60c0d9b41475e01db4ffb91ed557fbcc:36ee40e58948ca15e3caba8d47b8f34b
 
-#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo9cZGt3VJujNhF5G4hLRy4LMC6LVznt8J_xVguOvDzw&s=10" group-title="Live events" tvg-chno="2418" ch-number="2418", (2418)
+#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo9cZGt3VJujNhF5G4hLRy4LMC6LVznt8J_xVguOvDzw&s=10" group-title="Live events" tvg-chno="2415" ch-number="2415", (2415)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 
-#EXTINF:-1 tvg-id="1090555610_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="2424" ch-number="2424",Sony: UFC Fight Night - Prochazka vs Stirling [ENG] (2424)
+#EXTINF:-1 tvg-id="1090555669_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029396/1795086806204996_NZvsIND_1st_Test_Day4_landscape_thumb.jpg" tvg-chno="2420" ch-number="2420",Sony: India vs New Zealand [ENG] (2420)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795285810~exp=1795286110~acl=*~id=f7d4de34-8378-45d4-ad4c-586e646e0d47~hmac=26a72e8553672817e4ae3ca412a5dbb77a04e42fd550e2a2de6e5221e459db3b&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/5d4d416d-e285-4157-89b3-92b894fbb78a:CHS/master.m3u8
-#EXTINF:-1 tvg-id="1090555610_HIN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="2425" ch-number="2425",Sony: UFC Fight Night - Prochazka vs Stirling [HIN] (2425)
+https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2111/ENG/master.m3u8?hdnea=exp=1795343451~acl=/*~id=39373787222647160200375626961340~hmac=4cf0dd2be039b54613412ab424fa1fc1199504c73f30f55cbfd28563761b6d2c
+#EXTINF:-1 tvg-id="1090555669_HIN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029396/1795086806204996_NZvsIND_1st_Test_Day4_landscape_thumb.jpg" tvg-chno="2422" ch-number="2422",Sony: India vs New Zealand [HIN] (2422)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795285810~exp=1795286110~acl=*~id=3e05d573-30ff-4bdc-854d-2194dfc32a67~hmac=409b344c55eafba80e0e1e0bda7186c0ba2fc823d284026b1b7c42977e537148&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/3b67e534-4d66-439d-817d-44357e0e77d8:TUL/master.m3u8
-#EXTINF:-1 tvg-id="1090555610_TAM" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="2426" ch-number="2426",Sony: UFC Fight Night - Prochazka vs Stirling [TAM] (2426)
+https://liveakmt-p-md.slivcdn.com/hls/live/2119921/cricodi_2111/HIN/master.m3u8?hdnea=exp=1795343451~acl=/*~id=39373787222647160200375626961340~hmac=4cf0dd2be039b54613412ab424fa1fc1199504c73f30f55cbfd28563761b6d2c
+#EXTINF:-1 tvg-id="1090555669_TAM" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029396/1795086806204996_NZvsIND_1st_Test_Day4_landscape_thumb.jpg" tvg-chno="2424" ch-number="2424",Sony: India vs New Zealand [TAM] (2424)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795285810~exp=1795286110~acl=*~id=64effcf1-d3ec-47d4-aa6b-d75fdf8f4231~hmac=edec1a1f3d9c64730ebe6287de53f14b6306c12e48ea1540abfddd1b20c0af1a&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/f0bfa88b-7bb0-4f45-a871-a61055c726d4:TUL/master.m3u8
-#EXTINF:-1 tvg-id="1090555610_TEL" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="2427" ch-number="2427",Sony: UFC Fight Night - Prochazka vs Stirling [TEL] (2427)
+https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2111/ENG/master.m3u8?hdnea=exp=1795343451~acl=/*~id=39373787222647160200375626961340~hmac=4cf0dd2be039b54613412ab424fa1fc1199504c73f30f55cbfd28563761b6d2c
+#EXTINF:-1 tvg-id="1090555669_TEL" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029396/1795086806204996_NZvsIND_1st_Test_Day4_landscape_thumb.jpg" tvg-chno="2425" ch-number="2425",Sony: India vs New Zealand [TEL] (2425)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795285810~exp=1795286110~acl=*~id=cafc8542-493e-4dba-a821-5d6fe31ba098~hmac=7470161083a347ee11624f738a81fdff382854c8f1ad1288a3aeb5b073bf7e3b&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/f894d294-4dfa-4076-b45e-3ac16f6348c5:TUL/master.m3u8
-#EXTINF:-1 tvg-id="1090555610_KAN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029535/1795216895013771_UFC_Fight_Night_Prochazka_vs_Stirling_landscape_thumb.jpg" tvg-chno="2428" ch-number="2428",Sony: UFC Fight Night - Prochazka vs Stirling [KAN] (2428)
+https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2111/ENG/master.m3u8?hdnea=exp=1795343451~acl=/*~id=39373787222647160200375626961340~hmac=4cf0dd2be039b54613412ab424fa1fc1199504c73f30f55cbfd28563761b6d2c
+#EXTINF:-1 tvg-id="1090555669_KAN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029396/1795086806204996_NZvsIND_1st_Test_Day4_landscape_thumb.jpg" tvg-chno="2426" ch-number="2426",Sony: India vs New Zealand [KAN] (2426)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=46bbf645122de0df0cd0b19d4487e2ce:45e84957268ce56d53ae6d0fadec5964
-https://sonydaimenew.akamaized.net/hls/live/2120305/UFC_Proc2111/ENG/std_mdh-800300010.m3u8?hdnea=st=1795285810~exp=1795286110~acl=*~id=d545e3a5-b26f-48f6-accd-b4301a748437~hmac=b030e995b68449c8aecd1eb9c7173ac593498fad51c005b7ecc5847fe5402e08&originpath=/linear/hls/pa/event/fNwNyRsSQLOQ45LFUyTx2g/stream/d62970f0-b617-4eed-8e61-709730a369e7:TUL/master.m3u8
-#EXTINF:-1 tvg-id="Amz.0016137737778918942779853" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.5a28093f-2e23-4bdb-8aaa-ca038715ae16/2/BOXART-16X9/en-US._UR1920 tvg-chno="2429" ch-number="2429",1080_.jpeg", Willow: ACC Mens Asia Cup Rising Stars 2026 - 6th Match - Bangladesh A vs Afghanistan A (2429)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=61403ba13e0032108b86ec3078314ec9:ec2ac53d37954d51dd4d9eb11ecf322b
-https://otte.live.fly.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/fceyqwjpo4/out/v1/3d62c2d3722b4801b8c7dce78217ff87/cenc.mpd
-#EXTINF:-1 tvg-id="Amz.7719746169481732007985937" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.f5566761-b72f-45ad-89b5-d9febee8e5f4/2/BOXART-16X9/en-US._UR1920 tvg-chno="2430" ch-number="2430",1080_.jpeg", Willow: International League T20 2026 - 1st Match - Desert Vipers vs Mi Emirates (2430)
+#KODIPROP:inputstream.adaptive.license_key=9a79865ad099bcc92fc555a1014310a6:0f79fed08b0fa0db9c08989d40f7ba73
+https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2111/ENG/master.m3u8?hdnea=exp=1795343451~acl=/*~id=39373787222647160200375626961340~hmac=4cf0dd2be039b54613412ab424fa1fc1199504c73f30f55cbfd28563761b6d2c
+#EXTINF:-1 tvg-id="Amz.0150595149221015012124704" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.04f62072-bc1e-42be-b0f9-2370ad69f513/11/BOXART-16X9/en-US._UR1920 tvg-chno="2427" ch-number="2427",1080_.jpeg", Willow: India tour of New Zealand 2026 - 1st Test - New Zealand vs India (2427)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=69a5aa835a061ce64a630d1046727e40:d02feac8a999bd06bf4059bf33411749
-https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/u7thf3dqfv/out/v1/b6a0f070688648ac849771947211a8fb/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="2431" ch-number="2431",TNT Sports 1 (2431)
+https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/fkipghexfw/out/v1/b9c7bdeeb3324a67829355fbadde5f64/cenc.mpd
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="2428" ch-number="2428",TNT Sports 1 (2428)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=f3df7843080ae743bf865dc5fdf64c68:567c863bc12eb74788ea74888c042e1b
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/rhf2dwosdt/out/v1/ee550d2a68d846c797e6ce4de2e8b76d/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="2435" ch-number="2435",TNT Sports 2 (2435)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="2429" ch-number="2429",TNT Sports 2 (2429)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=cc91508324ce9dcaf425a43d58f1d9d4:643e5474d9edd87c7d9091c8c97994ca
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/puehlftk5j/out/v1/f7f0da1ee112481ca0024e6d4dd97f4a/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="2436" ch-number="2436",TNT Sports 3 (2436)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="2430" ch-number="2430",TNT Sports 3 (2430)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=fa34fa8c90336dd528c7a23871cad1fe:552a78d1aeb74f1650d68255c5749408
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/dev1hjwzh9/out/v1/a5f0ee7ad7b24906b14f43bebbbe4678/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="2437" ch-number="2437",TNT Sports 4 (2437)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="2431" ch-number="2431",TNT Sports 4 (2431)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=60c0d9b41475e01db4ffb91ed557fbcc:36ee40e58948ca15e3caba8d47b8f34b
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/tdijwiga2k/out/v1/f5fde318678f4f7583bf27b7231bde1f/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="2438" ch-number="2438",TNT Sports 5 (2438)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="2435" ch-number="2435",TNT Sports 5 (2435)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
