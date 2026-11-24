@@ -10,188 +10,224 @@
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2411/ENG/master.m3u8?hdnea=exp=1795518070~acl=/*~id=44549584061734566214979650087183~hmac=10c0fdf6f7f8e6bb85ff3548929393506e7fbb587727d4cfdb79d6028415b980
+https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2411/ENG/master.m3u8?hdnea=exp=1795561208~acl=/*~id=46415927546447847612424713076976~hmac=7faf9a6ee64a68db76497e1d28cfeb69d3213f4bba30f2ec48b3e803bf8593d9
 #EXTINF:-1 tvg-id="1090556007_HIN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029712/1795394747843314_ACRS_India_A_vs_UAE_live_landscape_thumb.jpg" tvg-chno="1335" ch-number="1335",Sony: ACC Men's Asia Cup Rising Stars [HIN] (1335)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://liveakmt-p-md.slivcdn.com/hls/live/2119921/cricodi_2411/HIN/master.m3u8?hdnea=exp=1795518070~acl=/*~id=44549584061734566214979650087183~hmac=10c0fdf6f7f8e6bb85ff3548929393506e7fbb587727d4cfdb79d6028415b980
+https://liveakmt-p-md.slivcdn.com/hls/live/2119921/cricodi_2411/HIN/master.m3u8?hdnea=exp=1795561208~acl=/*~id=46415927546447847612424713076976~hmac=7faf9a6ee64a68db76497e1d28cfeb69d3213f4bba30f2ec48b3e803bf8593d9
 #EXTINF:-1 tvg-id="1090556007_TAM" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029712/1795394747843314_ACRS_India_A_vs_UAE_live_landscape_thumb.jpg" tvg-chno="1336" ch-number="1336",Sony: ACC Men's Asia Cup Rising Stars [TAM] (1336)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2411/ENG/master.m3u8?hdnea=exp=1795518070~acl=/*~id=44549584061734566214979650087183~hmac=10c0fdf6f7f8e6bb85ff3548929393506e7fbb587727d4cfdb79d6028415b980
+https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2411/ENG/master.m3u8?hdnea=exp=1795561208~acl=/*~id=46415927546447847612424713076976~hmac=7faf9a6ee64a68db76497e1d28cfeb69d3213f4bba30f2ec48b3e803bf8593d9
 #EXTINF:-1 tvg-id="1090556007_TEL" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029712/1795394747843314_ACRS_India_A_vs_UAE_live_landscape_thumb.jpg" tvg-chno="1337" ch-number="1337",Sony: ACC Men's Asia Cup Rising Stars [TEL] (1337)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2411/ENG/master.m3u8?hdnea=exp=1795518070~acl=/*~id=44549584061734566214979650087183~hmac=10c0fdf6f7f8e6bb85ff3548929393506e7fbb587727d4cfdb79d6028415b980
+https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2411/ENG/master.m3u8?hdnea=exp=1795561208~acl=/*~id=46415927546447847612424713076976~hmac=7faf9a6ee64a68db76497e1d28cfeb69d3213f4bba30f2ec48b3e803bf8593d9
 #EXTINF:-1 tvg-id="1090556007_KAN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029712/1795394747843314_ACRS_India_A_vs_UAE_live_landscape_thumb.jpg" tvg-chno="1338" ch-number="1338",Sony: ACC Men's Asia Cup Rising Stars [KAN] (1338)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2411/ENG/master.m3u8?hdnea=exp=1795518070~acl=/*~id=44549584061734566214979650087183~hmac=10c0fdf6f7f8e6bb85ff3548929393506e7fbb587727d4cfdb79d6028415b980
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1339" ch-number="1339",TNT Sports 1 (1339)
+https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2411/ENG/master.m3u8?hdnea=exp=1795561208~acl=/*~id=46415927546447847612424713076976~hmac=7faf9a6ee64a68db76497e1d28cfeb69d3213f4bba30f2ec48b3e803bf8593d9
+#EXTINF:-1 tvg-id="1090556042_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029724/1795410670843751_ACRS26_PAK_A_vs_NEPAL_live_landscape_thumb.jpg" tvg-chno="1339" ch-number="1339",Sony: ACC Men's Asia Cup Rising Stars [ENG] (1339)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=null:null
+https://sonydaimenew.akamaized.net/hls/live/2120299/Criclive2411/ENG/std_mdh-800300010.m3u8?hdnea=st=1795521715~exp=1795522015~acl=*~id=7584992d-5b17-48ea-a0ba-4914eebc031c~hmac=171d1e6c46d23e28c4d8d31fec67c5c78b2eb8e1cd13b61e7e093cd81b705ca1&originpath=/linear/hls/pa/event/YEM-gkNKSaaG0VB4X6KiMg/stream/c2d8ed60-462d-49a9-b03e-23d446b88cbf:MRN2/master.m3u8
+#EXTINF:-1 tvg-id="Amz.7098882567857875427349946" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.7ce31cd4-075b-478e-a281-f98d632e52d5/2/BOXART-16X9/en-US._UR1920 tvg-chno="1340" ch-number="1340",1080_.jpeg", Willow: ACC Mens Asia Cup Rising Stars 2026 - 11th Match - India A vs United Arab Emirates (1340)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=531497de47944ade5410fe5852905698:574547fdae92793f4630b65dade01761
+https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/po7s7fvgjq/out/v1/5c412831b960410cb880428166b74dee/cenc.mpd
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1342" ch-number="1342",TNT Sports 1 (1342)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=69a5aa835a061ce64a630d1046727e40:d02feac8a999bd06bf4059bf33411749
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/rhf2dwosdt/out/v1/ee550d2a68d846c797e6ce4de2e8b76d/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1340" ch-number="1340",TNT Sports 2 (1340)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1343" ch-number="1343",TNT Sports 2 (1343)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=f3df7843080ae743bf865dc5fdf64c68:567c863bc12eb74788ea74888c042e1b
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/puehlftk5j/out/v1/f7f0da1ee112481ca0024e6d4dd97f4a/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1342" ch-number="1342",TNT Sports 3 (1342)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1344" ch-number="1344",TNT Sports 3 (1344)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=cc91508324ce9dcaf425a43d58f1d9d4:643e5474d9edd87c7d9091c8c97994ca
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/dev1hjwzh9/out/v1/a5f0ee7ad7b24906b14f43bebbbe4678/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="1343" ch-number="1343",TNT Sports 4 (1343)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="1345" ch-number="1345",TNT Sports 4 (1345)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=fa34fa8c90336dd528c7a23871cad1fe:552a78d1aeb74f1650d68255c5749408
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/tdijwiga2k/out/v1/f5fde318678f4f7583bf27b7231bde1f/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="1344" ch-number="1344",TNT Sports 5 (1344)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="1346" ch-number="1346",TNT Sports 5 (1346)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 
-#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo9cZGt3VJujNhF5G4hLRy4LMC6LVznt8J_xVguOvDzw&s=10" group-title="Live events" tvg-chno="1856" ch-number="1856", (1856)
+#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo9cZGt3VJujNhF5G4hLRy4LMC6LVznt8J_xVguOvDzw&s=10" group-title="Live events" tvg-chno="1858" ch-number="1858", (1858)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 
-#EXTINF:-1 tvg-id="1090556007_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029712/1795394747843314_ACRS_India_A_vs_UAE_live_landscape_thumb.jpg" tvg-chno="1859" ch-number="1859",Sony: ACC Men's Asia Cup Rising Stars [ENG] (1859)
+#EXTINF:-1 tvg-id="1090556007_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029712/1795394747843314_ACRS_India_A_vs_UAE_live_landscape_thumb.jpg" tvg-chno="1861" ch-number="1861",Sony: ACC Men's Asia Cup Rising Stars [ENG] (1861)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2411/ENG/master.m3u8?hdnea=exp=1795518070~acl=/*~id=44549584061734566214979650087183~hmac=10c0fdf6f7f8e6bb85ff3548929393506e7fbb587727d4cfdb79d6028415b980
-#EXTINF:-1 tvg-id="1090556007_HIN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029712/1795394747843314_ACRS_India_A_vs_UAE_live_landscape_thumb.jpg" tvg-chno="1860" ch-number="1860",Sony: ACC Men's Asia Cup Rising Stars [HIN] (1860)
+https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2411/ENG/master.m3u8?hdnea=exp=1795561208~acl=/*~id=46415927546447847612424713076976~hmac=7faf9a6ee64a68db76497e1d28cfeb69d3213f4bba30f2ec48b3e803bf8593d9
+#EXTINF:-1 tvg-id="1090556007_HIN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029712/1795394747843314_ACRS_India_A_vs_UAE_live_landscape_thumb.jpg" tvg-chno="1862" ch-number="1862",Sony: ACC Men's Asia Cup Rising Stars [HIN] (1862)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://liveakmt-p-md.slivcdn.com/hls/live/2119921/cricodi_2411/HIN/master.m3u8?hdnea=exp=1795518070~acl=/*~id=44549584061734566214979650087183~hmac=10c0fdf6f7f8e6bb85ff3548929393506e7fbb587727d4cfdb79d6028415b980
-#EXTINF:-1 tvg-id="1090556007_TAM" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029712/1795394747843314_ACRS_India_A_vs_UAE_live_landscape_thumb.jpg" tvg-chno="1861" ch-number="1861",Sony: ACC Men's Asia Cup Rising Stars [TAM] (1861)
+https://liveakmt-p-md.slivcdn.com/hls/live/2119921/cricodi_2411/HIN/master.m3u8?hdnea=exp=1795561208~acl=/*~id=46415927546447847612424713076976~hmac=7faf9a6ee64a68db76497e1d28cfeb69d3213f4bba30f2ec48b3e803bf8593d9
+#EXTINF:-1 tvg-id="1090556007_TAM" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029712/1795394747843314_ACRS_India_A_vs_UAE_live_landscape_thumb.jpg" tvg-chno="1863" ch-number="1863",Sony: ACC Men's Asia Cup Rising Stars [TAM] (1863)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2411/ENG/master.m3u8?hdnea=exp=1795518070~acl=/*~id=44549584061734566214979650087183~hmac=10c0fdf6f7f8e6bb85ff3548929393506e7fbb587727d4cfdb79d6028415b980
-#EXTINF:-1 tvg-id="1090556007_TEL" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029712/1795394747843314_ACRS_India_A_vs_UAE_live_landscape_thumb.jpg" tvg-chno="1862" ch-number="1862",Sony: ACC Men's Asia Cup Rising Stars [TEL] (1862)
+https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2411/ENG/master.m3u8?hdnea=exp=1795561208~acl=/*~id=46415927546447847612424713076976~hmac=7faf9a6ee64a68db76497e1d28cfeb69d3213f4bba30f2ec48b3e803bf8593d9
+#EXTINF:-1 tvg-id="1090556007_TEL" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029712/1795394747843314_ACRS_India_A_vs_UAE_live_landscape_thumb.jpg" tvg-chno="1864" ch-number="1864",Sony: ACC Men's Asia Cup Rising Stars [TEL] (1864)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2411/ENG/master.m3u8?hdnea=exp=1795518070~acl=/*~id=44549584061734566214979650087183~hmac=10c0fdf6f7f8e6bb85ff3548929393506e7fbb587727d4cfdb79d6028415b980
-#EXTINF:-1 tvg-id="1090556007_KAN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029712/1795394747843314_ACRS_India_A_vs_UAE_live_landscape_thumb.jpg" tvg-chno="1863" ch-number="1863",Sony: ACC Men's Asia Cup Rising Stars [KAN] (1863)
+https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2411/ENG/master.m3u8?hdnea=exp=1795561208~acl=/*~id=46415927546447847612424713076976~hmac=7faf9a6ee64a68db76497e1d28cfeb69d3213f4bba30f2ec48b3e803bf8593d9
+#EXTINF:-1 tvg-id="1090556007_KAN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029712/1795394747843314_ACRS_India_A_vs_UAE_live_landscape_thumb.jpg" tvg-chno="1865" ch-number="1865",Sony: ACC Men's Asia Cup Rising Stars [KAN] (1865)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2411/ENG/master.m3u8?hdnea=exp=1795518070~acl=/*~id=44549584061734566214979650087183~hmac=10c0fdf6f7f8e6bb85ff3548929393506e7fbb587727d4cfdb79d6028415b980
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1864" ch-number="1864",TNT Sports 1 (1864)
+https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2411/ENG/master.m3u8?hdnea=exp=1795561208~acl=/*~id=46415927546447847612424713076976~hmac=7faf9a6ee64a68db76497e1d28cfeb69d3213f4bba30f2ec48b3e803bf8593d9
+#EXTINF:-1 tvg-id="1090556042_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029724/1795410670843751_ACRS26_PAK_A_vs_NEPAL_live_landscape_thumb.jpg" tvg-chno="1866" ch-number="1866",Sony: ACC Men's Asia Cup Rising Stars [ENG] (1866)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=null:null
+https://sonydaimenew.akamaized.net/hls/live/2120299/Criclive2411/ENG/std_mdh-800300010.m3u8?hdnea=st=1795521727~exp=1795522027~acl=*~id=1b238adf-228d-4876-926e-dc34003ca35a~hmac=ed7363a42762480b03cf568787c5e6c47e43a3e852e0eca70090bafbfe546820&originpath=/linear/hls/pa/event/YEM-gkNKSaaG0VB4X6KiMg/stream/4d27df6c-3567-4a2b-b53b-558b9014c243:MRN2/master.m3u8
+#EXTINF:-1 tvg-id="Amz.7098882567857875427349946" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.7ce31cd4-075b-478e-a281-f98d632e52d5/2/BOXART-16X9/en-US._UR1920 tvg-chno="1867" ch-number="1867",1080_.jpeg", Willow: ACC Mens Asia Cup Rising Stars 2026 - 11th Match - India A vs United Arab Emirates (1867)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=531497de47944ade5410fe5852905698:574547fdae92793f4630b65dade01761
+https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/po7s7fvgjq/out/v1/5c412831b960410cb880428166b74dee/cenc.mpd
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1868" ch-number="1868",TNT Sports 1 (1868)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=69a5aa835a061ce64a630d1046727e40:d02feac8a999bd06bf4059bf33411749
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/rhf2dwosdt/out/v1/ee550d2a68d846c797e6ce4de2e8b76d/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1865" ch-number="1865",TNT Sports 2 (1865)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1869" ch-number="1869",TNT Sports 2 (1869)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=f3df7843080ae743bf865dc5fdf64c68:567c863bc12eb74788ea74888c042e1b
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/puehlftk5j/out/v1/f7f0da1ee112481ca0024e6d4dd97f4a/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1866" ch-number="1866",TNT Sports 3 (1866)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1870" ch-number="1870",TNT Sports 3 (1870)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=cc91508324ce9dcaf425a43d58f1d9d4:643e5474d9edd87c7d9091c8c97994ca
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/dev1hjwzh9/out/v1/a5f0ee7ad7b24906b14f43bebbbe4678/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="1867" ch-number="1867",TNT Sports 4 (1867)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="1871" ch-number="1871",TNT Sports 4 (1871)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=fa34fa8c90336dd528c7a23871cad1fe:552a78d1aeb74f1650d68255c5749408
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/tdijwiga2k/out/v1/f5fde318678f4f7583bf27b7231bde1f/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="1868" ch-number="1868",TNT Sports 5 (1868)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="1872" ch-number="1872",TNT Sports 5 (1872)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 
-#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo9cZGt3VJujNhF5G4hLRy4LMC6LVznt8J_xVguOvDzw&s=10" group-title="Live events" tvg-chno="2326" ch-number="2326", (2326)
+#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo9cZGt3VJujNhF5G4hLRy4LMC6LVznt8J_xVguOvDzw&s=10" group-title="Live events" tvg-chno="2330" ch-number="2330", (2330)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 
-#EXTINF:-1 tvg-id="1090556007_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029712/1795394747843314_ACRS_India_A_vs_UAE_live_landscape_thumb.jpg" tvg-chno="2329" ch-number="2329",Sony: ACC Men's Asia Cup Rising Stars [ENG] (2329)
+#EXTINF:-1 tvg-id="1090556007_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029712/1795394747843314_ACRS_India_A_vs_UAE_live_landscape_thumb.jpg" tvg-chno="2333" ch-number="2333",Sony: ACC Men's Asia Cup Rising Stars [ENG] (2333)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2411/ENG/master.m3u8?hdnea=exp=1795518070~acl=/*~id=44549584061734566214979650087183~hmac=10c0fdf6f7f8e6bb85ff3548929393506e7fbb587727d4cfdb79d6028415b980
-#EXTINF:-1 tvg-id="1090556007_HIN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029712/1795394747843314_ACRS_India_A_vs_UAE_live_landscape_thumb.jpg" tvg-chno="2330" ch-number="2330",Sony: ACC Men's Asia Cup Rising Stars [HIN] (2330)
+https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2411/ENG/master.m3u8?hdnea=exp=1795561208~acl=/*~id=46415927546447847612424713076976~hmac=7faf9a6ee64a68db76497e1d28cfeb69d3213f4bba30f2ec48b3e803bf8593d9
+#EXTINF:-1 tvg-id="1090556007_HIN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029712/1795394747843314_ACRS_India_A_vs_UAE_live_landscape_thumb.jpg" tvg-chno="2334" ch-number="2334",Sony: ACC Men's Asia Cup Rising Stars [HIN] (2334)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://liveakmt-p-md.slivcdn.com/hls/live/2119921/cricodi_2411/HIN/master.m3u8?hdnea=exp=1795518070~acl=/*~id=44549584061734566214979650087183~hmac=10c0fdf6f7f8e6bb85ff3548929393506e7fbb587727d4cfdb79d6028415b980
-#EXTINF:-1 tvg-id="1090556007_TAM" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029712/1795394747843314_ACRS_India_A_vs_UAE_live_landscape_thumb.jpg" tvg-chno="2331" ch-number="2331",Sony: ACC Men's Asia Cup Rising Stars [TAM] (2331)
+https://liveakmt-p-md.slivcdn.com/hls/live/2119921/cricodi_2411/HIN/master.m3u8?hdnea=exp=1795561208~acl=/*~id=46415927546447847612424713076976~hmac=7faf9a6ee64a68db76497e1d28cfeb69d3213f4bba30f2ec48b3e803bf8593d9
+#EXTINF:-1 tvg-id="1090556007_TAM" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029712/1795394747843314_ACRS_India_A_vs_UAE_live_landscape_thumb.jpg" tvg-chno="2335" ch-number="2335",Sony: ACC Men's Asia Cup Rising Stars [TAM] (2335)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2411/ENG/master.m3u8?hdnea=exp=1795518070~acl=/*~id=44549584061734566214979650087183~hmac=10c0fdf6f7f8e6bb85ff3548929393506e7fbb587727d4cfdb79d6028415b980
-#EXTINF:-1 tvg-id="1090556007_TEL" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029712/1795394747843314_ACRS_India_A_vs_UAE_live_landscape_thumb.jpg" tvg-chno="2332" ch-number="2332",Sony: ACC Men's Asia Cup Rising Stars [TEL] (2332)
+https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2411/ENG/master.m3u8?hdnea=exp=1795561208~acl=/*~id=46415927546447847612424713076976~hmac=7faf9a6ee64a68db76497e1d28cfeb69d3213f4bba30f2ec48b3e803bf8593d9
+#EXTINF:-1 tvg-id="1090556007_TEL" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029712/1795394747843314_ACRS_India_A_vs_UAE_live_landscape_thumb.jpg" tvg-chno="2336" ch-number="2336",Sony: ACC Men's Asia Cup Rising Stars [TEL] (2336)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2411/ENG/master.m3u8?hdnea=exp=1795518070~acl=/*~id=44549584061734566214979650087183~hmac=10c0fdf6f7f8e6bb85ff3548929393506e7fbb587727d4cfdb79d6028415b980
-#EXTINF:-1 tvg-id="1090556007_KAN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029712/1795394747843314_ACRS_India_A_vs_UAE_live_landscape_thumb.jpg" tvg-chno="2333" ch-number="2333",Sony: ACC Men's Asia Cup Rising Stars [KAN] (2333)
+https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2411/ENG/master.m3u8?hdnea=exp=1795561208~acl=/*~id=46415927546447847612424713076976~hmac=7faf9a6ee64a68db76497e1d28cfeb69d3213f4bba30f2ec48b3e803bf8593d9
+#EXTINF:-1 tvg-id="1090556007_KAN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029712/1795394747843314_ACRS_India_A_vs_UAE_live_landscape_thumb.jpg" tvg-chno="2337" ch-number="2337",Sony: ACC Men's Asia Cup Rising Stars [KAN] (2337)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2411/ENG/master.m3u8?hdnea=exp=1795518070~acl=/*~id=44549584061734566214979650087183~hmac=10c0fdf6f7f8e6bb85ff3548929393506e7fbb587727d4cfdb79d6028415b980
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="2334" ch-number="2334",TNT Sports 1 (2334)
+https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2411/ENG/master.m3u8?hdnea=exp=1795561208~acl=/*~id=46415927546447847612424713076976~hmac=7faf9a6ee64a68db76497e1d28cfeb69d3213f4bba30f2ec48b3e803bf8593d9
+#EXTINF:-1 tvg-id="1090556042_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029724/1795410670843751_ACRS26_PAK_A_vs_NEPAL_live_landscape_thumb.jpg" tvg-chno="2338" ch-number="2338",Sony: ACC Men's Asia Cup Rising Stars [ENG] (2338)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=null:null
+https://sonydaimenew.akamaized.net/hls/live/2120299/Criclive2411/ENG/std_mdh-800300010.m3u8?hdnea=st=1795521738~exp=1795522038~acl=*~id=10cefa10-8ade-4db9-81d5-1561c253024c~hmac=be9c88ddc907dd2ece815389f804888d5dd61a04b0ddd35e378758944cc9b16a&originpath=/linear/hls/pa/event/YEM-gkNKSaaG0VB4X6KiMg/stream/9eb68382-7b05-4ad8-8502-fd062efd7512:MRN2/master.m3u8
+#EXTINF:-1 tvg-id="Amz.7098882567857875427349946" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.7ce31cd4-075b-478e-a281-f98d632e52d5/2/BOXART-16X9/en-US._UR1920 tvg-chno="2339" ch-number="2339",1080_.jpeg", Willow: ACC Mens Asia Cup Rising Stars 2026 - 11th Match - India A vs United Arab Emirates (2339)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=531497de47944ade5410fe5852905698:574547fdae92793f4630b65dade01761
+https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/po7s7fvgjq/out/v1/5c412831b960410cb880428166b74dee/cenc.mpd
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="2340" ch-number="2340",TNT Sports 1 (2340)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=69a5aa835a061ce64a630d1046727e40:d02feac8a999bd06bf4059bf33411749
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/rhf2dwosdt/out/v1/ee550d2a68d846c797e6ce4de2e8b76d/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="2335" ch-number="2335",TNT Sports 2 (2335)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="2341" ch-number="2341",TNT Sports 2 (2341)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=f3df7843080ae743bf865dc5fdf64c68:567c863bc12eb74788ea74888c042e1b
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/puehlftk5j/out/v1/f7f0da1ee112481ca0024e6d4dd97f4a/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="2336" ch-number="2336",TNT Sports 3 (2336)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="2342" ch-number="2342",TNT Sports 3 (2342)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=cc91508324ce9dcaf425a43d58f1d9d4:643e5474d9edd87c7d9091c8c97994ca
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/dev1hjwzh9/out/v1/a5f0ee7ad7b24906b14f43bebbbe4678/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="2337" ch-number="2337",TNT Sports 4 (2337)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="2343" ch-number="2343",TNT Sports 4 (2343)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=fa34fa8c90336dd528c7a23871cad1fe:552a78d1aeb74f1650d68255c5749408
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/tdijwiga2k/out/v1/f5fde318678f4f7583bf27b7231bde1f/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="2338" ch-number="2338",TNT Sports 5 (2338)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="2344" ch-number="2344",TNT Sports 5 (2344)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
