@@ -5,121 +5,103 @@
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 
-#EXTINF:-1 tvg-id="Amz.3068760353117836423130223" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.bdf2bec4-d6e0-4ffd-a08f-96202ad26237/2/BOXART-16X9/en-US._UR1920 tvg-chno="1334" ch-number="1334",1080_.jpeg", Willow: International League T20 2026 - 5th Match - Gulf Giants vs Mi Emirates (1334)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=7dcfc23b4712a8031fa154bfb07917e7:fd7078d53cb394fed87690a2d408385e
-https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/gfshrnrosi/out/v1/38ade1f0001545678654acfccb674b40/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1335" ch-number="1335",TNT Sports 1 (1335)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1334" ch-number="1334",TNT Sports 1 (1334)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=69a5aa835a061ce64a630d1046727e40:d02feac8a999bd06bf4059bf33411749
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/rhf2dwosdt/out/v1/ee550d2a68d846c797e6ce4de2e8b76d/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1336" ch-number="1336",TNT Sports 2 (1336)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1335" ch-number="1335",TNT Sports 2 (1335)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=f3df7843080ae743bf865dc5fdf64c68:567c863bc12eb74788ea74888c042e1b
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/puehlftk5j/out/v1/f7f0da1ee112481ca0024e6d4dd97f4a/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1337" ch-number="1337",TNT Sports 3 (1337)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1336" ch-number="1336",TNT Sports 3 (1336)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=cc91508324ce9dcaf425a43d58f1d9d4:643e5474d9edd87c7d9091c8c97994ca
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/dev1hjwzh9/out/v1/a5f0ee7ad7b24906b14f43bebbbe4678/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="1338" ch-number="1338",TNT Sports 4 (1338)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="1337" ch-number="1337",TNT Sports 4 (1337)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=fa34fa8c90336dd528c7a23871cad1fe:552a78d1aeb74f1650d68255c5749408
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/tdijwiga2k/out/v1/f5fde318678f4f7583bf27b7231bde1f/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="1339" ch-number="1339",TNT Sports 5 (1339)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="1338" ch-number="1338",TNT Sports 5 (1338)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 
-#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo9cZGt3VJujNhF5G4hLRy4LMC6LVznt8J_xVguOvDzw&s=10" group-title="Live events" tvg-chno="1852" ch-number="1852", (1852)
+#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo9cZGt3VJujNhF5G4hLRy4LMC6LVznt8J_xVguOvDzw&s=10" group-title="Live events" tvg-chno="1850" ch-number="1850", (1850)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 
-#EXTINF:-1 tvg-id="Amz.3068760353117836423130223" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.bdf2bec4-d6e0-4ffd-a08f-96202ad26237/2/BOXART-16X9/en-US._UR1920 tvg-chno="1855" ch-number="1855",1080_.jpeg", Willow: International League T20 2026 - 5th Match - Gulf Giants vs Mi Emirates (1855)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=7dcfc23b4712a8031fa154bfb07917e7:fd7078d53cb394fed87690a2d408385e
-https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/gfshrnrosi/out/v1/38ade1f0001545678654acfccb674b40/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1856" ch-number="1856",TNT Sports 1 (1856)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1854" ch-number="1854",TNT Sports 1 (1854)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=69a5aa835a061ce64a630d1046727e40:d02feac8a999bd06bf4059bf33411749
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/rhf2dwosdt/out/v1/ee550d2a68d846c797e6ce4de2e8b76d/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1857" ch-number="1857",TNT Sports 2 (1857)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1855" ch-number="1855",TNT Sports 2 (1855)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=f3df7843080ae743bf865dc5fdf64c68:567c863bc12eb74788ea74888c042e1b
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/puehlftk5j/out/v1/f7f0da1ee112481ca0024e6d4dd97f4a/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1858" ch-number="1858",TNT Sports 3 (1858)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1856" ch-number="1856",TNT Sports 3 (1856)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=cc91508324ce9dcaf425a43d58f1d9d4:643e5474d9edd87c7d9091c8c97994ca
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/dev1hjwzh9/out/v1/a5f0ee7ad7b24906b14f43bebbbe4678/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="1859" ch-number="1859",TNT Sports 4 (1859)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="1857" ch-number="1857",TNT Sports 4 (1857)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=fa34fa8c90336dd528c7a23871cad1fe:552a78d1aeb74f1650d68255c5749408
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/tdijwiga2k/out/v1/f5fde318678f4f7583bf27b7231bde1f/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="1860" ch-number="1860",TNT Sports 5 (1860)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="1858" ch-number="1858",TNT Sports 5 (1858)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 
-#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo9cZGt3VJujNhF5G4hLRy4LMC6LVznt8J_xVguOvDzw&s=10" group-title="Live events" tvg-chno="2318" ch-number="2318", (2318)
+#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo9cZGt3VJujNhF5G4hLRy4LMC6LVznt8J_xVguOvDzw&s=10" group-title="Live events" tvg-chno="2316" ch-number="2316", (2316)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 
-#EXTINF:-1 tvg-id="Amz.3068760353117836423130223" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.bdf2bec4-d6e0-4ffd-a08f-96202ad26237/2/BOXART-16X9/en-US._UR1920 tvg-chno="2321" ch-number="2321",1080_.jpeg", Willow: International League T20 2026 - 5th Match - Gulf Giants vs Mi Emirates (2321)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=7dcfc23b4712a8031fa154bfb07917e7:fd7078d53cb394fed87690a2d408385e
-https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/gfshrnrosi/out/v1/38ade1f0001545678654acfccb674b40/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="2322" ch-number="2322",TNT Sports 1 (2322)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="2319" ch-number="2319",TNT Sports 1 (2319)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=69a5aa835a061ce64a630d1046727e40:d02feac8a999bd06bf4059bf33411749
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/rhf2dwosdt/out/v1/ee550d2a68d846c797e6ce4de2e8b76d/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="2323" ch-number="2323",TNT Sports 2 (2323)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="2320" ch-number="2320",TNT Sports 2 (2320)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=f3df7843080ae743bf865dc5fdf64c68:567c863bc12eb74788ea74888c042e1b
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/puehlftk5j/out/v1/f7f0da1ee112481ca0024e6d4dd97f4a/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="2324" ch-number="2324",TNT Sports 3 (2324)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="2321" ch-number="2321",TNT Sports 3 (2321)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=cc91508324ce9dcaf425a43d58f1d9d4:643e5474d9edd87c7d9091c8c97994ca
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/dev1hjwzh9/out/v1/a5f0ee7ad7b24906b14f43bebbbe4678/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="2325" ch-number="2325",TNT Sports 4 (2325)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="2322" ch-number="2322",TNT Sports 4 (2322)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=fa34fa8c90336dd528c7a23871cad1fe:552a78d1aeb74f1650d68255c5749408
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/tdijwiga2k/out/v1/f5fde318678f4f7583bf27b7231bde1f/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="2326" ch-number="2326",TNT Sports 5 (2326)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="2323" ch-number="2323",TNT Sports 5 (2323)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
