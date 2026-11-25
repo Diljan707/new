@@ -1,83 +1,143 @@
 #EXTM3U
-#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo9cZGt3VJujNhF5G4hLRy4LMC6LVznt8J_xVguOvDzw&s=10" group-title="Live events" tvg-chno="1856" ch-number="1856", (1856)
+#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo9cZGt3VJujNhF5G4hLRy4LMC6LVznt8J_xVguOvDzw&s=10" group-title="Live events" tvg-chno="1860" ch-number="1860", (1860)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 
-#EXTINF:-1 tvg-id="Amz.9064722425289097142213540" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.97eae418-93c7-40e2-b2d6-6a81327b83bc/5/BOXART-16X9/en-US._UR1920 tvg-chno="1859" ch-number="1859",1080_.jpeg", Willow: Bangladesh tour of South Africa 2026 - 2nd Test - South Africa vs Bangladesh (1859)
+#EXTINF:-1 tvg-id="1090556293_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029666/1795343521422198_UCL26_MD5_Sabah_FC_vs_Barcelona_landscape_thumb.jpg" tvg-chno="1863" ch-number="1863",Sony: UEFA Champions League [ENG] (1863)
 #KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=1b2d04c3583cb8cd35fdf091453a9927:9584b37353992c00415eac1ae42cb3df
-https://otte.live.fly.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/fhmmqyl8ck/out/v1/34dd0d9326ac481e816ff0573f59be3b/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1860" ch-number="1860",TNT Sports 1 (1860)
+#KODIPROP:inputstream.adaptive.license_key=null:null
+https://dai.google.com/linear/hls/event/2AJqwHkUTTO8UoVfcehEdw/master.m3u8
+#EXTINF:-1 tvg-id="1090556293_HIN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029666/1795343521422198_UCL26_MD5_Sabah_FC_vs_Barcelona_landscape_thumb.jpg" tvg-chno="1864" ch-number="1864",Sony: UEFA Champions League [HIN] (1864)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=null:null
+https://dai.google.com/linear/hls/event/2AJqwHkUTTO8UoVfcehEdw/master.m3u8
+#EXTINF:-1 tvg-id="1090556293_TAM" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029666/1795343521422198_UCL26_MD5_Sabah_FC_vs_Barcelona_landscape_thumb.jpg" tvg-chno="1865" ch-number="1865",Sony: UEFA Champions League [TAM] (1865)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=null:null
+https://dai.google.com/linear/hls/event/2AJqwHkUTTO8UoVfcehEdw/master.m3u8
+#EXTINF:-1 tvg-id="1090556293_TEL" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029666/1795343521422198_UCL26_MD5_Sabah_FC_vs_Barcelona_landscape_thumb.jpg" tvg-chno="1866" ch-number="1866",Sony: UEFA Champions League [TEL] (1866)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=null:null
+https://dai.google.com/linear/hls/event/2AJqwHkUTTO8UoVfcehEdw/master.m3u8
+#EXTINF:-1 tvg-id="1090556293_KAN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029666/1795343521422198_UCL26_MD5_Sabah_FC_vs_Barcelona_landscape_thumb.jpg" tvg-chno="1867" ch-number="1867",Sony: UEFA Champions League [KAN] (1867)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=null:null
+https://dai.google.com/linear/hls/event/2AJqwHkUTTO8UoVfcehEdw/master.m3u8
+#EXTINF:-1 tvg-id="1090556292_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029666/1795341493241198_UCL26_MD5_Slavia_Praha_vs_Villarreal_landscape_thumb.jpg" tvg-chno="1868" ch-number="1868",Sony: UEFA Champions League [ENG] (1868)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=null:null
+https://dai.google.com/linear/hls/event/w_odF55aQzWausvCuwScNA/master.m3u8
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1869" ch-number="1869",TNT Sports 1 (1869)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=69a5aa835a061ce64a630d1046727e40:d02feac8a999bd06bf4059bf33411749
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/rhf2dwosdt/out/v1/ee550d2a68d846c797e6ce4de2e8b76d/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1861" ch-number="1861",TNT Sports 2 (1861)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1870" ch-number="1870",TNT Sports 2 (1870)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=f3df7843080ae743bf865dc5fdf64c68:567c863bc12eb74788ea74888c042e1b
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/puehlftk5j/out/v1/f7f0da1ee112481ca0024e6d4dd97f4a/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1862" ch-number="1862",TNT Sports 3 (1862)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1871" ch-number="1871",TNT Sports 3 (1871)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=cc91508324ce9dcaf425a43d58f1d9d4:643e5474d9edd87c7d9091c8c97994ca
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/dev1hjwzh9/out/v1/a5f0ee7ad7b24906b14f43bebbbe4678/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="1863" ch-number="1863",TNT Sports 4 (1863)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="1872" ch-number="1872",TNT Sports 4 (1872)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=fa34fa8c90336dd528c7a23871cad1fe:552a78d1aeb74f1650d68255c5749408
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/tdijwiga2k/out/v1/f5fde318678f4f7583bf27b7231bde1f/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="1864" ch-number="1864",TNT Sports 5 (1864)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="1874" ch-number="1874",TNT Sports 5 (1874)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 
-#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo9cZGt3VJujNhF5G4hLRy4LMC6LVznt8J_xVguOvDzw&s=10" group-title="Live events" tvg-chno="2324" ch-number="2324", (2324)
+#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo9cZGt3VJujNhF5G4hLRy4LMC6LVznt8J_xVguOvDzw&s=10" group-title="Live events" tvg-chno="2331" ch-number="2331", (2331)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 
-#EXTINF:-1 tvg-id="Amz.9064722425289097142213540" group-title="Live events" tvg-logo="https://m.media-amazon.com/images/S/le-target-images-prod/amzn1.dv.gti.97eae418-93c7-40e2-b2d6-6a81327b83bc/5/BOXART-16X9/en-US._UR1920 tvg-chno="2327" ch-number="2327",1080_.jpeg", Willow: Bangladesh tour of South Africa 2026 - 2nd Test - South Africa vs Bangladesh (2327)
+#EXTINF:-1 tvg-id="1090556293_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029666/1795343521422198_UCL26_MD5_Sabah_FC_vs_Barcelona_landscape_thumb.jpg" tvg-chno="2334" ch-number="2334",Sony: UEFA Champions League [ENG] (2334)
 #KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=1b2d04c3583cb8cd35fdf091453a9927:9584b37353992c00415eac1ae42cb3df
-https://otte.live.fly.ww.aiv-cdn.net/pdx-nitro/live/clients/dash/enc/fhmmqyl8ck/out/v1/34dd0d9326ac481e816ff0573f59be3b/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="2328" ch-number="2328",TNT Sports 1 (2328)
+#KODIPROP:inputstream.adaptive.license_key=null:null
+https://sonydaimenew.akamaized.net/hls/live/2037139/footlive2511/ENG/std_mdh-800300010.m3u8?hdnea=st=1795629693~exp=1795629993~acl=*~id=6563dcb0-db14-48f6-8e77-eb322409e5fd~hmac=28b3832511b6969dc0a9dbb582edfe783e4ae059ed308e84d301cc46a7fd90fa&originpath=/linear/hls/pa/event/2AJqwHkUTTO8UoVfcehEdw/stream/d53dbc99-d29b-44ab-b503-d78d3d6692ea:ATL/master.m3u8
+#EXTINF:-1 tvg-id="1090556293_HIN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029666/1795343521422198_UCL26_MD5_Sabah_FC_vs_Barcelona_landscape_thumb.jpg" tvg-chno="2335" ch-number="2335",Sony: UEFA Champions League [HIN] (2335)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=null:null
+https://sonydaimenew.akamaized.net/hls/live/2037139/footlive2511/ENG/std_mdh-800300010.m3u8?hdnea=st=1795629693~exp=1795629993~acl=*~id=197d2190-727e-4ddd-a068-5208e361ab3f~hmac=4b2679c2ff5e0a13ed7ebd87ff62109110a2ad645590781ff7b98e95cc24dc5f&originpath=/linear/hls/pa/event/2AJqwHkUTTO8UoVfcehEdw/stream/aa2e9526-f061-4791-b265-afb1f171fe61:TUL/master.m3u8
+#EXTINF:-1 tvg-id="1090556293_TAM" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029666/1795343521422198_UCL26_MD5_Sabah_FC_vs_Barcelona_landscape_thumb.jpg" tvg-chno="2336" ch-number="2336",Sony: UEFA Champions League [TAM] (2336)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=null:null
+https://sonydaimenew.akamaized.net/hls/live/2037139/footlive2511/ENG/std_mdh-800300010.m3u8?hdnea=st=1795629694~exp=1795629994~acl=*~id=8784ab3b-28aa-401c-bd04-31215259630f~hmac=6863ad49babaac34bf14bf4ec6072bdd72c7518719028c8d93f35a047440c576&originpath=/linear/hls/pa/event/2AJqwHkUTTO8UoVfcehEdw/stream/eab4160d-c5b6-4157-8c14-c6ff6f6ba8d3:DLS/master.m3u8
+#EXTINF:-1 tvg-id="1090556293_TEL" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029666/1795343521422198_UCL26_MD5_Sabah_FC_vs_Barcelona_landscape_thumb.jpg" tvg-chno="2337" ch-number="2337",Sony: UEFA Champions League [TEL] (2337)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=null:null
+https://sonydaimenew.akamaized.net/hls/live/2037139/footlive2511/ENG/std_mdh-800300010.m3u8?hdnea=st=1795629693~exp=1795629993~acl=*~id=bcc427a6-e855-4308-903f-dbb89f49cb6c~hmac=98be1bf8eb063c44d6b5e60dc24d9e7d4272f929d84df87870728aa7899e2303&originpath=/linear/hls/pa/event/2AJqwHkUTTO8UoVfcehEdw/stream/02374bfa-98f8-419c-8273-52d2c4fd718c:TUL/master.m3u8
+#EXTINF:-1 tvg-id="1090556293_KAN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029666/1795343521422198_UCL26_MD5_Sabah_FC_vs_Barcelona_landscape_thumb.jpg" tvg-chno="2338" ch-number="2338",Sony: UEFA Champions League [KAN] (2338)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=null:null
+https://sonydaimenew.akamaized.net/hls/live/2037139/footlive2511/ENG/std_mdh-800300010.m3u8?hdnea=st=1795629693~exp=1795629993~acl=*~id=addbee59-e806-4d51-b1ec-68a6a4f7841a~hmac=bf63aab989a339c45c8ebb602e30611b74df442cdece53f1d627e6f58c765d3c&originpath=/linear/hls/pa/event/2AJqwHkUTTO8UoVfcehEdw/stream/b03c8cb4-22da-4393-89c5-1c9dc750fd72:ATL/master.m3u8
+#EXTINF:-1 tvg-id="1090556292_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029666/1795341493241198_UCL26_MD5_Slavia_Praha_vs_Villarreal_landscape_thumb.jpg" tvg-chno="2339" ch-number="2339",Sony: UEFA Champions League [ENG] (2339)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=null:null
+https://sonydaimenew.akamaized.net/hls/live/2120301/footlive2511/ENG/std_mdh-800300010.m3u8?hdnea=st=1795629694~exp=1795629994~acl=*~id=7cdf0c8b-a1df-49f1-8845-f3dec11b8ce5~hmac=f6980dabebb08f5567b2f4c87e010bce9de256edcfe85d720702fa4454294680&originpath=/linear/hls/pa/event/w_odF55aQzWausvCuwScNA/stream/05a53786-2894-4860-9162-4c081641750f:DLS/master.m3u8
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="2340" ch-number="2340",TNT Sports 1 (2340)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=69a5aa835a061ce64a630d1046727e40:d02feac8a999bd06bf4059bf33411749
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/rhf2dwosdt/out/v1/ee550d2a68d846c797e6ce4de2e8b76d/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="2330" ch-number="2330",TNT Sports 2 (2330)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="2341" ch-number="2341",TNT Sports 2 (2341)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=f3df7843080ae743bf865dc5fdf64c68:567c863bc12eb74788ea74888c042e1b
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/puehlftk5j/out/v1/f7f0da1ee112481ca0024e6d4dd97f4a/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="2331" ch-number="2331",TNT Sports 3 (2331)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="2342" ch-number="2342",TNT Sports 3 (2342)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=cc91508324ce9dcaf425a43d58f1d9d4:643e5474d9edd87c7d9091c8c97994ca
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/dev1hjwzh9/out/v1/a5f0ee7ad7b24906b14f43bebbbe4678/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="2332" ch-number="2332",TNT Sports 4 (2332)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="2343" ch-number="2343",TNT Sports 4 (2343)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=fa34fa8c90336dd528c7a23871cad1fe:552a78d1aeb74f1650d68255c5749408
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/tdijwiga2k/out/v1/f5fde318678f4f7583bf27b7231bde1f/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="2333" ch-number="2333",TNT Sports 5 (2333)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="2344" ch-number="2344",TNT Sports 5 (2344)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
