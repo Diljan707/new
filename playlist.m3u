@@ -125,7 +125,7 @@ https://game.playindia.fun/Jtv/oops.m3u8?id=sliv_289&token=Tvflix|User-Agent=Moz
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://game.playindia.fun/Jtv/jhs.mpd?id=1540068307&token=Tvflix|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Accept-Encoding=identity&X-Denver-Secure=true&Host=livetv.hotstar.com&Connection=Keep-Alive&Cookie=hdntl=exp=1795780806~acl=%2f*~id=2a60a1edc8c57976f57741977ef94736~data=hdntl~hmac=6437281761a68e7ab4a9c489588daeb973e63f75b92ae298819177eff37c14b8
-#EXTINF:-1 tvg-id="HE_E_11404" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/d2316f5734094e8486486d6911fe6560/version/0" tvg-chno="314" ch-number="314",Zee Cinema HD (314)
+#EXTINF:-1 tvg-id="HE_E_11404" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/c91e031d66e1443a9412978290a260db/version/0" tvg-chno="314" ch-number="314",Zee Cinema HD (314)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
@@ -1909,7 +1909,7 @@ https://game.playindia.fun/Jtv/oops.m3u8?id=Add_News18-Gujarati&token=Tvflix|Use
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://game.playindia.fun/Jtv/oops.mpd?id=HE_E_11524&token=Tvflix&type=watcho
-#EXTINF:-1 tvg-id="HE_E_11727" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/097a839840ae4dd3acde3233b9a05a78/version/0" tvg-chno="1292" ch-number="1292",Zee Biskope (1292)
+#EXTINF:-1 tvg-id="HE_E_11727" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/bb424c74bfd54392a86b4a343996b6d5/version/0" tvg-chno="1292" ch-number="1292",Zee Biskope (1292)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
@@ -1981,37 +1981,49 @@ https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2611/ENG/master.m3u8?
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://liveakmt-p-md.slivcdn.com/hls/live/2119931/cricodi_2611/ENG/master.m3u8?hdnea=exp=1795778137~acl=/*~id=52440930204086878535102531356948~hmac=839ce22ed1d262541c35eca947ac8b132d5df9fc05d4087344cc07578dc98fa8
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1308" ch-number="1308",TNT Sports 1 (1308)
+#EXTINF:-1 tvg-id="1090556868_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000030044/1795694848783427_AO_wildcard_playoffs_2027_Womens_and_Mens_singles_SFs_landscape_thumb.jpg" tvg-chno="1308" ch-number="1308",Sony: AO Asia Pacific Wildcard Playoffs [ENG] (1308)
 #KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=69a5aa835a061ce64a630d1046727e40:d02feac8a999bd06bf4059bf33411749
-https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/rhf2dwosdt/out/v1/ee550d2a68d846c797e6ce4de2e8b76d/cenc.mpd
+#KODIPROP:inputstream.adaptive.license_key=null:null
+https://sonydaimenew.akamaized.net/hls/live/2118867/Tennis_A2711/ENG/std_mdh-800300010.m3u8?hdnea=st=1795759297~exp=1795759597~acl=*~id=6f6f9c54-e7e0-4fed-84eb-339453b384f5~hmac=6820cbe22975aff4f27d31aa8f2acbe0db4faa8dc106bb04020f01d865c1386b&originpath=/linear/hls/pa/event/4gbt8N3cTWiQUp2hCRg3og/stream/320e54c2-a5dc-438c-a198-45b26bc7cc4f:MRN2/master.m3u8
 #EXTINF:-1 tvg-id="1540069651" tvg-language="Odia" tvg-name="Star Kiran" tvg-logo="https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/7412/1782282697412-h" catchup-type="append" catchup-days="14" catchup-source="&start={utc}&end={utcend}" tvg-chno="1309" ch-number="1309",Star Kiran (1309)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://game.playindia.fun/Jtv/jhs.mpd?id=1540069651&token=Tvflix|User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169 (Android/15)&Accept-Encoding=identity&X-Denver-Secure=true&Host=livetv.hotstar.com&Connection=Keep-Alive&Cookie=hdntl=exp=1795780806~acl=%2f*~id=2a60a1edc8c57976f57741977ef94736~data=hdntl~hmac=6437281761a68e7ab4a9c489588daeb973e63f75b92ae298819177eff37c14b8
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1310" ch-number="1310",TNT Sports 2 (1310)
+#EXTINF:-1 tvg-id="1090556910_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000029986/1795622243895554_DP_World_Tour_BMW_PGA_day2_landscape_thumb.jpg" tvg-chno="1310" ch-number="1310",Sony: DP World Tour [ENG] (1310)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=hls
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=null:null
+https://sonydaimenew.akamaized.net/hls/live/2118865/Golf_BMW2611/ENG/std_mdh-800300010.m3u8?hdnea=st=1795759297~exp=1795759597~acl=*~id=97e22886-1cb9-4373-8d63-1cd820accebc~hmac=369b447950666794767c83db0ccc121c1042765bd8b88d8647053a7c23aa37f8&originpath=/linear/hls/pa/event/FuGFb9bcSEWxSWShqRWhIg/stream/6ed63091-d2fb-47de-9253-973741fc5150:ATL/master.m3u8
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1312" ch-number="1312",TNT Sports 1 (1312)
+#KODIPROP:inputstream=inputstream.adaptive
+#KODIPROP:inputstream.adaptive.manifest_type=mpd
+#KODIPROP:inputstream.adaptive.license_type=clearkey
+#KODIPROP:inputstream.adaptive.license_key=69a5aa835a061ce64a630d1046727e40:d02feac8a999bd06bf4059bf33411749
+https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/rhf2dwosdt/out/v1/ee550d2a68d846c797e6ce4de2e8b76d/cenc.mpd
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1313" ch-number="1313",TNT Sports 2 (1313)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=f3df7843080ae743bf865dc5fdf64c68:567c863bc12eb74788ea74888c042e1b
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/puehlftk5j/out/v1/f7f0da1ee112481ca0024e6d4dd97f4a/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1312" ch-number="1312",TNT Sports 3 (1312)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1314" ch-number="1314",TNT Sports 3 (1314)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=cc91508324ce9dcaf425a43d58f1d9d4:643e5474d9edd87c7d9091c8c97994ca
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/dev1hjwzh9/out/v1/a5f0ee7ad7b24906b14f43bebbbe4678/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="1313" ch-number="1313",TNT Sports 4 (1313)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="1315" ch-number="1315",TNT Sports 4 (1315)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=fa34fa8c90336dd528c7a23871cad1fe:552a78d1aeb74f1650d68255c5749408
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/tdijwiga2k/out/v1/f5fde318678f4f7583bf27b7231bde1f/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="1314" ch-number="1314",TNT Sports 5 (1314)
+#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="1316" ch-number="1316",TNT Sports 5 (1316)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
@@ -2041,7 +2053,7 @@ https://game.playindia.fun/Jtv/oops.mpd?id=HE_E_11403&token=Tvflix&type=watcho
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
 https://game.playindia.fun/Jtv/oops.m3u8?id=Add_10558&token=Tvflix|User-Agent=Mozilla%2F5.0%20%28Windows%20NT%2010.0%3B%20Win64%3B%20x64%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F129.0.0.0%20Safari%2F537.36&domain=https://www.google.com&Referer=https://www.google.com/
-#EXTINF:-1 tvg-id="HE_E_11629" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/f508a6918aac461382774c4a34f50c30/version/0" tvg-chno="1433" ch-number="1433",Zee Bangla Sonar (1433)
+#EXTINF:-1 tvg-id="HE_E_11629" tvg-logo="https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/32b8cfb6cafe43a493a8ecb19de99128/version/0" tvg-chno="1433" ch-number="1433",Zee Bangla Sonar (1433)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
 #KODIPROP:inputstream.adaptive.license_type=clearkey
