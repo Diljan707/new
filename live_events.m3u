@@ -10,19 +10,19 @@
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120306/Footlive2811/ENG/std_mdh-800300010.m3u8?hdnea=st=1795877569~exp=1795877869~acl=*~id=aa020df8-cf92-4ff7-808d-afbd64ff74ad~hmac=032280d8c42094fa55e279687db9c9aa94d84d0ab98533077e3d08af79b35994&originpath=/linear/hls/pa/event/UKiUA0aFQROkIxGC-UjBzw/stream/c86224e6-6ed2-44ee-b8c3-1a05192ffbd0:MRN2/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2120306/Footlive2811/ENG/std_mdh-800300010.m3u8?hdnea=st=1795878366~exp=1795878666~acl=*~id=49b3c424-691e-4a36-8159-c1e460f78bff~hmac=3e41a4b2552ce36bede94fd4c271c6dd34977e000fb9f6a7b9f1658439394622&originpath=/linear/hls/pa/event/UKiUA0aFQROkIxGC-UjBzw/stream/72feb04c-e31d-4740-8a72-dc5fd41d01f0:ATL/master.m3u8
 #EXTINF:-1 tvg-id="1090557001_HIN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000030150/1795772821080275_ISL26_ChennaiyinFC_vs_MumbaiCityFC_landscape_thumb.jpg" tvg-chno="1089" ch-number="1089",Sony: MG Indian Super League [HIN] (1089)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120306/Footlive2811/ENG/std_mdh-800300010.m3u8?hdnea=st=1795877569~exp=1795877869~acl=*~id=8dc40a40-4997-47f9-b1b4-8b610cb7e47e~hmac=352918d556ad7ab97429405717bfe03df773bd93a2ca6c026a6bbaf101218f8f&originpath=/linear/hls/pa/event/UKiUA0aFQROkIxGC-UjBzw/stream/4de1902f-3108-4fbd-84ba-62196c39b0a5:CHS/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2120306/Footlive2811/ENG/std_mdh-800300010.m3u8?hdnea=st=1795878366~exp=1795878666~acl=*~id=83f99cf1-b8fa-4ada-a76b-c918bc7a14d8~hmac=977126b193515c7f25a060c6a9da65f5e42428c8b19c9283fe18fca1481ca05c&originpath=/linear/hls/pa/event/UKiUA0aFQROkIxGC-UjBzw/stream/53b5fd5d-b69b-4ff7-8a21-85d0b23250fa:DLS/master.m3u8
 #EXTINF:-1 tvg-id="1090557001_TAM" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000030150/1795772821080275_ISL26_ChennaiyinFC_vs_MumbaiCityFC_landscape_thumb.jpg" tvg-chno="1090" ch-number="1090",Sony: MG Indian Super League [TAM] (1090)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120306/Footlive2811/ENG/std_mdh-800300010.m3u8?hdnea=st=1795877569~exp=1795877869~acl=*~id=9e591eef-b515-4506-994a-87a12e1e1f37~hmac=05bb44e3ba330b5e27fc48fe0238e627602de323b287899a4b2109027d4b3d5f&originpath=/linear/hls/pa/event/UKiUA0aFQROkIxGC-UjBzw/stream/089e2d44-37a6-42f9-bdc3-4344b3568d64:TUL/master.m3u8
+https://sonydaimenew.akamaized.net/hls/live/2120306/Footlive2811/ENG/std_mdh-800300010.m3u8?hdnea=st=1795878366~exp=1795878666~acl=*~id=ee3f3030-792c-4606-8980-32b1db601649~hmac=f05a7aff7559fc4041f690f033af2db0707677866687e80731363546b8ab21b7&originpath=/linear/hls/pa/event/UKiUA0aFQROkIxGC-UjBzw/stream/64b45acf-81a0-410b-a017-9730909f0ede:ATL/master.m3u8
 #EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1091" ch-number="1091",TNT Sports 1 (1091)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=mpd
@@ -48,114 +48,6 @@ https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/dev1hjwzh9/out/v1
 #KODIPROP:inputstream.adaptive.license_key=fa34fa8c90336dd528c7a23871cad1fe:552a78d1aeb74f1650d68255c5749408
 https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/tdijwiga2k/out/v1/f5fde318678f4f7583bf27b7231bde1f/cenc.mpd
 #EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="1096" ch-number="1096",TNT Sports 5 (1096)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=60c0d9b41475e01db4ffb91ed557fbcc:36ee40e58948ca15e3caba8d47b8f34b
-
-#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo9cZGt3VJujNhF5G4hLRy4LMC6LVznt8J_xVguOvDzw&s=10" group-title="Live events" tvg-chno="1399" ch-number="1399", (1399)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-
-#EXTINF:-1 tvg-id="1090557001_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000030150/1795772821080275_ISL26_ChennaiyinFC_vs_MumbaiCityFC_landscape_thumb.jpg" tvg-chno="1402" ch-number="1402",Sony: MG Indian Super League [ENG] (1402)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120306/Footlive2811/ENG/std_mdh-800300010.m3u8?hdnea=st=1795877587~exp=1795877887~acl=*~id=0464f112-fdf1-4c54-be3a-32ae738ce6f7~hmac=6ac7dc53954d83fcc64f5d7698cfd8272e7b3fa9f27f80fe3b968e4ed383d623&originpath=/linear/hls/pa/event/UKiUA0aFQROkIxGC-UjBzw/stream/89c5646d-7c39-45fc-b430-28527aaa612e:CHS/master.m3u8
-#EXTINF:-1 tvg-id="1090557001_HIN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000030150/1795772821080275_ISL26_ChennaiyinFC_vs_MumbaiCityFC_landscape_thumb.jpg" tvg-chno="1405" ch-number="1405",Sony: MG Indian Super League [HIN] (1405)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120306/Footlive2811/ENG/std_mdh-800300010.m3u8?hdnea=st=1795877587~exp=1795877887~acl=*~id=896735bd-83d8-4985-b5ea-e7898a207d25~hmac=9506db4585157fcbf0beec1cdfa8a5693aa67669630d4f0daeaa60c1a7172f18&originpath=/linear/hls/pa/event/UKiUA0aFQROkIxGC-UjBzw/stream/8b0091fb-20e1-49f8-9270-e9230b0e1fc7:MRN2/master.m3u8
-#EXTINF:-1 tvg-id="1090557001_TAM" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000030150/1795772821080275_ISL26_ChennaiyinFC_vs_MumbaiCityFC_landscape_thumb.jpg" tvg-chno="1406" ch-number="1406",Sony: MG Indian Super League [TAM] (1406)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120306/Footlive2811/ENG/std_mdh-800300010.m3u8?hdnea=st=1795877587~exp=1795877887~acl=*~id=cc37214c-6b52-4be1-a78f-a09eaa8cce00~hmac=3d7220d74e0db258743caa1d5bb1293169f576f85be621f3c9ba15f267d1ba49&originpath=/linear/hls/pa/event/UKiUA0aFQROkIxGC-UjBzw/stream/61f299dc-81b7-47b1-abc5-1caa639e4699:TUL/master.m3u8
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1409" ch-number="1409",TNT Sports 1 (1409)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=69a5aa835a061ce64a630d1046727e40:d02feac8a999bd06bf4059bf33411749
-https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/rhf2dwosdt/out/v1/ee550d2a68d846c797e6ce4de2e8b76d/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1411" ch-number="1411",TNT Sports 2 (1411)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=f3df7843080ae743bf865dc5fdf64c68:567c863bc12eb74788ea74888c042e1b
-https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/puehlftk5j/out/v1/f7f0da1ee112481ca0024e6d4dd97f4a/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1412" ch-number="1412",TNT Sports 3 (1412)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=cc91508324ce9dcaf425a43d58f1d9d4:643e5474d9edd87c7d9091c8c97994ca
-https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/dev1hjwzh9/out/v1/a5f0ee7ad7b24906b14f43bebbbe4678/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="1413" ch-number="1413",TNT Sports 4 (1413)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=fa34fa8c90336dd528c7a23871cad1fe:552a78d1aeb74f1650d68255c5749408
-https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/tdijwiga2k/out/v1/f5fde318678f4f7583bf27b7231bde1f/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="1416" ch-number="1416",TNT Sports 5 (1416)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=60c0d9b41475e01db4ffb91ed557fbcc:36ee40e58948ca15e3caba8d47b8f34b
-
-#EXTINF:-1 tvg-id="" tvg-logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo9cZGt3VJujNhF5G4hLRy4LMC6LVznt8J_xVguOvDzw&s=10" group-title="Live events" tvg-chno="1506" ch-number="1506", (1506)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-
-#EXTINF:-1 tvg-id="1090557001_ENG" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000030150/1795772821080275_ISL26_ChennaiyinFC_vs_MumbaiCityFC_landscape_thumb.jpg" tvg-chno="1512" ch-number="1512",Sony: MG Indian Super League [ENG] (1512)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120306/Footlive2811/ENG/std_mdh-800300010.m3u8?hdnea=st=1795877594~exp=1795877894~acl=*~id=b5b68fba-0505-42bf-be19-187212d5c060~hmac=b12667b9b1aaca930b40b32e25dcde9d16a41f926efb2cce0e04515954ee21a7&originpath=/linear/hls/pa/event/UKiUA0aFQROkIxGC-UjBzw/stream/f6535d5d-0673-4378-a1a6-ee1660362de4:CHS/master.m3u8
-#EXTINF:-1 tvg-id="1090557001_HIN" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000030150/1795772821080275_ISL26_ChennaiyinFC_vs_MumbaiCityFC_landscape_thumb.jpg" tvg-chno="1513" ch-number="1513",Sony: MG Indian Super League [HIN] (1513)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120306/Footlive2811/ENG/std_mdh-800300010.m3u8?hdnea=st=1795877594~exp=1795877894~acl=*~id=41f6173f-a7c4-4bb5-834c-ff17ef0b1465~hmac=45d9ec4d75ac71525f0d89196d1e5d1952e54dccdb9b5654b473386f411a86aa&originpath=/linear/hls/pa/event/UKiUA0aFQROkIxGC-UjBzw/stream/e22a8fd6-9aa3-4ad1-84e2-be46cdf4fb87:MRN2/master.m3u8
-#EXTINF:-1 tvg-id="1090557001_TAM" group-title="Live events" tvg-logo="https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000030150/1795772821080275_ISL26_ChennaiyinFC_vs_MumbaiCityFC_landscape_thumb.jpg" tvg-chno="1515" ch-number="1515",Sony: MG Indian Super League [TAM] (1515)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=hls
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=null:null
-https://sonydaimenew.akamaized.net/hls/live/2120306/Footlive2811/ENG/std_mdh-800300010.m3u8?hdnea=st=1795877594~exp=1795877894~acl=*~id=ad19b75e-c4d6-4498-8a7f-75065169ca32~hmac=277e6b73fc03618ca77721cbf8fb7187b040180a910b2bde43929084d2a1ad6f&originpath=/linear/hls/pa/event/UKiUA0aFQROkIxGC-UjBzw/stream/6b05ecfc-e5d1-4e80-a7e8-d36808499803:TUL/master.m3u8
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/66RZfCPg/Screenshot-2024-01-15-22-01-44-34-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1516" ch-number="1516",TNT Sports 1 (1516)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=69a5aa835a061ce64a630d1046727e40:d02feac8a999bd06bf4059bf33411749
-https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/rhf2dwosdt/out/v1/ee550d2a68d846c797e6ce4de2e8b76d/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/rsYyzsV2/Screenshot-2024-01-15-23-11-32-86-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1518" ch-number="1518",TNT Sports 2 (1518)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=f3df7843080ae743bf865dc5fdf64c68:567c863bc12eb74788ea74888c042e1b
-https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/puehlftk5j/out/v1/f7f0da1ee112481ca0024e6d4dd97f4a/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://i.postimg.cc/NFWhWHGF/Screenshot-2024-01-15-23-12-20-61-40deb401b9ffe8e1df2f1cc5ba480b12.jpg" tvg-chno="1519" ch-number="1519",TNT Sports 3 (1519)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=cc91508324ce9dcaf425a43d58f1d9d4:643e5474d9edd87c7d9091c8c97994ca
-https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/dev1hjwzh9/out/v1/a5f0ee7ad7b24906b14f43bebbbe4678/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://upload.wikimedia.org/wikipedia/en/6/6b/TNT_Sports_4_logo.png" tvg-chno="1521" ch-number="1521",TNT Sports 4 (1521)
-#KODIPROP:inputstream=inputstream.adaptive
-#KODIPROP:inputstream.adaptive.manifest_type=mpd
-#KODIPROP:inputstream.adaptive.license_type=clearkey
-#KODIPROP:inputstream.adaptive.license_key=fa34fa8c90336dd528c7a23871cad1fe:552a78d1aeb74f1650d68255c5749408
-https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/tdijwiga2k/out/v1/f5fde318678f4f7583bf27b7231bde1f/cenc.mpd
-#EXTINF:-1 group-title="Live events" tvg-logo="https://dnl.tntsports.co.uk/sd/img/structured-data/tntsports.jpg" tvg-chno="1522" ch-number="1522",TNT Sports 5 (1522)
 #KODIPROP:inputstream=inputstream.adaptive
 #KODIPROP:inputstream.adaptive.manifest_type=hls
 #KODIPROP:inputstream.adaptive.license_type=clearkey
